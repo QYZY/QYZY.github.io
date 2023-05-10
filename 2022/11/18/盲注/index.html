@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="盲注的两个基本问题1. 字符串的截取substr()substr(要截取的字符串，从哪一位开始截取，截取多长)注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。 mid()和substr()用法基本一样，是substr()完美的替代品。 right()表示截取字符串的右面几位。right(接却的字符串，截取长度)到了right就不太好用了，因为substr()和m">
+  <meta name="description" content="盲注的两个基本问题 1. 字符串的截取 substr() substr(要截取的字符串，从哪一位开始截取，截取多长) 注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。 mid() 和substr()用法基本一样，是substr()完美的替代品。 right() 表示截取字符串的右面几位。 right(接却的字符串，截取长度) 到了right就不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="盲注">
 <meta property="og:url" content="https://qyzy.github.io/2022/11/18/%E7%9B%B2%E6%B3%A8/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="盲注的两个基本问题1. 字符串的截取substr()substr(要截取的字符串，从哪一位开始截取，截取多长)注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。 mid()和substr()用法基本一样，是substr()完美的替代品。 right()表示截取字符串的右面几位。right(接却的字符串，截取长度)到了right就不太好用了，因为substr()和m">
+<meta property="og:description" content="盲注的两个基本问题 1. 字符串的截取 substr() substr(要截取的字符串，从哪一位开始截取，截取多长) 注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。 mid() 和substr()用法基本一样，是substr()完美的替代品。 right() 表示截取字符串的右面几位。 right(接却的字符串，截取长度) 到了right就不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-18T09:21:04.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:35:28.676Z">
@@ -214,23 +214,62 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="盲注的两个基本问题"><a href="#盲注的两个基本问题" class="headerlink" title="盲注的两个基本问题"></a>盲注的两个基本问题</h1><h2 id="1-字符串的截取"><a href="#1-字符串的截取" class="headerlink" title="1. 字符串的截取"></a>1. 字符串的截取</h2><p><strong>substr()</strong><br><code>substr(要截取的字符串，从哪一位开始截取，截取多长)</code><br>注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。</p>
-<p><strong>mid()</strong><br>和substr()用法基本一样，是substr()完美的替代品。</p>
-<p><strong>right()</strong><br>表示截取字符串的右面几位。<br><code>right(接却的字符串，截取长度)</code><br>到了right就不太好用了，因为substr<br>()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。<br>技巧：和ascii&#x2F;ord 函数一起使用，ascii()或ord()返回传入字符串的首字母的ASCII码。另外建议能用ASCII码判断，就不要直接用明文字符进行判断。理由如下：  1.如果直接用明文字符进行判断，有一些特殊符号（单引号反斜线等）会干扰整个SQL语句的语法。2。ASCII将字符转成数字，数字可以用于大小的判断，可以二分注入，而字符基本只能用等号判断。</p>
-<p><strong>left()</strong><br>表示截取字符串的左面几位。<br><code>left(截取的字符串，截取长度)</code><br>和right()一样，依然是个不能精确截取某一位的函数，但是也可以利用技巧实现精确截取。<br>技巧：和reverse()+ascii()&#x2F;ord()一起使用。ascii(reverse(left(所截字符串，x)))会返回从左往右数第x位的ASCII码。</p>
-<p><strong>regexp</strong><br>用来判断一个字符串是否匹配一个正则表达式。这个函数兼容了截取与比较。<br><code>binary 目标字符串 regexp 正则</code><br>但是直接字符串regexp正则表达式时大小写不敏感的，需要大小写敏感需要加上binary关键字（binary不是regexp的搭档，需要把binary加到字符串的前面而不是regexp的前面，MySQL中binary是一种字符类型）</p>
-<p><strong>rlike</strong><br>和regexp一样。</p>
-<p><strong>trim()</strong><br>注入方法<br>trim()函数处理用于移除首位空白外，还有如下用法：<br>trim([both|leading|trailing] [rmstr] from str)表示移除str这个字符串首尾(BOTH)&#x2F;句首(LEADING)&#x2F;句尾(TRAILING)的rmstr<br>例如trim(leading ‘a’ from ‘abcd’)表示移除abcd句首的a，于是会返回bcd</p>
-<p><strong>insert()</strong><br>虽然字面意思为插入，其实是个字符串替换的函数<br>用法： insert(字符串，起始位置，长度，替换为什么)</p>
-<h2 id="2-比较"><a href="#2-比较" class="headerlink" title="2. 比较"></a>2. 比较</h2><p>&#x3D;&gt;&lt;<br>最基本的比较方法！<br><strong>LIKE</strong><br>基本上可以用来代替等号，如果没有% _之类的字符的话。</p>
-<p><strong>RLIKE&#x2F;REGEXP</strong><br>截取+比较的结合体</p>
-<p><strong>BETWEEN</strong><br>用法：expr BETWEEN 下界 AND 上界；<br>说明：表示是否expr&gt;&#x3D;下界 &amp;&amp; exp &lt;&#x3D; 上界，有点像数学里的“闭区间”只是这里的上下界可以相等，比如expr是2 ，那么你完全可以写成2 between 2 and 2 。所以x between i and i 就是表示x是否等于i的意思。  </p>
-<p><strong>IN</strong><br>用法：expr1 in(expr1,expr2,expr3)<br>说明：有点像数学中的元素是否属于一个集合。同样也是大小写不敏感的，为了大小写敏感需要用binary关键字。</p>
-<p><strong>AND和减法运算</strong><br>and也可以用&amp;&amp;来表示，是逻辑与的意思。<br>在盲注中，可以用一个true去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
-<p><strong>OR和减法运算</strong><br>or也可以用||来表示，是逻辑或的意思。在盲注中，可以用一个false去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
-<p><strong>CASE</strong><br>两种用法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN(表达式) THEN exp1 ELSE exp2 END;# 表示如果表达式为真则返回exp1，否则返回exp2</span><br><span class="line">CASE  啥 WHEN 啥啥 THEN exp1 ELSE exp2 END;# 表示如果（啥=啥啥）则返回exp1，否则返回exp2</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">来源</a></p>
+        <h1 id="盲注的两个基本问题">盲注的两个基本问题</h1>
+<h2 id="字符串的截取">1. 字符串的截取</h2>
+<p><strong>substr()</strong><br />
+<code>substr(要截取的字符串，从哪一位开始截取，截取多长)</code>
+注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。</p>
+<p><strong>mid()</strong><br />
+和substr()用法基本一样，是substr()完美的替代品。</p>
+<p><strong>right()</strong><br />
+表示截取字符串的右面几位。 <code>right(接却的字符串，截取长度)</code>
+到了right就不太好用了，因为substr
+()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。<br />
+技巧：和ascii/ord
+函数一起使用，ascii()或ord()返回传入字符串的首字母的ASCII码。另外建议能用ASCII码判断，就不要直接用明文字符进行判断。理由如下：
+1.如果直接用明文字符进行判断，有一些特殊符号（单引号反斜线等）会干扰整个SQL语句的语法。2。ASCII将字符转成数字，数字可以用于大小的判断，可以二分注入，而字符基本只能用等号判断。</p>
+<p><strong>left()</strong><br />
+表示截取字符串的左面几位。 <code>left(截取的字符串，截取长度)</code>
+和right()一样，依然是个不能精确截取某一位的函数，但是也可以利用技巧实现精确截取。<br />
+技巧：和reverse()+ascii()/ord()一起使用。ascii(reverse(left(所截字符串，x)))会返回从左往右数第x位的ASCII码。</p>
+<p><strong>regexp</strong><br />
+用来判断一个字符串是否匹配一个正则表达式。这个函数兼容了截取与比较。
+<code>binary 目标字符串 regexp 正则</code>
+但是直接字符串regexp正则表达式时大小写不敏感的，需要大小写敏感需要加上binary关键字（binary不是regexp的搭档，需要把binary加到字符串的前面而不是regexp的前面，MySQL中binary是一种字符类型）</p>
+<p><strong>rlike</strong><br />
+和regexp一样。</p>
+<p><strong>trim()</strong><br />
+注入方法<br />
+trim()函数处理用于移除首位空白外，还有如下用法：<br />
+trim([both|leading|trailing] [rmstr] from
+str)表示移除str这个字符串首尾(BOTH)/句首(LEADING)/句尾(TRAILING)的rmstr<br />
+例如trim(leading 'a' from 'abcd')表示移除abcd句首的a，于是会返回bcd</p>
+<p><strong>insert()</strong>
+虽然字面意思为插入，其实是个字符串替换的函数<br />
+用法： insert(字符串，起始位置，长度，替换为什么)</p>
+<h2 id="比较">2. 比较</h2>
+<p>=&gt;&lt;<br />
+最基本的比较方法！<br />
+<strong>LIKE</strong><br />
+基本上可以用来代替等号，如果没有% _之类的字符的话。</p>
+<p><strong>RLIKE/REGEXP</strong><br />
+截取+比较的结合体</p>
+<p><strong>BETWEEN</strong><br />
+用法：expr BETWEEN 下界 AND 上界；<br />
+说明：表示是否expr&gt;=下界 &amp;&amp; exp &lt;=
+上界，有点像数学里的“闭区间”只是这里的上下界可以相等，比如expr是2
+，那么你完全可以写成2 between 2 and 2 。所以x between i and i
+就是表示x是否等于i的意思。</p>
+<p><strong>IN</strong><br />
+用法：expr1 in(expr1,expr2,expr3)
+说明：有点像数学中的元素是否属于一个集合。同样也是大小写不敏感的，为了大小写敏感需要用binary关键字。</p>
+<p><strong>AND和减法运算</strong>
+and也可以用&amp;&amp;来表示，是逻辑与的意思。<br />
+在盲注中，可以用一个true去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
+<p><strong>OR和减法运算</strong>
+or也可以用||来表示，是逻辑或的意思。在盲注中，可以用一个false去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
+<p><strong>CASE</strong> 两种用法： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN(表达式) THEN exp1 ELSE exp2 END;# 表示如果表达式为真则返回exp1，否则返回exp2</span><br><span class="line">CASE  啥 WHEN 啥啥 THEN exp1 ELSE exp2 END;# 表示如果（啥=啥啥）则返回exp1，否则返回exp2</span><br></pre></td></tr></table></figure> <a
+target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">来源</a></p>
 
     </div>
 
@@ -314,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B2%E6%B3%A8%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">盲注的两个基本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%88%AA%E5%8F%96"><span class="nav-number">1.1.</span> <span class="nav-text">1. 字符串的截取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">2. 比较</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B2%E6%B3%A8%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">盲注的两个基本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%88%AA%E5%8F%96"><span class="nav-number">1.1.</span> <span class="nav-text">1. 字符串的截取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">2. 比较</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

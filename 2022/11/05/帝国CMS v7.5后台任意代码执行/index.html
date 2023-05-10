@@ -20,17 +20,14 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、漏洞描述EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。 二、影响版本EmpireCMS&lt;&#x3D;7.5 三、环境搭建1、官方下载EmpireCMS V7.5 下载地址:http:&#x2F;&#x2F;www.phome.net&#x2F;download&#x2F; 2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下 3、修改p">
+  <meta name="description" content="一、漏洞描述 EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。 二、影响版本 EmpireCMS&lt;&#x3D;7.5 三、环境搭建 1、官方下载EmpireCMS V7.5 下载地址:http:&#x2F;&#x2F;www.phome.net&#x2F;download&#x2F; 2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="帝国CMS v7.5后台任意代码执行">
 <meta property="og:url" content="https://qyzy.github.io/2022/11/05/%E5%B8%9D%E5%9B%BDCMS%20v7.5%E5%90%8E%E5%8F%B0%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="一、漏洞描述EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。 二、影响版本EmpireCMS&lt;&#x3D;7.5 三、环境搭建1、官方下载EmpireCMS V7.5 下载地址:http:&#x2F;&#x2F;www.phome.net&#x2F;download&#x2F; 2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下 3、修改p">
+<meta property="og:description" content="一、漏洞描述 EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。 二、影响版本 EmpireCMS&lt;&#x3D;7.5 三、环境搭建 1、官方下载EmpireCMS V7.5 下载地址:http:&#x2F;&#x2F;www.phome.net&#x2F;download&#x2F; 2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png">
 <meta property="article:published_time" content="2022-11-05T06:30:38.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:35:48.500Z">
 <meta property="article:author" content="竹云">
@@ -219,17 +216,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h1><p>EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。</p>
-<h1 id="二、影响版本"><a href="#二、影响版本" class="headerlink" title="二、影响版本"></a>二、影响版本</h1><p>EmpireCMS&lt;&#x3D;7.5</p>
-<h1 id="三、环境搭建"><a href="#三、环境搭建" class="headerlink" title="三、环境搭建"></a>三、环境搭建</h1><p>1、官方下载EmpireCMS V7.5 下载地址:<a target="_blank" rel="noopener" href="http://www.phome.net/download/">http://www.phome.net/download/</a></p>
+        <h1 id="一漏洞描述">一、漏洞描述</h1>
+<p>EmpireCMS
+7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。</p>
+<h1 id="二影响版本">二、影响版本</h1>
+<p>EmpireCMS&lt;=7.5</p>
+<h1 id="三环境搭建">三、环境搭建</h1>
+<p>1、官方下载EmpireCMS V7.5 下载地址:http://www.phome.net/download/</p>
 <p>2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下</p>
-<p>3、修改php.ini配置文件, PHP环境中必须开启短标签,不然安装会提示无法安装</p>
-<p>4、设置php.ini中 short_open_tag &#x3D; On,重启phpstudy</p>
-<h1 id="四、漏洞复现"><a href="#四、漏洞复现" class="headerlink" title="四、漏洞复现"></a>四、漏洞复现</h1><p>参考博客<br>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuzly/p/11369770.html]">https://www.cnblogs.com/yuzly/p/11369770.html]</a></p>
-<h2 id="访问后台"><a href="#访问后台" class="headerlink" title="访问后台"></a>访问后台</h2><p><img src="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png"></p>
-<h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><p>系统–&gt;备份与恢复数据–&gt;备份数据（这里选中一个表进行备份）–&gt;开始备份<br><img src="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png"></p>
-<h2 id="抓包改表名传马"><a href="#抓包改表名传马" class="headerlink" title="抓包改表名传马"></a>抓包改表名传马</h2><p>使用burp suite抓包<br><img src="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png"><br>将tablename改为一句话木马<br><code>tablename[]=@eval（$_POST[1])</code></p>
-<h2 id="蚁剑连接"><a href="#蚁剑连接" class="headerlink" title="蚁剑连接"></a>蚁剑连接</h2><p>管理备份目录–&gt;查看备份说明–&gt;将readme.txt改为config.php–&gt;蚁剑连接<br><img src="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png"></p>
+<p>3、修改php.ini配置文件,
+PHP环境中必须开启短标签,不然安装会提示无法安装</p>
+<p>4、设置php.ini中 short_open_tag = On,重启phpstudy</p>
+<h1 id="四漏洞复现">四、漏洞复现</h1>
+<p>参考博客 [https://www.cnblogs.com/yuzly/p/11369770.html]</p>
+<h2 id="访问后台">访问后台</h2>
+<p><img src="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png" />
+## 备份数据
+系统--&gt;备份与恢复数据--&gt;备份数据（这里选中一个表进行备份）--&gt;开始备份
+<img
+src="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png" /></p>
+<h2 id="抓包改表名传马">抓包改表名传马</h2>
+<p>使用burp suite抓包 <img
+src="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png" />
+将tablename改为一句话木马 <code>tablename[]=@eval（$_POST[1])</code></p>
+<h2 id="蚁剑连接">蚁剑连接</h2>
+<p>管理备份目录--&gt;查看备份说明--&gt;将readme.txt改为config.php--&gt;蚁剑连接
+<img
+src="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png" /></p>
 
     </div>
 
@@ -313,7 +326,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、漏洞描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">二、影响版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">三、环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">四、漏洞复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%90%8E%E5%8F%B0"><span class="nav-number">4.1.</span> <span class="nav-text">访问后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE"><span class="nav-number">4.2.</span> <span class="nav-text">备份数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8C%85%E6%94%B9%E8%A1%A8%E5%90%8D%E4%BC%A0%E9%A9%AC"><span class="nav-number">4.3.</span> <span class="nav-text">抓包改表名传马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.4.</span> <span class="nav-text">蚁剑连接</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、漏洞描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">二、影响版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">三、环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="nav-number">4.</span> <span class="nav-text">四、漏洞复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%90%8E%E5%8F%B0"><span class="nav-number">4.1.</span> <span class="nav-text">访问后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8C%85%E6%94%B9%E8%A1%A8%E5%90%8D%E4%BC%A0%E9%A9%AC"><span class="nav-number">4.2.</span> <span class="nav-text">抓包改表名传马</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%9A%81%E5%89%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.3.</span> <span class="nav-text">蚁剑连接</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

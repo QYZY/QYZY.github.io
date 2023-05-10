@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="ASCII码（美国信息交换标准代码）每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做编码(encode)，而将二进制读取为数据的过程叫做解码(decode)   规则 所有的控制字符编码在0~31">
+  <meta name="description" content="ASCII码（美国信息交换标准代码） 每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做编码(encode)，而将二进制读取为数据的过程叫做解码(decode) 规则  所有的控制字符编码在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符编码那些事">
 <meta property="og:url" content="https://qyzy.github.io/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="ASCII码（美国信息交换标准代码）每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做编码(encode)，而将二进制读取为数据的过程叫做解码(decode)   规则 所有的控制字符编码在0~31">
+<meta property="og:description" content="ASCII码（美国信息交换标准代码） 每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做编码(encode)，而将二进制读取为数据的过程叫做解码(decode) 规则  所有的控制字符编码在">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-09T10:28:04.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:34:23.924Z">
@@ -214,31 +214,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="ASCII码（美国信息交换标准代码）"><a href="#ASCII码（美国信息交换标准代码）" class="headerlink" title="ASCII码（美国信息交换标准代码）"></a>ASCII码（美国信息交换标准代码）</h1><p>每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做<strong>编码(encode)<strong>，而将二进制读取为数据的过程叫做</strong>解码(decode)</strong>  </p>
-<h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
+        <h1
+id="ascii码美国信息交换标准代码">ASCII码（美国信息交换标准代码）</h1>
+<p>每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做<strong>编码(encode)</strong>，而将二进制读取为数据的过程叫做<strong>解码(decode)</strong></p>
+<h2 id="规则">规则</h2>
+<ul>
 <li>所有的控制字符编码在0~31范围及127中。</li>
 <li>所有的标点符号，英文大小写全部放在32~126范围中。</li>
 <li>第一位始终为0，后面7位表示0~127的范围。</li>
 </ul>
-<h1 id="GB2312"><a href="#GB2312" class="headerlink" title="GB2312"></a>GB2312</h1><p>当计算机技术传到亚洲时，发现字符的个数远远超过255,于是只能使用2个字节</p>
-<h2 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h2><ul>
-<li>如果一个字节中第一位为0，那么这就是一个ASCII字符。</li>
-<li>当读到一个数值上小于127的字节时当作一个ASCII中原有的字符处理。读到一个数值大于127的字节时会继续读取下一个字节，下一个字节的数值也必定大于127，将两个大于127的字节一起组合形成一个字符。</li>
-</ul>
+<h1 id="gb2312">GB2312</h1>
+<p>当计算机技术传到亚洲时，发现字符的个数远远超过255,于是只能使用2个字节
+## 规则 * 如果一个字节中第一位为0，那么这就是一个ASCII字符。 *
+当读到一个数值上小于127的字节时当作一个ASCII中原有的字符处理。读到一个数值大于127的字节时会继续读取下一个字节，下一个字节的数值也必定大于127，将两个大于127的字节一起组合形成一个字符。</p>
 <p>把这个码表叫做GB2312</p>
-<h1 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h1><p>GB2312只收录了常见的一些汉字，没有办法表示不常用的生僻字，于是在GB2312的基础上增加了字符。</p>
-<h2 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h2><ul>
-<li>使用GBK编码，当读取到一个数值上小于127的字节时当作一个ASCII中原有的字符处理，<strong>读到一个数值大于127的字节时必定会读取下一个字节，下一个字节的数值无需大于127</strong>将两个字节一起组合形成一个汉字字符。</li>
-</ul>
-<h1 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h1><p>不同国家之间的编码很难相互转化，于是出现了一个全球性的非政府组织，叫做国际标准化组织，全称是Internation Organization for Standardization,简称ISO。他们要搞一个包含全世界所有符号的编码，把这套编码方案叫做Universal Multiple-Octet Coded Character Set,简称UCS，俗称Unicode。</p>
-<h1 id="UTF-X"><a href="#UTF-X" class="headerlink" title="UTF-X"></a>UTF-X</h1><p>在传输中存在大量的字节位浪费，于是出现了许多UTF（UCS Transfer Format）标准，常见的有：UTF-8,UTF-16,UTF-32。他们遵循Unicode字符集标准，但却改变了它的字节存储方案。</p>
-<p><strong>UTF-8是Unicode的实现方式之一</strong>UTF-8是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。</p>
-<h2 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h2><ul>
-<li>对于单字节的符号，字节的第一位设为0，后面七位为这个符号的Unicode码。</li>
-<li>对于n字节的符号，第一个字节的前n位都为1，第n+1位设为0.后面字节的前两位一律设为10.剩下的没有提及的二进制位，全部为这个符号的Unicode码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0xxxxxxx</span><br><span class="line">110xxxxx 10xxxxxx</span><br><span class="line">1110xxxx 10xxxxxx 10xxxxxx</span><br><span class="line">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</span><br></pre></td></tr></table></figure>
-如果一个字节的第一位是0，则这个字节单独就是一个字符：如果第一位是1，则连续有多少个1，就表示当前字符占用多少字节。</li>
-</ul>
-<h1 id="锟斤拷"><a href="#锟斤拷" class="headerlink" title="锟斤拷"></a>锟斤拷</h1><p>常见于UTF-8和中文编码的转换中，Unicode字符集中有一个特殊的替换符号<code>�</code>，专门用于表示无法识别或展示的字符，有些编辑器在编码为UTF-8时，会把无法识别或展示的字符，自动替换为这个替换符号。它在UTF-8编码后，是<code>11101111 10111111 10111101</code>这个三字节长度的二进制数字，转换为十六进制就是<code>EF BF BD</code>，如果用户在替换后保存了，这个特殊符号就会替代原本的字符，如果有两个替换符号正好连在一起，就会有<code>EF BF BD EF BF BD</code>,这时候再把文件用GBK编码读取，每个两个连着的特殊符号都变成了<code>锟斤拷</code>。因为GBK用两个字节表示汉字，而<code>EF BF</code>,<code>BD EF</code>.<code>BF BD</code>正好分别对应<code>锟</code>,<code>斤</code>,<code>拷</code></p>
+<h1 id="gbk">GBK</h1>
+<p>GB2312只收录了常见的一些汉字，没有办法表示不常用的生僻字，于是在GB2312的基础上增加了字符。
+## 规则 *
+使用GBK编码，当读取到一个数值上小于127的字节时当作一个ASCII中原有的字符处理，<strong>读到一个数值大于127的字节时必定会读取下一个字节，下一个字节的数值无需大于127</strong>将两个字节一起组合形成一个汉字字符。</p>
+<h1 id="unicode">Unicode</h1>
+<p>不同国家之间的编码很难相互转化，于是出现了一个全球性的非政府组织，叫做国际标准化组织，全称是Internation
+Organization for
+Standardization,简称ISO。他们要搞一个包含全世界所有符号的编码，把这套编码方案叫做Universal
+Multiple-Octet Coded Character Set,简称UCS，俗称Unicode。</p>
+<h1 id="utf-x">UTF-X</h1>
+<p>在传输中存在大量的字节位浪费，于是出现了许多UTF（UCS Transfer
+Format）标准，常见的有：UTF-8,UTF-16,UTF-32。他们遵循Unicode字符集标准，但却改变了它的字节存储方案。</p>
+<p><strong>UTF-8是Unicode的实现方式之一</strong>UTF-8是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。
+## 规则 *
+对于单字节的符号，字节的第一位设为0，后面七位为这个符号的Unicode码。 *
+对于n字节的符号，第一个字节的前n位都为1，第n+1位设为0.后面字节的前两位一律设为10.剩下的没有提及的二进制位，全部为这个符号的Unicode码
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0xxxxxxx</span><br><span class="line">110xxxxx 10xxxxxx</span><br><span class="line">1110xxxx 10xxxxxx 10xxxxxx</span><br><span class="line">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</span><br></pre></td></tr></table></figure>
+如果一个字节的第一位是0，则这个字节单独就是一个字符：如果第一位是1，则连续有多少个1，就表示当前字符占用多少字节。</p>
+<h1 id="锟斤拷">锟斤拷</h1>
+<p>常见于UTF-8和中文编码的转换中，Unicode字符集中有一个特殊的替换符号<code>�</code>，专门用于表示无法识别或展示的字符，有些编辑器在编码为UTF-8时，会把无法识别或展示的字符，自动替换为这个替换符号。它在UTF-8编码后，是<code>11101111 10111111 10111101</code>这个三字节长度的二进制数字，转换为十六进制就是<code>EF BF BD</code>，如果用户在替换后保存了，这个特殊符号就会替代原本的字符，如果有两个替换符号正好连在一起，就会有<code>EF BF BD EF BF BD</code>,这时候再把文件用GBK编码读取，每个两个连着的特殊符号都变成了<code>锟斤拷</code>。因为GBK用两个字节表示汉字，而<code>EF BF</code>,<code>BD EF</code>.<code>BF BD</code>正好分别对应<code>锟</code>,<code>斤</code>,<code>拷</code></p>
 
     </div>
 
@@ -322,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ASCII%E7%A0%81%EF%BC%88%E7%BE%8E%E5%9B%BD%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E6%A0%87%E5%87%86%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">ASCII码（美国信息交换标准代码）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GB2312"><span class="nav-number">2.</span> <span class="nav-text">GB2312</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99-1"><span class="nav-number">2.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GBK"><span class="nav-number">3.</span> <span class="nav-text">GBK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99-2"><span class="nav-number">3.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unicode"><span class="nav-number">4.</span> <span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UTF-X"><span class="nav-number">5.</span> <span class="nav-text">UTF-X</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99-3"><span class="nav-number">5.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%9F%E6%96%A4%E6%8B%B7"><span class="nav-number">6.</span> <span class="nav-text">锟斤拷</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ascii%E7%A0%81%E7%BE%8E%E5%9B%BD%E4%BF%A1%E6%81%AF%E4%BA%A4%E6%8D%A2%E6%A0%87%E5%87%86%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">ASCII码（美国信息交换标准代码）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gb2312"><span class="nav-number">2.</span> <span class="nav-text">GB2312</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gbk"><span class="nav-number">3.</span> <span class="nav-text">GBK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unicode"><span class="nav-number">4.</span> <span class="nav-text">Unicode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#utf-x"><span class="nav-number">5.</span> <span class="nav-text">UTF-X</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%9F%E6%96%A4%E6%8B%B7"><span class="nav-number">6.</span> <span class="nav-text">锟斤拷</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

