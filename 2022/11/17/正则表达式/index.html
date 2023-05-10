@@ -230,7 +230,7 @@
 <ul>
 <li><code>[0-9a-zA-Z\_]</code> 可以匹配一个数字、字母、或者下划线;</li>
 <li><code>[0-9a-zA-Z\_+]</code>可以匹配至少由一个数字、字母、或者下划线组成的字符串，比如<code>&#39;a100&#39;</code>、<code>&#39;0_Z&#39;</code>、<code>&#39;Py300&#39;</code>等等;</li>
-<li> <code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>可以匹配由字母或者下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python的合法变量；</li>
+<li><code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>可以匹配由字母或者下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python的合法变量；</li>
 <li><code>[a-zA-Z\_][0-9a-zA-Z\_]&#123;0,19&#125;</code>更精确地限制了变量地长度式1-20个字符（前面1个字符+后面最多19个字符）。<br><code>A|B</code>可以匹配A或B，所以<code>(P|p)ython</code>可以匹配<code>&#39;Python&#39;</code>或者<code>&#39;python&#39;</code>。<br><code>^</code>表示行的开头,<code>^\d</code>表示必须以数字开头。<br><code>$</code>表示行的结束，<code>\d$</code>表示必须以数字结束。<br><code>py</code>也可以匹配<code>&#39;python&#39;</code>，但是加上<code>^py$</code>就变成了整行匹配，就只能匹配<code>&#39;py&#39;</code>了。</li>
 </ul>
 <hr>
@@ -463,6 +463,8 @@
 
 
 
+
+  
 
   
 

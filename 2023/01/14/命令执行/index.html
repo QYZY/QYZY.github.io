@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了命令注入产生的原因：    web网站没有对用户提交的参数进行有效的检测过滤。   操作系统允许一条语句执行多条命令（连接符和管道符）  windows操作系统命令|命令|功能||—-|—-||ping|检测网络连通性||ipconfig|查看当前ip地址||netstat|查看网络端口及连接情况||net uesr|查看">
+  <meta name="description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了命令注入产生的原因：    web网站没有对用户提交的参数进行有效的检测过滤。   操作系统允许一条语句执行多条命令（连接符和管道符）  windows操作系统命令    命令 功能    ping 检测网络连通性   ipconfig 查看当前ip地址   netstat 查看网络端口及连接情况   net uesr 查">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令执行">
 <meta property="og:url" content="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了命令注入产生的原因：    web网站没有对用户提交的参数进行有效的检测过滤。   操作系统允许一条语句执行多条命令（连接符和管道符）  windows操作系统命令|命令|功能||—-|—-||ping|检测网络连通性||ipconfig|查看当前ip地址||netstat|查看网络端口及连接情况||net uesr|查看">
+<meta property="og:description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了命令注入产生的原因：    web网站没有对用户提交的参数进行有效的检测过滤。   操作系统允许一条语句执行多条命令（连接符和管道符）  windows操作系统命令    命令 功能    ping 检测网络连通性   ipconfig 查看当前ip地址   netstat 查看网络端口及连接情况   net uesr 查">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-14T15:15:16.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:35:19.652Z">
@@ -219,8 +219,92 @@
 <li>web网站没有对用户提交的参数进行有效的检测过滤。  </li>
 <li>操作系统允许一条语句执行多条命令（连接符和管道符）</li>
 </ol>
-<p>windows操作系统命令<br>|命令|功能|<br>|—-|—-|<br>|ping|检测网络连通性|<br>|ipconfig|查看当前ip地址|<br>|netstat|查看网络端口及连接情况|<br>|net uesr|查看、增加、删除当前系统用户|<br>|net localgroup|查看、增加、删除当前系统用户组|<br>|dir|列出当前目录下的文件和子目录信息|<br>|req|注册表及其相关操作|<br>|systeminfo|查看当前计算机的综合信息|<br>|tasklist|显示当前运行的进程信息（可查看PID）|</p>
-<p>linux操作系统命令<br>|命令|功能|<br>|—-|—-|<br>|ifconfig|查看当前ip、mac等信息|<br>|netstat|查看网络端口及连接情况|<br>|whoami|查看当前用户|<br>|cat|查看文件内容|<br>|ls|查看当前目录下的文件和子目录信息|<br>|useradd|添加用户|<br>|userdel|删除用户|<br>|passwd|修改用户密码|</p>
+<p>windows操作系统命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ping</td>
+<td>检测网络连通性</td>
+</tr>
+<tr>
+<td>ipconfig</td>
+<td>查看当前ip地址</td>
+</tr>
+<tr>
+<td>netstat</td>
+<td>查看网络端口及连接情况</td>
+</tr>
+<tr>
+<td>net uesr</td>
+<td>查看、增加、删除当前系统用户</td>
+</tr>
+<tr>
+<td>net localgroup</td>
+<td>查看、增加、删除当前系统用户组</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>列出当前目录下的文件和子目录信息</td>
+</tr>
+<tr>
+<td>req</td>
+<td>注册表及其相关操作</td>
+</tr>
+<tr>
+<td>systeminfo</td>
+<td>查看当前计算机的综合信息</td>
+</tr>
+<tr>
+<td>tasklist</td>
+<td>显示当前运行的进程信息（可查看PID）</td>
+</tr>
+</tbody></table>
+<p>linux操作系统命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ifconfig</td>
+<td>查看当前ip、mac等信息</td>
+</tr>
+<tr>
+<td>netstat</td>
+<td>查看网络端口及连接情况</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>查看当前用户</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>查看当前目录下的文件和子目录信息</td>
+</tr>
+<tr>
+<td>useradd</td>
+<td>添加用户</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td>删除用户</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>修改用户密码</td>
+</tr>
+</tbody></table>
 <table>
 <thead>
 <tr>
@@ -250,7 +334,7 @@
 <hr>
 <p>PHP最后一条语句可以没有分号。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
-<p>反引号`和system函数作用相同</p>
+<p>反引号&#96;和system函数作用相同</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure>
 <p>嵌套执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
@@ -272,7 +356,7 @@
 <p>print_r(get_defined_vars());<br>输出当前所有变量<br>array_pop(next(get_defined_vars()));<br>弹出数组的值<br>eval()即可执行</p>
 </blockquote>
 <blockquote>
-<p>/&gt;dev/null 2&gt;&amp;1<br>无回显，可用双写绕过<br><code>?c=ls;ls</code><br>第一个命令正常输出<br><code>&amp;&amp;</code></p>
+<p>&#x2F;&gt;dev&#x2F;null 2&gt;&amp;1<br>无回显，可用双写绕过<br><code>?c=ls;ls</code><br>第一个命令正常输出<br><code>&amp;&amp;</code></p>
 </blockquote>
 <blockquote>
 <p>%20 %09 {$IFS}代替空格</p>
@@ -489,6 +573,8 @@
 
 
 
+
+  
 
   
 

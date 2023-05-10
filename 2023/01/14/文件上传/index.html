@@ -218,7 +218,7 @@
 <h2 id="服务器端文件类型验证"><a href="#服务器端文件类型验证" class="headerlink" title="服务器端文件类型验证"></a>服务器端文件类型验证</h2><p>同样使用burpsuite改包中<code>Content-Type</code>类型即可绕过。</p>
 <h2 id="服务器端扩展名验证"><a href="#服务器端扩展名验证" class="headerlink" title="服务器端扩展名验证"></a>服务器端扩展名验证</h2><p>将木马<code>a.php</code>改为<code>a.php.abc</code>。上传验证时只会验证<code>.abc</code>,因此可以通过验证。而Apache在解析文件的时候，如果解析不了<code>.abc</code>扩展名，会向前寻找可解析的扩展名，即<code>.php</code>。就可以连接蚁剑。</p>
 <h2 id="00截断上传"><a href="#00截断上传" class="headerlink" title="00截断上传"></a>00截断上传</h2><p>通过抓包将文件上传路径<code>/upload/a.php.jpg</code>中的<code>.</code>换成<code>0x00</code>。即可让服务器认为文件已结束，保存为<code>a.php</code>文件。</p>
-<h2 id="图片马绕过"><a href="#图片马绕过" class="headerlink" title="图片马绕过"></a>图片马绕过</h2><p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br>将图片马上传后，利用文件包含漏洞将该图片作为php文件解析，或者同时上传<code>.htaccess</code>文件<br><code>SetHandler application/x-httpd-php</code>将图片马作为php文件解析。  </p>
+<h2 id="图片马绕过"><a href="#图片马绕过" class="headerlink" title="图片马绕过"></a>图片马绕过</h2><p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。&#x2F;b是二进制打开，&#x2F;a是ascii方式打开。<br>将图片马上传后，利用文件包含漏洞将该图片作为php文件解析，或者同时上传<code>.htaccess</code>文件<br><code>SetHandler application/x-httpd-php</code>将图片马作为php文件解析。  </p>
 
     </div>
 
@@ -413,6 +413,8 @@
 
 
 
+
+  
 
   
 
