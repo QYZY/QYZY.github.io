@@ -28,7 +28,7 @@
 <meta property="og:description" content="数学模式 公式有两种形式，行内公式和行间公式，公式中的空格均会被忽略。可以使用\quad或\qquad实现，在行间公式中，命令\tag&amp;#123;n&amp;#125;可以进行手动编号 行内公式 1$ f(x) &#x3D; a + b $ $ f(x) &#x3D; a + b $ 行间公式 1$$ f(x) &#x3D; a + b $$ \[ f(x) &#x3D; a + b \] 手动编号 1$$ f(x) &#x3D; a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-10T07:47:29.000Z">
-<meta property="article:modified_time" content="2023-05-10T08:32:07.425Z">
+<meta property="article:modified_time" content="2023-05-10T08:48:38.556Z">
 <meta property="article:author" content="竹云">
 <meta property="article:tag" content="LaTeX">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-05-10 15:47:29 / 修改时间：16:32:07" itemprop="dateCreated datePublished" datetime="2023-05-10T15:47:29+08:00">2023-05-10</time>
+              <time title="创建时间：2023-05-10 15:47:29 / 修改时间：16:48:38" itemprop="dateCreated datePublished" datetime="2023-05-10T15:47:29+08:00">2023-05-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,17 +266,31 @@ class="math display">\[ \overbrace{1+2+\cdots+n}^{n个} \qquad
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \tilde&#123;x&#125; $$</span><br></pre></td></tr></table></figure>
 <p><span class="math display">\[ \tilde{x} \]</span></p>
 <h2 id="矩阵">矩阵</h2>
-其采用矩阵环境实现矩阵排列，常用的矩阵环境有<code>matrix</code>、<code>bmatrix</code>、<code>vmatrix</code>、<code>pmatrix</code>，其区别为在于外面的括号不同：<br />
-| | | |----|-----| |matrix|<span class="math inline">\(\begin{matrix}
-a&amp;b \\ c&amp;d \end{matrix}\)</span>| |bmatrix|<span
-class="math inline">\(\begin{bmatrix} a&amp;b \\ c&amp;d
-\end{bmatrix}\)</span>| |vmatrix|$
-<span class="math display">\[\begin{vmatrix} a&amp;b \\ c&amp;d
-\end{vmatrix}\]</span>
-<span class="math inline">\(| |pmatrix|\)</span>
-<span class="math display">\[\begin{pmatrix} a&amp;b \\ c&amp;d
-\end{pmatrix}\]</span>
-<p>$|</p>
+<p>其采用矩阵环境实现矩阵排列，常用的矩阵环境有<code>matrix</code>、<code>bmatrix</code>、<code>vmatrix</code>、<code>pmatrix</code>，其区别为在于外面的括号不同：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>matrix</td>
+<td><span class="math inline">\(\begin{matrix} a&amp;b \\ c&amp;d
+\end{matrix}\)</span></td>
+</tr>
+<tr class="even">
+<td>bmatrix</td>
+<td><span class="math inline">\(\begin{bmatrix} a&amp;b \\ c&amp;d
+\end{bmatrix}\)</span></td>
+</tr>
+<tr class="odd">
+<td>vmatrix</td>
+<td><span class="math inline">\(\begin{vmatrix} a&amp;b \\ c&amp;d
+\end{vmatrix}\)</span></td>
+</tr>
+<tr class="even">
+<td>pmatrix</td>
+<td><span class="math inline">\(\begin{pmatrix} a&amp;b \\ c&amp;d
+\end{pmatrix}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>下列代码中，<code>&amp;</code>用于分隔列，<code>\\</code>用于分隔行
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$ \begin&#123;bmatrix&#125; </span><br><span class="line">1 &amp; 2 &amp; \cdots \\</span><br><span class="line">67 &amp; 95 &amp; \cdots \\</span><br><span class="line">\vdots &amp; \vdots &amp; \ddots \\</span><br><span class="line">\end&#123;bmatrix&#125; $$</span><br></pre></td></tr></table></figure></p>
 <p><span class="math display">\[ \begin{bmatrix}
