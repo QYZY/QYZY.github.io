@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
 <meta property="og:description" content="漏洞原理 变量覆盖是指可以用自己的传参代替原有的变量值 漏洞寻找 例如下面的函数或语法使用不当时就会出现漏洞 * $$ * extract() * parse_str() * import_request_variables() * mb_parse_str * register_globals 漏洞解析 extract() 原理 &gt; extract()函数从数组中将变量导入">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png">
 <meta property="article:published_time" content="2022-11-12T12:35:50.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:34:05.442Z">
 <meta property="article:author" content="竹云">
 <meta property="article:tag" content="变量覆盖">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png">
 
 <link rel="canonical" href="https://qyzy.github.io/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/">
 
@@ -224,23 +226,18 @@ register_globals</p>
 <h2 id="extract"><strong>extract()</strong></h2>
 <p>原理 &gt; extract()函数从数组中将变量导入到当前的符号表。
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line"><span class="variable">$my_array</span> = (<span class="string">&quot;a&quot;</span>=&gt;<span class="string">&quot;C&quot;</span>,<span class="string">&quot;b&quot;</span>=&gt;<span class="string">&quot;T&quot;</span>,<span class="string">&quot;c&quot;</span>=&gt;<span class="string">&quot;F&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">extarct</span>(<span class="variable">$my_array</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\$a = <span class="subst">$a</span>; \$b = <span class="subst">$b</span>; \$c = <span class="subst">$c</span>;&quot;</span></span><br><span class="line"><span class="meta">?&gt;</span>  </span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="variable">$a</span> = C; <span class="variable">$b</span> = T; <span class="variable">$c</span> = F</span><br></pre></td></tr></table></figure></p>
-<p>攻击手段<br />
+<p>攻击手段<br>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line">nsilab</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">extract</span>(<span class="variable">$_GET</span>);</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png" /></p>
-<h2
-id="原理-产生的漏洞主要是因为foreach遍历数组的值然后将获取的数组键名作为变量数组中的值作为变量的值">**<span
-class="math display">\[**  
+<p><img src="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png"></p>
+<h2 id="原理-产生的漏洞主要是因为foreach遍历数组的值然后将获取的数组键名作为变量数组中的值作为变量的值">**<span class="math display">\[**  
 原理
 &gt;
 \\]</span>产生的漏洞主要是因为foreach遍历数组的值，然后将获取的数组键名作为变量，数组中的值作为变量的值</h2>
 <ul>
 <li>foreach循环只适用于数组，并用于遍历数组中的每个键/值对。
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$colors</span> = <span class="keyword">array</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;green&quot;</span>,<span class="string">&quot;blue&quot;</span>,<span class="string">&quot;yellow&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$colors</span> <span class="keyword">as</span> <span class="variable">$value</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$value</span> \n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">red</span><br><span class="line">green</span><br><span class="line">blue</span><br><span class="line">yellow</span><br></pre></td></tr></table></figure></li>
-<li>$$ &gt; 在php中，<span
-class="math inline">\(var表示一个名为var的普通变量，它存储字符串、整数、浮点等任何值。而\)</span><span
-class="math inline">\(var是一个引用变量，用于存储\)</span>var的值
+<li>$$ &gt; 在php中，<span class="math inline">\(var表示一个名为var的普通变量，它存储字符串、整数、浮点等任何值。而\)</span><span class="math inline">\(var是一个引用变量，用于存储\)</span>var的值
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$var</span> = <span class="string">&quot;sfc9982&quot;</span>;</span><br><span class="line"><span class="variable">$$var</span> = <span class="string">&quot;UPON&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$sfc9982</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：sfc9982</span><br><span class="line">UPON</span><br><span class="line">UPON</span><br></pre></td></tr></table></figure> ## parse_str() &gt; parse_str()把查询字符串解析到变量中
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="keyword">string</span>,<span class="keyword">array</span>)</span><br><span class="line"><span class="keyword">string</span>  必需。规定要解析的字符串。</span><br><span class="line"><span class="keyword">array</span> 可选。规定存储变量的数组的名称。该参数指示变量将被存储到数组中。</span><br></pre></td></tr></table></figure> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="string">&quot;name=eeknight&amp;age=20&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$age</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">eeknight</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure> 攻击方式
 如果parse_str()括号是GET，POST等，我们就可以直接执行函数。</li>
@@ -257,13 +254,13 @@ class="math inline">\(var是一个引用变量，用于存储\)</span>var的值
 </blockquote>
 <h2 id="register_globals">register_globals</h2>
 <blockquote>
-<p>register_globals的意思就是注册为全局变量<br />
+<p>register_globals的意思就是注册为全局变量<br>
 当php.ini中register_globals=On时，传递过来的值会被直接注册文全局变量，当为off时，需要到特定的数组中去得到
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span><span class="string">&quot;Register_globals:&quot;</span>.(<span class="keyword">int</span>)<span class="title function_ invoke__">ini_get</span>(<span class="string">&quot;register_globals&quot;</span>).<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$auth</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;hello!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h1 id="一些附加说明">一些附加说明</h1>
 <ol type="1">
-<li>parse_str()<br />
+<li>parse_str()<br>
 php.ini文件中的magic_quotes_gpc设置影响该函数的输出。如果已启用，那么在parse_str()解析之前，变量会被addslashes()转换。</li>
 <li>import_request_variables()该函数支持的版本： PHP 4 &gt;= 4.1.0, PHP
 5 &lt; 5.4.0。</li>
@@ -275,8 +272,7 @@ php.ini文件中的magic_quotes_gpc设置影响该函数的输出。如果已启
 <li>使用原始变量，不进行变量注册；</li>
 <li>如果一定要进行变量注册，可以在注册变量前判断变量是否存在。</li>
 </ol>
-<p>转载于<a
-target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673">细说变量覆盖那些事</a></p>
+<p>转载于<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673">细说变量覆盖那些事</a></p>
 
     </div>
 
@@ -379,7 +375,7 @@ target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -392,7 +388,7 @@ target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
