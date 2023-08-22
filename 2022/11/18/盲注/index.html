@@ -216,59 +216,60 @@
       
         <h1 id="盲注的两个基本问题">盲注的两个基本问题</h1>
 <h2 id="字符串的截取">1. 字符串的截取</h2>
-<p><strong>substr()</strong><br>
+<p><strong>substr()</strong><br />
 <code>substr(要截取的字符串，从哪一位开始截取，截取多长)</code>
 注意，这里截取的开始位数是从1开始数的，substr和substring是同名函数。</p>
-<p><strong>mid()</strong><br>
+<p><strong>mid()</strong><br />
 和substr()用法基本一样，是substr()完美的替代品。</p>
-<p><strong>right()</strong><br>
+<p><strong>right()</strong><br />
 表示截取字符串的右面几位。 <code>right(接却的字符串，截取长度)</code>
 到了right就不太好用了，因为substr
-()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。<br>
+()和mid()是精确截取某一位的，而right()不能这样精确的截取，它只能截取某些位。<br />
 技巧：和ascii/ord
 函数一起使用，ascii()或ord()返回传入字符串的首字母的ASCII码。另外建议能用ASCII码判断，就不要直接用明文字符进行判断。理由如下：
 1.如果直接用明文字符进行判断，有一些特殊符号（单引号反斜线等）会干扰整个SQL语句的语法。2。ASCII将字符转成数字，数字可以用于大小的判断，可以二分注入，而字符基本只能用等号判断。</p>
-<p><strong>left()</strong><br>
+<p><strong>left()</strong><br />
 表示截取字符串的左面几位。 <code>left(截取的字符串，截取长度)</code>
-和right()一样，依然是个不能精确截取某一位的函数，但是也可以利用技巧实现精确截取。<br>
+和right()一样，依然是个不能精确截取某一位的函数，但是也可以利用技巧实现精确截取。<br />
 技巧：和reverse()+ascii()/ord()一起使用。ascii(reverse(left(所截字符串，x)))会返回从左往右数第x位的ASCII码。</p>
-<p><strong>regexp</strong><br>
+<p><strong>regexp</strong><br />
 用来判断一个字符串是否匹配一个正则表达式。这个函数兼容了截取与比较。
 <code>binary 目标字符串 regexp 正则</code>
 但是直接字符串regexp正则表达式时大小写不敏感的，需要大小写敏感需要加上binary关键字（binary不是regexp的搭档，需要把binary加到字符串的前面而不是regexp的前面，MySQL中binary是一种字符类型）</p>
-<p><strong>rlike</strong><br>
+<p><strong>rlike</strong><br />
 和regexp一样。</p>
-<p><strong>trim()</strong><br>
-注入方法<br>
-trim()函数处理用于移除首位空白外，还有如下用法：<br>
+<p><strong>trim()</strong><br />
+注入方法<br />
+trim()函数处理用于移除首位空白外，还有如下用法：<br />
 trim([both|leading|trailing] [rmstr] from
-str)表示移除str这个字符串首尾(BOTH)/句首(LEADING)/句尾(TRAILING)的rmstr<br>
+str)表示移除str这个字符串首尾(BOTH)/句首(LEADING)/句尾(TRAILING)的rmstr<br />
 例如trim(leading 'a' from 'abcd')表示移除abcd句首的a，于是会返回bcd</p>
 <p><strong>insert()</strong>
-虽然字面意思为插入，其实是个字符串替换的函数<br>
+虽然字面意思为插入，其实是个字符串替换的函数<br />
 用法： insert(字符串，起始位置，长度，替换为什么)</p>
 <h2 id="比较">2. 比较</h2>
-<p>=&gt;&lt;<br>
-最基本的比较方法！<br>
-<strong>LIKE</strong><br>
+<p>=&gt;&lt;<br />
+最基本的比较方法！<br />
+<strong>LIKE</strong><br />
 基本上可以用来代替等号，如果没有% _之类的字符的话。</p>
-<p><strong>RLIKE/REGEXP</strong><br>
+<p><strong>RLIKE/REGEXP</strong><br />
 截取+比较的结合体</p>
-<p><strong>BETWEEN</strong><br>
-用法：expr BETWEEN 下界 AND 上界；<br>
+<p><strong>BETWEEN</strong><br />
+用法：expr BETWEEN 下界 AND 上界；<br />
 说明：表示是否expr&gt;=下界 &amp;&amp; exp &lt;=
 上界，有点像数学里的“闭区间”只是这里的上下界可以相等，比如expr是2
 ，那么你完全可以写成2 between 2 and 2 。所以x between i and i
 就是表示x是否等于i的意思。</p>
-<p><strong>IN</strong><br>
+<p><strong>IN</strong><br />
 用法：expr1 in(expr1,expr2,expr3)
 说明：有点像数学中的元素是否属于一个集合。同样也是大小写不敏感的，为了大小写敏感需要用binary关键字。</p>
 <p><strong>AND和减法运算</strong>
-and也可以用&amp;&amp;来表示，是逻辑与的意思。<br>
+and也可以用&amp;&amp;来表示，是逻辑与的意思。<br />
 在盲注中，可以用一个true去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
 <p><strong>OR和减法运算</strong>
 or也可以用||来表示，是逻辑或的意思。在盲注中，可以用一个false去运算一个ASCII码减去一个数字，如果返回0则说明减去的数字就是所判断的ASCII码</p>
-<p><strong>CASE</strong> 两种用法： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN(表达式) THEN exp1 ELSE exp2 END;# 表示如果表达式为真则返回exp1，否则返回exp2</span><br><span class="line">CASE  啥 WHEN 啥啥 THEN exp1 ELSE exp2 END;# 表示如果（啥=啥啥）则返回exp1，否则返回exp2</span><br></pre></td></tr></table></figure> <a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">来源</a></p>
+<p><strong>CASE</strong> 两种用法： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CASE WHEN(表达式) THEN exp1 ELSE exp2 END;# 表示如果表达式为真则返回exp1，否则返回exp2</span><br><span class="line">CASE  啥 WHEN 啥啥 THEN exp1 ELSE exp2 END;# 表示如果（啥=啥啥）则返回exp1，否则返回exp2</span><br></pre></td></tr></table></figure> <a
+target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266244">来源</a></p>
 
     </div>
 

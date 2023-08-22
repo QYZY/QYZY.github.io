@@ -223,7 +223,7 @@
 ## 00截断上传
 通过抓包将文件上传路径<code>/upload/a.php.jpg</code>中的<code>.</code>换成<code>0x00</code>。即可让服务器认为文件已结束，保存为<code>a.php</code>文件。</p>
 <h2 id="图片马绕过">图片马绕过</h2>
-<p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br>
+<p>输入<code>copy 1.jpg/b+a.php/a b.jpg</code>将a.php插入到1.jpg中形成图片马。/b是二进制打开，/a是ascii方式打开。<br />
 将图片马上传后，利用文件包含漏洞将该图片作为php文件解析，或者同时上传<code>.htaccess</code>文件
 <code>SetHandler application/x-httpd-php</code>将图片马作为php文件解析。</p>
 

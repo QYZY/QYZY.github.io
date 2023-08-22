@@ -28,9 +28,6 @@
 <meta property="og:description" content="一、漏洞描述 EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。 二、影响版本 EmpireCMS&lt;&#x3D;7.5 三、环境搭建 1、官方下载EmpireCMS V7.5 下载地址:http:&#x2F;&#x2F;www.phome.net&#x2F;download&#x2F; 2、把下载的文件中的upload下的所有目录和文件放入到网站根目录下">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png">
 <meta property="article:published_time" content="2022-11-05T06:30:38.000Z">
 <meta property="article:modified_time" content="2023-04-23T09:35:48.500Z">
 <meta property="article:author" content="竹云">
@@ -233,16 +230,19 @@ PHP环境中必须开启短标签,不然安装会提示无法安装</p>
 <h1 id="四漏洞复现">四、漏洞复现</h1>
 <p>参考博客 [https://www.cnblogs.com/yuzly/p/11369770.html]</p>
 <h2 id="访问后台">访问后台</h2>
-<p><img src="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png">
+<p><img src="https://s3.bmp.ovh/imgs/2022/10/31/0c369fc2af99f697.png" />
 ## 备份数据
 系统--&gt;备份与恢复数据--&gt;备份数据（这里选中一个表进行备份）--&gt;开始备份
-<img src="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png"></p>
+<img
+src="https://s3.bmp.ovh/imgs/2022/10/31/233cb0c1f2c3d213.png" /></p>
 <h2 id="抓包改表名传马">抓包改表名传马</h2>
-<p>使用burp suite抓包 <img src="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png">
+<p>使用burp suite抓包 <img
+src="https://s3.bmp.ovh/imgs/2022/10/31/50c0267a273e882a.png" />
 将tablename改为一句话木马 <code>tablename[]=@eval（$_POST[1])</code></p>
 <h2 id="蚁剑连接">蚁剑连接</h2>
 <p>管理备份目录--&gt;查看备份说明--&gt;将readme.txt改为config.php--&gt;蚁剑连接
-<img src="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png"></p>
+<img
+src="https://s3.bmp.ovh/imgs/2022/11/05/e5880a56abdc7426.png" /></p>
 
     </div>
 
